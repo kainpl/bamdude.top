@@ -12,7 +12,7 @@ interface Props {
   ogImage?: string;
 }
 
-const { title, description, locale, ogImage = '/og/home-en.png' } = Astro.props;
+const { title, description, locale, ogImage = `/og/${locale}.png` } = Astro.props;
 const i = t(locale);
 const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://bamdude.top';
 const path = Astro.url.pathname;
