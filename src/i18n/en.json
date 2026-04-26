@@ -1,0 +1,58 @@
+{
+  "nav": {
+    "features": "Features",
+    "screenshots": "Screenshots",
+    "how": "How it works",
+    "faq": "FAQ",
+    "docs": "Docs",
+    "github": "GitHub"
+  },
+  "hero": {
+    "title": "One printer or a hundred. Your data. Your rules.",
+    "subtitle": "Self-hosted command center for Bambu Lab — friendly enough to start with one printer, powerful enough to run a print farm.",
+    "ctaPrimary": "Quick start",
+    "ctaSecondary": "Star on GitHub"
+  },
+  "trust": {
+    "label": "Compatible with",
+    "license": "AGPL-3.0 licensed",
+    "stars": "GitHub stars"
+  },
+  "how": {
+    "title": "Up and running in 5 minutes",
+    "steps": [
+      { "title": "Pull the Docker image", "body": "One container, SQLite by default, Postgres optional." },
+      { "title": "Add your printers", "body": "Auto-discover via SSDP or paste in IP and access code." },
+      { "title": "Print from web or Telegram", "body": "Queue, monitor, and react to events from anywhere." }
+    ]
+  },
+  "why": { "title": "Built for print farms, not a single printer" },
+  "faq": { "title": "Questions you probably have" },
+  "cta": {
+    "title": "Get started in 5 minutes",
+    "subtitle": "Free, open source, AGPL-3.0 licensed. No cloud lock-in. Ever."
+  },
+  "footer": {
+    "product": "Product",
+    "community": "Community",
+    "legal": "Legal",
+    "telegram": "Telegram: BamDude Friends Forum",
+    "issues": "Report an issue",
+    "license": "License",
+    "privacy": "Privacy",
+    "cookies": "Cookie settings",
+    "rights": "All rights reserved.",
+    "disclaimer": "Bambu Lab is a trademark of Bambu Lab Co., Ltd. BamDude is an independent project, not affiliated with Bambu Lab."
+  },
+  "theme": { "system": "System", "light": "Light", "dark": "Dark", "label": "Theme" },
+  "lang": { "label": "Language", "en": "English", "uk": "Українська" },
+  "cookie": {
+    "title": "We use a cookie for analytics",
+    "body": "Google Analytics 4 helps us understand which features get used. Loaded only after you accept.",
+    "accept": "Accept",
+    "reject": "Reject",
+    "customize": "Customize",
+    "analyticsLabel": "Analytics (Google Analytics 4)",
+    "save": "Save preferences"
+  }
+}

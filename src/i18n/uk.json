@@ -1,0 +1,36 @@
+{
+  "nav": { "features": "Можливості", "screenshots": "Скриншоти", "how": "Як це працює", "faq": "FAQ", "docs": "Документація", "github": "GitHub" },
+  "hero": {
+    "title": "Один принтер або сотня. Твої дані. Твої правила.",
+    "subtitle": "Self-hosted командний центр для Bambu Lab — простий для одного принтера, потужний для цілої принт-ферми.",
+    "ctaPrimary": "Швидкий старт",
+    "ctaSecondary": "Зірка на GitHub"
+  },
+  "trust": { "label": "Підтримує", "license": "AGPL-3.0-ліцензія", "stars": "Зірок на GitHub" },
+  "how": {
+    "title": "Запуск за 5 хвилин",
+    "steps": [
+      { "title": "Підняти Docker-образ", "body": "Один контейнер, SQLite за замовчанням, Postgres опціонально." },
+      { "title": "Додати принтери", "body": "Автопошук через SSDP або вручну: IP + access code." },
+      { "title": "Друкуй з вебу або Telegram", "body": "Черга, моніторинг, реакції на події — звідусіль." }
+    ]
+  },
+  "why": { "title": "Зроблено для принт-ферм, а не одного принтера" },
+  "faq": { "title": "Питання, які зазвичай виникають" },
+  "cta": { "title": "Запусти за 5 хвилин", "subtitle": "Безкоштовно, open source, AGPL-3.0. Ніякого cloud-lock-in. Ніколи." },
+  "footer": {
+    "product": "Продукт", "community": "Спільнота", "legal": "Юридичне",
+    "telegram": "Telegram: BamDude Friends Forum",
+    "issues": "Повідомити про баг", "license": "Ліцензія", "privacy": "Приватність", "cookies": "Налаштування cookies",
+    "rights": "Всі права захищено.",
+    "disclaimer": "Bambu Lab — торгова марка Bambu Lab Co., Ltd. BamDude — незалежний проект, не пов'язаний з Bambu Lab."
+  },
+  "theme": { "system": "Системна", "light": "Світла", "dark": "Темна", "label": "Тема" },
+  "lang": { "label": "Мова", "en": "English", "uk": "Українська" },
+  "cookie": {
+    "title": "Ми використовуємо cookie для аналітики",
+    "body": "Google Analytics 4 допомагає зрозуміти, які фічі використовуються. Вантажиться тільки після твоєї згоди.",
+    "accept": "Прийняти", "reject": "Відхилити", "customize": "Налаштувати",
+    "analyticsLabel": "Аналітика (Google Analytics 4)", "save": "Зберегти"
+  }
+}
