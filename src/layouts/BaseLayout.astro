@@ -44,6 +44,19 @@ const altPath = locale === defaultLocale ? `/${alt}${path === '/' ? '/' : path}`
     <meta property="og:locale:alternate" content={alt === 'en' ? 'en_US' : 'uk_UA'} />
     <meta name="twitter:card" content="summary_large_image" />
 
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'SoftwareApplication',
+      name: 'BamDude',
+      description,
+      applicationCategory: 'DeveloperApplication',
+      operatingSystem: 'Linux, Docker',
+      url: siteUrl,
+      license: 'https://opensource.org/license/agpl-v3',
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+      inLanguage: locale,
+    })}></script>
+
     <!-- Consent Mode v2 default-deny stub. Loaded BEFORE any analytics. -->
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
