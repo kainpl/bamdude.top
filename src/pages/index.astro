@@ -1,5 +1,19 @@
 ---
-import '../styles/globals.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import { t } from '../i18n';
+const locale = 'en' as const;
+const i = t(locale);
 ---
-<!doctype html>
-<html lang="en"><head><title>BamDude</title></head><body><h1 class="text-4xl font-extrabold text-bambu-green">BamDude</h1></body></html>
+<BaseLayout title="BamDude — Self-hosted print management for Bambu Lab" description={i.hero.subtitle} locale={locale}>
+  <Section id="hero" ariaLabel="Introduction">
+    <h1 class="text-5xl font-extrabold tracking-tight">{i.hero.title}</h1>
+  </Section>
+  <Section id="trust" ariaLabel="Trust"><p>{i.trust.label}</p></Section>
+  <Section id="features" ariaLabel="Features"><h2 class="text-3xl font-bold">Features</h2></Section>
+  <Section id="screenshots" ariaLabel="Screenshots"><h2 class="text-3xl font-bold">Screenshots</h2></Section>
+  <Section id="how" ariaLabel="How it works"><h2 class="text-3xl font-bold">{i.how.title}</h2></Section>
+  <Section id="why" ariaLabel="Why fork from Bambuddy"><h2 class="text-3xl font-bold">{i.why.title}</h2></Section>
+  <Section id="faq" ariaLabel="FAQ"><h2 class="text-3xl font-bold">{i.faq.title}</h2></Section>
+  <Section id="cta" ariaLabel="Final call to action"><h2 class="text-3xl font-bold">{i.cta.title}</h2></Section>
+</BaseLayout>
