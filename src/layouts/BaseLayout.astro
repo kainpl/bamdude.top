@@ -1,0 +1,89 @@
+---
+import '../styles/globals.css';
+import type { Locale } from '../i18n';
+import { altLocale, defaultLocale } from '../i18n';
+
+interface Props {
+  title: string;
+  description: string;
+  locale: Locale;
+  ogImage?: string;
+}
+
+const { title, description, locale, ogImage = '/og/home-en.png' } = Astro.props;
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://bamdude.top';
+const path = Astro.url.pathname;
+const canonical = `${siteUrl}${path}`;
+const alt = altLocale(locale);
+const altPath = locale === defaultLocale ? `/${alt}${path === '/' ? '/' : path}` : path.replace(`/${locale}`, alt === defaultLocale ? '' : `/${alt}`);
+---
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang={locale} href={canonical} />
+    <link rel="alternate" hreflang={alt} href={`${siteUrl}${altPath}`} />
+    <link rel="alternate" hreflang="x-default" href={`${siteUrl}/`} />
+
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={`${siteUrl}${ogImage}`} />
+    <meta property="og:locale" content={locale === 'en' ? 'en_US' : 'uk_UA'} />
+    <meta property="og:locale:alternate" content={alt === 'en' ? 'en_US' : 'uk_UA'} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Consent Mode v2 default-deny stub. Loaded BEFORE any analytics. -->
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      window.gtag = gtag;
+      gtag('consent', 'default', {
+        analytics_storage: 'denied',
+        ad_storage: 'denied',
+        wait_for_update: 500
+      });
+    </script>
+
+    <!-- No-flash theme. Reads localStorage → prefers-color-scheme → dark fallback. -->
+    <script is:inline>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme'); // 'system' | 'light' | 'dark' | null
+          var system = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+          var resolved = (!stored || stored === 'system') ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')) : stored;
+          if (resolved === 'dark') document.documentElement.classList.add('dark');
+        } catch (e) {
+          document.documentElement.classList.add('dark'); // dark fallback on errors
+        }
+      })();
+    </script>
+
+    <!-- First-visit lang redirect (only on /, only if no preference stored) -->
+    <script is:inline define:vars={{ currentLocale: locale }}>
+      (function () {
+        if (currentLocale !== 'en') return;
+        if (window.location.pathname !== '/') return;
+        try {
+          if (localStorage.getItem('lang')) return;
+          var nav = (navigator.language || 'en').toLowerCase();
+          if (nav.indexOf('uk') === 0) {
+            localStorage.setItem('lang', 'uk');
+            window.location.replace('/uk/');
+          }
+        } catch (e) { /* noop */ }
+      })();
+    </script>
+  </head>
+  <body class="font-sans bg-bambu-bg text-bambu-text antialiased">
+    <slot />
+  </body>
+</html>
