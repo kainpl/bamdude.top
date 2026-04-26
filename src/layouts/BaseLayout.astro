@@ -2,6 +2,8 @@
 import '../styles/globals.css';
 import type { Locale } from '../i18n';
 import { altLocale, defaultLocale } from '../i18n';
+import { CookieBanner } from '../components/islands/CookieBanner';
+import { t } from '../i18n';
 
 interface Props {
   title: string;
@@ -11,6 +13,7 @@ interface Props {
 }
 
 const { title, description, locale, ogImage = '/og/home-en.png' } = Astro.props;
+const i = t(locale);
 const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://bamdude.top';
 const path = Astro.url.pathname;
 const canonical = `${siteUrl}${path}`;
@@ -85,5 +88,14 @@ const altPath = locale === defaultLocale ? `/${alt}${path === '/' ? '/' : path}`
   </head>
   <body class="font-sans bg-bambu-bg text-bambu-text antialiased">
     <slot />
+    <CookieBanner client:idle labels={i.cookie} />
+    <script is:inline>
+      document.addEventListener('click', (e) => {
+        const target = e.target;
+        if (target instanceof HTMLElement && target.closest('[data-cookie-settings]')) {
+          window.dispatchEvent(new Event('cookie:settings'));
+        }
+      });
+    </script>
   </body>
 </html>
