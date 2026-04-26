@@ -12,5 +12,28 @@ export default [
       parserOptions: { parser: '@typescript-eslint/parser', extraFileExtensions: ['.astro'] },
     },
   },
+  // CJS files (lighthouserc.cjs) use CommonJS globals
+  {
+    files: ['**/*.cjs'],
+    languageOptions: { sourceType: 'commonjs' },
+  },
+  // Inline scripts inside .astro files and test helpers use patterns that
+  // are valid in their runtime context but would trip ESLint rules designed
+  // for module code. Relax only the rules that fire in those contexts.
+  {
+    files: ['src/layouts/BaseLayout.astro'],
+    rules: {
+      'no-var': 'off',
+      'prefer-rest-params': 'off',
+      '@typescript-eslint/no-unused-vars': 'off',
+    },
+  },
+  {
+    files: ['**/*.test.tsx', '**/*.test.ts'],
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/ban-ts-comment': 'off',
+    },
+  },
   { ignores: ['dist/', 'node_modules/', '.astro/'] },
 ];

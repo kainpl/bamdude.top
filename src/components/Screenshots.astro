@@ -1,9 +1,5 @@
 ---
-import type { Locale } from '../i18n';
 import { ScreenshotsTabs } from './islands/ScreenshotsTabs';
-
-interface Props { locale: Locale; }
-const { locale: _ } = Astro.props;
 
 const tabs = [
   { id: 'web', label: 'Web', src: '/images/screenshot-desktop.png', alt: 'BamDude web dashboard' },

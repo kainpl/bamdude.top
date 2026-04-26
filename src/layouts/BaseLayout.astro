@@ -59,9 +59,11 @@ const altPath = locale === defaultLocale ? `/${alt}${path === '/' ? '/' : path}`
 
     <!-- Consent Mode v2 default-deny stub. Loaded BEFORE any analytics. -->
     <script is:inline>
+      /* eslint-disable prefer-rest-params */
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       window.gtag = gtag;
+      /* eslint-enable prefer-rest-params */
       gtag('consent', 'default', {
         analytics_storage: 'denied',
         ad_storage: 'denied',
@@ -71,20 +73,22 @@ const altPath = locale === defaultLocale ? `/${alt}${path === '/' ? '/' : path}`
 
     <!-- No-flash theme. Reads localStorage → prefers-color-scheme → dark fallback. -->
     <script is:inline>
+      /* eslint-disable no-var, @typescript-eslint/no-unused-vars */
       (function () {
         try {
           var stored = localStorage.getItem('theme'); // 'system' | 'light' | 'dark' | null
-          var system = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
           var resolved = (!stored || stored === 'system') ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')) : stored;
           if (resolved === 'dark') document.documentElement.classList.add('dark');
-        } catch (e) {
+        } catch (_err) {
           document.documentElement.classList.add('dark'); // dark fallback on errors
         }
       })();
+      /* eslint-enable no-var, @typescript-eslint/no-unused-vars */
     </script>
 
     <!-- First-visit lang redirect (only on /, only if no preference stored) -->
     <script is:inline define:vars={{ currentLocale: locale }}>
+      /* eslint-disable no-var, @typescript-eslint/no-unused-vars */
       (function () {
         if (currentLocale !== 'en') return;
         if (window.location.pathname !== '/') return;
@@ -95,8 +99,9 @@ const altPath = locale === defaultLocale ? `/${alt}${path === '/' ? '/' : path}`
             localStorage.setItem('lang', 'uk');
             window.location.replace('/uk/');
           }
-        } catch (e) { /* noop */ }
+        } catch (_err) { /* noop */ }
       })();
+      /* eslint-enable no-var, @typescript-eslint/no-unused-vars */
     </script>
   </head>
   <body class="font-sans bg-bambu-bg text-bambu-text antialiased">
