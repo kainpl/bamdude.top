@@ -1,0 +1,24 @@
+---
+// Thin top-edge progress bar that fills as the user scrolls. No island —
+// scroll listener is inline so the bar responds before React hydrates.
+---
+<div id="scroll-progress" aria-hidden="true"
+     class="fixed top-0 left-0 right-0 z-50 h-0.5 origin-left scale-x-0 bg-bambu-green will-change-transform pointer-events-none"
+     style="transition: transform 80ms linear;"></div>
+<script is:inline>
+  /* eslint-disable no-var */
+  (function () {
+    var bar = document.getElementById('scroll-progress');
+    if (!bar) return;
+    function update() {
+      var doc = document.documentElement;
+      var max = (doc.scrollHeight - window.innerHeight);
+      var pct = max > 0 ? (window.scrollY / max) : 0;
+      bar.style.transform = 'scaleX(' + pct + ')';
+    }
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+  })();
+  /* eslint-enable no-var */
+</script>

@@ -1,0 +1,125 @@
+---
+import type { Locale } from '../i18n';
+import enInstall from '../content/en/install.json';
+import ukInstall from '../content/uk/install.json';
+import { Container, Layers, Terminal, UserPlus, Printer, Send, ArrowRight, ChevronRight } from 'lucide-react';
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+
+const data = locale === 'uk' ? ukInstall : enInstall;
+
+const iconMap: Record<string, typeof Container> = {
+  container: Container,
+  layers: Layers,
+  terminal: Terminal,
+  'user-plus': UserPlus,
+  printer: Printer,
+  send: Send,
+};
+
+// Bold inline markdown (`**word**` and `[link](url)`) — minimal renderer for body/notes lines.
+function renderInline(text: string): string {
+  let out = text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/`([^`]+)`/g, '<code class="px-1.5 py-0.5 rounded bg-bambu-bg-tertiary text-bambu-green text-[0.85em]">$1</code>')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-bambu-green hover:underline" target="_blank" rel="noopener">$1</a>');
+  return out;
+}
+---
+<section aria-label="Install steps" class="py-16">
+  <div class="mx-auto max-w-4xl px-6 space-y-8">
+    <div class="rounded-2xl border border-bambu-border bg-bambu-bg-secondary p-8">
+      <h2 class="text-xl font-extrabold tracking-tight">{data.requirements.title}</h2>
+      <ul class="mt-4 space-y-2.5">
+        {data.requirements.items.map((req) => (
+          <li class="flex items-start gap-3 text-bambu-text-secondary leading-relaxed">
+            <span class="shrink-0 mt-1 text-bambu-green"><ChevronRight size={18} strokeWidth={2.5} /></span>
+            <span set:html={renderInline(req)} />
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    {data.steps.map((step, idx) => {
+      const Icon = iconMap[step.icon] ?? Container;
+      return (
+        <div class="rounded-2xl border border-bambu-border bg-bambu-bg-secondary p-8">
+          <div class="flex items-start gap-4">
+            <div class="shrink-0 inline-flex items-center justify-center w-12 h-12 rounded-xl bg-bambu-green/10 text-bambu-green">
+              <Icon size={22} strokeWidth={2} />
+            </div>
+            <div class="flex-1">
+              <div class="flex items-center gap-3 flex-wrap">
+                <span class="text-xs font-bold uppercase tracking-wider text-bambu-text-muted">{`Step ${idx + 1}`}</span>
+              </div>
+              <h3 class="mt-1 text-2xl font-extrabold tracking-tight">{step.title}</h3>
+              {step.subtitle && (
+                <p class="mt-1 text-bambu-text-secondary">{step.subtitle}</p>
+              )}
+            </div>
+          </div>
+
+          {step.body && (
+            <p class="mt-5 text-bambu-text-secondary leading-relaxed" set:html={renderInline(step.body)} />
+          )}
+
+          {step.command && (
+            <div class="mt-5 group relative">
+              <pre class="rounded-xl border border-bambu-border bg-black/80 text-green-300 p-5 overflow-x-auto text-sm font-mono leading-relaxed"><code>{step.command}</code></pre>
+              <button type="button"
+                      class="install-copy absolute top-3 right-3 px-2.5 py-1 text-xs rounded-md bg-bambu-bg-secondary border border-bambu-border hover:border-bambu-green text-bambu-text-secondary opacity-0 group-hover:opacity-100 transition"
+                      data-copy={step.command}>Copy</button>
+            </div>
+          )}
+
+          {step.notes && step.notes.length > 0 && (
+            <ul class="mt-5 space-y-2 text-sm">
+              {step.notes.map((note) => (
+                <li class="flex items-start gap-2 text-bambu-text-muted leading-relaxed">
+                  <span class="shrink-0 mt-1 w-1.5 h-1.5 rounded-full bg-bambu-green"></span>
+                  <span set:html={renderInline(note)} />
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      );
+    })}
+
+    <div class="rounded-2xl border border-bambu-border bg-bambu-bg-secondary p-8">
+      <h2 class="text-xl font-extrabold tracking-tight">{data.next.title}</h2>
+      <ul class="mt-4 space-y-2">
+        {data.next.links.map((link) => (
+          <li>
+            <a href={link.href} class="inline-flex items-center gap-1.5 text-bambu-green font-semibold hover:gap-2.5 transition-all" target="_blank" rel="noopener">
+              {link.label}
+              <ArrowRight size={16} strokeWidth={2.5} />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  /* eslint-disable no-var */
+  document.addEventListener('click', function (e) {
+    var btn = e.target instanceof HTMLElement ? e.target.closest('.install-copy') : null;
+    if (!btn) return;
+    var text = btn.getAttribute('data-copy');
+    if (!text) return;
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(function () {
+        var prev = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(function () { btn.textContent = prev; }, 1400);
+      });
+    }
+  });
+  /* eslint-enable no-var */
+</script>

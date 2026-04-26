@@ -1,0 +1,110 @@
+---
+import type { Locale } from '../i18n';
+import enCompare from '../content/en/compare.json';
+import ukCompare from '../content/uk/compare.json';
+import { Check, X, Minus } from 'lucide-react';
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+
+const data = locale === 'uk' ? ukCompare : enCompare;
+const columns = data.table.columns;
+const sections = data.table.sections;
+const legend = data.legend;
+
+// Parse "yes" / "yes:Some label" / "no" / "partial:..." / "na" into { kind, label }
+function parseCell(raw: string): { kind: 'yes' | 'no' | 'partial' | 'na'; label?: string } {
+  const [kind, ...rest] = raw.split(':');
+  const label = rest.length ? rest.join(':') : undefined;
+  if (kind === 'yes' || kind === 'no' || kind === 'partial' || kind === 'na') {
+    return { kind, label };
+  }
+  return { kind: 'na', label: raw };
+}
+---
+<section aria-label="Feature comparison table" class="py-16 bg-bambu-bg-secondary border-y border-bambu-border">
+  <div class="mx-auto max-w-6xl px-6">
+    <div class="overflow-x-auto rounded-2xl border border-bambu-border bg-bambu-bg">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="bg-bambu-bg-secondary">
+            <th class="text-left px-4 py-3 font-semibold w-2/5">Feature</th>
+            {columns.map((col, idx) => (
+              <th class={`text-left px-4 py-3 font-semibold ${idx === 0 ? 'text-bambu-green' : ''}`}>{col}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {sections.map((section) => (
+            <>
+              <tr class="bg-bambu-green/5 border-y border-bambu-border">
+                <td colspan={columns.length + 1} class="px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-bambu-green">
+                  {section.title}
+                </td>
+              </tr>
+              {section.rows.map((row) => (
+                <tr class="border-t border-bambu-border">
+                  <td class="px-4 py-3 font-medium">{row.label}</td>
+                  {row.values.map((raw, idx) => {
+                    const cell = parseCell(raw);
+                    const isHighlight = idx === 0;
+                    return (
+                      <td class={`px-4 py-3 ${isHighlight ? 'bg-bambu-green/5' : ''}`}>
+                        <div class="flex items-start gap-1.5">
+                          {cell.kind === 'yes' && (
+                            <span class="shrink-0 inline-flex items-center justify-center w-5 h-5 rounded-md bg-bambu-green/15 text-bambu-green mt-px">
+                              <Check size={14} strokeWidth={2.5} />
+                            </span>
+                          )}
+                          {cell.kind === 'no' && (
+                            <span class="shrink-0 inline-flex items-center justify-center w-5 h-5 rounded-md bg-red-500/10 text-red-400 mt-px">
+                              <X size={14} strokeWidth={2.5} />
+                            </span>
+                          )}
+                          {cell.kind === 'partial' && (
+                            <span class="shrink-0 inline-flex items-center justify-center w-5 h-5 rounded-md bg-yellow-500/15 text-yellow-500 mt-px">
+                              <Minus size={14} strokeWidth={2.5} />
+                            </span>
+                          )}
+                          {cell.kind === 'na' && (
+                            <span class="shrink-0 inline-flex items-center justify-center w-5 h-5 rounded-md bg-bambu-text-muted/15 text-bambu-text-muted mt-px text-[10px] font-bold">N/A</span>
+                          )}
+                          {cell.label && <span class="text-bambu-text-secondary text-xs leading-snug">{cell.label}</span>}
+                        </div>
+                      </td>
+                    );
+                  })}
+                </tr>
+              ))}
+            </>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-6 flex flex-wrap justify-center gap-6 text-xs text-bambu-text-muted">
+      <span class="inline-flex items-center gap-1.5">
+        <span class="inline-flex items-center justify-center w-5 h-5 rounded-md bg-bambu-green/15 text-bambu-green">
+          <Check size={14} strokeWidth={2.5} />
+        </span>
+        {legend.yes}
+      </span>
+      <span class="inline-flex items-center gap-1.5">
+        <span class="inline-flex items-center justify-center w-5 h-5 rounded-md bg-yellow-500/15 text-yellow-500">
+          <Minus size={14} strokeWidth={2.5} />
+        </span>
+        {legend.partial}
+      </span>
+      <span class="inline-flex items-center gap-1.5">
+        <span class="inline-flex items-center justify-center w-5 h-5 rounded-md bg-red-500/10 text-red-400">
+          <X size={14} strokeWidth={2.5} />
+        </span>
+        {legend.no}
+      </span>
+      <span class="inline-flex items-center gap-1.5">
+        <span class="inline-flex items-center justify-center w-5 h-5 rounded-md bg-bambu-text-muted/15 text-bambu-text-muted text-[10px] font-bold">N/A</span>
+        {legend.na}
+      </span>
+    </div>
+  </div>
+</section>

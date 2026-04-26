@@ -1,0 +1,155 @@
+{
+  "summary": [
+    {
+      "name": "BamDude",
+      "tag": "Self-Hosted",
+      "highlight": true,
+      "body": "Архів друку, черга на ферму, Telegram-бот, автоматизація розеток, MFA, sliding-session — все на твоєму залізі.",
+      "highlights": [
+        "100% LAN, без хмарного акаунта",
+        "Черга на ферму з паралельним диспатчем",
+        "Повноцінний Telegram-бот з мультичат-авторизацією",
+        "8+ каналів нотифікацій у одному редакторі",
+        "Proxy-режим для віддаленого друку (без VPN)"
+      ]
+    },
+    {
+      "name": "Bambu Handy",
+      "tag": "Cloud-Based",
+      "body": "Офіційний мобільний застосунок Bambu Lab — швидке налаштування і зручність, але тільки в хмарі і обмежено.",
+      "highlights": [
+        "Офіційний застосунок Bambu Lab",
+        "Просте мобільне налаштування",
+        "Push-нотифікації"
+      ],
+      "cons": [
+        "Потребує Bambu Cloud-акаунт",
+        "Немає архіву і 3D-перегляду",
+        "Немає черги, розкладу, автоматизації"
+      ]
+    },
+    {
+      "name": "OctoPrint",
+      "tag": "Self-Hosted",
+      "body": "Перевірений open-source принт-сервер з величезною екосистемою плагінів — але без нативної підтримки Bambu.",
+      "highlights": [
+        "Велика екосистема плагінів",
+        "Підтримка багатьох виробників принтерів",
+        "Self-hosted і open source"
+      ],
+      "cons": [
+        "Немає нативного Bambu MQTT/FTPS",
+        "Без плагінів — потрібен USB",
+        "Один інстанс на принтер"
+      ]
+    }
+  ],
+  "table": {
+    "columns": ["BamDude", "Bambu Handy", "OctoPrint"],
+    "sections": [
+      {
+        "title": "З'єднання і налаштування",
+        "rows": [
+          { "label": "Нативний Bambu MQTT/FTPS", "values": ["yes", "yes", "no:Тільки плагін"] },
+          { "label": "Працює тільки в LAN", "values": ["yes", "no", "yes"] },
+          { "label": "Без хмарної залежності", "values": ["yes", "no", "yes"] },
+          { "label": "Віддалений друк без VPN", "values": ["yes:Proxy-режим", "yes:Через хмару", "no"] },
+          { "label": "Docker-розгортання", "values": ["yes", "na:Мобільний застосунок", "yes"] },
+          { "label": "Працює з Bambu Studio / Orca", "values": ["yes", "yes", "partial:Через плагіни"] },
+          { "label": "Дашборд багатьох принтерів", "values": ["yes:Картки змінного розміру", "partial:Простий список", "no:Один інстанс на принтер"] }
+        ]
+      },
+      {
+        "title": "Моніторинг і керування",
+        "rows": [
+          { "label": "Live-статус друку", "values": ["yes:WebSocket", "yes", "yes"] },
+          { "label": "Розшифровка HMS-помилок", "values": ["yes", "partial:Базові коди", "no"] },
+          { "label": "Стрімінг камери + OBS-оверлей", "values": ["yes", "no", "partial:Через плагіни"] },
+          { "label": "Зовнішня камера (RTSP/USB)", "values": ["yes", "no", "yes"] },
+          { "label": "UI-калібрування", "values": ["yes:Model-aware", "partial", "partial"] },
+          { "label": "AMS + сушіння", "values": ["yes", "partial", "no"] },
+          { "label": "Файл-браузер SD-картки", "values": ["yes:Bulk dl/del", "no", "yes"] }
+        ]
+      },
+      {
+        "title": "Архів і історія друку",
+        "rows": [
+          { "label": "Автоматичне 3MF-архівування", "values": ["yes", "no", "partial:Через плагіни"] },
+          { "label": "3D-перегляд моделі", "values": ["yes:Three.js", "no", "partial:Через плагіни"] },
+          { "label": "Галерея на плиту (multi-plate)", "values": ["yes", "no", "no"] },
+          { "label": "Фото і нотатки", "values": ["yes", "no", "no"] },
+          { "label": "Side-by-side порівняння", "values": ["yes:2-5 принтів", "no", "no"] },
+          { "label": "Повнотекстовий пошук + dedup", "values": ["yes:Source-hash", "no", "partial"] },
+          { "label": "Проєкти з print plan", "values": ["yes", "no", "no"] },
+          { "label": "Авто-очистка з retention", "values": ["yes", "no", "no"] }
+        ]
+      },
+      {
+        "title": "Розклад і автоматизація",
+        "rows": [
+          { "label": "Черга з drag-and-drop", "values": ["yes", "no", "partial:Через плагіни"] },
+          { "label": "Черга на багато принтерів", "values": ["yes:Паралельний диспатч", "no", "no"] },
+          { "label": "Поетапний старт", "values": ["yes:Watchdog темп. столу", "no", "no"] },
+          { "label": "G-code макроси з ACK", "values": ["yes:MQTT-підтверджено", "no", "yes"] },
+          { "label": "Керування розетками", "values": ["yes:Tasmota / HA / MQTT / REST", "no", "partial:Через плагіни"] },
+          { "label": "Авто on/off + watchdog темп.", "values": ["yes", "no", "partial:Через плагіни"] },
+          { "label": "Реприн з AMS-мапінгом", "values": ["yes", "no", "no"] },
+          { "label": "Swap-режим (A1 swappers)", "values": ["yes", "no", "no"] }
+        ]
+      },
+      {
+        "title": "Нотифікації і бот",
+        "rows": [
+          { "label": "Push-нотифікації", "values": ["yes:8+ каналів", "yes:Push", "partial:Через плагіни"] },
+          { "label": "Повний Telegram-бот", "values": ["yes:Контроль + черга + обслуговування", "no", "partial:Через плагіни"] },
+          { "label": "Мультичат із ролями", "values": ["yes", "no", "no"] },
+          { "label": "Discord / Pushover / ntfy", "values": ["yes", "no", "partial:Через плагіни"] },
+          { "label": "Email (SMTP) + webhooks", "values": ["yes", "no", "partial:Через плагіни"] },
+          { "label": "MarkdownV2-редактор з шаблонами", "values": ["yes", "no", "no"] }
+        ]
+      },
+      {
+        "title": "Пластик і обслуговування",
+        "rows": [
+          { "label": "Вбудований інвентар котушок", "values": ["yes", "no", "partial:Через плагіни"] },
+          { "label": "Облік ціни і lot-номерів", "values": ["yes", "no", "no"] },
+          { "label": "Spoolman інтеграція", "values": ["yes:Двостороння", "no", "partial:Через плагіни"] },
+          { "label": "Нагадування про обслуговування", "values": ["yes:Години + календар", "no", "no"] },
+          { "label": "Облік енергії", "values": ["yes:kWh на друк", "no", "no"] },
+          { "label": "Імпорт OrcaSlicer-пресетів", "values": ["yes", "no", "no"] }
+        ]
+      },
+      {
+        "title": "Авторизація і мультикористувачі",
+        "rows": [
+          { "label": "Always-on авторизація", "values": ["yes", "yes", "partial:Опціонально"] },
+          { "label": "MFA (TOTP + Email + Backup)", "values": ["yes", "no", "partial:Через плагіни"] },
+          { "label": "OIDC SSO", "values": ["yes:PKCE + JWKS", "no", "no"] },
+          { "label": "LDAP / Active Directory", "values": ["yes", "no", "partial:Через плагіни"] },
+          { "label": "Гранулярні дозволи (80+)", "values": ["yes", "no", "no"] },
+          { "label": "API-ключі + webhooks", "values": ["yes", "no", "yes"] }
+        ]
+      },
+      {
+        "title": "Інтеграції і платформа",
+        "rows": [
+          { "label": "REST + WebSocket API", "values": ["yes:Повний API", "no", "yes"] },
+          { "label": "MQTT publishing для HA", "values": ["yes", "no", "yes"] },
+          { "label": "Prometheus / Grafana метрики", "values": ["yes", "no", "partial:Через плагіни"] },
+          { "label": "Git-бекап (GitHub/GitLab)", "values": ["yes", "no", "no"] },
+          { "label": "SQLite + PostgreSQL", "values": ["yes", "na", "partial:Тільки SQLite"] },
+          { "label": "Веб-дашборд (PWA)", "values": ["yes", "no:Тільки мобайл", "yes"] },
+          { "label": "Багато мов", "values": ["yes:EN + UK", "yes", "yes"] },
+          { "label": "Темна / світла теми", "values": ["yes", "yes", "yes"] },
+          { "label": "Open source", "values": ["yes:AGPL-3.0", "no", "yes:AGPL-3.0"] }
+        ]
+      }
+    ]
+  },
+  "legend": {
+    "yes": "Підтримується",
+    "partial": "Частково / через плагін",
+    "no": "Не підтримується",
+    "na": "Не застосовно"
+  }
+}

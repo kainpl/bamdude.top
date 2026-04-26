@@ -1,11 +1,12 @@
 ---
 import type { Locale } from '../i18n';
-import { t } from '../i18n';
+import { t, localePath } from '../i18n';
+import HeroCollage from './HeroCollage.astro';
+import { siGithub } from 'simple-icons';
 interface Props { locale: Locale; }
 const { locale } = Astro.props;
 const i = t(locale);
 const repo = import.meta.env.PUBLIC_GITHUB_REPO || 'https://github.com/kainpl/bamdude';
-const docs = 'https://docs.bamdude.top';
 ---
 <section id="hero" aria-label="Introduction" class="relative overflow-hidden">
   <!-- Gradient background -->
@@ -13,26 +14,34 @@ const docs = 'https://docs.bamdude.top';
     <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(0,174,66,0.45)_0%,rgba(0,58,22,0.4)_45%,transparent_75%)]"></div>
     <div class="absolute inset-0 bg-bambu-bg"></div>
   </div>
-  <!-- Blurred product mockup -->
-  <div class="absolute right-[-10%] top-1/4 hidden lg:block opacity-50 blur-2xl pointer-events-none">
-    <img src="/images/screenshot-desktop.png" alt="" width="800" height="500" class="rounded-2xl" />
-  </div>
-  <div class="mx-auto max-w-6xl px-6 pt-24 pb-32 sm:pt-32 sm:pb-40 relative">
-    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight max-w-3xl leading-[1.05]">
-      {i.hero.title}
-    </h1>
-    <p class="mt-6 text-lg sm:text-xl text-bambu-text-secondary max-w-2xl leading-relaxed">
-      {i.hero.subtitle}
-    </p>
-    <div class="mt-10 flex flex-wrap gap-3">
-      <a href={`${docs}/getting-started/quick-start/`}
-         class="inline-flex items-center gap-2 rounded-lg px-6 py-3 font-semibold bg-bambu-green text-white shadow-[0_0_32px_rgba(0,174,66,0.5)] hover:bg-bambu-green-light transition">
-        {i.hero.ctaPrimary}
-      </a>
-      <a href={repo}
-         class="inline-flex items-center gap-2 rounded-lg px-6 py-3 font-semibold border border-bambu-border bg-bambu-bg-secondary hover:border-bambu-green transition">
-        ★ {i.hero.ctaSecondary}
-      </a>
+
+  <div class="mx-auto max-w-6xl px-6 pt-20 pb-12 sm:pt-28 sm:pb-16 relative">
+    <div class="text-center max-w-3xl mx-auto">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-bambu-green/10 text-bambu-green border border-bambu-green/30">
+        Open Source · Self-Hosted · AGPL-3.0
+      </span>
+      <h1 class="mt-6 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05]">
+        {i.hero.title}
+      </h1>
+      <p class="mt-6 text-lg sm:text-xl text-bambu-text-secondary leading-relaxed mx-auto max-w-2xl">
+        {i.hero.subtitle}
+      </p>
+      <div class="mt-10 flex flex-wrap justify-center gap-3">
+        <a href={localePath(locale, 'install')}
+           class="inline-flex items-center gap-2 rounded-lg px-6 py-3 font-semibold bg-bambu-green text-white shadow-[0_0_32px_rgba(0,174,66,0.5)] hover:bg-bambu-green-light transition">
+          {i.hero.ctaPrimary}
+        </a>
+        <a href={repo}
+           class="inline-flex items-center gap-2 rounded-lg px-6 py-3 font-semibold border border-bambu-border bg-bambu-bg-secondary hover:border-bambu-green transition"
+           target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d={siGithub.path} />
+          </svg>
+          {i.hero.ctaSecondary}
+        </a>
+      </div>
     </div>
+
+    <HeroCollage />
   </div>
 </section>

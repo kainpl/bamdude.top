@@ -1,12 +1,72 @@
 {
-  "nav": { "features": "Можливості", "screenshots": "Скриншоти", "how": "Як це працює", "faq": "FAQ", "docs": "Документація", "github": "GitHub" },
+  "nav": {
+    "features": "Можливості",
+    "compare": "Порівняння",
+    "install": "Встановлення",
+    "faq": "FAQ",
+    "docs": "Документація",
+    "github": "GitHub"
+  },
   "hero": {
     "title": "Один принтер або сотня. Твої дані. Твої правила.",
     "subtitle": "Self-hosted командний центр для Bambu Lab — простий для одного принтера, потужний для цілої принт-ферми.",
     "ctaPrimary": "Швидкий старт",
-    "ctaSecondary": "Зірка на GitHub"
+    "ctaSecondary": "Дивитися на GitHub"
   },
   "trust": { "label": "Підтримує", "license": "AGPL-3.0-ліцензія", "stars": "Зірок на GitHub" },
+  "highlight": {
+    "badge": "Для ферми",
+    "title": "Принт-ферма, що працює сама",
+    "body": "Кидаєш завдання в чергу — BamDude вибирає вільний принтер за моделлю, AMS-слотами, поточним навантаженням. Диспатч стартує два, три, десять принтерів паралельно — а не по одному. A1-свопери крутять плиту за плитою через swap-mode макроси. G-code макроси беруть на себе дрібну рутину — підсвітка камери, фінальні послідовності, калібрувальні цикли — без чергування біля принтера. Налаштовуєш правила один раз; ферма друкує.",
+    "cta": "Усі можливості"
+  },
+  "supportedPrinters": {
+    "title": "Підтримувані принтери",
+    "subtitle": "Працює з усім модельним рядом Bambu Lab через Developer Mode.",
+    "badge": "Підтримується",
+    "series": [
+      { "title": "Серія X1", "models": "X1 Carbon, X1E", "primary": "x1c", "secondary": "x1e" },
+      { "title": "Серія H2", "models": "H2D, H2D Pro, H2C, H2S", "note": "Dual nozzle + nozzle rack", "primary": "h2d", "secondary": "h2c" },
+      { "title": "Серія P1", "models": "P1P, P1S", "primary": "p1s", "secondary": "p1p" },
+      { "title": "Серія P2", "models": "P2S", "primary": "p2s" },
+      { "title": "Серія A1", "models": "A1, A1 Mini", "primary": "a1", "secondary": "a1mini" },
+      { "title": "Серія X2", "models": "X2D", "note": "Dual nozzle, steel-rod gantry", "primary": "x2d" }
+    ]
+  },
+  "techStack": {
+    "title": "На сучасному стеку",
+    "subtitle": "Надійно, перевірено, легко розширювати.",
+    "items": [
+      { "icon": "python", "label": "Python", "sub": "Бекенд" },
+      { "icon": "fastapi", "label": "FastAPI", "sub": "Async REST API" },
+      { "icon": "react", "label": "React", "sub": "Інтерфейс" },
+      { "icon": "typescript", "label": "TypeScript", "sub": "Типобезпечно" },
+      { "icon": "tailwindcss", "label": "Tailwind CSS", "sub": "Стилі" },
+      { "icon": "database", "label": "SQLite / PostgreSQL", "sub": "Стандартна + опційна" },
+      { "icon": "threedotjs", "label": "Three.js", "sub": "3D-перегляд" },
+      { "icon": "mqtt", "label": "MQTT", "sub": "Нативний Bambu" },
+      { "icon": "telegram", "label": "aiogram 3.x", "sub": "Фреймворк Telegram-бота" }
+    ]
+  },
+  "helpWanted": {
+    "badge": "Шукаємо своїх",
+    "title": "Розвивай BamDude з нами",
+    "body": "BamDude — невеликий open-source-проєкт, що вирощує оператор принт-ферми, який не знайшов готового інструменту і зробив свій. Кожна фіча тут — з реальних задач у цеху, а в списку ще багато. На якому б фронті не хотів долучитись — місце є.",
+    "items": [
+      { "icon": "code", "title": "Розробка", "body": "Бери відкритий issue, фіксь баг, додавай фічу. PR-и йдуть в dev-гілку." },
+      { "icon": "lightbulb", "title": "Ідеї і тестування", "body": "Постав beta-тег на свою ферму, розкажи що зламалось і що хотілось би інакше. Stress-тест на реальному залізі — найцінніший фідбек." },
+      { "icon": "languages", "title": "Переклади", "body": "JSON-i18n у бекенді й фронтенді — нова мова це один PR. Зараз EN + UK; якою мовою спілкується твоя майстерня — таку й приймемо." },
+      { "icon": "book-open", "title": "Документація", "body": "docs.bamdude.top має свій репо. Знайшов застарілу інструкцію чи відсутній скрін? Відкрий PR." }
+    ],
+    "ctaForum": "Зайти в Telegram-форум",
+    "ctaIssues": "Створити issue на GitHub"
+  },
+  "featuresPreview": {
+    "eyebrow": "Що ти отримуєш",
+    "title": "Все що потрібно для ферми Bambu Lab",
+    "subtitle": "Шість основних шматків — решта на сторінці можливостей.",
+    "cta": "Усі можливості"
+  },
   "how": {
     "title": "Запуск за 5 хвилин",
     "steps": [
@@ -15,13 +75,55 @@
       { "title": "Друкуй з вебу або Telegram", "body": "Черга, моніторинг, реакції на події — звідусіль." }
     ]
   },
-  "why": { "title": "Зроблено для принт-ферм, а не одного принтера" },
   "faq": { "title": "Питання, які зазвичай виникають" },
-  "cta": { "title": "Запусти за 5 хвилин", "subtitle": "Безкоштовно, open source, AGPL-3.0. Ніякого cloud-lock-in. Ніколи." },
+  "cta": {
+    "title": "Запусти за 5 хвилин",
+    "subtitle": "Безкоштовно, open source, AGPL-3.0. Ніякого cloud-lock-in. Ніколи.",
+    "button": "Інструкція встановлення"
+  },
+  "pages": {
+    "home": {
+      "title": "BamDude — self-hosted керування друком для Bambu Lab",
+      "description": "Self-hosted командний центр для Bambu Lab — повноцінний Telegram-бот, черга на ферму, автоматизація, MFA, ніяких хмар."
+    },
+    "features": {
+      "eyebrow": "Можливості",
+      "title": "Все що вміє BamDude",
+      "subtitle": "Self-hosted командний центр для одного принтера чи ферми — архів, черга, контроль, автоматизація, інтеграції в одному місці.",
+      "metaTitle": "Можливості — BamDude",
+      "metaDescription": "Повний каталог фіч BamDude: архів друку, черга на ферму, Telegram-бот, автоматизація розеток, MFA, sliding-session — все self-hosted."
+    },
+    "compare": {
+      "eyebrow": "Порівняння",
+      "title": "Як BamDude виглядає поруч",
+      "subtitle": "Де BamDude стоїть поруч з Bambu Handy і OctoPrint для керування принтерами Bambu Lab.",
+      "metaTitle": "Порівняння — BamDude vs Bambu Handy vs OctoPrint",
+      "metaDescription": "Side-by-side порівняння BamDude, Bambu Handy і OctoPrint для керування 3D-принтерами Bambu Lab — фічі, інтеграції, self-hosting."
+    },
+    "install": {
+      "eyebrow": "Встановлення",
+      "title": "Встанови BamDude",
+      "subtitle": "Три шляхи — Docker, Docker Compose чи ручний Python — плюс перший вхід і налаштування бота.",
+      "metaTitle": "Встановлення — BamDude",
+      "metaDescription": "Встановлення BamDude через Docker, Docker Compose чи Python; перший вхід, додавання принтера, опційний Telegram-бот."
+    },
+    "faq": {
+      "eyebrow": "FAQ",
+      "title": "Питання, які зазвичай виникають",
+      "subtitle": "Self-hosting, підтримувані принтери, міграція з Bambuddy, Postgres, мережеві вимоги.",
+      "metaTitle": "FAQ — BamDude",
+      "metaDescription": "Поширені питання про BamDude — self-hosting, підтримувані принтери Bambu Lab, міграція, Postgres, налаштування Telegram."
+    }
+  },
   "footer": {
-    "product": "Продукт", "community": "Спільнота", "legal": "Юридичне",
+    "product": "Продукт",
+    "community": "Спільнота",
+    "legal": "Юридичне",
     "telegram": "Telegram: BamDude Friends Forum",
-    "issues": "Повідомити про баг", "license": "Ліцензія", "privacy": "Приватність", "cookies": "Налаштування cookies",
+    "issues": "Повідомити про баг",
+    "license": "Ліцензія",
+    "privacy": "Приватність",
+    "cookies": "Налаштування cookies",
     "rights": "Всі права захищено.",
     "disclaimer": "Bambu Lab — торгова марка Bambu Lab Co., Ltd. BamDude — незалежний проект, не пов'язаний з Bambu Lab."
   },
@@ -30,7 +132,10 @@
   "cookie": {
     "title": "Ми використовуємо cookie для аналітики",
     "body": "Google Analytics 4 допомагає зрозуміти, які фічі використовуються. Вантажиться тільки після твоєї згоди.",
-    "accept": "Прийняти", "reject": "Відхилити", "customize": "Налаштувати",
-    "analyticsLabel": "Аналітика (Google Analytics 4)", "save": "Зберегти"
+    "accept": "Прийняти",
+    "reject": "Відхилити",
+    "customize": "Налаштувати",
+    "analyticsLabel": "Аналітика (Google Analytics 4)",
+    "save": "Зберегти"
   }
 }

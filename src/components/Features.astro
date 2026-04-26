@@ -19,21 +19,17 @@ const iconMap: Record<string, typeof Archive> = {
   server: Server,
 };
 ---
-<section id="features" aria-label="Features" class="py-24">
-  <div class="mx-auto max-w-6xl px-6">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {items.map((item) => {
-        const Icon = iconMap[item.icon];
-        return (
-          <div class="rounded-2xl border border-bambu-border bg-bambu-bg-secondary p-6 hover:border-bambu-green transition">
-            <div class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-bambu-green/10 text-bambu-green mb-4">
-              {Icon && <Icon size={22} strokeWidth={2} />}
-            </div>
-            <h3 class="font-bold text-xl tracking-tight">{item.title}</h3>
-            <p class="mt-2 text-bambu-text-secondary leading-relaxed">{item.body}</p>
-          </div>
-        );
-      })}
-    </div>
-  </div>
-</section>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  {items.map((item) => {
+    const Icon = iconMap[item.icon];
+    return (
+      <div class="rounded-2xl border border-bambu-border bg-bambu-bg-secondary p-6 hover:border-bambu-green transition">
+        <div class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-bambu-green/10 text-bambu-green mb-4">
+          {Icon && <Icon size={22} strokeWidth={2} />}
+        </div>
+        <h3 class="font-bold text-xl tracking-tight">{item.title}</h3>
+        <p class="mt-2 text-bambu-text-secondary leading-relaxed">{item.body}</p>
+      </div>
+    );
+  })}
+</div>

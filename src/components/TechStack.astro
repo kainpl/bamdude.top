@@ -1,0 +1,36 @@
+---
+import type { Locale } from '../i18n';
+import { t } from '../i18n';
+import { techIcons } from '../lib/tech-icons';
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const i = t(locale);
+---
+<section aria-label="Tech stack" class="py-24 bg-bambu-bg-secondary border-y border-bambu-border">
+  <div class="mx-auto max-w-6xl px-6">
+    <div class="text-center max-w-2xl mx-auto">
+      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">{i.techStack.title}</h2>
+      <p class="mt-4 text-bambu-text-secondary leading-relaxed">{i.techStack.subtitle}</p>
+    </div>
+    <div class="mt-12 grid grid-cols-2 sm:grid-cols-3 gap-4">
+      {i.techStack.items.map((item) => {
+        const icon = techIcons[item.icon];
+        const color = `#${icon?.displayHex ?? icon?.hex ?? 'A0A0A0'}`;
+        return (
+          <div class="rounded-xl border border-bambu-border bg-bambu-bg p-5 hover:border-bambu-green hover:-translate-y-0.5 transition flex flex-col items-center text-center">
+            {icon && (
+              <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-3" style={`background-color: ${color}1A;`}>
+                <svg viewBox="0 0 24 24" width="26" height="26" style={`fill: ${color};`} aria-hidden="true">
+                  <path d={icon.path} />
+                </svg>
+              </div>
+            )}
+            <div class="font-bold tracking-tight text-bambu-text">{item.label}</div>
+            <div class="text-xs text-bambu-text-muted mt-0.5">{item.sub}</div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>

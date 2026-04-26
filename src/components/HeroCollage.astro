@@ -1,0 +1,74 @@
+---
+// Three-image fan collage. Center frame slightly forward, two side frames
+// fanned out and tilted. Uses the three screenshots already in /public.
+---
+<div class="hero-collage relative mx-auto mt-14 w-full max-w-3xl aspect-[16/10] hidden sm:block">
+  <div class="absolute inset-0 -z-10 blur-2xl opacity-50 bg-[radial-gradient(ellipse_at_center,rgba(0,174,66,0.45)_0%,transparent_70%)]"></div>
+
+  <!-- Left tile: Telegram bot -->
+  <div class="hero-collage-tile hero-collage-left">
+    <img src="/images/screenshot-telegram.png" alt="BamDude Telegram bot" loading="lazy" />
+  </div>
+  <!-- Right tile: Mobile -->
+  <div class="hero-collage-tile hero-collage-right">
+    <img src="/images/screenshot-mobile.png" alt="BamDude on mobile" loading="lazy" />
+  </div>
+  <!-- Center tile: Web dashboard -->
+  <div class="hero-collage-tile hero-collage-center">
+    <img src="/images/screenshot-desktop.png" alt="BamDude web dashboard" loading="lazy" />
+  </div>
+</div>
+
+<style>
+  .hero-collage-tile {
+    position: absolute;
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.55), 0 12px 24px -12px rgba(0, 174, 66, 0.25);
+    background: var(--bg-secondary);
+    transition: transform 280ms ease, box-shadow 280ms ease;
+  }
+  .hero-collage-tile img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .hero-collage-center {
+    left: 50%;
+    top: 5%;
+    width: 62%;
+    aspect-ratio: 16 / 10;
+    transform: translateX(-50%) translateY(0);
+    z-index: 3;
+  }
+  .hero-collage-left {
+    left: 0;
+    top: 28%;
+    width: 28%;
+    aspect-ratio: 9 / 16;
+    transform: rotate(-7deg);
+    z-index: 1;
+  }
+  .hero-collage-right {
+    right: 0;
+    top: 30%;
+    width: 28%;
+    aspect-ratio: 9 / 16;
+    transform: rotate(7deg);
+    z-index: 1;
+  }
+  .hero-collage:hover .hero-collage-center {
+    transform: translateX(-50%) translateY(-6px);
+  }
+  .hero-collage:hover .hero-collage-left {
+    transform: rotate(-9deg) translateY(-4px);
+  }
+  .hero-collage:hover .hero-collage-right {
+    transform: rotate(9deg) translateY(-4px);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-collage-tile { transition: none; }
+  }
+</style>

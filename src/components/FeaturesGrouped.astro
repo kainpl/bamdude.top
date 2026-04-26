@@ -1,0 +1,59 @@
+---
+import type { Locale } from '../i18n';
+import enFeatures from '../content/en/features-grouped.json';
+import ukFeatures from '../content/uk/features-grouped.json';
+import {
+  Activity, ListOrdered, Archive, Folder, Send, Bell, Palette, Wrench, Zap, ShieldCheck, Check,
+} from 'lucide-react';
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+
+const data = locale === 'uk' ? ukFeatures : enFeatures;
+
+const iconMap: Record<string, typeof Activity> = {
+  activity: Activity,
+  'list-ordered': ListOrdered,
+  archive: Archive,
+  folder: Folder,
+  send: Send,
+  bell: Bell,
+  palette: Palette,
+  wrench: Wrench,
+  zap: Zap,
+  'shield-check': ShieldCheck,
+};
+---
+<section aria-label="Features" class="py-24">
+  <div class="mx-auto max-w-6xl px-6 space-y-20">
+    {data.groups.map((group) => {
+      const Icon = iconMap[group.icon] ?? Activity;
+      return (
+        <div class="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-10">
+          <div class="lg:sticky lg:top-24 lg:self-start">
+            <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-bambu-green/10 text-bambu-green mb-4">
+              <Icon size={26} strokeWidth={2} />
+            </div>
+            <h2 class="text-2xl font-extrabold tracking-tight">{group.title}</h2>
+            <p class="mt-3 text-bambu-text-secondary leading-relaxed">{group.description}</p>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {group.items.map((item) => (
+              <div class="rounded-2xl border border-bambu-border bg-bambu-bg-secondary p-5 hover:border-bambu-green transition">
+                <div class="flex items-start gap-3">
+                  <div class="shrink-0 inline-flex items-center justify-center w-7 h-7 rounded-md bg-bambu-green/10 text-bambu-green mt-0.5">
+                    <Check size={16} strokeWidth={2.5} />
+                  </div>
+                  <div>
+                    <h3 class="font-bold tracking-tight leading-snug">{item.title}</h3>
+                    <p class="mt-1.5 text-sm text-bambu-text-secondary leading-relaxed">{item.body}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    })}
+  </div>
+</section>
