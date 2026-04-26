@@ -1,0 +1,77 @@
+name: deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Serialize deploys so a fast follow-up push doesn't race the previous run's
+# rsync. cancel-in-progress aborts the older one — the newer build is what
+# we want live.
+concurrency:
+  group: landing-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Build + sync to nginx
+    # Self-hosted runner ON the production server. The label-set narrows
+    # this beyond "any self-hosted runner the org has" to specifically the
+    # landing-deploy runner — see deploy/README.md for the runner-install recipe.
+    runs-on: [self-hosted, linux, landing-deploy]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm run test
+
+      - name: Build
+        env:
+          PUBLIC_GA_ID: ${{ secrets.PUBLIC_GA_ID }}
+          PUBLIC_SITE_URL: https://bamdude.top
+          PUBLIC_GITHUB_REPO: https://github.com/kainpl/bamdude
+        run: npm run build
+
+      # Runner user owns DEPLOY_PATH (chown done in one-time server setup).
+      # No SSH, no rsync-over-network — both source (./dist/) and
+      # destination are on the same host, so this is a local copy.
+      # --delete prunes files that no longer exist in the source build
+      # (e.g. renamed pages / removed locales). Trailing slash on ./dist/
+      # copies the *contents* into DEPLOY_PATH, not a nested dist/ dir.
+      - name: Sync to web root
+        env:
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+        run: |
+          if [ -z "$DEPLOY_PATH" ]; then
+            echo "DEPLOY_PATH secret is not set" >&2
+            exit 1
+          fi
+          rsync -a --delete --human-readable --stats ./dist/ "${DEPLOY_PATH%/}/"
+
+      - name: Purge Cloudflare cache
+        if: ${{ secrets.CLOUDFLARE_ZONE_ID != '' && secrets.CLOUDFLARE_API_TOKEN != '' }}
+        env:
+          ZONE: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+          TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          curl -fsS -X POST \
+            "https://api.cloudflare.com/client/v4/zones/${ZONE}/purge_cache" \
+            -H "Authorization: Bearer ${TOKEN}" \
+            -H "Content-Type: application/json" \
+            --data '{"purge_everything":true}' \
+            | head -c 200
+          echo

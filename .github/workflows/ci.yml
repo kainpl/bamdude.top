@@ -1,0 +1,43 @@
+name: ci
+
+on:
+  push:
+    branches: [dev]
+  pull_request:
+    branches: [main, dev]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: typecheck + lint + test + build
+    # GitHub-hosted runner so PR build checks don't depend on the production
+    # runner being online (and so PRs from forks can never reach the prod box).
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm run test
+
+      - name: Build
+        env:
+          # Real GA ID is only injected on production deploys. CI builds run
+          # without it so test runs don't make outbound calls to Google.
+          PUBLIC_GA_ID: ""
+          PUBLIC_SITE_URL: https://bamdude.top
+          PUBLIC_GITHUB_REPO: https://github.com/kainpl/bamdude
+        run: npm run build
