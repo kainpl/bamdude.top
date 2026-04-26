@@ -2,6 +2,7 @@
 import type { Locale } from '../i18n';
 import { t, localePath, altLocale } from '../i18n';
 import { ThemeToggle } from './islands/ThemeToggle';
+import { LangToggle } from './islands/LangToggle';
 
 interface Props { locale: Locale; }
 const { locale } = Astro.props;
@@ -24,6 +25,7 @@ const docs = 'https://docs.bamdude.top';
       <a href={repo} class="hover:text-bambu-green">{i.nav.github}</a>
     </div>
     <div class="flex items-center gap-2" data-toggles>
+      <LangToggle client:load currentLocale={locale} labelLang={i.lang.label} labelEn={i.lang.en} labelUk={i.lang.uk} />
       <ThemeToggle client:load labels={i.theme} />
       <slot name="toggles" />
     </div>
