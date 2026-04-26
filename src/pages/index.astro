@@ -1,11 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Section from '../components/Section.astro';
+import Nav from '../components/Nav.astro';
 import { t } from '../i18n';
 const locale = 'en' as const;
 const i = t(locale);
 ---
 <BaseLayout title="BamDude — Self-hosted print management for Bambu Lab" description={i.hero.subtitle} locale={locale}>
+  <Nav locale={locale} />
   <Section id="hero" ariaLabel="Introduction">
     <h1 class="text-5xl font-extrabold tracking-tight">{i.hero.title}</h1>
   </Section>
