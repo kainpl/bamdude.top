@@ -69,7 +69,7 @@ Bold / Marketing direction (validated 2026-04-26):
 Single-page, anchor navigation. Sections (id / `aria-label`):
 
 1. **Hero** (`#hero`) — logo + nav (Features, Docs, GitHub, lang/theme), H1 "One printer or a hundred. Your data. Your rules.", sub-copy (~25 words), two CTAs ("Quick start" → docs quickstart, "★ Star on GitHub" → repo). Background: gradient + blurred `screenshot-desktop.png`
-2. **Trust strip** (`#trust`) — "Compatible with" + supported printer list (A1, A1 mini, P1S, P1P, X1C, X1E). GitHub stars (fetched at build time) and MIT badge
+2. **Trust strip** (`#trust`) — "Compatible with" + supported printer list (A1, A1 mini, P1S, P1P, X1C, X1E). GitHub stars (fetched at build time) and AGPL-3.0 badge
 3. **Features grid** (`#features`) — six cards: Print Archive, Telegram bot, Multi-printer queue, Camera & Streaming, Maintenance reminders, Self-hosted. Layout 3×2 desktop, 2×3 tablet, 1×6 mobile. Each card: lucide icon + title + 2-line description
 4. **Screenshots tabs** (`#screenshots`) — tab switcher: Web UI / Telegram / Mobile. Single large hero image per tab with subtle glow
 5. **How it works** (`#how`) — three numbered steps: pull docker image → add printers → print from web/Telegram. Code block with `docker compose up -d`
@@ -93,7 +93,7 @@ Everything else is static HTML. Islands:
 - `@astrojs/sitemap` integration generates `sitemap-index.xml` covering both locales with hreflang annotations
 - `public/robots.txt`: allow all; `Sitemap: https://bamdude.top/sitemap-index.xml`
 - Open Graph images: `astro-og-canvas` builds `og/home-en.png` and `og/home-uk.png` at 1200×630 with logo, headline, gradient — one per locale
-- Schema.org JSON-LD `SoftwareApplication` block with name, description, applicationCategory `DeveloperApplication`, operatingSystem `Linux/Docker`, url, license `MIT` — embedded in BaseLayout
+- Schema.org JSON-LD `SoftwareApplication` block with name, description, applicationCategory `DeveloperApplication`, operatingSystem `Linux/Docker`, url, license `AGPL-3.0` — embedded in BaseLayout
 
 ## Analytics + consent
 

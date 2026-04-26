@@ -428,7 +428,7 @@ git commit -m "test: configure Vitest with RTL and jsdom for island tests"
   },
   "trust": {
     "label": "Compatible with",
-    "license": "MIT licensed",
+    "license": "AGPL-3.0 licensed",
     "stars": "GitHub stars"
   },
   "how": {
@@ -443,7 +443,7 @@ git commit -m "test: configure Vitest with RTL and jsdom for island tests"
   "faq": { "title": "Questions you probably have" },
   "cta": {
     "title": "Get started in 5 minutes",
-    "subtitle": "Free, open source, MIT licensed. No cloud lock-in. Ever."
+    "subtitle": "Free, open source, AGPL-3.0 licensed. No cloud lock-in. Ever."
   },
   "footer": {
     "product": "Product",
@@ -482,7 +482,7 @@ git commit -m "test: configure Vitest with RTL and jsdom for island tests"
     "ctaPrimary": "Швидкий старт",
     "ctaSecondary": "Зірка на GitHub"
   },
-  "trust": { "label": "Підтримує", "license": "MIT-ліцензія", "stars": "Зірок на GitHub" },
+  "trust": { "label": "Підтримує", "license": "AGPL-3.0-ліцензія", "stars": "Зірок на GitHub" },
   "how": {
     "title": "Запуск за 5 хвилин",
     "steps": [
@@ -493,7 +493,7 @@ git commit -m "test: configure Vitest with RTL and jsdom for island tests"
   },
   "why": { "title": "Зроблено для принт-ферм, а не одного принтера" },
   "faq": { "title": "Питання, які зазвичай виникають" },
-  "cta": { "title": "Запусти за 5 хвилин", "subtitle": "Безкоштовно, open source, MIT. Ніякого cloud-lock-in. Ніколи." },
+  "cta": { "title": "Запусти за 5 хвилин", "subtitle": "Безкоштовно, open source, AGPL-3.0. Ніякого cloud-lock-in. Ніколи." },
   "footer": {
     "product": "Продукт", "community": "Спільнота", "legal": "Юридичне",
     "telegram": "Telegram: BamDude Friends Forum",
@@ -1149,7 +1149,7 @@ git commit -m "feat: how-it-works section with three steps and docker snippet"
     { "category": "Maintenance UI",     "bambuddy": "Manual tracking",     "bamdude": "Counters, overdue alerts, mark-done from bot" },
     { "category": "Notification editor","bambuddy": "Plain text",          "bamdude": "MarkdownV2 with formatting toolbar" },
     { "category": "Calibration UI",     "bambuddy": "—",                   "bamdude": "Bed level, vibration, motor noise, nozzle offset" },
-    { "category": "License",            "bambuddy": "MIT",                 "bamdude": "MIT" }
+    { "category": "License",            "bambuddy": "AGPL-3.0",            "bamdude": "AGPL-3.0" }
   ]
 }
 ```
@@ -1166,7 +1166,7 @@ git commit -m "feat: how-it-works section with three steps and docker snippet"
     { "category": "Обслуговування в UI",          "bambuddy": "Вручну",         "bamdude": "Лічильники, алерти, відмітити з бота" },
     { "category": "Редактор нотифікацій",         "bambuddy": "Простий текст",   "bamdude": "MarkdownV2 з тулбаром форматування" },
     { "category": "Калібровка в UI",              "bambuddy": "—",              "bamdude": "Стіл, вібрації, шум, nozzle offset" },
-    { "category": "Ліцензія",                      "bambuddy": "MIT",            "bamdude": "MIT" }
+    { "category": "Ліцензія",                      "bambuddy": "AGPL-3.0",       "bamdude": "AGPL-3.0" }
   ]
 }
 ```
@@ -1310,7 +1310,7 @@ const year = new Date().getFullYear();
     <div>
       <h4 class="font-bold text-bambu-text">{i.footer.legal}</h4>
       <ul class="mt-3 space-y-2">
-        <li><a href={`${repo}/blob/main/LICENSE`} class="hover:text-bambu-green">MIT {i.footer.license}</a></li>
+        <li><a href={`${repo}/blob/main/LICENSE`} class="hover:text-bambu-green">AGPL-3.0 {i.footer.license}</a></li>
         <li><button type="button" data-cookie-settings class="hover:text-bambu-green">{i.footer.cookies}</button></li>
       </ul>
     </div>
@@ -1318,7 +1318,7 @@ const year = new Date().getFullYear();
   <div class="border-t border-bambu-border">
     <div class="mx-auto max-w-6xl px-6 py-6 text-xs text-bambu-text-muted flex justify-between flex-wrap gap-2">
       <span>© {year} BamDude. {i.footer.rights}</span>
-      <span>Built with Astro · MIT</span>
+      <span>Built with Astro · AGPL-3.0</span>
     </div>
   </div>
 </footer>
@@ -1760,7 +1760,7 @@ git commit -m "feat(island): ScreenshotsTabs with three tabs"
 ```json
 {
   "items": [
-    { "q": "Is it really free?", "a": "Yes. MIT-licensed, self-hosted, no paid tier. The only thing you pay for is your own server (or run it on a Raspberry Pi)." },
+    { "q": "Is it really free?", "a": "Yes. AGPL-3.0-licensed, self-hosted, no paid tier. The only thing you pay for is your own server (or run it on a Raspberry Pi)." },
     { "q": "Which printers are supported?", "a": "Bambu Lab A1, A1 mini, P1S, P1P, X1C, X1E. Anything that exposes the standard Bambu MQTT and FTP endpoints with Developer Mode enabled." },
     { "q": "Do I need to expose it to the internet?", "a": "No. The web UI runs on your local network. The Telegram bot reaches Telegram's API outbound — no inbound port required." },
     { "q": "Can I migrate from Bambuddy?", "a": "Yes — BamDude is schema-compatible up to its forking point. The upgrade guide in the docs walks you through migrations." },
@@ -1776,7 +1776,7 @@ git commit -m "feat(island): ScreenshotsTabs with three tabs"
 ```json
 {
   "items": [
-    { "q": "Це справді безкоштовно?", "a": "Так. MIT-ліцензія, self-host, без платних тарифів. Єдине, за що платиш — свій сервер (або Raspberry Pi)." },
+    { "q": "Це справді безкоштовно?", "a": "Так. AGPL-3.0-ліцензія, self-host, без платних тарифів. Єдине, за що платиш — свій сервер (або Raspberry Pi)." },
     { "q": "Які принтери підтримуються?", "a": "Bambu Lab A1, A1 mini, P1S, P1P, X1C, X1E — все, що має стандартні Bambu MQTT і FTP з увімкненим Developer Mode." },
     { "q": "Чи треба виставляти у мережу?", "a": "Ні. Веб-UI живе у локальній мережі. Telegram-бот ходить на Telegram API назовні — вхідний порт не потрібен." },
     { "q": "Чи можна мігрувати з Bambuddy?", "a": "Так — BamDude схемо-сумісний до точки форку. У документації є гайд по апгрейду з усіма міграціями." },
@@ -2265,7 +2265,7 @@ git commit -m "feat(seo): generate per-locale Open Graph images at build"
   applicationCategory: 'DeveloperApplication',
   operatingSystem: 'Linux, Docker',
   url: siteUrl,
-  license: 'https://opensource.org/license/mit',
+  license: 'https://opensource.org/license/agpl-v3',
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
   inLanguage: locale,
 })}></script>
@@ -2634,7 +2634,7 @@ deploy/                  # nginx.conf, deploy README
 
 ## License
 
-MIT — same as BamDude.
+AGPL-3.0 — same as BamDude.
 ````
 
 - [ ] **Step 2: Commit**
