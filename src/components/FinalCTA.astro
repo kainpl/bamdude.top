@@ -1,0 +1,20 @@
+---
+import type { Locale } from '../i18n';
+import { t } from '../i18n';
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const i = t(locale);
+const repo = import.meta.env.PUBLIC_GITHUB_REPO || 'https://github.com/kainpl/bamdude';
+const docs = 'https://docs.bamdude.top';
+---
+<section id="cta" aria-label="Final call to action" class="py-24 relative overflow-hidden">
+  <div class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(0,174,66,0.35)_0%,transparent_70%)]"></div>
+  <div class="mx-auto max-w-3xl px-6 text-center">
+    <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight">{i.cta.title}</h2>
+    <p class="mt-6 text-lg text-bambu-text-secondary">{i.cta.subtitle}</p>
+    <div class="mt-10 flex flex-wrap justify-center gap-3">
+      <a href={`${docs}/getting-started/quick-start/`} class="inline-flex items-center gap-2 rounded-lg px-6 py-3 font-semibold bg-bambu-green text-white shadow-[0_0_32px_rgba(0,174,66,0.5)] hover:bg-bambu-green-light transition">{i.hero.ctaPrimary}</a>
+      <a href={repo} class="inline-flex items-center gap-2 rounded-lg px-6 py-3 font-semibold border border-bambu-border hover:border-bambu-green transition">★ {i.hero.ctaSecondary}</a>
+    </div>
+  </div>
+</section>
