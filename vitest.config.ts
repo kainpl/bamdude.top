@@ -8,6 +8,7 @@ export default defineConfig({
     setupFiles: ['./src/test/setup.ts'],
     globals: true,
     include: ['src/**/*.test.{ts,tsx}'],
+    passWithNoTests: true,
   },
   resolve: { alias: { '@': '/src' } },
 });
