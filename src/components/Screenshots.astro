@@ -1,0 +1,18 @@
+---
+import type { Locale } from '../i18n';
+import { ScreenshotsTabs } from './islands/ScreenshotsTabs';
+
+interface Props { locale: Locale; }
+const { locale: _ } = Astro.props;
+
+const tabs = [
+  { id: 'web', label: 'Web', src: '/images/screenshot-desktop.png', alt: 'BamDude web dashboard' },
+  { id: 'tg', label: 'Telegram', src: '/images/screenshot-telegram.png', alt: 'BamDude Telegram bot chat' },
+  { id: 'mobile', label: 'Mobile', src: '/images/screenshot-mobile.png', alt: 'BamDude on mobile' },
+];
+---
+<section id="screenshots" aria-label="Screenshots" class="py-24">
+  <div class="mx-auto max-w-5xl px-6">
+    <ScreenshotsTabs client:visible tabs={tabs} />
+  </div>
+</section>

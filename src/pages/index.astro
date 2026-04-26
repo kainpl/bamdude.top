@@ -7,6 +7,7 @@ import TrustStrip from '../components/TrustStrip.astro';
 import Features from '../components/Features.astro';
 import HowItWorks from '../components/HowItWorks.astro';
 import WhyFork from '../components/WhyFork.astro';
+import Screenshots from '../components/Screenshots.astro';
 import FinalCTA from '../components/FinalCTA.astro';
 import Footer from '../components/Footer.astro';
 import { t } from '../i18n';
@@ -18,7 +19,7 @@ const i = t(locale);
   <Hero locale={locale} />
   <TrustStrip locale={locale} />
   <Features locale={locale} />
-  <Section id="screenshots" ariaLabel="Screenshots"><h2 class="text-3xl font-bold">Screenshots</h2></Section>
+  <Screenshots locale={locale} />
   <HowItWorks locale={locale} />
   <WhyFork locale={locale} />
   <Section id="faq" ariaLabel="FAQ"><h2 class="text-3xl font-bold">{i.faq.title}</h2></Section>
