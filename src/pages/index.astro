@@ -5,6 +5,7 @@ import Nav from '../components/Nav.astro';
 import Hero from '../components/Hero.astro';
 import TrustStrip from '../components/TrustStrip.astro';
 import Features from '../components/Features.astro';
+import HowItWorks from '../components/HowItWorks.astro';
 import { t } from '../i18n';
 const locale = 'en' as const;
 const i = t(locale);
@@ -15,7 +16,7 @@ const i = t(locale);
   <TrustStrip locale={locale} />
   <Features locale={locale} />
   <Section id="screenshots" ariaLabel="Screenshots"><h2 class="text-3xl font-bold">Screenshots</h2></Section>
-  <Section id="how" ariaLabel="How it works"><h2 class="text-3xl font-bold">{i.how.title}</h2></Section>
+  <HowItWorks locale={locale} />
   <Section id="why" ariaLabel="Why fork from Bambuddy"><h2 class="text-3xl font-bold">{i.why.title}</h2></Section>
   <Section id="faq" ariaLabel="FAQ"><h2 class="text-3xl font-bold">{i.faq.title}</h2></Section>
   <Section id="cta" ariaLabel="Final call to action"><h2 class="text-3xl font-bold">{i.cta.title}</h2></Section>
