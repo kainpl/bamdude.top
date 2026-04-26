@@ -1,0 +1,51 @@
+---
+import type { Locale } from '../i18n';
+import { t } from '../i18n';
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const i = t(locale);
+const repo = import.meta.env.PUBLIC_GITHUB_REPO || 'https://github.com/kainpl/bamdude';
+const docs = 'https://docs.bamdude.top';
+const tg = 'https://t.me/+3KQl2uNtOwo3NTgy';
+const year = new Date().getFullYear();
+---
+<footer class="border-t border-bambu-border bg-bambu-bg-secondary">
+  <div class="mx-auto max-w-6xl px-6 py-16 grid grid-cols-1 md:grid-cols-4 gap-8 text-sm">
+    <div>
+      <div class="flex items-center gap-2 font-extrabold tracking-tight">
+        <img src="/images/logo-dark-transparent.png" alt="BamDude" class="h-7 w-auto" width="28" height="28" />
+        <span>BamDude</span>
+      </div>
+      <p class="mt-3 text-bambu-text-muted leading-relaxed">{i.footer.disclaimer}</p>
+    </div>
+    <div>
+      <h4 class="font-bold text-bambu-text">{i.footer.product}</h4>
+      <ul class="mt-3 space-y-2">
+        <li><a href="#features" class="hover:text-bambu-green">{i.nav.features}</a></li>
+        <li><a href={docs} class="hover:text-bambu-green">{i.nav.docs}</a></li>
+        <li><a href={`${repo}/blob/main/CHANGELOG.md`} class="hover:text-bambu-green">Changelog</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="font-bold text-bambu-text">{i.footer.community}</h4>
+      <ul class="mt-3 space-y-2">
+        <li><a href={tg} class="hover:text-bambu-green">{i.footer.telegram}</a></li>
+        <li><a href={repo} class="hover:text-bambu-green">GitHub</a></li>
+        <li><a href={`${repo}/issues`} class="hover:text-bambu-green">{i.footer.issues}</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="font-bold text-bambu-text">{i.footer.legal}</h4>
+      <ul class="mt-3 space-y-2">
+        <li><a href={`${repo}/blob/main/LICENSE`} class="hover:text-bambu-green">AGPL-3.0 {i.footer.license}</a></li>
+        <li><button type="button" data-cookie-settings class="hover:text-bambu-green">{i.footer.cookies}</button></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-bambu-border">
+    <div class="mx-auto max-w-6xl px-6 py-6 text-xs text-bambu-text-muted flex justify-between flex-wrap gap-2">
+      <span>© {year} BamDude. {i.footer.rights}</span>
+      <span>Built with Astro · AGPL-3.0</span>
+    </div>
+  </div>
+</footer>

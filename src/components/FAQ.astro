@@ -1,0 +1,21 @@
+---
+import type { Locale } from '../i18n';
+import { t } from '../i18n';
+import enFAQ from '../content/en/faq.json';
+import ukFAQ from '../content/uk/faq.json';
+import { FAQAccordion } from './islands/FAQAccordion';
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const i = t(locale);
+const data = locale === 'uk' ? ukFAQ : enFAQ;
+const items = data.items;
+---
+<section id="faq" aria-label="FAQ" class="py-24 bg-bambu-bg-secondary border-y border-bambu-border">
+  <div class="mx-auto max-w-3xl px-6">
+    <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-center">{i.faq.title}</h2>
+    <div class="mt-12">
+      <FAQAccordion client:visible items={items} />
+    </div>
+  </div>
+</section>

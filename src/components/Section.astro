@@ -1,0 +1,9 @@
+---
+interface Props { id: string; ariaLabel: string; class?: string; }
+const { id, ariaLabel, class: extra = '' } = Astro.props;
+---
+<section id={id} aria-label={ariaLabel} class={`relative py-20 sm:py-24 lg:py-28 ${extra}`}>
+  <div class="mx-auto max-w-6xl px-6">
+    <slot />
+  </div>
+</section>

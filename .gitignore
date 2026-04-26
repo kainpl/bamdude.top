@@ -1,0 +1,9 @@
+.superpowers/
+.claude/
+.idea/
+node_modules/
+dist/
+.astro/
+.env
+.env.local
+.lighthouseci/

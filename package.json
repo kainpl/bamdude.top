@@ -1,0 +1,71 @@
+{
+  "name": "bamdude-landing",
+  "version": "1.0.0",
+  "description": "Marketing landing for BamDude — self-hosted print management for Bambu Lab 3D printers",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "typecheck": "astro check",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "lighthouse": "lhci autorun"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kainpl/bamdude.top.git"
+  },
+  "keywords": [
+    "bambu",
+    "bamdude",
+    "3d-printing",
+    "self-hosted"
+  ],
+  "author": "BamDude contributors",
+  "license": "AGPL-3.0-only",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/kainpl/bamdude.top/issues"
+  },
+  "homepage": "https://github.com/kainpl/bamdude.top#readme",
+  "private": true,
+  "dependencies": {
+    "@astrojs/react": "5.0.4",
+    "@astrojs/sitemap": "3.7.2",
+    "@tailwindcss/vite": "4.2.4",
+    "astro": "6.1.9",
+    "lucide-react": "0.460.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "tailwindcss": "4.2.4"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.8",
+    "@eslint/js": "9.39.4",
+    "@lhci/cli": "0.14.0",
+    "@testing-library/jest-dom": "6.9.1",
+    "@testing-library/react": "16.3.2",
+    "@testing-library/user-event": "14.6.1",
+    "@types/node": "22.19.17",
+    "@types/react": "18.3.28",
+    "@types/react-dom": "18.3.7",
+    "@vitejs/plugin-react": "4.7.0",
+    "@vitest/coverage-v8": "3.2.4",
+    "astro-og-canvas": "0.11.1",
+    "canvaskit-wasm": "0.41.1",
+    "eslint": "9.39.4",
+    "eslint-plugin-astro": "1.7.0",
+    "jsdom": "25.0.1",
+    "prettier": "3.8.3",
+    "prettier-plugin-astro": "0.14.1",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.59.0",
+    "vitest": "3.2.4"
+  }
+}

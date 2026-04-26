@@ -1,0 +1,10 @@
+{
+  "items": [
+    { "icon": "archive", "title": "Print archive", "body": "Every 3MF, photo, and timelapse stored locally with full-text search and source-hash chain of custody." },
+    { "icon": "send", "title": "Telegram bot", "body": "Control printers, manage queues, get actionable notifications — multi-chat with role-based permissions." },
+    { "icon": "list-ordered", "title": "Multi-printer queue", "body": "Background dispatch picks the right idle printer based on filament, model, and AMS mapping." },
+    { "icon": "video", "title": "Camera & streaming", "body": "Live snapshots, MJPEG/RTSP/USB camera support, OBS overlay built in." },
+    { "icon": "wrench", "title": "Maintenance reminders", "body": "Per-printer counters with overdue alerts in UI and Telegram. Mark done from anywhere." },
+    { "icon": "server", "title": "Self-hosted", "body": "Your data on your hardware. SQLite or Postgres. No cloud account required, ever." }
+  ]
+}
