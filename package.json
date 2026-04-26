@@ -1,26 +1,25 @@
 {
   "name": "bamdude-landing",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "directories": {
-    "doc": "docs"
-  },
+  "description": "Marketing landing for BamDude — self-hosted print management for Bambu Lab 3D printers",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "typecheck": "astro check",
-    "lint": "eslint . --ext .ts,.tsx,.astro,.js,.cjs,.mjs",
+    "lint": "eslint .",
     "format": "prettier --write ."
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kainpl/bamdude.top.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["bambu", "bamdude", "3d-printing", "self-hosted"],
+  "author": "BamDude contributors",
+  "license": "AGPL-3.0-only",
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "type": "module",
   "bugs": {
     "url": "https://github.com/kainpl/bamdude.top/issues"
@@ -28,14 +27,10 @@
   "homepage": "https://github.com/kainpl/bamdude.top#readme",
   "private": true,
   "dependencies": {
-    "@astrojs/react": "4.4.2",
+    "@astrojs/react": "5.0.4",
     "@astrojs/sitemap": "3.7.2",
     "@tailwindcss/vite": "4.2.4",
-    "@types/react": "18.3.28",
-    "@types/react-dom": "18.3.7",
-    "astro": "5.18.1",
-    "astro-og-canvas": "0.7.2",
-    "canvaskit-wasm": "0.39.1",
+    "astro": "6.1.9",
     "lucide-react": "0.460.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
@@ -43,13 +38,17 @@
   },
   "devDependencies": {
     "@astrojs/check": "0.9.8",
+    "@eslint/js": "9.39.4",
     "@types/node": "22.19.17",
-    "@typescript-eslint/eslint-plugin": "8.59.0",
-    "@typescript-eslint/parser": "8.59.0",
+    "@types/react": "18.3.28",
+    "@types/react-dom": "18.3.7",
+    "astro-og-canvas": "0.11.1",
+    "canvaskit-wasm": "0.41.1",
     "eslint": "9.39.4",
     "eslint-plugin-astro": "1.7.0",
     "prettier": "3.8.3",
     "prettier-plugin-astro": "0.14.1",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.59.0"
   }
 }
