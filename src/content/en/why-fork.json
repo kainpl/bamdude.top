@@ -1,0 +1,12 @@
+{
+  "items": [
+    { "category": "Telegram bot",       "bambuddy": "—",                   "bamdude": "Full bot: control, queue, maintenance, calibration" },
+    { "category": "Multi-chat auth",    "bambuddy": "Single chat",         "bamdude": "Per-chat roles with granular permissions" },
+    { "category": "Languages",          "bambuddy": "EN",                  "bamdude": "EN + UK (extensible JSON i18n)" },
+    { "category": "Print farm queue",   "bambuddy": "—",                   "bamdude": "Background dispatch with AMS mapping" },
+    { "category": "Maintenance UI",     "bambuddy": "Manual tracking",     "bamdude": "Counters, overdue alerts, mark-done from bot" },
+    { "category": "Notification editor","bambuddy": "Plain text",          "bamdude": "MarkdownV2 with formatting toolbar" },
+    { "category": "Calibration UI",     "bambuddy": "—",                   "bamdude": "Bed level, vibration, motor noise, nozzle offset" },
+    { "category": "License",            "bambuddy": "AGPL-3.0",            "bamdude": "AGPL-3.0" }
+  ]
+}
