@@ -8,6 +8,7 @@ import Features from '../components/Features.astro';
 import HowItWorks from '../components/HowItWorks.astro';
 import WhyFork from '../components/WhyFork.astro';
 import FinalCTA from '../components/FinalCTA.astro';
+import Footer from '../components/Footer.astro';
 import { t } from '../i18n';
 const locale = 'en' as const;
 const i = t(locale);
@@ -22,4 +23,5 @@ const i = t(locale);
   <WhyFork locale={locale} />
   <Section id="faq" ariaLabel="FAQ"><h2 class="text-3xl font-bold">{i.faq.title}</h2></Section>
   <FinalCTA locale={locale} />
+  <Footer locale={locale} />
 </BaseLayout>
