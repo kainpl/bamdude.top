@@ -9,7 +9,7 @@ on:
 # rsync. cancel-in-progress aborts the older one — the newer build is what
 # we want live.
 concurrency:
-  group: landing-deploy
+  group: www-deploy
   cancel-in-progress: true
 
 jobs:
@@ -17,8 +17,8 @@ jobs:
     name: Build + sync to nginx
     # Self-hosted runner ON the production server. The label-set narrows
     # this beyond "any self-hosted runner the org has" to specifically the
-    # landing-deploy runner — see deploy/README.md for the runner-install recipe.
-    runs-on: [self-hosted, linux, landing-deploy]
+    # www-deploy runner — see deploy/README.md for the runner-install recipe.
+    runs-on: [self-hosted, linux, www-deploy]
     steps:
       - uses: actions/checkout@v4
 

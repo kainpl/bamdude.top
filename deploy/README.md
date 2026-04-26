@@ -8,7 +8,7 @@ No SSH key in GH Secrets, no `ssh-keyscan` round-trip — the runner is already 
 
 ```
 push to main → .github/workflows/deploy.yml
-              └─ self-hosted runner (label: landing-deploy)
+              └─ self-hosted runner (label: www-deploy)
                  ├─ checkout
                  ├─ npm ci
                  ├─ npm run typecheck
@@ -59,7 +59,7 @@ sudo -u bamdude-runner -i
 
 # Use a different directory so it doesn't clash with the docs runner's
 # actions-runner/ folder.
-mkdir landing-actions-runner && cd landing-actions-runner
+mkdir runner-www && cd runner-www
 ```
 
 Get the latest runner release URL from **Repo → Settings → Actions → Runners → New self-hosted runner** — the page shows the exact `curl` + `tar` + `./config.sh` commands for your OS, including a one-time registration token. The token is repo-scoped, so you can't reuse the docs token here.
@@ -71,13 +71,13 @@ curl -o actions-runner.tar.gz -L \
   https://github.com/actions/runner/releases/download/vVERSION/actions-runner-linux-x64-VERSION.tar.gz
 tar xzf ./actions-runner.tar.gz
 
-# Add the landing-deploy label so the workflow's `runs-on` selector targets
+# Add the www-deploy label so the workflow's `runs-on` selector targets
 # this runner specifically. Linux + self-hosted are added by default.
 ./config.sh \
   --url https://github.com/kainpl/bamdude.top \
   --token REGISTRATION_TOKEN \
-  --name landing-deploy-prod \
-  --labels landing-deploy \
+  --name www-deploy-prod \
+  --labels www-deploy \
   --unattended
 ```
 
@@ -85,7 +85,7 @@ Install as a systemd service so it survives reboots. The svc.sh installer derive
 
 ```bash
 exit  # leave bamdude-runner shell — svc.sh install needs root
-cd /home/bamdude-runner/landing-actions-runner
+cd /home/bamdude-runner/runner-www
 sudo ./svc.sh install bamdude-runner
 sudo ./svc.sh start
 sudo ./svc.sh status   # should show "active (running)"
