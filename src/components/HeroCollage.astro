@@ -1,33 +1,79 @@
 ---
-// Three-image fan collage. Center frame slightly forward, two side frames
-// fanned out and tilted. Uses the three screenshots already in /public.
+// Constellation collage — center desktop frame surrounded by 6 satellites
+// at varied radii / rotations. Each tile carries a data-label that surfaces
+// as a floating pill on hover. Collapses to a 3-tile fan on small viewports
+// (preserves the original mobile experience).
+//
+// Tile inventory (left → right, top → bottom):
+//   - mobile           (top-left, portrait)
+//   - telegram         (top-right, portrait)
+//   - stats            (mid-left, landscape)
+//   - desktop          (center, landscape, biggest)
+//   - queue            (mid-right, landscape)
+//   - files-mp         (bottom-left, landscape)
+//   - projects         (bottom-right, landscape)
 ---
-<div class="hero-collage relative mx-auto mt-14 w-full max-w-3xl aspect-[16/10] hidden sm:block">
-  <div class="absolute inset-0 -z-10 blur-2xl opacity-50 bg-[radial-gradient(ellipse_at_center,rgba(0,174,66,0.45)_0%,transparent_70%)]"></div>
+<div class="hero-collage relative mx-auto mt-16 w-full max-w-5xl aspect-[16/10] hidden sm:block">
+  <div class="absolute inset-0 -z-10 blur-3xl opacity-50 bg-[radial-gradient(ellipse_at_center,rgba(0,174,66,0.45)_0%,transparent_70%)]"></div>
 
-  <!-- Left tile: Telegram bot -->
-  <div class="hero-collage-tile hero-collage-left">
-    <img src="/images/screenshot-telegram.png" alt="BamDude Telegram bot" loading="lazy" />
+  <!-- Center: Web dashboard -->
+  <div class="hero-collage-tile hero-collage-center" data-label="Web dashboard">
+    <img src="/images/screenshot-desktop.png" alt="BamDude web dashboard" loading="eager" fetchpriority="high" />
   </div>
-  <!-- Right tile: Mobile -->
-  <div class="hero-collage-tile hero-collage-right">
+
+  <!-- Top-left: Mobile -->
+  <div class="hero-collage-tile hero-collage-portrait hero-collage-mobile" data-label="On mobile">
     <img src="/images/screenshot-mobile.png" alt="BamDude on mobile" loading="lazy" />
   </div>
-  <!-- Center tile: Web dashboard -->
-  <div class="hero-collage-tile hero-collage-center">
-    <img src="/images/screenshot-desktop.png" alt="BamDude web dashboard" loading="lazy" />
+
+  <!-- Top-right: Telegram bot -->
+  <div class="hero-collage-tile hero-collage-portrait hero-collage-telegram" data-label="Telegram bot">
+    <img src="/images/screenshot-telegram.png" alt="BamDude Telegram bot" loading="lazy" />
+  </div>
+
+  <!-- Mid-left: Statistics -->
+  <div class="hero-collage-tile hero-collage-stats" data-label="Statistics">
+    <img src="/images/screenshot-statistics.png" alt="BamDude statistics" loading="lazy" />
+  </div>
+
+  <!-- Mid-right: Queue -->
+  <div class="hero-collage-tile hero-collage-queue" data-label="Print queue">
+    <img src="/images/screenshot-queue.png" alt="BamDude print queue" loading="lazy" />
+  </div>
+
+  <!-- Bottom-left: File manager (multi-plate) -->
+  <div class="hero-collage-tile hero-collage-files" data-label="Multi-plate library">
+    <img src="/images/screenshot-files-mp.png" alt="BamDude multi-plate library" loading="lazy" />
+  </div>
+
+  <!-- Bottom-right: Projects -->
+  <div class="hero-collage-tile hero-collage-projects" data-label="Projects">
+    <img src="/images/screenshot-projects.png" alt="BamDude projects" loading="lazy" />
   </div>
 </div>
 
 <style>
+  .hero-collage {
+    --tile-radius: 0.85rem;
+    --tile-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.6),
+                   0 12px 24px -12px rgba(0, 174, 66, 0.25);
+    --tile-shadow-hover: 0 40px 100px -20px rgba(0, 0, 0, 0.7),
+                         0 16px 32px -10px rgba(0, 174, 66, 0.45);
+    perspective: 1600px;
+    transform-style: preserve-3d;
+  }
+
   .hero-collage-tile {
     position: absolute;
-    border-radius: 1rem;
+    border-radius: var(--tile-radius);
     overflow: hidden;
     border: 1px solid var(--border-color);
-    box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.55), 0 12px 24px -12px rgba(0, 174, 66, 0.25);
+    box-shadow: var(--tile-shadow);
     background: var(--bg-secondary);
-    transition: transform 280ms ease, box-shadow 280ms ease;
+    transition: transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1),
+                box-shadow 320ms ease,
+                z-index 0s 320ms;
+    will-change: transform;
   }
   .hero-collage-tile img {
     display: block;
@@ -35,40 +81,167 @@
     height: 100%;
     object-fit: cover;
   }
+
+  /* Floating label pill — hidden until tile hover. */
+  .hero-collage-tile::after {
+    content: attr(data-label);
+    position: absolute;
+    left: 50%;
+    bottom: 0.6rem;
+    transform: translateX(-50%) translateY(8px);
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.72);
+    border: 1px solid rgba(0, 174, 66, 0.45);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 240ms ease, transform 240ms ease;
+  }
+  .hero-collage-tile:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* ── Center: web dashboard ────────────────────────────────────── */
   .hero-collage-center {
     left: 50%;
-    top: 5%;
-    width: 62%;
+    top: 8%;
+    width: 56%;
     aspect-ratio: 16 / 10;
-    transform: translateX(-50%) translateY(0);
+    transform: translateX(-50%) translateY(0) rotate(0);
+    z-index: 5;
+  }
+
+  /* ── Portraits (mobile + telegram) ───────────────────────────── */
+  .hero-collage-portrait {
+    aspect-ratio: 9 / 16;
+    width: 16%;
+  }
+  .hero-collage-mobile {
+    left: 4%;
+    top: 6%;
+    transform: rotate(-9deg);
     z-index: 3;
   }
-  .hero-collage-left {
-    left: 0;
-    top: 28%;
-    width: 28%;
-    aspect-ratio: 9 / 16;
-    transform: rotate(-7deg);
-    z-index: 1;
+  .hero-collage-telegram {
+    right: 4%;
+    top: 8%;
+    transform: rotate(9deg);
+    z-index: 3;
   }
-  .hero-collage-right {
-    right: 0;
-    top: 30%;
-    width: 28%;
-    aspect-ratio: 9 / 16;
-    transform: rotate(7deg);
-    z-index: 1;
+
+  /* ── Mid landscape satellites (stats + queue) ────────────────── */
+  .hero-collage-stats,
+  .hero-collage-queue {
+    aspect-ratio: 16 / 10;
+    width: 26%;
   }
-  .hero-collage:hover .hero-collage-center {
-    transform: translateX(-50%) translateY(-6px);
+  .hero-collage-stats {
+    left: -3%;
+    top: 46%;
+    transform: rotate(-5deg);
+    z-index: 2;
   }
-  .hero-collage:hover .hero-collage-left {
-    transform: rotate(-9deg) translateY(-4px);
+  .hero-collage-queue {
+    right: -3%;
+    top: 48%;
+    transform: rotate(5deg);
+    z-index: 2;
   }
-  .hero-collage:hover .hero-collage-right {
-    transform: rotate(9deg) translateY(-4px);
+
+  /* ── Bottom landscape satellites (files-mp + projects) ───────── */
+  .hero-collage-files,
+  .hero-collage-projects {
+    aspect-ratio: 16 / 10;
+    width: 22%;
   }
+  .hero-collage-files {
+    left: 22%;
+    bottom: -4%;
+    transform: rotate(3deg);
+    z-index: 2;
+  }
+  .hero-collage-projects {
+    right: 22%;
+    bottom: -4%;
+    transform: rotate(-3deg);
+    z-index: 2;
+  }
+
+  /* ── Hover: lift + bring tile to front, push siblings back ───── */
+  .hero-collage-tile:hover {
+    box-shadow: var(--tile-shadow-hover);
+    z-index: 10;
+    transition: transform 280ms cubic-bezier(0.2, 0.8, 0.2, 1),
+                box-shadow 280ms ease,
+                z-index 0s 0s;
+  }
+  .hero-collage-center:hover {
+    transform: translateX(-50%) translateY(-8px) scale(1.02);
+  }
+  .hero-collage-mobile:hover    { transform: rotate(-12deg) translateY(-6px); }
+  .hero-collage-telegram:hover  { transform: rotate(12deg)  translateY(-6px); }
+  .hero-collage-stats:hover     { transform: rotate(-7deg)  translateY(-6px); }
+  .hero-collage-queue:hover     { transform: rotate(7deg)   translateY(-6px); }
+  .hero-collage-files:hover     { transform: rotate(5deg)   translateY(-6px); }
+  .hero-collage-projects:hover  { transform: rotate(-5deg)  translateY(-6px); }
+
+  /* ── Idle ambient drift — subtle, only when motion is allowed ── */
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-collage-mobile    { animation: collage-drift-a 8s ease-in-out infinite; }
+    .hero-collage-telegram  { animation: collage-drift-b 9s ease-in-out infinite; }
+    .hero-collage-stats     { animation: collage-drift-c 10s ease-in-out infinite; }
+    .hero-collage-queue     { animation: collage-drift-d 11s ease-in-out infinite; }
+    .hero-collage-files     { animation: collage-drift-e 12s ease-in-out infinite; }
+    .hero-collage-projects  { animation: collage-drift-f 13s ease-in-out infinite; }
+  }
+  @keyframes collage-drift-a {
+    0%, 100% { transform: rotate(-9deg)  translateY(0); }
+    50%      { transform: rotate(-8deg)  translateY(-4px); }
+  }
+  @keyframes collage-drift-b {
+    0%, 100% { transform: rotate(9deg)   translateY(0); }
+    50%      { transform: rotate(8deg)   translateY(-4px); }
+  }
+  @keyframes collage-drift-c {
+    0%, 100% { transform: rotate(-5deg)  translateY(0); }
+    50%      { transform: rotate(-4deg)  translateY(-3px); }
+  }
+  @keyframes collage-drift-d {
+    0%, 100% { transform: rotate(5deg)   translateY(0); }
+    50%      { transform: rotate(4deg)   translateY(-3px); }
+  }
+  @keyframes collage-drift-e {
+    0%, 100% { transform: rotate(3deg)   translateY(0); }
+    50%      { transform: rotate(2deg)   translateY(-3px); }
+  }
+  @keyframes collage-drift-f {
+    0%, 100% { transform: rotate(-3deg)  translateY(0); }
+    50%      { transform: rotate(-2deg)  translateY(-3px); }
+  }
+  /* Hover wins over the idle drift. */
+  .hero-collage-tile:hover { animation: none; }
+
+  /* ── Tablet: trim the bottom row to keep things readable. ────── */
+  @media (max-width: 1023px) {
+    .hero-collage-files,
+    .hero-collage-projects {
+      display: none;
+    }
+    .hero-collage-stats { left: -1%; top: 50%; }
+    .hero-collage-queue { right: -1%; top: 52%; }
+  }
+
+  /* ── Reduced motion: kill the drift, keep hover snap. ────────── */
   @media (prefers-reduced-motion: reduce) {
-    .hero-collage-tile { transition: none; }
+    .hero-collage-tile {
+      animation: none !important;
+      transition: none;
+    }
   }
 </style>
