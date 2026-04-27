@@ -1,84 +1,84 @@
 ---
-// Folded mosaic — bento-style grid of product screenshots wrapped in a
-// CSS-3D perspective. The whole slab tilts slightly on mouse movement so
-// the layout feels "alive" without animating individual tiles.
+// Bento mosaic — CSS Grid driven by named grid-areas. Explicit height
+// so the grid doesn't collapse if `aspect-ratio` is treated wrong by
+// some engine; no 3D wrapper; hover lift stays in 2D. Six tiles by
+// default, seventh ("multi-plate library") shows up on ≥1280px.
 //
-// Layout (4 columns × 3 rows, content reading left → right, top → bottom):
-//
-//   ┌───────────────────────────┬──────────┬──────────┐
-//   │                           │          │          │
-//   │        desktop (2×2)      │ telegram │  mobile  │
-//   │                           │  (1×2)   │  (1×2)   │
-//   │                           │          │          │
-//   ├──────────────┬────────────┴──────────┴──────────┤
-//   │  stats (2×1) │  queue   │  projects │  files-mp  │
-//   └──────────────┴──────────┴───────────┴────────────┘
-//
-// Hover any tile: it lifts forward (translateZ), the green accent ring
-// brightens, and the label pill fades in. Reduced-motion strips the
-// parallax + lift, keeps the static tilt.
+//   ┌─────────────────────┬──────────┬──────────┐
+//   │     desktop         │ telegram │  mobile  │
+//   │     (2 cols)        │          │          │
+//   ├─────────────────────┴──────────┴──────────┤
+//   │ stats (2)  │  queue   │  projects         │
+//   └────────────┴──────────┴───────────────────┘
 ---
 <div class="hero-mosaic-wrap relative mx-auto mt-16 w-full max-w-6xl hidden sm:block">
   <div class="absolute inset-0 -z-10 blur-3xl opacity-50 bg-[radial-gradient(ellipse_at_center,rgba(0,174,66,0.45)_0%,transparent_70%)]"></div>
 
-  <div class="hero-mosaic" id="hero-mosaic">
-    <!-- Top-left dominant tile: desktop dashboard -->
-    <a class="hero-mosaic-tile is-desktop" data-label="Web dashboard" aria-label="Web dashboard screenshot">
+  <div class="hero-mosaic">
+    <a class="hero-mosaic-tile area-desktop" data-label="Web dashboard" aria-label="Web dashboard screenshot">
       <img src="/images/screenshot-desktop.png" alt="BamDude web dashboard" loading="eager" fetchpriority="high" />
     </a>
-
-    <!-- Right-top portrait: Telegram bot -->
-    <a class="hero-mosaic-tile is-portrait is-telegram" data-label="Telegram bot" aria-label="Telegram bot screenshot">
+    <a class="hero-mosaic-tile area-telegram is-portrait" data-label="Telegram bot" aria-label="Telegram bot screenshot">
       <img src="/images/screenshot-telegram.png" alt="BamDude Telegram bot" loading="lazy" />
     </a>
-
-    <!-- Far-right portrait: Mobile -->
-    <a class="hero-mosaic-tile is-portrait is-mobile" data-label="On mobile" aria-label="Mobile screenshot">
+    <a class="hero-mosaic-tile area-mobile is-portrait" data-label="On mobile" aria-label="Mobile screenshot">
       <img src="/images/screenshot-mobile.png" alt="BamDude on mobile" loading="lazy" />
     </a>
-
-    <!-- Bottom row, wide: Statistics -->
-    <a class="hero-mosaic-tile is-stats" data-label="Statistics" aria-label="Statistics screenshot">
+    <a class="hero-mosaic-tile area-stats" data-label="Statistics" aria-label="Statistics screenshot">
       <img src="/images/screenshot-statistics.png" alt="BamDude statistics" loading="lazy" />
     </a>
-
-    <!-- Bottom row: Queue -->
-    <a class="hero-mosaic-tile is-queue" data-label="Print queue" aria-label="Print queue screenshot">
+    <a class="hero-mosaic-tile area-queue" data-label="Print queue" aria-label="Print queue screenshot">
       <img src="/images/screenshot-queue.png" alt="BamDude print queue" loading="lazy" />
     </a>
-
-    <!-- Bottom row: Projects -->
-    <a class="hero-mosaic-tile is-projects" data-label="Projects" aria-label="Projects screenshot">
+    <a class="hero-mosaic-tile area-projects" data-label="Projects" aria-label="Projects screenshot">
       <img src="/images/screenshot-projects.png" alt="BamDude projects" loading="lazy" />
     </a>
-
-    <!-- Bottom row: Files (multi-plate) -->
-    <a class="hero-mosaic-tile is-files" data-label="Multi-plate library" aria-label="Multi-plate library screenshot">
+    <a class="hero-mosaic-tile area-files" data-label="Multi-plate library" aria-label="Multi-plate library screenshot">
       <img src="/images/screenshot-files-mp.png" alt="BamDude multi-plate library" loading="lazy" />
     </a>
   </div>
 </div>
 
 <style>
-  .hero-mosaic-wrap {
-    perspective: 2000px;
-    perspective-origin: 50% 30%;
-  }
-
   .hero-mosaic {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    width: 100%;
+    /* Explicit height — keeps the grid sane without depending on
+       aspect-ratio + grid template interaction. */
+    min-height: 460px;
+    height: clamp(420px, 46vw, 560px);
+    grid-template-columns: 1.6fr 1fr 1fr;
+    grid-template-rows: 2fr 1fr;
+    grid-template-areas:
+      "desktop telegram mobile"
+      "stats   queue    projects";
     gap: 0.75rem;
-    aspect-ratio: 16 / 9;
-    transform: rotateX(var(--rx, 9deg)) rotateY(var(--ry, -4deg));
-    transform-style: preserve-3d;
-    transition: transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
-    will-change: transform;
   }
+
+  /* Wider viewports: surface the multi-plate library tile. */
+  @media (min-width: 1280px) {
+    .hero-mosaic {
+      grid-template-columns: 1.7fr 0.9fr 0.9fr 0.9fr;
+      grid-template-areas:
+        "desktop  telegram mobile  files"
+        "stats    stats    queue   projects";
+    }
+    .area-files { display: block; }
+  }
+
+  /* Default: hide the bonus tile until we have a 4-col grid. */
+  .area-files { display: none; }
+
+  .area-desktop  { grid-area: desktop; }
+  .area-telegram { grid-area: telegram; }
+  .area-mobile   { grid-area: mobile; }
+  .area-stats    { grid-area: stats; }
+  .area-queue    { grid-area: queue; }
+  .area-projects { grid-area: projects; }
 
   .hero-mosaic-tile {
     position: relative;
+    display: block;
     border-radius: 0.85rem;
     overflow: hidden;
     border: 1px solid var(--border-color);
@@ -87,12 +87,14 @@
       0 30px 60px -20px rgba(0, 0, 0, 0.55),
       0 12px 24px -12px rgba(0, 174, 66, 0.18);
     transition:
-      transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1),
-      box-shadow 320ms ease,
-      border-color 320ms ease;
+      transform 280ms cubic-bezier(0.2, 0.8, 0.2, 1),
+      box-shadow 280ms ease,
+      border-color 280ms ease;
     will-change: transform;
     cursor: pointer;
+    text-decoration: none;
   }
+
   .hero-mosaic-tile img {
     display: block;
     width: 100%;
@@ -101,21 +103,23 @@
     object-position: top left;
   }
 
-  /* Subtle inner highlight + dark gradient at bottom for label legibility. */
+  /* Top-anchored crop for portrait tiles so the chrome stays visible. */
+  .is-portrait img { object-position: top center; }
+
+  /* Bottom dark gradient for label legibility. */
   .hero-mosaic-tile::before {
     content: "";
     position: absolute;
     inset: 0;
-    background:
-      linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.55) 100%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, transparent 30%);
     pointer-events: none;
-    transition: opacity 280ms ease;
+    background:
+      linear-gradient(180deg, transparent 55%, rgba(0, 0, 0, 0.55) 100%);
     opacity: 0.55;
+    transition: opacity 280ms ease;
   }
   .hero-mosaic-tile:hover::before { opacity: 0.85; }
 
-  /* Floating label pill — bottom-left of each tile, fades in on hover. */
+  /* Floating label pill — bottom-left, fades in on hover. */
   .hero-mosaic-tile::after {
     content: attr(data-label);
     position: absolute;
@@ -123,10 +127,10 @@
     bottom: 0.6rem;
     padding: 0.22rem 0.6rem;
     border-radius: 999px;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.72);
     border: 1px solid rgba(0, 174, 66, 0.5);
     color: #fff;
-    font-size: 0.7rem;
+    font-size: 0.72rem;
     font-weight: 600;
     letter-spacing: 0.01em;
     white-space: nowrap;
@@ -140,21 +144,9 @@
     transform: translateY(0);
   }
 
-  /* Bento spans. */
-  .is-desktop  { grid-column: 1 / span 2; grid-row: 1 / span 2; }
-  .is-telegram { grid-column: 3 / span 1; grid-row: 1 / span 2; }
-  .is-mobile   { grid-column: 4 / span 1; grid-row: 1 / span 2; }
-  .is-stats    { grid-column: 1 / span 2; grid-row: 3 / span 1; }
-  .is-queue    { grid-column: 3 / span 1; grid-row: 3 / span 1; }
-  .is-projects { grid-column: 4 / span 1; grid-row: 3 / span 1; }
-  .is-files    { display: none; } /* reserved for >xl breakpoint below */
-
-  /* Portrait tiles use a top-anchored crop so the chrome stays visible. */
-  .is-portrait img { object-position: top center; }
-
-  /* Hover lift — the tile pops forward on the Z axis. */
+  /* Hover lift — 2D translate + scale, no 3D so nothing collapses. */
   .hero-mosaic-tile:hover {
-    transform: translateZ(40px);
+    transform: translateY(-4px) scale(1.012);
     border-color: rgba(0, 174, 66, 0.55);
     box-shadow:
       0 40px 90px -20px rgba(0, 0, 0, 0.65),
@@ -162,78 +154,12 @@
     z-index: 5;
   }
 
-  /* Wider viewports: surface the 7th tile (multi-plate library). */
-  @media (min-width: 1280px) {
-    .hero-mosaic {
-      grid-template-columns: repeat(5, 1fr);
-    }
-    .is-desktop  { grid-column: 1 / span 2; grid-row: 1 / span 2; }
-    .is-telegram { grid-column: 3 / span 1; grid-row: 1 / span 2; }
-    .is-mobile   { grid-column: 4 / span 1; grid-row: 1 / span 2; }
-    .is-files    { display: block; grid-column: 5 / span 1; grid-row: 1 / span 2; }
-    .is-stats    { grid-column: 1 / span 2; grid-row: 3 / span 1; }
-    .is-queue    { grid-column: 3 / span 1; grid-row: 3 / span 1; }
-    .is-projects { grid-column: 4 / span 2; grid-row: 3 / span 1; }
-  }
-
-  /* Tablet: collapse far-right phone to a normal landscape tile to keep
-     the 4-col grid sane. */
-  @media (max-width: 1023px) {
-    .hero-mosaic {
-      transform: rotateX(7deg) rotateY(-2deg);
-    }
-  }
-
-  /* Reduced motion: kill mouse parallax + hover Z lift; static tilt only. */
   @media (prefers-reduced-motion: reduce) {
-    .hero-mosaic { transition: none; }
-    .hero-mosaic-tile { transition: none; }
-    .hero-mosaic-tile:hover { transform: none; }
+    .hero-mosaic-tile {
+      transition: none;
+    }
+    .hero-mosaic-tile:hover {
+      transform: none;
+    }
   }
 </style>
-
-<script is:inline>
-  // Mouse-tracked parallax. Small angle deltas (±3deg) layered onto the
-  // base rotateX/rotateY via CSS variables. Bails out cleanly if the
-  // user opted into reduced motion.
-  (function () {
-    const mosaic = document.getElementById("hero-mosaic");
-    if (!mosaic) return;
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (reduced.matches) return;
-
-    const wrap = mosaic.parentElement;
-    if (!wrap) return;
-
-    let rafId = 0;
-    let pendingX = 9;
-    let pendingY = -4;
-
-    function apply() {
-      mosaic.style.setProperty("--rx", pendingX.toFixed(2) + "deg");
-      mosaic.style.setProperty("--ry", pendingY.toFixed(2) + "deg");
-      rafId = 0;
-    }
-
-    function onMove(e) {
-      const rect = wrap.getBoundingClientRect();
-      // Normalised −0.5..+0.5 from centre.
-      const nx = (e.clientX - rect.left) / rect.width - 0.5;
-      const ny = (e.clientY - rect.top) / rect.height - 0.5;
-      // Tilt: y-axis (left/right) follows nx, x-axis (up/down) follows ny.
-      // Base values 9 / -4 stay so the slab keeps its "folded" feel.
-      pendingX = 9 - ny * 6; // up to ±3°
-      pendingY = -4 + nx * 8; // up to ±4°
-      if (!rafId) rafId = requestAnimationFrame(apply);
-    }
-
-    function onLeave() {
-      pendingX = 9;
-      pendingY = -4;
-      if (!rafId) rafId = requestAnimationFrame(apply);
-    }
-
-    wrap.addEventListener("mousemove", onMove, { passive: true });
-    wrap.addEventListener("mouseleave", onLeave, { passive: true });
-  })();
-</script>
