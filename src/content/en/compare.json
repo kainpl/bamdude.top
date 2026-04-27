@@ -4,7 +4,7 @@
       "name": "BamDude",
       "tag": "Self-Hosted",
       "highlight": true,
-      "body": "Print archive, multi-printer queue, Telegram bot, smart-plug automation, MFA, sliding-session auth — all on your own hardware.",
+      "body": "Print archive, multi-printer queue, Telegram bot, smart-plug automation, MFA, sliding-session auth - all on your own hardware.",
       "highlights": [
         "100% LAN-based, no cloud account",
         "Multi-printer queue with parallel dispatch",
@@ -16,7 +16,7 @@
     {
       "name": "Bambu Handy",
       "tag": "Cloud-Based",
-      "body": "Bambu Lab's official mobile app — quick setup and convenience, but cloud-only and limited.",
+      "body": "Bambu Lab's official mobile app - quick setup and convenience, but cloud-only and limited.",
       "highlights": [
         "Official Bambu Lab app",
         "Easy mobile setup",
@@ -31,7 +31,7 @@
     {
       "name": "OctoPrint",
       "tag": "Self-Hosted",
-      "body": "Established open-source print server with a huge plugin ecosystem — but no native Bambu support.",
+      "body": "Established open-source print server with a huge plugin ecosystem - but no native Bambu support.",
       "highlights": [
         "Large plugin ecosystem",
         "Supports many printer brands",

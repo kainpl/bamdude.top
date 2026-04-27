@@ -6,11 +6,11 @@
       "title": "Monitoring & Control",
       "description": "See and steer every printer in real time, from a single dashboard.",
       "items": [
-        { "title": "Live status via WebSocket", "body": "Temperatures, fans, layer count, AMS, current job — all push-updated, no polling." },
+        { "title": "Live status via WebSocket", "body": "Temperatures, fans, layer count, AMS, current job - all push-updated, no polling." },
         { "title": "Multi-printer dashboard", "body": "Resizable cards, group by location, jump to any printer in one click." },
         { "title": "Camera streaming", "body": "Live MJPEG and snapshots, plus optional RTSP/USB external cameras." },
         { "title": "OBS overlay", "body": "Drop a single URL into OBS for a clean live-stream overlay with progress, ETA, and AMS." },
-        { "title": "Calibration UI", "body": "Bed leveling, vibration, motor noise, nozzle offset, high-temp heatbed — model-aware, from web or Telegram." },
+        { "title": "Calibration UI", "body": "Bed leveling, vibration, motor noise, nozzle offset, high-temp heatbed - model-aware, from web or Telegram." },
         { "title": "HMS error decoding", "body": "Translates Bambu's numeric error codes to plain language with history per printer." },
         { "title": "AMS management", "body": "Slot config, RFID re-read, drying schedules, humidity tracking." },
         { "title": "Printer file browser", "body": "Browse the printer's SD card, bulk-download or bulk-delete remote files." }
@@ -22,10 +22,10 @@
       "title": "Print farm queue",
       "description": "Per-printer queues with parallel dispatch, staggered start, and built-in SWAP-mode support.",
       "items": [
-        { "title": "Parallel background dispatch", "body": "Send jobs to multiple printers simultaneously — startup-locked DB phase, parallel FTP and start." },
+        { "title": "Parallel background dispatch", "body": "Send jobs to multiple printers simultaneously - startup-locked DB phase, parallel FTP and start." },
         { "title": "Per-printer queues", "body": "Each printer has its own ordered queue with idle/printing/paused/error tracking." },
         { "title": "Auto-pause on failure", "body": "When a print fails, the queue stops on that printer so you can decide what's next." },
-        { "title": "Staggered start", "body": "Limit concurrent heating across the farm — bed temp watchdog prevents brownouts." },
+        { "title": "Staggered start", "body": "Limit concurrent heating across the farm - bed temp watchdog prevents brownouts." },
         { "title": "Re-print with AMS mapping", "body": "Reprint to any printer, remap each filament slot from the source archive." },
         { "title": "Swap mode (A1 plate-swappers)", "body": "Built-in support for Kit / STL / JobOx swappers with macro-driven plate changes." },
         { "title": "G-code macros with ACK", "body": "Send macros from the printer card; MQTT-confirmed completion, real-time status." },
@@ -43,7 +43,7 @@
         { "title": "Full-text search & dedup", "body": "Source-hash chain-of-custody so patched files (e.g. M970-disabled) still dedup correctly." },
         { "title": "Photo attachments & notes", "body": "Attach failure photos, post-process pics, freeform notes per archive." },
         { "title": "Side-by-side compare", "body": "Compare 2–5 prints (settings, filament, time, weight) in one view." },
-        { "title": "Timelapse editor", "body": "Trim, speed, add music — export ready-to-share clips from raw camera footage." },
+        { "title": "Timelapse editor", "body": "Trim, speed, add music - export ready-to-share clips from raw camera footage." },
         { "title": "Auto-cleanup retention", "body": "Drop the .3mf after N days idle, keep the metadata, thumbnail, energy, and notes." },
         { "title": "3MF download recovery", "body": "Failed FTP at print start? Recovery retries on startup, reconnect, print-end, or manually." }
       ]
@@ -52,14 +52,14 @@
       "id": "library",
       "icon": "folder",
       "title": "File Library",
-      "description": "Upload, organize, and print directly — no slicer round-trip required.",
+      "description": "Upload, organize, and print directly - no slicer round-trip required.",
       "items": [
         { "title": "Upload & folder organize", "body": "Drag-and-drop folder structure with duplicate detection on hash." },
         { "title": "Per-plate gallery", "body": "Multi-plate sliced 3MFs show every plate with its own stats, filament, and object list." },
         { "title": "STL thumbnails", "body": "Thumbnail-render STL on upload so you see the part, not a filename." },
         { "title": "External folder mounting", "body": "Mount a NAS share or USB drive read-only into the library." },
         { "title": "Print directly or queue", "body": "Pick a file, pick a printer (model-filtered), print now or add to queue." },
-        { "title": "Label-objects metadata", "body": "Skip-objects support detected at upload — button only enables when the slicer's profile actually emits it." }
+        { "title": "Label-objects metadata", "body": "Skip-objects support detected at upload - button only enables when the slicer's profile actually emits it." }
       ]
     },
     {
@@ -68,14 +68,14 @@
       "title": "Telegram bot",
       "description": "Full bot for control and queue management. Multi-chat, role-based.",
       "items": [
-        { "title": "Full printer control", "body": "Pause, resume, stop, light, speed, camera snapshot — all from chat." },
+        { "title": "Full printer control", "body": "Pause, resume, stop, light, speed, camera snapshot - all from chat." },
         { "title": "Multi-chat with roles", "body": "Each Telegram chat gets a role with granular per-resource permissions." },
-        { "title": "Actionable buttons", "body": "Clear plate, mark maintenance done, pause/stop on progress — straight from the notification." },
+        { "title": "Actionable buttons", "body": "Clear plate, mark maintenance done, pause/stop on progress - straight from the notification." },
         { "title": "Print from Library", "body": "Browse files, pick a printer (model-filtered), Print Now or Add to Queue." },
-        { "title": "Queue management", "body": "Paginated list, detail view, move up/down, cancel — with MarkdownV2 formatting." },
+        { "title": "Queue management", "body": "Paginated list, detail view, move up/down, cancel - with MarkdownV2 formatting." },
         { "title": "Add Printer via SSDP", "body": "Enter IP → bot auto-detects serial / name / model → enter access code → done." },
         { "title": "Calibration from chat", "body": "Trigger bed leveling, vibration, nozzle offset, motor noise, high-temp heatbed." },
-        { "title": "Per-chat quiet hours", "body": "Daily digest, event filtering, and quiet-hour windows — independent per chat." }
+        { "title": "Per-chat quiet hours", "body": "Daily digest, event filtering, and quiet-hour windows - independent per chat." }
       ]
     },
     {
@@ -88,7 +88,7 @@
         { "title": "MarkdownV2 template editor", "body": "Formatting toolbar, per-event template, live preview before saving." },
         { "title": "Print-finish photo", "body": "Camera snapshot attached to the success notification, with filament usage details." },
         { "title": "HMS + bed-cooled alerts", "body": "Get pinged when an HMS error fires or when the bed cools enough to remove the part." },
-        { "title": "Queue events", "body": "Notifications for waiting, skipped, failed — only the events you opt into." }
+        { "title": "Queue events", "body": "Notifications for waiting, skipped, failed - only the events you opt into." }
       ]
     },
     {
@@ -98,7 +98,7 @@
       "description": "Track filament inventory and group prints into projects.",
       "items": [
         { "title": "Built-in spool inventory", "body": "Add spools with brand, color, weight, cost; AMS slot assignment per printer." },
-        { "title": "Auto consumption tracking", "body": "Filament used per print is deducted from the assigned spool — no manual math." },
+        { "title": "Auto consumption tracking", "body": "Filament used per print is deducted from the assigned spool - no manual math." },
         { "title": "Cost & lot tracking", "body": "Per-spool cost, purchase date, filament diameter, and lot number for inventory bundles." },
         { "title": "Spoolman sync", "body": "Two-way sync with Spoolman for shops that already keep inventory there." },
         { "title": "Color catalog", "body": "Manufacturer-aware color name resolution (Bambu wins for matching hex)." },
@@ -114,7 +114,7 @@
       "items": [
         { "title": "Model-aware task types", "body": "Each printer model gets the maintenance items it actually has (e.g. carbon-rod wipe on X1)." },
         { "title": "Counters with overdue alerts", "body": "Hours-based + calendar-based reminders; UI badges and notifications." },
-        { "title": "Mark done from bot", "body": "Tap an actionable Telegram button to log the task — counters reset instantly." },
+        { "title": "Mark done from bot", "body": "Tap an actionable Telegram button to log the task - counters reset instantly." },
         { "title": "History & Excel export", "body": "Every maintenance event logged with operator, date, hours; export to spreadsheet." }
       ]
     },
@@ -122,12 +122,12 @@
       "id": "automation",
       "icon": "zap",
       "title": "Automation",
-      "description": "Smart plugs, virtual printer, AI failure detection — opt in to what you need.",
+      "description": "Smart plugs, virtual printer, AI failure detection - opt in to what you need.",
       "items": [
-        { "title": "Smart plug control", "body": "Tasmota, Home Assistant, MQTT, REST/webhook plugs — auto power on/off with prints." },
+        { "title": "Smart plug control", "body": "Tasmota, Home Assistant, MQTT, REST/webhook plugs - auto power on/off with prints." },
         { "title": "Energy tracking", "body": "Per-print kWh capture from the plug, plus date-range farm-wide totals." },
         { "title": "Virtual printer modes", "body": "Print Queue (slicer → queue), File Manager (slicer → library), Proxy (TLS relay)." },
-        { "title": "Proxy mode for remote prints", "body": "Send from anywhere via TLS relay — no VPN, no port-forward, end-to-end encrypted." },
+        { "title": "Proxy mode for remote prints", "body": "Send from anywhere via TLS relay - no VPN, no port-forward, end-to-end encrypted." },
         { "title": "Obico AI failure detection", "body": "Optional ML-based failure detection with notify / pause / pause-and-power-off responses." }
       ]
     },
@@ -145,7 +145,7 @@
         { "title": "REST + WebSocket API", "body": "Full REST API with API keys, plus WebSocket for live status integrations." },
         { "title": "Prometheus metrics", "body": "Dedicated /metrics endpoint with farm-level and per-printer counters." },
         { "title": "MQTT publishing", "body": "Forward printer state to your home MQTT broker for Home Assistant / Node-RED." },
-        { "title": "Git backup", "body": "Schedule automatic config backups to GitHub or GitLab — restore from any commit." },
+        { "title": "Git backup", "body": "Schedule automatic config backups to GitHub or GitLab - restore from any commit." },
         { "title": "OrcaSlicer preset import", "body": "Drop your local Orca filament profiles into BamDude in one click." }
       ]
     }

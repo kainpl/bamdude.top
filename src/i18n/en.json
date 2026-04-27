@@ -9,7 +9,7 @@
   },
   "hero": {
     "title": "One printer or a hundred. Your data. Your rules.",
-    "subtitle": "Self-hosted command center for Bambu Lab — friendly enough to start with one printer, powerful enough to run a print farm.",
+    "subtitle": "Self-hosted command center for Bambu Lab - friendly enough to start with one printer, powerful enough to run a print farm.",
     "ctaPrimary": "Quick start",
     "ctaSecondary": "View on GitHub"
   },
@@ -21,7 +21,7 @@
   "highlight": {
     "badge": "For the farm",
     "title": "A whole farm from a single dashboard",
-    "body": "Send prints to several printers at the same time — parallel dispatch, no one-job-at-a-time gate. Per-printer queues with staggered start space out simultaneous bed-heat draws so the building doesn't brown out. SWAP-mode keeps an A1 farm cycling plate after plate through swap macros. Re-print onto any printer with the right AMS slots remapped from the source archive. G-code macros handle the small repetitive bits — chamber light, end-of-print sequences, calibration cycles — without anyone watching.",
+    "body": "Send prints to several printers at the same time - parallel dispatch, no one-job-at-a-time gate. Per-printer queues with staggered start space out simultaneous bed-heat draws so the building doesn't brown out. SWAP-mode keeps an A1 farm cycling plate after plate through swap macros. Re-print onto any printer with the right AMS slots remapped from the source archive. G-code macros handle the small repetitive bits - chamber light, end-of-print sequences, calibration cycles - without anyone watching.",
     "cta": "Explore the features"
   },
   "supportedPrinters": {
@@ -55,11 +55,11 @@
   "helpWanted": {
     "badge": "Help wanted",
     "title": "Build BamDude with us",
-    "body": "BamDude is a small open-source project run by a print-farm operator who needed a tool that didn't exist yet. The features you see came from real farm-floor problems — there's plenty more on the list. Whatever angle you want in, there's room.",
+    "body": "BamDude is a small open-source project run by a print-farm operator who needed a tool that didn't exist yet. The features you see came from real farm-floor problems - there's plenty more on the list. Whatever angle you want in, there's room.",
     "items": [
       { "icon": "code", "title": "Code contributors", "body": "Pick an open issue, fix a bug, ship a feature. PRs land on the dev branch." },
       { "icon": "lightbulb", "title": "Feature ideas + testing", "body": "Run a beta tag on your farm, share what broke and what you wished worked differently. Real-world stress is the most valuable input." },
-      { "icon": "languages", "title": "Translators", "body": "JSON-driven i18n in both backend and frontend — adding a language is a single PR. Currently EN + UK; whatever language your local print shop talks, we'll take it." },
+      { "icon": "languages", "title": "Translators", "body": "JSON-driven i18n in both backend and frontend - adding a language is a single PR. Currently EN + UK; whatever language your local print shop talks, we'll take it." },
       { "icon": "book-open", "title": "Documentation help", "body": "docs.bamdude.top has its own repo. Found a stale instruction or a missing screenshot? Open a PR." }
     ],
     "ctaForum": "Join the Telegram forum",
@@ -87,36 +87,36 @@
   },
   "pages": {
     "home": {
-      "title": "BamDude — self-hosted print management for Bambu Lab",
-      "description": "Self-hosted command center for Bambu Lab printers — full Telegram bot, multi-printer queue, automation, MFA, never on the cloud."
+      "title": "BamDude - self-hosted print management for Bambu Lab",
+      "description": "Self-hosted command center for Bambu Lab printers - full Telegram bot, multi-printer queue, automation, MFA, never on the cloud."
     },
     "features": {
       "eyebrow": "Features",
       "title": "Everything BamDude does",
-      "subtitle": "A self-hosted command center for one printer or a whole farm — archive, queue, control, automation, integrations, all in one place.",
-      "metaTitle": "Features — BamDude",
-      "metaDescription": "Full feature catalog for BamDude: print archive, multi-printer queue, Telegram bot, smart-plug automation, MFA, sliding-session auth — all self-hosted."
+      "subtitle": "A self-hosted command center for one printer or a whole farm - archive, queue, control, automation, integrations, all in one place.",
+      "metaTitle": "Features - BamDude",
+      "metaDescription": "Full feature catalog for BamDude: print archive, multi-printer queue, Telegram bot, smart-plug automation, MFA, sliding-session auth - all self-hosted."
     },
     "compare": {
       "eyebrow": "Compare",
       "title": "How BamDude compares",
       "subtitle": "Where BamDude sits next to Bambu Handy and OctoPrint for managing Bambu Lab printers.",
-      "metaTitle": "Compare — BamDude vs Bambu Handy vs OctoPrint",
-      "metaDescription": "Side-by-side comparison of BamDude, Bambu Handy and OctoPrint for managing Bambu Lab 3D printers — features, integrations, self-hosting."
+      "metaTitle": "Compare - BamDude vs Bambu Handy vs OctoPrint",
+      "metaDescription": "Side-by-side comparison of BamDude, Bambu Handy and OctoPrint for managing Bambu Lab 3D printers - features, integrations, self-hosting."
     },
     "install": {
       "eyebrow": "Install",
       "title": "Install BamDude",
-      "subtitle": "Three paths — Docker, Docker Compose, or manual Python — plus first login and bot setup.",
-      "metaTitle": "Install — BamDude",
+      "subtitle": "Three paths - Docker, Docker Compose, or manual Python - plus first login and bot setup.",
+      "metaTitle": "Install - BamDude",
       "metaDescription": "Install BamDude with Docker, Docker Compose or manual Python; first-login setup, add printer, optional Telegram bot."
     },
     "faq": {
       "eyebrow": "FAQ",
       "title": "Questions you probably have",
       "subtitle": "Self-hosting, supported printers, migration from Bambuddy, Postgres, network requirements.",
-      "metaTitle": "FAQ — BamDude",
-      "metaDescription": "Frequently asked questions about BamDude — self-hosting, supported Bambu Lab printers, migration, Postgres, Telegram setup."
+      "metaTitle": "FAQ - BamDude",
+      "metaDescription": "Frequently asked questions about BamDude - self-hosting, supported Bambu Lab printers, migration, Postgres, Telegram setup."
     }
   },
   "footer": {
