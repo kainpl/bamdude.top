@@ -1,247 +1,239 @@
 ---
-// Constellation collage — center desktop frame surrounded by 6 satellites
-// at varied radii / rotations. Each tile carries a data-label that surfaces
-// as a floating pill on hover. Collapses to a 3-tile fan on small viewports
-// (preserves the original mobile experience).
+// Folded mosaic — bento-style grid of product screenshots wrapped in a
+// CSS-3D perspective. The whole slab tilts slightly on mouse movement so
+// the layout feels "alive" without animating individual tiles.
 //
-// Tile inventory (left → right, top → bottom):
-//   - mobile           (top-left, portrait)
-//   - telegram         (top-right, portrait)
-//   - stats            (mid-left, landscape)
-//   - desktop          (center, landscape, biggest)
-//   - queue            (mid-right, landscape)
-//   - files-mp         (bottom-left, landscape)
-//   - projects         (bottom-right, landscape)
+// Layout (4 columns × 3 rows, content reading left → right, top → bottom):
+//
+//   ┌───────────────────────────┬──────────┬──────────┐
+//   │                           │          │          │
+//   │        desktop (2×2)      │ telegram │  mobile  │
+//   │                           │  (1×2)   │  (1×2)   │
+//   │                           │          │          │
+//   ├──────────────┬────────────┴──────────┴──────────┤
+//   │  stats (2×1) │  queue   │  projects │  files-mp  │
+//   └──────────────┴──────────┴───────────┴────────────┘
+//
+// Hover any tile: it lifts forward (translateZ), the green accent ring
+// brightens, and the label pill fades in. Reduced-motion strips the
+// parallax + lift, keeps the static tilt.
 ---
-<div class="hero-collage relative mx-auto mt-16 w-full max-w-5xl aspect-[16/10] hidden sm:block">
+<div class="hero-mosaic-wrap relative mx-auto mt-16 w-full max-w-6xl hidden sm:block">
   <div class="absolute inset-0 -z-10 blur-3xl opacity-50 bg-[radial-gradient(ellipse_at_center,rgba(0,174,66,0.45)_0%,transparent_70%)]"></div>
 
-  <!-- Center: Web dashboard -->
-  <div class="hero-collage-tile hero-collage-center" data-label="Web dashboard">
-    <img src="/images/screenshot-desktop.png" alt="BamDude web dashboard" loading="eager" fetchpriority="high" />
-  </div>
+  <div class="hero-mosaic" id="hero-mosaic">
+    <!-- Top-left dominant tile: desktop dashboard -->
+    <a class="hero-mosaic-tile is-desktop" data-label="Web dashboard" aria-label="Web dashboard screenshot">
+      <img src="/images/screenshot-desktop.png" alt="BamDude web dashboard" loading="eager" fetchpriority="high" />
+    </a>
 
-  <!-- Top-left: Mobile -->
-  <div class="hero-collage-tile hero-collage-portrait hero-collage-mobile" data-label="On mobile">
-    <img src="/images/screenshot-mobile.png" alt="BamDude on mobile" loading="lazy" />
-  </div>
+    <!-- Right-top portrait: Telegram bot -->
+    <a class="hero-mosaic-tile is-portrait is-telegram" data-label="Telegram bot" aria-label="Telegram bot screenshot">
+      <img src="/images/screenshot-telegram.png" alt="BamDude Telegram bot" loading="lazy" />
+    </a>
 
-  <!-- Top-right: Telegram bot -->
-  <div class="hero-collage-tile hero-collage-portrait hero-collage-telegram" data-label="Telegram bot">
-    <img src="/images/screenshot-telegram.png" alt="BamDude Telegram bot" loading="lazy" />
-  </div>
+    <!-- Far-right portrait: Mobile -->
+    <a class="hero-mosaic-tile is-portrait is-mobile" data-label="On mobile" aria-label="Mobile screenshot">
+      <img src="/images/screenshot-mobile.png" alt="BamDude on mobile" loading="lazy" />
+    </a>
 
-  <!-- Mid-left: Statistics -->
-  <div class="hero-collage-tile hero-collage-stats" data-label="Statistics">
-    <img src="/images/screenshot-statistics.png" alt="BamDude statistics" loading="lazy" />
-  </div>
+    <!-- Bottom row, wide: Statistics -->
+    <a class="hero-mosaic-tile is-stats" data-label="Statistics" aria-label="Statistics screenshot">
+      <img src="/images/screenshot-statistics.png" alt="BamDude statistics" loading="lazy" />
+    </a>
 
-  <!-- Mid-right: Queue -->
-  <div class="hero-collage-tile hero-collage-queue" data-label="Print queue">
-    <img src="/images/screenshot-queue.png" alt="BamDude print queue" loading="lazy" />
-  </div>
+    <!-- Bottom row: Queue -->
+    <a class="hero-mosaic-tile is-queue" data-label="Print queue" aria-label="Print queue screenshot">
+      <img src="/images/screenshot-queue.png" alt="BamDude print queue" loading="lazy" />
+    </a>
 
-  <!-- Bottom-left: File manager (multi-plate) -->
-  <div class="hero-collage-tile hero-collage-files" data-label="Multi-plate library">
-    <img src="/images/screenshot-files-mp.png" alt="BamDude multi-plate library" loading="lazy" />
-  </div>
+    <!-- Bottom row: Projects -->
+    <a class="hero-mosaic-tile is-projects" data-label="Projects" aria-label="Projects screenshot">
+      <img src="/images/screenshot-projects.png" alt="BamDude projects" loading="lazy" />
+    </a>
 
-  <!-- Bottom-right: Projects -->
-  <div class="hero-collage-tile hero-collage-projects" data-label="Projects">
-    <img src="/images/screenshot-projects.png" alt="BamDude projects" loading="lazy" />
+    <!-- Bottom row: Files (multi-plate) -->
+    <a class="hero-mosaic-tile is-files" data-label="Multi-plate library" aria-label="Multi-plate library screenshot">
+      <img src="/images/screenshot-files-mp.png" alt="BamDude multi-plate library" loading="lazy" />
+    </a>
   </div>
 </div>
 
 <style>
-  .hero-collage {
-    --tile-radius: 0.85rem;
-    --tile-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.6),
-                   0 12px 24px -12px rgba(0, 174, 66, 0.25);
-    --tile-shadow-hover: 0 40px 100px -20px rgba(0, 0, 0, 0.7),
-                         0 16px 32px -10px rgba(0, 174, 66, 0.45);
-    perspective: 1600px;
-    transform-style: preserve-3d;
+  .hero-mosaic-wrap {
+    perspective: 2000px;
+    perspective-origin: 50% 30%;
   }
 
-  .hero-collage-tile {
-    position: absolute;
-    border-radius: var(--tile-radius);
-    overflow: hidden;
-    border: 1px solid var(--border-color);
-    box-shadow: var(--tile-shadow);
-    background: var(--bg-secondary);
-    transition: transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1),
-                box-shadow 320ms ease,
-                z-index 0s 320ms;
+  .hero-mosaic {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 0.75rem;
+    aspect-ratio: 16 / 9;
+    transform: rotateX(var(--rx, 9deg)) rotateY(var(--ry, -4deg));
+    transform-style: preserve-3d;
+    transition: transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
     will-change: transform;
   }
-  .hero-collage-tile img {
+
+  .hero-mosaic-tile {
+    position: relative;
+    border-radius: 0.85rem;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    background: var(--bg-secondary);
+    box-shadow:
+      0 30px 60px -20px rgba(0, 0, 0, 0.55),
+      0 12px 24px -12px rgba(0, 174, 66, 0.18);
+    transition:
+      transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1),
+      box-shadow 320ms ease,
+      border-color 320ms ease;
+    will-change: transform;
+    cursor: pointer;
+  }
+  .hero-mosaic-tile img {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: top left;
   }
 
-  /* Floating label pill — hidden until tile hover. */
-  .hero-collage-tile::after {
+  /* Subtle inner highlight + dark gradient at bottom for label legibility. */
+  .hero-mosaic-tile::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.55) 100%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, transparent 30%);
+    pointer-events: none;
+    transition: opacity 280ms ease;
+    opacity: 0.55;
+  }
+  .hero-mosaic-tile:hover::before { opacity: 0.85; }
+
+  /* Floating label pill — bottom-left of each tile, fades in on hover. */
+  .hero-mosaic-tile::after {
     content: attr(data-label);
     position: absolute;
-    left: 50%;
+    left: 0.6rem;
     bottom: 0.6rem;
-    transform: translateX(-50%) translateY(8px);
-    padding: 0.25rem 0.65rem;
+    padding: 0.22rem 0.6rem;
     border-radius: 999px;
-    background: rgba(0, 0, 0, 0.72);
-    border: 1px solid rgba(0, 174, 66, 0.45);
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(0, 174, 66, 0.5);
     color: #fff;
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     font-weight: 600;
     letter-spacing: 0.01em;
     white-space: nowrap;
     opacity: 0;
-    pointer-events: none;
+    transform: translateY(6px);
     transition: opacity 240ms ease, transform 240ms ease;
+    pointer-events: none;
   }
-  .hero-collage-tile:hover::after {
+  .hero-mosaic-tile:hover::after {
     opacity: 1;
-    transform: translateX(-50%) translateY(0);
+    transform: translateY(0);
   }
 
-  /* ── Center: web dashboard ────────────────────────────────────── */
-  .hero-collage-center {
-    left: 50%;
-    top: 8%;
-    width: 56%;
-    aspect-ratio: 16 / 10;
-    transform: translateX(-50%) translateY(0) rotate(0);
+  /* Bento spans. */
+  .is-desktop  { grid-column: 1 / span 2; grid-row: 1 / span 2; }
+  .is-telegram { grid-column: 3 / span 1; grid-row: 1 / span 2; }
+  .is-mobile   { grid-column: 4 / span 1; grid-row: 1 / span 2; }
+  .is-stats    { grid-column: 1 / span 2; grid-row: 3 / span 1; }
+  .is-queue    { grid-column: 3 / span 1; grid-row: 3 / span 1; }
+  .is-projects { grid-column: 4 / span 1; grid-row: 3 / span 1; }
+  .is-files    { display: none; } /* reserved for >xl breakpoint below */
+
+  /* Portrait tiles use a top-anchored crop so the chrome stays visible. */
+  .is-portrait img { object-position: top center; }
+
+  /* Hover lift — the tile pops forward on the Z axis. */
+  .hero-mosaic-tile:hover {
+    transform: translateZ(40px);
+    border-color: rgba(0, 174, 66, 0.55);
+    box-shadow:
+      0 40px 90px -20px rgba(0, 0, 0, 0.65),
+      0 16px 32px -10px rgba(0, 174, 66, 0.45);
     z-index: 5;
   }
 
-  /* ── Portraits (mobile + telegram) ───────────────────────────── */
-  .hero-collage-portrait {
-    aspect-ratio: 9 / 16;
-    width: 16%;
-  }
-  .hero-collage-mobile {
-    left: 4%;
-    top: 6%;
-    transform: rotate(-9deg);
-    z-index: 3;
-  }
-  .hero-collage-telegram {
-    right: 4%;
-    top: 8%;
-    transform: rotate(9deg);
-    z-index: 3;
+  /* Wider viewports: surface the 7th tile (multi-plate library). */
+  @media (min-width: 1280px) {
+    .hero-mosaic {
+      grid-template-columns: repeat(5, 1fr);
+    }
+    .is-desktop  { grid-column: 1 / span 2; grid-row: 1 / span 2; }
+    .is-telegram { grid-column: 3 / span 1; grid-row: 1 / span 2; }
+    .is-mobile   { grid-column: 4 / span 1; grid-row: 1 / span 2; }
+    .is-files    { display: block; grid-column: 5 / span 1; grid-row: 1 / span 2; }
+    .is-stats    { grid-column: 1 / span 2; grid-row: 3 / span 1; }
+    .is-queue    { grid-column: 3 / span 1; grid-row: 3 / span 1; }
+    .is-projects { grid-column: 4 / span 2; grid-row: 3 / span 1; }
   }
 
-  /* ── Mid landscape satellites (stats + queue) ────────────────── */
-  .hero-collage-stats,
-  .hero-collage-queue {
-    aspect-ratio: 16 / 10;
-    width: 26%;
-  }
-  .hero-collage-stats {
-    left: -3%;
-    top: 46%;
-    transform: rotate(-5deg);
-    z-index: 2;
-  }
-  .hero-collage-queue {
-    right: -3%;
-    top: 48%;
-    transform: rotate(5deg);
-    z-index: 2;
-  }
-
-  /* ── Bottom landscape satellites (files-mp + projects) ───────── */
-  .hero-collage-files,
-  .hero-collage-projects {
-    aspect-ratio: 16 / 10;
-    width: 22%;
-  }
-  .hero-collage-files {
-    left: 22%;
-    bottom: -4%;
-    transform: rotate(3deg);
-    z-index: 2;
-  }
-  .hero-collage-projects {
-    right: 22%;
-    bottom: -4%;
-    transform: rotate(-3deg);
-    z-index: 2;
-  }
-
-  /* ── Hover: lift + bring tile to front, push siblings back ───── */
-  .hero-collage-tile:hover {
-    box-shadow: var(--tile-shadow-hover);
-    z-index: 10;
-    transition: transform 280ms cubic-bezier(0.2, 0.8, 0.2, 1),
-                box-shadow 280ms ease,
-                z-index 0s 0s;
-  }
-  .hero-collage-center:hover {
-    transform: translateX(-50%) translateY(-8px) scale(1.02);
-  }
-  .hero-collage-mobile:hover    { transform: rotate(-12deg) translateY(-6px); }
-  .hero-collage-telegram:hover  { transform: rotate(12deg)  translateY(-6px); }
-  .hero-collage-stats:hover     { transform: rotate(-7deg)  translateY(-6px); }
-  .hero-collage-queue:hover     { transform: rotate(7deg)   translateY(-6px); }
-  .hero-collage-files:hover     { transform: rotate(5deg)   translateY(-6px); }
-  .hero-collage-projects:hover  { transform: rotate(-5deg)  translateY(-6px); }
-
-  /* ── Idle ambient drift — subtle, only when motion is allowed ── */
-  @media (prefers-reduced-motion: no-preference) {
-    .hero-collage-mobile    { animation: collage-drift-a 8s ease-in-out infinite; }
-    .hero-collage-telegram  { animation: collage-drift-b 9s ease-in-out infinite; }
-    .hero-collage-stats     { animation: collage-drift-c 10s ease-in-out infinite; }
-    .hero-collage-queue     { animation: collage-drift-d 11s ease-in-out infinite; }
-    .hero-collage-files     { animation: collage-drift-e 12s ease-in-out infinite; }
-    .hero-collage-projects  { animation: collage-drift-f 13s ease-in-out infinite; }
-  }
-  @keyframes collage-drift-a {
-    0%, 100% { transform: rotate(-9deg)  translateY(0); }
-    50%      { transform: rotate(-8deg)  translateY(-4px); }
-  }
-  @keyframes collage-drift-b {
-    0%, 100% { transform: rotate(9deg)   translateY(0); }
-    50%      { transform: rotate(8deg)   translateY(-4px); }
-  }
-  @keyframes collage-drift-c {
-    0%, 100% { transform: rotate(-5deg)  translateY(0); }
-    50%      { transform: rotate(-4deg)  translateY(-3px); }
-  }
-  @keyframes collage-drift-d {
-    0%, 100% { transform: rotate(5deg)   translateY(0); }
-    50%      { transform: rotate(4deg)   translateY(-3px); }
-  }
-  @keyframes collage-drift-e {
-    0%, 100% { transform: rotate(3deg)   translateY(0); }
-    50%      { transform: rotate(2deg)   translateY(-3px); }
-  }
-  @keyframes collage-drift-f {
-    0%, 100% { transform: rotate(-3deg)  translateY(0); }
-    50%      { transform: rotate(-2deg)  translateY(-3px); }
-  }
-  /* Hover wins over the idle drift. */
-  .hero-collage-tile:hover { animation: none; }
-
-  /* ── Tablet: trim the bottom row to keep things readable. ────── */
+  /* Tablet: collapse far-right phone to a normal landscape tile to keep
+     the 4-col grid sane. */
   @media (max-width: 1023px) {
-    .hero-collage-files,
-    .hero-collage-projects {
-      display: none;
+    .hero-mosaic {
+      transform: rotateX(7deg) rotateY(-2deg);
     }
-    .hero-collage-stats { left: -1%; top: 50%; }
-    .hero-collage-queue { right: -1%; top: 52%; }
   }
 
-  /* ── Reduced motion: kill the drift, keep hover snap. ────────── */
+  /* Reduced motion: kill mouse parallax + hover Z lift; static tilt only. */
   @media (prefers-reduced-motion: reduce) {
-    .hero-collage-tile {
-      animation: none !important;
-      transition: none;
-    }
+    .hero-mosaic { transition: none; }
+    .hero-mosaic-tile { transition: none; }
+    .hero-mosaic-tile:hover { transform: none; }
   }
 </style>
+
+<script is:inline>
+  // Mouse-tracked parallax. Small angle deltas (±3deg) layered onto the
+  // base rotateX/rotateY via CSS variables. Bails out cleanly if the
+  // user opted into reduced motion.
+  (function () {
+    const mosaic = document.getElementById("hero-mosaic");
+    if (!mosaic) return;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (reduced.matches) return;
+
+    const wrap = mosaic.parentElement;
+    if (!wrap) return;
+
+    let rafId = 0;
+    let pendingX = 9;
+    let pendingY = -4;
+
+    function apply() {
+      mosaic.style.setProperty("--rx", pendingX.toFixed(2) + "deg");
+      mosaic.style.setProperty("--ry", pendingY.toFixed(2) + "deg");
+      rafId = 0;
+    }
+
+    function onMove(e) {
+      const rect = wrap.getBoundingClientRect();
+      // Normalised −0.5..+0.5 from centre.
+      const nx = (e.clientX - rect.left) / rect.width - 0.5;
+      const ny = (e.clientY - rect.top) / rect.height - 0.5;
+      // Tilt: y-axis (left/right) follows nx, x-axis (up/down) follows ny.
+      // Base values 9 / -4 stay so the slab keeps its "folded" feel.
+      pendingX = 9 - ny * 6; // up to ±3°
+      pendingY = -4 + nx * 8; // up to ±4°
+      if (!rafId) rafId = requestAnimationFrame(apply);
+    }
+
+    function onLeave() {
+      pendingX = 9;
+      pendingY = -4;
+      if (!rafId) rafId = requestAnimationFrame(apply);
+    }
+
+    wrap.addEventListener("mousemove", onMove, { passive: true });
+    wrap.addEventListener("mouseleave", onLeave, { passive: true });
+  })();
+</script>
