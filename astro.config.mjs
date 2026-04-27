@@ -6,7 +6,10 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://bamdude.top',
-  trailingSlash: 'never',
+  // 'ignore' so the dev server accepts both /uk and /uk/. nginx in prod serves
+  // /uk/index.html for either form already; canonical <link> in BaseLayout
+  // pins SEO to one preferred shape regardless.
+  trailingSlash: 'ignore',
   build: { format: 'directory' },
   i18n: {
     defaultLocale: 'en',

@@ -1,0 +1,83 @@
+{
+  "intro": {
+    "title": "Up and running in five minutes",
+    "body": "Pick the path that matches your environment. Docker is the recommended one. Once BamDude is up, the first browser visit walks you through admin setup."
+  },
+  "requirements": {
+    "title": "Before you start",
+    "items": [
+      "A Bambu Lab printer with **Developer Mode** + **LAN-Only Mode** enabled (Settings → Network).",
+      "The printer's **IP address** and **Access Code** (Settings → Network and Settings → Information).",
+      "A Linux box, Raspberry Pi, NAS, or any Docker-capable host on the same network as the printer.",
+      "Optional: a Telegram bot token from [@BotFather](https://t.me/BotFather) if you want bot integration from day one."
+    ]
+  },
+  "steps": [
+    {
+      "id": "docker-run",
+      "icon": "container",
+      "title": "Run with Docker",
+      "subtitle": "The fastest path. Single container, SQLite by default, persistent volumes.",
+      "command": "docker run -d \\\n  --name bamdude \\\n  --network host \\\n  -e TZ=Europe/Kyiv \\\n  -v bamdude_data:/app/data \\\n  -v bamdude_logs:/app/logs \\\n  --restart unless-stopped \\\n  kainpl/bamdude:latest",
+      "notes": [
+        "**`--network host`** makes printer SSDP auto-discovery work; on macOS / Windows Docker Desktop swap it for `-p 8000:8000` and add printers manually by IP.",
+        "Two volumes: `bamdude_data` (SQLite + 3MFs + thumbnails) and `bamdude_logs`. Keep them — they hold every print you've ever done."
+      ]
+    },
+    {
+      "id": "docker-compose",
+      "icon": "layers",
+      "title": "Docker Compose (from source)",
+      "subtitle": "Build the image yourself, easier to extend.",
+      "command": "git clone https://github.com/kainpl/bamdude.git\ncd bamdude\ndocker compose up -d --build",
+      "notes": [
+        "Uses the `docker-compose.yml` shipped in the repo. Edit it to add Postgres, MQTT, or Spoolman as siblings.",
+        "Subsequent rebuilds: `docker compose pull && docker compose up -d --build`."
+      ]
+    },
+    {
+      "id": "manual",
+      "icon": "terminal",
+      "title": "Manual install (Python venv)",
+      "subtitle": "For developers or environments where Docker is not an option.",
+      "command": "git clone https://github.com/kainpl/bamdude.git\ncd bamdude\npython3 -m venv venv && source venv/bin/activate\npip install -r requirements.txt\nuvicorn backend.app.main:app --host 0.0.0.0 --port 8000",
+      "notes": [
+        "Python 3.10+ (3.11/3.12 recommended).",
+        "For the frontend: `cd frontend && npm install && npm run dev` in a second terminal."
+      ]
+    },
+    {
+      "id": "first-login",
+      "icon": "user-plus",
+      "title": "First login + admin setup",
+      "subtitle": "Open the web UI and create the initial admin.",
+      "body": "Browse to **http://localhost:8000** (or the host IP). The setup gate refuses every API call except `/auth/setup` until the first admin exists — pick a username, set a password (≥8 chars, upper + lower + digit), and you're in. After that the login form takes over and the gate disengages forever.",
+      "notes": [
+        "Forgot the admin password? `python -m backend.app.cli reset_admin` clears the setup flags so the next boot re-enters this flow.",
+        "Behind a reverse proxy? Set `TRUSTED_PROXY_IPS` so rate-limit and refresh-cookie code can read `X-Forwarded-Proto` correctly."
+      ]
+    },
+    {
+      "id": "add-printer",
+      "icon": "printer",
+      "title": "Add your first printer",
+      "subtitle": "Auto-discovery via SSDP or paste the IP.",
+      "body": "Settings → Printers → Add Printer. SSDP picks up Bambu printers on the same subnet automatically; otherwise paste the IP. Then enter the **access code** (printer screen → Settings → Information). Hit Save — BamDude opens the MQTT/FTPS connection and the dashboard starts streaming live status."
+    },
+    {
+      "id": "telegram",
+      "icon": "send",
+      "title": "Optional: Telegram bot",
+      "subtitle": "Control the farm from chat.",
+      "body": "Create a bot via [@BotFather](https://t.me/BotFather) and copy the token. Settings → Notifications → New Telegram provider → paste the token. Enable Registration Mode, send `/start` to your bot. Settings → Telegram Chats → assign your chat a role (Operator works for most). The reply keyboard and inline menus are now wired up."
+    }
+  ],
+  "next": {
+    "title": "What's next",
+    "links": [
+      { "label": "Full upgrade & migration guide", "href": "https://docs.bamdude.top/getting-started/upgrading/" },
+      { "label": "Reverse proxy + HTTPS", "href": "https://docs.bamdude.top/getting-started/reverse-proxy/" },
+      { "label": "Docker Compose recipes", "href": "https://docs.bamdude.top/getting-started/docker/" }
+    ]
+  }
+}

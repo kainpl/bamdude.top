@@ -1,0 +1,52 @@
+---
+import type { Locale } from '../i18n';
+import enCompare from '../content/en/compare.json';
+import ukCompare from '../content/uk/compare.json';
+import { Check, X } from 'lucide-react';
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+
+const data = locale === 'uk' ? ukCompare : enCompare;
+---
+<section aria-label="Compare summary" class="py-16">
+  <div class="mx-auto max-w-6xl px-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+      {data.summary.map((card) => (
+        <div class={`rounded-2xl border p-6 flex flex-col gap-4 ${
+          card.highlight
+            ? 'border-bambu-green bg-bambu-green/5 shadow-[0_0_40px_-10px_rgba(0,174,66,0.4)]'
+            : 'border-bambu-border bg-bambu-bg-secondary'
+        }`}>
+          <div class="flex items-center justify-between">
+            <h3 class={`text-xl font-extrabold tracking-tight ${card.highlight ? 'text-bambu-green' : ''}`}>{card.name}</h3>
+            <span class={`text-xs font-semibold px-2 py-1 rounded ${
+              card.highlight
+                ? 'bg-bambu-green text-white'
+                : 'border border-bambu-border bg-bambu-bg text-bambu-text-secondary'
+            }`}>{card.tag}</span>
+          </div>
+          <p class="text-sm text-bambu-text-secondary leading-relaxed">{card.body}</p>
+          <ul class="space-y-2 text-sm">
+            {card.highlights.map((h) => (
+              <li class="flex items-start gap-2">
+                <span class="shrink-0 inline-flex items-center justify-center w-5 h-5 rounded-md bg-bambu-green/15 text-bambu-green mt-0.5">
+                  <Check size={14} strokeWidth={2.5} />
+                </span>
+                <span>{h}</span>
+              </li>
+            ))}
+            {card.cons && card.cons.map((c) => (
+              <li class="flex items-start gap-2 text-bambu-text-muted">
+                <span class="shrink-0 inline-flex items-center justify-center w-5 h-5 rounded-md bg-red-500/10 text-red-400 mt-0.5">
+                  <X size={14} strokeWidth={2.5} />
+                </span>
+                <span>{c}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -97,7 +97,7 @@ const altPath = locale === defaultLocale ? `/${alt}${path === '/' ? '/' : path}`
           var nav = (navigator.language || 'en').toLowerCase();
           if (nav.indexOf('uk') === 0) {
             localStorage.setItem('lang', 'uk');
-            window.location.replace('/uk/');
+            window.location.replace('/uk');
           }
         } catch (_err) { /* noop */ }
       })();

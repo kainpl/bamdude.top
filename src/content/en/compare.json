@@ -1,0 +1,155 @@
+{
+  "summary": [
+    {
+      "name": "BamDude",
+      "tag": "Self-Hosted",
+      "highlight": true,
+      "body": "Print archive, multi-printer queue, Telegram bot, smart-plug automation, MFA, sliding-session auth — all on your own hardware.",
+      "highlights": [
+        "100% LAN-based, no cloud account",
+        "Multi-printer queue with parallel dispatch",
+        "Full Telegram bot with multi-chat auth",
+        "8+ notification channels in one editor",
+        "Proxy mode for remote prints (no VPN)"
+      ]
+    },
+    {
+      "name": "Bambu Handy",
+      "tag": "Cloud-Based",
+      "body": "Bambu Lab's official mobile app — quick setup and convenience, but cloud-only and limited.",
+      "highlights": [
+        "Official Bambu Lab app",
+        "Easy mobile setup",
+        "Mobile push notifications"
+      ],
+      "cons": [
+        "Requires Bambu Cloud account",
+        "No print archiving or 3D viewer",
+        "No queue, scheduling, or automation"
+      ]
+    },
+    {
+      "name": "OctoPrint",
+      "tag": "Self-Hosted",
+      "body": "Established open-source print server with a huge plugin ecosystem — but no native Bambu support.",
+      "highlights": [
+        "Large plugin ecosystem",
+        "Supports many printer brands",
+        "Self-hosted and open source"
+      ],
+      "cons": [
+        "No native Bambu MQTT/FTPS",
+        "USB connection required without plugins",
+        "One instance per printer"
+      ]
+    }
+  ],
+  "table": {
+    "columns": ["BamDude", "Bambu Handy", "OctoPrint"],
+    "sections": [
+      {
+        "title": "Connection & Setup",
+        "rows": [
+          { "label": "Native Bambu MQTT/FTPS", "values": ["yes", "yes", "no:Plugin only"] },
+          { "label": "Works on LAN only", "values": ["yes", "no", "yes"] },
+          { "label": "No cloud dependency", "values": ["yes", "no", "yes"] },
+          { "label": "Remote prints without VPN", "values": ["yes:Proxy mode", "yes:Via cloud", "no"] },
+          { "label": "Docker deployment", "values": ["yes", "na:Mobile app", "yes"] },
+          { "label": "Works with Bambu Studio / Orca", "values": ["yes", "yes", "partial:Via plugins"] },
+          { "label": "Multi-printer dashboard", "values": ["yes:Resizable cards", "partial:Basic list", "no:One instance per printer"] }
+        ]
+      },
+      {
+        "title": "Monitoring & Control",
+        "rows": [
+          { "label": "Real-time print status", "values": ["yes:WebSocket", "yes", "yes"] },
+          { "label": "HMS error decoding", "values": ["yes", "partial:Basic codes", "no"] },
+          { "label": "Camera streaming + OBS overlay", "values": ["yes", "no", "partial:Via plugins"] },
+          { "label": "External camera (RTSP/USB)", "values": ["yes", "no", "yes"] },
+          { "label": "Calibration UI", "values": ["yes:Model-aware", "partial", "partial"] },
+          { "label": "AMS management + drying", "values": ["yes", "partial", "no"] },
+          { "label": "Printer SD-card browser", "values": ["yes:Bulk dl/del", "no", "yes"] }
+        ]
+      },
+      {
+        "title": "Print Archive & History",
+        "rows": [
+          { "label": "Automatic 3MF archiving", "values": ["yes", "no", "partial:Via plugins"] },
+          { "label": "3D model viewer", "values": ["yes:Three.js", "no", "partial:Via plugins"] },
+          { "label": "Per-plate gallery (multi-plate)", "values": ["yes", "no", "no"] },
+          { "label": "Photo attachments + notes", "values": ["yes", "no", "no"] },
+          { "label": "Side-by-side compare", "values": ["yes:2-5 prints", "no", "no"] },
+          { "label": "Full-text search + dedup", "values": ["yes:Source-hash", "no", "partial"] },
+          { "label": "Projects with print plan", "values": ["yes", "no", "no"] },
+          { "label": "Auto-cleanup retention", "values": ["yes", "no", "no"] }
+        ]
+      },
+      {
+        "title": "Scheduling & Automation",
+        "rows": [
+          { "label": "Print queue with drag-and-drop", "values": ["yes", "no", "partial:Via plugins"] },
+          { "label": "Multi-printer queue", "values": ["yes:Parallel dispatch", "no", "no"] },
+          { "label": "Staggered start", "values": ["yes:Bed-temp watchdog", "no", "no"] },
+          { "label": "G-code macros with ACK", "values": ["yes:MQTT-confirmed", "no", "yes"] },
+          { "label": "Smart plug control", "values": ["yes:Tasmota / HA / MQTT / REST", "no", "partial:Via plugins"] },
+          { "label": "Auto power on/off + temp watchdog", "values": ["yes", "no", "partial:Via plugins"] },
+          { "label": "Re-print with AMS mapping", "values": ["yes", "no", "no"] },
+          { "label": "Swap mode (A1 plate-swappers)", "values": ["yes", "no", "no"] }
+        ]
+      },
+      {
+        "title": "Notifications & Bot",
+        "rows": [
+          { "label": "Push notifications", "values": ["yes:8+ channels", "yes:Mobile push", "partial:Via plugins"] },
+          { "label": "Full Telegram bot", "values": ["yes:Control + queue + maintenance", "no", "partial:Via plugins"] },
+          { "label": "Multi-chat with roles", "values": ["yes", "no", "no"] },
+          { "label": "Discord / Pushover / ntfy", "values": ["yes", "no", "partial:Via plugins"] },
+          { "label": "Email (SMTP) + webhooks", "values": ["yes", "no", "partial:Via plugins"] },
+          { "label": "MarkdownV2 editor with templates", "values": ["yes", "no", "no"] }
+        ]
+      },
+      {
+        "title": "Filament & Maintenance",
+        "rows": [
+          { "label": "Built-in spool inventory", "values": ["yes", "no", "partial:Via plugins"] },
+          { "label": "Cost & lot tracking", "values": ["yes", "no", "no"] },
+          { "label": "Spoolman integration", "values": ["yes:Two-way sync", "no", "partial:Via plugins"] },
+          { "label": "Maintenance reminders", "values": ["yes:Hours + calendar", "no", "no"] },
+          { "label": "Energy monitoring", "values": ["yes:Per-print kWh", "no", "no"] },
+          { "label": "OrcaSlicer preset import", "values": ["yes", "no", "no"] }
+        ]
+      },
+      {
+        "title": "Auth & Multi-user",
+        "rows": [
+          { "label": "Always-on authentication", "values": ["yes", "yes", "partial:Optional"] },
+          { "label": "MFA (TOTP + Email + Backup)", "values": ["yes", "no", "partial:Via plugins"] },
+          { "label": "OIDC SSO", "values": ["yes:PKCE + JWKS", "no", "no"] },
+          { "label": "LDAP / Active Directory", "values": ["yes", "no", "partial:Via plugins"] },
+          { "label": "Granular permissions (80+)", "values": ["yes", "no", "no"] },
+          { "label": "API keys + webhooks", "values": ["yes", "no", "yes"] }
+        ]
+      },
+      {
+        "title": "Integrations & Platform",
+        "rows": [
+          { "label": "REST + WebSocket API", "values": ["yes:Full API", "no", "yes"] },
+          { "label": "MQTT publishing for HA", "values": ["yes", "no", "yes"] },
+          { "label": "Prometheus / Grafana metrics", "values": ["yes", "no", "partial:Via plugins"] },
+          { "label": "Git backup (GitHub/GitLab)", "values": ["yes", "no", "no"] },
+          { "label": "SQLite + PostgreSQL", "values": ["yes", "na", "partial:SQLite only"] },
+          { "label": "Web dashboard (PWA)", "values": ["yes", "no:Mobile only", "yes"] },
+          { "label": "Multi-language", "values": ["yes:EN + UK", "yes", "yes"] },
+          { "label": "Dark / light themes", "values": ["yes", "yes", "yes"] },
+          { "label": "Open source", "values": ["yes:AGPL-3.0", "no", "yes:AGPL-3.0"] }
+        ]
+      }
+    ]
+  },
+  "legend": {
+    "yes": "Supported",
+    "partial": "Partial / via plugin",
+    "no": "Not supported",
+    "na": "Not applicable"
+  }
+}

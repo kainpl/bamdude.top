@@ -1,0 +1,35 @@
+# BamDude
+
+> Self-hosted print archive, management, and automation system for Bambu Lab 3D printers.
+
+BamDude lets you monitor, archive, schedule, and automate prints across one or many Bambu Lab printers locally — no cloud account required. It supports the X1, H2, P1, P2, A1, and X2 series, ships with a full Telegram bot (multi-chat with role-based permissions), and integrates with Spoolman, Home Assistant, Prometheus, MQTT, OrcaSlicer, LDAP/AD, and OIDC.
+
+## Key features
+
+- Real-time printer monitoring via local MQTT
+- Multi-printer print queue with parallel background dispatch
+- Automatic 3MF archiving with 3D viewer and full-text search
+- Per-plate gallery for multi-plate sliced files
+- Full Telegram bot — control, queue, maintenance, calibration
+- 8+ notification channels (Telegram, Discord, Email, Pushover, ntfy, CallMeBot, HA, webhooks)
+- Built-in spool inventory + Spoolman sync
+- Smart-plug automation (Tasmota, HA, MQTT, REST)
+- MFA (TOTP + Email OTP + backup codes), OIDC SSO, LDAP/AD
+- Sliding-session refresh tokens with OWASP reuse detection
+- SQLite or PostgreSQL, multi-arch Docker (amd64 + arm64)
+- AGPL-3.0, EN + UK locales
+
+## Links
+
+- Website: https://bamdude.top
+- Documentation: https://docs.bamdude.top
+- GitHub: https://github.com/kainpl/bamdude
+- CHANGELOG: https://github.com/kainpl/bamdude/blob/main/CHANGELOG.md
+
+## Pages
+
+- [Home](https://bamdude.top/)
+- [Features](https://bamdude.top/features)
+- [Compare](https://bamdude.top/compare)
+- [Install](https://bamdude.top/install)
+- [FAQ](https://bamdude.top/faq)

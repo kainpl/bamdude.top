@@ -1,0 +1,83 @@
+{
+  "intro": {
+    "title": "Запуск за пʼять хвилин",
+    "body": "Вибери шлях, що підходить твоєму середовищу. Docker — рекомендований. Після запуску перший візит у браузер проведе тебе через створення адміна."
+  },
+  "requirements": {
+    "title": "Перед стартом",
+    "items": [
+      "Принтер Bambu Lab з увімкненим **Developer Mode** + **LAN-Only Mode** (Settings → Network).",
+      "**IP-адреса** і **Access Code** принтера (Settings → Network і Settings → Information).",
+      "Linux-машина, Raspberry Pi, NAS чи будь-який Docker-хост у тій же мережі що і принтер.",
+      "Опційно: токен Telegram-бота від [@BotFather](https://t.me/BotFather) — якщо хочеш бота з першого дня."
+    ]
+  },
+  "steps": [
+    {
+      "id": "docker-run",
+      "icon": "container",
+      "title": "Запуск через Docker",
+      "subtitle": "Найшвидший шлях. Один контейнер, SQLite за замовчанням, постійні томи.",
+      "command": "docker run -d \\\n  --name bamdude \\\n  --network host \\\n  -e TZ=Europe/Kyiv \\\n  -v bamdude_data:/app/data \\\n  -v bamdude_logs:/app/logs \\\n  --restart unless-stopped \\\n  kainpl/bamdude:latest",
+      "notes": [
+        "**`--network host`** робить SSDP-автопошук принтерів робочим; на macOS / Windows Docker Desktop заміни на `-p 8000:8000` і додавай принтери вручну за IP.",
+        "Два томи: `bamdude_data` (SQLite + 3MF + прев'ю) і `bamdude_logs`. Зберігай їх — там вся історія твоїх друків."
+      ]
+    },
+    {
+      "id": "docker-compose",
+      "icon": "layers",
+      "title": "Docker Compose (з вихідних)",
+      "subtitle": "Збираєш образ сам, простіше розширювати.",
+      "command": "git clone https://github.com/kainpl/bamdude.git\ncd bamdude\ndocker compose up -d --build",
+      "notes": [
+        "Використовує `docker-compose.yml` з репо. Додавай Postgres, MQTT чи Spoolman як сервіси-сусіди.",
+        "Наступні ребілди: `docker compose pull && docker compose up -d --build`."
+      ]
+    },
+    {
+      "id": "manual",
+      "icon": "terminal",
+      "title": "Ручний запуск (Python venv)",
+      "subtitle": "Для розробників або середовищ, де Docker недоступний.",
+      "command": "git clone https://github.com/kainpl/bamdude.git\ncd bamdude\npython3 -m venv venv && source venv/bin/activate\npip install -r requirements.txt\nuvicorn backend.app.main:app --host 0.0.0.0 --port 8000",
+      "notes": [
+        "Python 3.10+ (3.11/3.12 рекомендовано).",
+        "Для фронтенду: `cd frontend && npm install && npm run dev` в другому терміналі."
+      ]
+    },
+    {
+      "id": "first-login",
+      "icon": "user-plus",
+      "title": "Перший вхід + адмін",
+      "subtitle": "Відкрий веб-UI і створи першого адміна.",
+      "body": "Перейди на **http://localhost:8000** (або IP хоста). Setup-гейт відмовляє в усіх API-викликах окрім `/auth/setup` поки не існує перший адмін — обери ім'я, пароль (≥8 символів, велика + мала + цифра), готово. Далі стандартна форма логіну, гейт зникає назавжди.",
+      "notes": [
+        "Забув пароль адміна? `python -m backend.app.cli reset_admin` чистить setup-прапори і наступний старт повертає в setup-флоу.",
+        "За reverse-proxy? Встанови `TRUSTED_PROXY_IPS` щоб rate-limit і refresh-cookie бачили `X-Forwarded-Proto` коректно."
+      ]
+    },
+    {
+      "id": "add-printer",
+      "icon": "printer",
+      "title": "Додай перший принтер",
+      "subtitle": "Авто-пошук через SSDP або вручну за IP.",
+      "body": "Settings → Printers → Add Printer. SSDP підбере Bambu-принтери в тій самій підмережі автоматично; інакше встав IP. Потім введи **access code** (на екрані принтера → Settings → Information). Save — BamDude відкриє MQTT/FTPS-зʼєднання і дашборд почне стрімити live-статус."
+    },
+    {
+      "id": "telegram",
+      "icon": "send",
+      "title": "Опційно: Telegram-бот",
+      "subtitle": "Керуй фермою з чату.",
+      "body": "Створи бота через [@BotFather](https://t.me/BotFather), скопіюй токен. Settings → Notifications → новий Telegram-провайдер → встав токен. Увімкни Registration Mode, надішли `/start` своєму боту. Settings → Telegram Chats → признач чату роль (Operator підходить для більшості). Reply-клавіатура й inline-меню вже працюють."
+    }
+  ],
+  "next": {
+    "title": "Що далі",
+    "links": [
+      { "label": "Повний гайд оновлення і міграцій", "href": "https://docs.bamdude.top/getting-started/upgrading/" },
+      { "label": "Reverse proxy + HTTPS", "href": "https://docs.bamdude.top/getting-started/reverse-proxy/" },
+      { "label": "Рецепти Docker Compose", "href": "https://docs.bamdude.top/getting-started/docker/" }
+    ]
+  }
+}

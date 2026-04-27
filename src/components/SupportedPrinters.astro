@@ -1,0 +1,53 @@
+---
+import type { Locale } from '../i18n';
+import { t } from '../i18n';
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const i = t(locale);
+---
+<section aria-label="Supported printers" class="py-24">
+  <div class="mx-auto max-w-6xl px-6">
+    <div class="text-center max-w-2xl mx-auto">
+      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">{i.supportedPrinters.title}</h2>
+      <p class="mt-4 text-bambu-text-secondary leading-relaxed">{i.supportedPrinters.subtitle}</p>
+    </div>
+    <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {i.supportedPrinters.series.map((s) => {
+        const hasSecondary = Boolean(s.secondary);
+        return (
+          <div class="group rounded-2xl border border-bambu-border bg-bambu-bg-secondary overflow-hidden hover:border-bambu-green hover:shadow-[0_0_40px_-15px_rgba(0,174,66,0.4)] transition">
+            <div class="relative h-44 bg-[radial-gradient(ellipse_at_center,rgba(0,174,66,0.18)_0%,transparent_70%)] flex items-center justify-center px-6">
+              {hasSecondary && (
+                <img src={`/images/printers/${s.secondary}.png`}
+                     alt=""
+                     loading="lazy"
+                     width="320"
+                     height="320"
+                     class="absolute right-4 top-1/2 -translate-y-1/2 h-32 w-auto opacity-80 transition-transform duration-300 group-hover:translate-x-1" />
+              )}
+              <img src={`/images/printers/${s.primary}.png`}
+                   alt={s.title}
+                   loading="lazy"
+                   width="320"
+                   height="320"
+                   class={`relative h-36 w-auto drop-shadow-2xl transition-transform duration-300 group-hover:-translate-y-1 ${hasSecondary ? '-translate-x-4' : ''}`} />
+            </div>
+            <div class="p-5 border-t border-bambu-border">
+              <div class="flex items-start justify-between gap-2">
+                <div>
+                  <h3 class="font-bold text-lg tracking-tight">{s.title}</h3>
+                  <p class="mt-0.5 text-sm text-bambu-text-secondary">{s.models}</p>
+                  {s.note && <p class="mt-2 text-xs text-bambu-text-muted">{s.note}</p>}
+                </div>
+                <span class="shrink-0 inline-flex items-center px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded bg-bambu-green/15 text-bambu-green border border-bambu-green/30">
+                  {i.supportedPrinters.badge}
+                </span>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>

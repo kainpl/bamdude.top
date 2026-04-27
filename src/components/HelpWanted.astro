@@ -1,0 +1,66 @@
+---
+import type { Locale } from '../i18n';
+import { t } from '../i18n';
+import { HandHeart, Code, Lightbulb, Languages, BookOpen, Send, Github, ArrowRight } from 'lucide-react';
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const i = t(locale);
+const repo = import.meta.env.PUBLIC_GITHUB_REPO || 'https://github.com/kainpl/bamdude';
+const tg = 'https://t.me/+3KQl2uNtOwo3NTgy';
+
+const iconMap: Record<string, typeof Code> = {
+  code: Code,
+  lightbulb: Lightbulb,
+  languages: Languages,
+  'book-open': BookOpen,
+};
+---
+<section aria-label="Help wanted" class="py-16">
+  <div class="mx-auto max-w-5xl px-6">
+    <div class="relative overflow-hidden rounded-3xl border border-amber-500/30 bg-bambu-bg-secondary p-10 sm:p-14">
+      <div class="absolute -top-32 -right-32 w-80 h-80 rounded-full bg-amber-500/10 blur-3xl pointer-events-none" aria-hidden="true"></div>
+      <div class="absolute -bottom-32 -left-24 w-72 h-72 rounded-full bg-bambu-green/10 blur-3xl pointer-events-none" aria-hidden="true"></div>
+
+      <div class="relative">
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider bg-amber-500/15 text-amber-500 border border-amber-500/30">
+          <HandHeart size={14} strokeWidth={2.5} />
+          {i.helpWanted.badge}
+        </span>
+        <h2 class="mt-5 text-2xl sm:text-3xl font-extrabold tracking-tight max-w-2xl">{i.helpWanted.title}</h2>
+        <p class="mt-4 text-bambu-text-secondary leading-relaxed max-w-3xl">{i.helpWanted.body}</p>
+
+        <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {i.helpWanted.items.map((item) => {
+            const Icon = iconMap[item.icon] ?? Code;
+            return (
+              <div class="rounded-2xl border border-bambu-border bg-bambu-bg p-5 hover:border-amber-500/40 transition">
+                <div class="flex items-start gap-3">
+                  <div class="shrink-0 inline-flex items-center justify-center w-9 h-9 rounded-lg bg-amber-500/10 text-amber-500 mt-0.5">
+                    <Icon size={18} strokeWidth={2.25} />
+                  </div>
+                  <div>
+                    <h3 class="font-bold tracking-tight leading-snug">{item.title}</h3>
+                    <p class="mt-1 text-sm text-bambu-text-secondary leading-relaxed">{item.body}</p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href={tg} target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-lg px-5 py-2.5 font-semibold bg-bambu-green text-white hover:bg-bambu-green-light transition">
+            <Send size={18} strokeWidth={2.25} />
+            {i.helpWanted.ctaForum}
+            <ArrowRight size={16} strokeWidth={2.5} />
+          </a>
+          <a href={`${repo}/issues`} target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-lg px-5 py-2.5 font-semibold border border-bambu-border bg-bambu-bg-secondary hover:border-bambu-green transition">
+            <Github size={18} strokeWidth={2.25} />
+            {i.helpWanted.ctaIssues}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
