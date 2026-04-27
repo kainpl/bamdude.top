@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { flushSync } from 'react-dom';
-import { setConsent, getConsent } from '../../lib/analytics';
+import { setConsent, getConsent, loadGtag } from '../../lib/analytics';
 
 interface Labels {
   title: string;
@@ -18,7 +18,16 @@ export function CookieBanner({ labels }: { labels: Labels }) {
   const [analytics, setAnalytics] = useState(false);
 
   useEffect(() => {
-    setOpen(getConsent() === null);
+    const consent = getConsent();
+    setOpen(consent === null);
+    // Astro is MPA — every page is a fresh document with the default-deny
+    // consent stub. If the user already granted consent on a previous page,
+    // re-fire the consent update + load gtag.js here so analytics tracks
+    // every page, not only the one where they clicked Accept.
+    if (consent === 'granted') {
+      window.gtag?.('consent', 'update', { analytics_storage: 'granted' });
+      loadGtag();
+    }
     const onSettings = () => { flushSync(() => { setOpen(true); setCustomizing(true); }); };
     window.addEventListener('cookie:settings', onSettings);
     return () => window.removeEventListener('cookie:settings', onSettings);
