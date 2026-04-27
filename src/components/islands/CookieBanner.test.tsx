@@ -33,6 +33,21 @@ describe('CookieBanner', () => {
     expect(screen.queryByText('We use a cookie')).not.toBeInTheDocument();
   });
 
+  it('on subsequent page load with prior granted consent, re-fires gtag(consent, update) and injects gtag script', () => {
+    vi.stubEnv('PUBLIC_GA_ID', 'G-TEST');
+    localStorage.setItem('consent', 'granted');
+    render(<CookieBanner labels={labels} />);
+    expect((window as any).gtag).toHaveBeenCalledWith('consent', 'update', { analytics_storage: 'granted' });
+    expect(document.querySelector('script[data-gtag]')).not.toBeNull();
+  });
+
+  it('on subsequent page load with prior denied consent, does NOT inject gtag', () => {
+    vi.stubEnv('PUBLIC_GA_ID', 'G-TEST');
+    localStorage.setItem('consent', 'denied');
+    render(<CookieBanner labels={labels} />);
+    expect(document.querySelector('script[data-gtag]')).toBeNull();
+  });
+
   it('on Accept stores granted, calls gtag(consent, update, granted), and (when GA_ID set) injects gtag script', async () => {
     vi.stubEnv('PUBLIC_GA_ID', 'G-TEST');
     const u = userEvent.setup();
