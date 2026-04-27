@@ -1,165 +1,547 @@
 ---
-// Bento mosaic — CSS Grid driven by named grid-areas. Explicit height
-// so the grid doesn't collapse if `aspect-ratio` is treated wrong by
-// some engine; no 3D wrapper; hover lift stays in 2D. Six tiles by
-// default, seventh ("multi-plate library") shows up on ≥1280px.
+// Coverflow-style carousel of product screenshots.
 //
-//   ┌─────────────────────┬──────────┬──────────┐
-//   │     desktop         │ telegram │  mobile  │
-//   │     (2 cols)        │          │          │
-//   ├─────────────────────┴──────────┴──────────┤
-//   │ stats (2)  │  queue   │  projects         │
-//   └────────────┴──────────┴───────────────────┘
+// The active slide sits centre-stage; immediate neighbours peek on either
+// side at reduced scale and opacity; further-out slides fade to near-zero
+// (still in the DOM so wrap-around feels seamless). Slide list is mixed
+// landscape + portrait — height is the constant, width is derived from
+// each slide's aspect-ratio so portrait phones look like phones, not
+// stretched landscapes.
+//
+// Behaviour:
+//   - Auto-advance every 5 s.
+//   - Pauses on hover, on keyboard focus inside the carousel, and when
+//     the carousel scrolls out of view (IntersectionObserver).
+//   - User actions (arrows / dots / clicking a peek slide / arrow keys
+//     when focused) advance immediately and freeze auto-play for 8 s
+//     before resuming.
+//   - prefers-reduced-motion disables auto-play entirely (manual still
+//     works).
+
+// Order intentionally mirrors the BamDude sidebar nav (Printers →
+// Archives → Queue → Statistics → Maintenance → Projects → Filament →
+// File Manager → Settings), then closes with the mobile screen and the
+// Telegram screens. Sidebar-only items without screenshots (Profiles)
+// are skipped.
+const slides = [
+  // Browser screens, in sidebar order ────────────────────────────
+  {
+    src: "/images/screenshot-desktop.png",
+    label: "Printers",
+    description: "Live status of every printer at a glance — temperatures, progress, AMS state, queue depth.",
+    orientation: "landscape" as const,
+  },
+  {
+    src: "/images/screenshot-archive.png",
+    label: "Print archive",
+    description: "Every print stored with the source 3MF kept — full chain-of-custody, reprintable.",
+    orientation: "landscape" as const,
+  },
+  {
+    src: "/images/screenshot-queue.png",
+    label: "Print queue",
+    description: "Per-printer queues with batch quantity, drag-and-drop reorder, and AMS slot mapping per item.",
+    orientation: "landscape" as const,
+  },
+  {
+    src: "/images/screenshot-statistics.png",
+    label: "Statistics",
+    description: "Filament, time, energy, cost — per printer or farm-wide, with date-range filters.",
+    orientation: "landscape" as const,
+  },
+  {
+    src: "/images/screenshot-maintenance.png",
+    label: "Maintenance",
+    description: "Schedule and log service tasks — model-aware for carbon rods, steel rods, linear rails.",
+    orientation: "landscape" as const,
+  },
+  {
+    src: "/images/screenshot-projects.png",
+    label: "Projects",
+    description: "Group prints into projects with an ordered plan, BOM tracking, and ZIP / JSON export.",
+    orientation: "landscape" as const,
+  },
+  {
+    src: "/images/screenshot-project-details.png",
+    label: "Project details",
+    description: "Drill into a project — plan progress, BOM consumption, attachments, activity timeline.",
+    orientation: "landscape" as const,
+  },
+  {
+    src: "/images/screenshot-spools.png",
+    label: "Filament",
+    description: "Spoolman two-way sync, auto-assign by colour / material, low-stock alerts.",
+    orientation: "landscape" as const,
+  },
+  {
+    src: "/images/screenshot-files.png",
+    label: "File manager",
+    description: "Library of sliced 3MFs — organise into folders, link to projects, batch-print, share.",
+    orientation: "landscape" as const,
+  },
+  {
+    src: "/images/screenshot-files-mp.png",
+    label: "Multi-plate library",
+    description: "Per-plate breakdown for multi-plate 3MFs — thumbnail, time, filament, object count.",
+    orientation: "landscape" as const,
+  },
+  {
+    src: "/images/screenshot-settings.png",
+    label: "Settings",
+    description: "Every BamDude setting in one place — themes, providers, integrations, scheduled backups.",
+    orientation: "landscape" as const,
+  },
+  {
+    src: "/images/screenshot-settings-macros.png",
+    label: "Macros editor",
+    description: "G-code and MQTT-action macros — per-event filters and swap-mode profiles.",
+    orientation: "landscape" as const,
+  },
+  // Mobile ────────────────────────────────────────────────────────
+  {
+    src: "/images/screenshot-mobile.png",
+    label: "On mobile",
+    description: "Same dashboard in your pocket — responsive layout, no separate app.",
+    orientation: "portrait" as const,
+  },
+  // Telegram ──────────────────────────────────────────────────────
+  {
+    src: "/images/screenshot-telegram.png",
+    label: "Telegram bot",
+    description: "Full printer control from your phone — status, pause / stop, camera snapshots, queue.",
+    orientation: "portrait" as const,
+  },
+  {
+    src: "/images/screenshot-telegram-maintenance.png",
+    label: "Maintenance reminders",
+    description: "Inline action buttons in your chat — mark a service task done without leaving Telegram.",
+    orientation: "portrait" as const,
+  },
+];
 ---
-<div class="hero-mosaic-wrap relative mx-auto mt-16 w-full max-w-6xl hidden sm:block">
+
+<div class="hero-carousel-wrap relative mx-auto mt-14 w-full max-w-6xl hidden sm:block">
   <div class="absolute inset-0 -z-10 blur-3xl opacity-50 bg-[radial-gradient(ellipse_at_center,rgba(0,174,66,0.45)_0%,transparent_70%)]"></div>
 
-  <div class="hero-mosaic">
-    <a class="hero-mosaic-tile area-desktop" data-label="Web dashboard" aria-label="Web dashboard screenshot">
-      <img src="/images/screenshot-desktop.png" alt="BamDude web dashboard" loading="eager" fetchpriority="high" />
-    </a>
-    <a class="hero-mosaic-tile area-telegram is-portrait" data-label="Telegram bot" aria-label="Telegram bot screenshot">
-      <img src="/images/screenshot-telegram.png" alt="BamDude Telegram bot" loading="lazy" />
-    </a>
-    <a class="hero-mosaic-tile area-mobile is-portrait" data-label="On mobile" aria-label="Mobile screenshot">
-      <img src="/images/screenshot-mobile.png" alt="BamDude on mobile" loading="lazy" />
-    </a>
-    <a class="hero-mosaic-tile area-stats" data-label="Statistics" aria-label="Statistics screenshot">
-      <img src="/images/screenshot-statistics.png" alt="BamDude statistics" loading="lazy" />
-    </a>
-    <a class="hero-mosaic-tile area-queue" data-label="Print queue" aria-label="Print queue screenshot">
-      <img src="/images/screenshot-queue.png" alt="BamDude print queue" loading="lazy" />
-    </a>
-    <a class="hero-mosaic-tile area-projects" data-label="Projects" aria-label="Projects screenshot">
-      <img src="/images/screenshot-projects.png" alt="BamDude projects" loading="lazy" />
-    </a>
-    <a class="hero-mosaic-tile area-files" data-label="Multi-plate library" aria-label="Multi-plate library screenshot">
-      <img src="/images/screenshot-files-mp.png" alt="BamDude multi-plate library" loading="lazy" />
-    </a>
+  <div
+    class="hero-carousel"
+    id="hero-carousel"
+    role="region"
+    aria-roledescription="carousel"
+    aria-label="BamDude product screenshots"
+    tabindex="0"
+  >
+    <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous slide">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+
+    <div class="carousel-stage">
+      {slides.map((s, i) => (
+        <article
+          class={`carousel-slide ${s.orientation === "portrait" ? "is-portrait" : "is-landscape"}`}
+          data-index={i}
+          data-orientation={s.orientation}
+          data-label={s.label}
+          data-description={s.description}
+          aria-roledescription="slide"
+          aria-label={`${i + 1} of ${slides.length}: ${s.label}`}
+        >
+          <img src={s.src} alt={`BamDude — ${s.label}`} loading={i === 0 ? "eager" : "lazy"} fetchpriority={i === 0 ? "high" : "auto"} />
+        </article>
+      ))}
+    </div>
+
+    <button class="carousel-arrow carousel-next" type="button" aria-label="Next slide">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+  </div>
+
+  <div class="carousel-caption" aria-live="polite">
+    <h3 class="carousel-caption-title" id="carousel-caption-title">{slides[0].label}</h3>
+    <p class="carousel-caption-desc" id="carousel-caption-desc">{slides[0].description}</p>
+  </div>
+
+  <div class="carousel-dots" role="tablist" aria-label="Choose slide">
+    {slides.map((s, i) => (
+      <button
+        type="button"
+        class={`carousel-dot${i === 0 ? " is-active" : ""}`}
+        role="tab"
+        aria-label={`Go to slide ${i + 1}: ${s.label}`}
+        aria-selected={i === 0}
+        data-index={i}
+      ></button>
+    ))}
   </div>
 </div>
 
-<style>
-  .hero-mosaic {
-    display: grid;
-    width: 100%;
-    /* Explicit height — keeps the grid sane without depending on
-       aspect-ratio + grid template interaction. */
-    min-height: 460px;
-    height: clamp(420px, 46vw, 560px);
-    grid-template-columns: 1.6fr 1fr 1fr;
-    grid-template-rows: 2fr 1fr;
-    grid-template-areas:
-      "desktop telegram mobile"
-      "stats   queue    projects";
-    gap: 0.75rem;
+<style is:global>
+  .hero-carousel-wrap {
+    --peek-1: clamp(180px, 26vw, 320px);
+    --peek-2: clamp(280px, 42vw, 500px);
+    --slide-h: clamp(360px, 44vw, 480px);
   }
 
-  /* Wider viewports: surface the multi-plate library tile. */
-  @media (min-width: 1280px) {
-    .hero-mosaic {
-      grid-template-columns: 1.7fr 0.9fr 0.9fr 0.9fr;
-      grid-template-areas:
-        "desktop  telegram mobile  files"
-        "stats    stats    queue   projects";
-    }
-    .area-files { display: block; }
-  }
-
-  /* Default: hide the bonus tile until we have a 4-col grid. */
-  .area-files { display: none; }
-
-  .area-desktop  { grid-area: desktop; }
-  .area-telegram { grid-area: telegram; }
-  .area-mobile   { grid-area: mobile; }
-  .area-stats    { grid-area: stats; }
-  .area-queue    { grid-area: queue; }
-  .area-projects { grid-area: projects; }
-
-  .hero-mosaic-tile {
+  .hero-carousel {
     position: relative;
-    display: block;
-    border-radius: 0.85rem;
+    width: 100%;
+    height: var(--slide-h);
+    outline: none;
+  }
+
+  .hero-carousel:focus-visible {
+    outline: 2px solid rgba(0, 174, 66, 0.6);
+    outline-offset: 6px;
+    border-radius: 0.5rem;
+  }
+
+  .carousel-stage {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .carousel-slide {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 92%;
+    border-radius: 1rem;
     overflow: hidden;
     border: 1px solid var(--border-color);
     background: var(--bg-secondary);
     box-shadow:
       0 30px 60px -20px rgba(0, 0, 0, 0.55),
       0 12px 24px -12px rgba(0, 174, 66, 0.18);
+    transform: translate(-50%, -50%) scale(0.4);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 0;
     transition:
-      transform 280ms cubic-bezier(0.2, 0.8, 0.2, 1),
-      box-shadow 280ms ease,
-      border-color 280ms ease;
-    will-change: transform;
+      transform 700ms cubic-bezier(0.25, 0.8, 0.25, 1),
+      opacity 700ms ease,
+      box-shadow 700ms ease,
+      filter 700ms ease;
     cursor: pointer;
-    text-decoration: none;
+    will-change: transform, opacity;
   }
+  .carousel-slide.is-landscape { aspect-ratio: 16 / 10; }
+  .carousel-slide.is-portrait  { aspect-ratio: 9 / 16; height: 96%; }
 
-  .hero-mosaic-tile img {
+  .carousel-slide img {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: top left;
+    object-position: top center;
+    user-select: none;
+    -webkit-user-drag: none;
   }
 
-  /* Top-anchored crop for portrait tiles so the chrome stays visible. */
-  .is-portrait img { object-position: top center; }
-
-  /* Bottom dark gradient for label legibility. */
-  .hero-mosaic-tile::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background:
-      linear-gradient(180deg, transparent 55%, rgba(0, 0, 0, 0.55) 100%);
-    opacity: 0.55;
-    transition: opacity 280ms ease;
-  }
-  .hero-mosaic-tile:hover::before { opacity: 0.85; }
-
-  /* Floating label pill — bottom-left, fades in on hover. */
-  .hero-mosaic-tile::after {
-    content: attr(data-label);
-    position: absolute;
-    left: 0.6rem;
-    bottom: 0.6rem;
-    padding: 0.22rem 0.6rem;
-    border-radius: 999px;
-    background: rgba(0, 0, 0, 0.72);
-    border: 1px solid rgba(0, 174, 66, 0.5);
-    color: #fff;
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.01em;
-    white-space: nowrap;
-    opacity: 0;
-    transform: translateY(6px);
-    transition: opacity 240ms ease, transform 240ms ease;
-    pointer-events: none;
-  }
-  .hero-mosaic-tile:hover::after {
+  /* Slot positions — slot=0 is active, ±1 are peek neighbours, ±2 are
+     far peeks. Slides outside ±2 stay invisible (no data-slot). */
+  .carousel-slide[data-slot="0"] {
+    transform: translate(-50%, -50%) scale(1);
     opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Hover lift — 2D translate + scale, no 3D so nothing collapses. */
-  .hero-mosaic-tile:hover {
-    transform: translateY(-4px) scale(1.012);
-    border-color: rgba(0, 174, 66, 0.55);
-    box-shadow:
-      0 40px 90px -20px rgba(0, 0, 0, 0.65),
-      0 16px 32px -10px rgba(0, 174, 66, 0.45);
+    pointer-events: auto;
     z-index: 5;
+    box-shadow:
+      0 50px 100px -25px rgba(0, 0, 0, 0.7),
+      0 18px 36px -10px rgba(0, 174, 66, 0.45);
+  }
+  .carousel-slide[data-slot="-1"] {
+    transform: translate(calc(-50% - var(--peek-1)), -50%) scale(0.72);
+    opacity: 0.55;
+    pointer-events: auto;
+    z-index: 3;
+    filter: blur(0.5px);
+  }
+  .carousel-slide[data-slot="1"] {
+    transform: translate(calc(-50% + var(--peek-1)), -50%) scale(0.72);
+    opacity: 0.55;
+    pointer-events: auto;
+    z-index: 3;
+    filter: blur(0.5px);
+  }
+  .carousel-slide[data-slot="-2"] {
+    transform: translate(calc(-50% - var(--peek-2)), -50%) scale(0.48);
+    opacity: 0.18;
+    z-index: 1;
+    filter: blur(2px);
+  }
+  .carousel-slide[data-slot="2"] {
+    transform: translate(calc(-50% + var(--peek-2)), -50%) scale(0.48);
+    opacity: 0.18;
+    z-index: 1;
+    filter: blur(2px);
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .hero-mosaic-tile {
-      transition: none;
+  /* Hover on a peek slide gives a subtle hint that it's clickable. */
+  .carousel-slide[data-slot="-1"]:hover,
+  .carousel-slide[data-slot="1"]:hover {
+    opacity: 0.85;
+    filter: blur(0);
+  }
+
+  /* Arrows */
+  .carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 8;
+    width: 44px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    border: 1px solid var(--border-color);
+    background: rgba(20, 20, 20, 0.7);
+    color: #fff;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: transform 200ms ease, background 200ms ease, border-color 200ms ease;
+  }
+  .carousel-arrow:hover {
+    background: rgba(0, 174, 66, 0.25);
+    border-color: rgba(0, 174, 66, 0.6);
+    transform: translateY(-50%) scale(1.05);
+  }
+  .carousel-arrow:focus-visible {
+    outline: 2px solid rgba(0, 174, 66, 0.7);
+    outline-offset: 2px;
+  }
+  .carousel-prev { left: 0.5rem; }
+  .carousel-next { right: 0.5rem; }
+
+  /* Caption */
+  .carousel-caption {
+    margin-top: 1.5rem;
+    text-align: center;
+    min-height: 4.5rem;
+  }
+  .carousel-caption-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: -0.005em;
+    color: var(--text-primary);
+  }
+  .carousel-caption-desc {
+    margin-top: 0.4rem;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.55;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Dots */
+  .carousel-dots {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.45rem;
+    flex-wrap: wrap;
+  }
+  .carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    border: none;
+    padding: 0;
+    background: rgba(160, 160, 160, 0.35);
+    cursor: pointer;
+    transition: background 220ms ease, width 320ms ease;
+  }
+  .carousel-dot:hover { background: rgba(160, 160, 160, 0.6); }
+  .carousel-dot.is-active {
+    background: var(--bambu-green, #00ae42);
+    width: 24px;
+  }
+  .carousel-dot:focus-visible {
+    outline: 2px solid rgba(0, 174, 66, 0.7);
+    outline-offset: 3px;
+  }
+
+  /* Tablet: trim peek depth. */
+  @media (max-width: 1023px) {
+    .hero-carousel-wrap {
+      --peek-1: clamp(140px, 22vw, 220px);
+      --peek-2: clamp(220px, 36vw, 360px);
     }
-    .hero-mosaic-tile:hover {
-      transform: none;
+    .carousel-slide[data-slot="-2"],
+    .carousel-slide[data-slot="2"] {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
+  /* Reduced motion: snap transitions, kill blur. */
+  @media (prefers-reduced-motion: reduce) {
+    .carousel-slide {
+      transition: opacity 0s, transform 0s;
+      filter: none !important;
     }
   }
 </style>
+
+<script is:inline>
+  (function () {
+    const carousel = document.getElementById("hero-carousel");
+    if (!carousel) return;
+
+    const stage = carousel.querySelector(".carousel-stage");
+    const slides = Array.from(stage.querySelectorAll(".carousel-slide"));
+    const prevBtn = carousel.querySelector(".carousel-prev");
+    const nextBtn = carousel.querySelector(".carousel-next");
+
+    const wrap = carousel.parentElement;
+    if (!wrap) return;
+    const dots = Array.from(wrap.querySelectorAll(".carousel-dot"));
+    const titleEl = wrap.querySelector("#carousel-caption-title");
+    const descEl = wrap.querySelector("#carousel-caption-desc");
+
+    const n = slides.length;
+    if (n === 0) return;
+
+    const AUTOPLAY_MS = 5000;
+    const RESUME_DELAY = 8000;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    let active = 0;
+    let timer = 0;
+    let resumeTimer = 0;
+
+    function setActive(i) {
+      active = ((i % n) + n) % n;
+      for (let idx = 0; idx < n; idx++) {
+        let rel = idx - active;
+        // Wrap so the carousel feels endless in both directions.
+        if (rel > n / 2) rel -= n;
+        if (rel < -n / 2) rel += n;
+        const s = slides[idx];
+        if (Math.abs(rel) > 2) {
+          s.removeAttribute("data-slot");
+        } else {
+          s.dataset.slot = String(rel);
+        }
+      }
+      dots.forEach((d, idx) => {
+        const on = idx === active;
+        d.classList.toggle("is-active", on);
+        d.setAttribute("aria-selected", on ? "true" : "false");
+      });
+      const cur = slides[active];
+      if (titleEl) titleEl.textContent = cur.dataset.label || "";
+      if (descEl) descEl.textContent = cur.dataset.description || "";
+    }
+
+    function startAuto() {
+      if (reduced) return;
+      stopAuto();
+      timer = window.setInterval(() => setActive(active + 1), AUTOPLAY_MS);
+    }
+    function stopAuto() {
+      if (timer) {
+        window.clearInterval(timer);
+        timer = 0;
+      }
+    }
+    function pauseThenResume() {
+      stopAuto();
+      if (resumeTimer) window.clearTimeout(resumeTimer);
+      resumeTimer = window.setTimeout(() => {
+        resumeTimer = 0;
+        startAuto();
+      }, RESUME_DELAY);
+    }
+
+    setActive(0);
+    startAuto();
+
+    // Hover pause / resume.
+    carousel.addEventListener("mouseenter", stopAuto);
+    carousel.addEventListener("mouseleave", () => {
+      if (!resumeTimer) startAuto();
+    });
+
+    // Focus pause for keyboard users.
+    carousel.addEventListener("focusin", stopAuto);
+    carousel.addEventListener("focusout", () => {
+      if (!resumeTimer) startAuto();
+    });
+
+    // Arrow buttons.
+    prevBtn?.addEventListener("click", () => {
+      setActive(active - 1);
+      pauseThenResume();
+    });
+    nextBtn?.addEventListener("click", () => {
+      setActive(active + 1);
+      pauseThenResume();
+    });
+
+    // Keyboard arrows when carousel has focus.
+    carousel.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        setActive(active - 1);
+        pauseThenResume();
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        setActive(active + 1);
+        pauseThenResume();
+      }
+    });
+
+    // Dots.
+    dots.forEach((d, idx) => {
+      d.addEventListener("click", () => {
+        setActive(idx);
+        pauseThenResume();
+      });
+    });
+
+    // Click on a peek slide brings it forward.
+    slides.forEach((s, idx) => {
+      s.addEventListener("click", () => {
+        if (idx !== active) {
+          setActive(idx);
+          pauseThenResume();
+        }
+      });
+    });
+
+    // Pause when offscreen, resume when back. Saves work + battery.
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            if (e.isIntersecting) {
+              if (!resumeTimer) startAuto();
+            } else {
+              stopAuto();
+            }
+          }
+        },
+        { threshold: 0.25 },
+      );
+      io.observe(carousel);
+    }
+
+    // Honour live reduced-motion changes.
+    const mql = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if ("addEventListener" in mql) {
+      mql.addEventListener("change", (ev) => {
+        if (ev.matches) stopAuto();
+        else startAuto();
+      });
+    }
+  })();
+</script>
