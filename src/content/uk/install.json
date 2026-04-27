@@ -1,7 +1,7 @@
 {
   "intro": {
     "title": "Запуск за пʼять хвилин",
-    "body": "Вибери шлях, що підходить твоєму середовищу. Docker — рекомендований. Після запуску перший візит у браузер проведе тебе через створення адміна."
+    "body": "Вибери шлях, що підходить твоєму середовищу. Docker - рекомендований. Після запуску перший візит у браузер проведе тебе через створення адміна."
   },
   "requirements": {
     "title": "Перед стартом",
@@ -9,7 +9,7 @@
       "Принтер Bambu Lab з увімкненим **Developer Mode** + **LAN-Only Mode** (Settings → Network).",
       "**IP-адреса** і **Access Code** принтера (Settings → Network і Settings → Information).",
       "Linux-машина, Raspberry Pi, NAS чи будь-який Docker-хост у тій же мережі що і принтер.",
-      "Опційно: токен Telegram-бота від [@BotFather](https://t.me/BotFather) — якщо хочеш бота з першого дня."
+      "Опційно: токен Telegram-бота від [@BotFather](https://t.me/BotFather) - якщо хочеш бота з першого дня."
     ]
   },
   "steps": [
@@ -21,7 +21,7 @@
       "command": "docker run -d \\\n  --name bamdude \\\n  --network host \\\n  -e TZ=Europe/Kyiv \\\n  -v bamdude_data:/app/data \\\n  -v bamdude_logs:/app/logs \\\n  --restart unless-stopped \\\n  kainpl/bamdude:latest",
       "notes": [
         "**`--network host`** робить SSDP-автопошук принтерів робочим; на macOS / Windows Docker Desktop заміни на `-p 8000:8000` і додавай принтери вручну за IP.",
-        "Два томи: `bamdude_data` (SQLite + 3MF + прев'ю) і `bamdude_logs`. Зберігай їх — там вся історія твоїх друків."
+        "Два томи: `bamdude_data` (SQLite + 3MF + прев'ю) і `bamdude_logs`. Зберігай їх - там вся історія твоїх друків."
       ]
     },
     {
@@ -51,7 +51,7 @@
       "icon": "user-plus",
       "title": "Перший вхід + адмін",
       "subtitle": "Відкрий веб-UI і створи першого адміна.",
-      "body": "Перейди на **http://localhost:8000** (або IP хоста). Setup-гейт відмовляє в усіх API-викликах окрім `/auth/setup` поки не існує перший адмін — обери ім'я, пароль (≥8 символів, велика + мала + цифра), готово. Далі стандартна форма логіну, гейт зникає назавжди.",
+      "body": "Перейди на **http://localhost:8000** (або IP хоста). Setup-гейт відмовляє в усіх API-викликах окрім `/auth/setup` поки не існує перший адмін - обери ім'я, пароль (≥8 символів, велика + мала + цифра), готово. Далі стандартна форма логіну, гейт зникає назавжди.",
       "notes": [
         "Забув пароль адміна? `python -m backend.app.cli reset_admin` чистить setup-прапори і наступний старт повертає в setup-флоу.",
         "За reverse-proxy? Встанови `TRUSTED_PROXY_IPS` щоб rate-limit і refresh-cookie бачили `X-Forwarded-Proto` коректно."
@@ -62,7 +62,7 @@
       "icon": "printer",
       "title": "Додай перший принтер",
       "subtitle": "Авто-пошук через SSDP або вручну за IP.",
-      "body": "Settings → Printers → Add Printer. SSDP підбере Bambu-принтери в тій самій підмережі автоматично; інакше встав IP. Потім введи **access code** (на екрані принтера → Settings → Information). Save — BamDude відкриє MQTT/FTPS-зʼєднання і дашборд почне стрімити live-статус."
+      "body": "Settings → Printers → Add Printer. SSDP підбере Bambu-принтери в тій самій підмережі автоматично; інакше встав IP. Потім введи **access code** (на екрані принтера → Settings → Information). Save - BamDude відкриє MQTT/FTPS-зʼєднання і дашборд почне стрімити live-статус."
     },
     {
       "id": "telegram",

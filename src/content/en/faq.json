@@ -2,8 +2,8 @@
   "items": [
     { "q": "Is it really free?", "a": "Yes. AGPL-3.0-licensed, self-hosted, no paid tier. The only thing you pay for is your own server (or run it on a Raspberry Pi)." },
     { "q": "Which printers are supported?", "a": "Bambu Lab A1, A1 mini, P1S, P1P, X1C, X1E. Anything that exposes the standard Bambu MQTT and FTP endpoints with Developer Mode enabled." },
-    { "q": "Do I need to expose it to the internet?", "a": "No. The web UI runs on your local network. The Telegram bot reaches Telegram's API outbound — no inbound port required." },
-    { "q": "Can I migrate from Bambuddy?", "a": "Yes — BamDude is schema-compatible up to its forking point. The upgrade guide in the docs walks you through migrations." },
+    { "q": "Do I need to expose it to the internet?", "a": "No. The web UI runs on your local network. The Telegram bot reaches Telegram's API outbound - no inbound port required." },
+    { "q": "Can I migrate from Bambuddy?", "a": "Yes - BamDude is schema-compatible up to its forking point. The upgrade guide in the docs walks you through migrations." },
     { "q": "Cloud or local?", "a": "Strictly local. BamDude talks to your printers over your LAN using Developer Mode. No cloud calls except optional Obico AI failure detection (opt-in)." },
     { "q": "Does it support PostgreSQL?", "a": "Yes. SQLite is the default for the easy path; switch to Postgres via DATABASE_URL when your archive grows." },
     { "q": "Will my Telegram chat get spammed?", "a": "You configure per-chat notification settings, quiet hours, and event types. Defaults are conservative." }

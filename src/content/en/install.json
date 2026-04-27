@@ -21,7 +21,7 @@
       "command": "docker run -d \\\n  --name bamdude \\\n  --network host \\\n  -e TZ=Europe/Kyiv \\\n  -v bamdude_data:/app/data \\\n  -v bamdude_logs:/app/logs \\\n  --restart unless-stopped \\\n  kainpl/bamdude:latest",
       "notes": [
         "**`--network host`** makes printer SSDP auto-discovery work; on macOS / Windows Docker Desktop swap it for `-p 8000:8000` and add printers manually by IP.",
-        "Two volumes: `bamdude_data` (SQLite + 3MFs + thumbnails) and `bamdude_logs`. Keep them — they hold every print you've ever done."
+        "Two volumes: `bamdude_data` (SQLite + 3MFs + thumbnails) and `bamdude_logs`. Keep them - they hold every print you've ever done."
       ]
     },
     {
@@ -51,7 +51,7 @@
       "icon": "user-plus",
       "title": "First login + admin setup",
       "subtitle": "Open the web UI and create the initial admin.",
-      "body": "Browse to **http://localhost:8000** (or the host IP). The setup gate refuses every API call except `/auth/setup` until the first admin exists — pick a username, set a password (≥8 chars, upper + lower + digit), and you're in. After that the login form takes over and the gate disengages forever.",
+      "body": "Browse to **http://localhost:8000** (or the host IP). The setup gate refuses every API call except `/auth/setup` until the first admin exists - pick a username, set a password (≥8 chars, upper + lower + digit), and you're in. After that the login form takes over and the gate disengages forever.",
       "notes": [
         "Forgot the admin password? `python -m backend.app.cli reset_admin` clears the setup flags so the next boot re-enters this flow.",
         "Behind a reverse proxy? Set `TRUSTED_PROXY_IPS` so rate-limit and refresh-cookie code can read `X-Forwarded-Proto` correctly."
@@ -62,7 +62,7 @@
       "icon": "printer",
       "title": "Add your first printer",
       "subtitle": "Auto-discovery via SSDP or paste the IP.",
-      "body": "Settings → Printers → Add Printer. SSDP picks up Bambu printers on the same subnet automatically; otherwise paste the IP. Then enter the **access code** (printer screen → Settings → Information). Hit Save — BamDude opens the MQTT/FTPS connection and the dashboard starts streaming live status."
+      "body": "Settings → Printers → Add Printer. SSDP picks up Bambu printers on the same subnet automatically; otherwise paste the IP. Then enter the **access code** (printer screen → Settings → Information). Hit Save - BamDude opens the MQTT/FTPS connection and the dashboard starts streaming live status."
     },
     {
       "id": "telegram",
