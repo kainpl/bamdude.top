@@ -1,12 +1,12 @@
 {
   "items": [
-    { "category": "Telegram-бот",                 "bambuddy": "—",              "bamdude": "Повний бот: керування, черга, обслуговування, калібровка" },
+    { "category": "Telegram-бот",                 "bambuddy": "-",              "bamdude": "Повний бот: керування, черга, обслуговування, калібровка" },
     { "category": "Мультичат-авторизація",        "bambuddy": "Один чат",        "bamdude": "Ролі на чат з гранулярними правами" },
     { "category": "Мови",                          "bambuddy": "EN",             "bamdude": "EN + UK (розширювана JSON-локалізація)" },
-    { "category": "Черга для принт-ферми",        "bambuddy": "—",              "bamdude": "Фоновий диспатчер з AMS-мапінгом" },
+    { "category": "Черга для принт-ферми",        "bambuddy": "-",              "bamdude": "Фоновий диспатчер з AMS-мапінгом" },
     { "category": "Обслуговування в UI",          "bambuddy": "Вручну",         "bamdude": "Лічильники, алерти, відмітити з бота" },
     { "category": "Редактор нотифікацій",         "bambuddy": "Простий текст",   "bamdude": "MarkdownV2 з тулбаром форматування" },
-    { "category": "Калібровка в UI",              "bambuddy": "—",              "bamdude": "Стіл, вібрації, шум, nozzle offset" },
+    { "category": "Калібровка в UI",              "bambuddy": "-",              "bamdude": "Стіл, вібрації, шум, nozzle offset" },
     { "category": "Ліцензія",                      "bambuddy": "AGPL-3.0",       "bamdude": "AGPL-3.0" }
   ]
 }

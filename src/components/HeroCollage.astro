@@ -28,13 +28,13 @@ const slides = [
   {
     src: "/images/screenshot-desktop.png",
     label: "Printers",
-    description: "Live status of every printer at a glance — temperatures, progress, AMS state, queue depth.",
+    description: "Live status of every printer at a glance - temperatures, progress, AMS state, queue depth.",
     orientation: "landscape" as const,
   },
   {
     src: "/images/screenshot-archive.png",
     label: "Print archive",
-    description: "Every print stored with the source 3MF kept — full chain-of-custody, reprintable.",
+    description: "Every print stored with the source 3MF kept - full chain-of-custody, reprintable.",
     orientation: "landscape" as const,
   },
   {
@@ -46,13 +46,13 @@ const slides = [
   {
     src: "/images/screenshot-statistics.png",
     label: "Statistics",
-    description: "Filament, time, energy, cost — per printer or farm-wide, with date-range filters.",
+    description: "Filament, time, energy, cost - per printer or farm-wide, with date-range filters.",
     orientation: "landscape" as const,
   },
   {
     src: "/images/screenshot-maintenance.png",
     label: "Maintenance",
-    description: "Schedule and log service tasks — model-aware for carbon rods, steel rods, linear rails.",
+    description: "Schedule and log service tasks - model-aware for carbon rods, steel rods, linear rails.",
     orientation: "landscape" as const,
   },
   {
@@ -64,7 +64,7 @@ const slides = [
   {
     src: "/images/screenshot-project-details.png",
     label: "Project details",
-    description: "Drill into a project — plan progress, BOM consumption, attachments, activity timeline.",
+    description: "Drill into a project - plan progress, BOM consumption, attachments, activity timeline.",
     orientation: "landscape" as const,
   },
   {
@@ -76,45 +76,45 @@ const slides = [
   {
     src: "/images/screenshot-files.png",
     label: "File manager",
-    description: "Library of sliced 3MFs — organise into folders, link to projects, batch-print, share.",
+    description: "Library of sliced 3MFs - organise into folders, link to projects, batch-print, share.",
     orientation: "landscape" as const,
   },
   {
     src: "/images/screenshot-files-mp.png",
     label: "Multi-plate library",
-    description: "Per-plate breakdown for multi-plate 3MFs — thumbnail, time, filament, object count.",
+    description: "Per-plate breakdown for multi-plate 3MFs - thumbnail, time, filament, object count.",
     orientation: "landscape" as const,
   },
   {
     src: "/images/screenshot-settings.png",
     label: "Settings",
-    description: "Every BamDude setting in one place — themes, providers, integrations, scheduled backups.",
+    description: "Every BamDude setting in one place - themes, providers, integrations, scheduled backups.",
     orientation: "landscape" as const,
   },
   {
     src: "/images/screenshot-settings-macros.png",
     label: "Macros editor",
-    description: "G-code and MQTT-action macros — per-event filters and swap-mode profiles.",
+    description: "G-code and MQTT-action macros - per-event filters and swap-mode profiles.",
     orientation: "landscape" as const,
   },
   // Mobile ────────────────────────────────────────────────────────
   {
     src: "/images/screenshot-mobile.png",
     label: "On mobile",
-    description: "Same dashboard in your pocket — responsive layout, no separate app.",
+    description: "Same dashboard in your pocket - responsive layout, no separate app.",
     orientation: "portrait" as const,
   },
   // Telegram ──────────────────────────────────────────────────────
   {
     src: "/images/screenshot-telegram.png",
     label: "Telegram bot",
-    description: "Full printer control from your phone — status, pause / stop, camera snapshots, queue.",
+    description: "Full printer control from your phone - status, pause / stop, camera snapshots, queue.",
     orientation: "portrait" as const,
   },
   {
     src: "/images/screenshot-telegram-maintenance.png",
     label: "Maintenance reminders",
-    description: "Inline action buttons in your chat — mark a service task done without leaving Telegram.",
+    description: "Inline action buttons in your chat - mark a service task done without leaving Telegram.",
     orientation: "portrait" as const,
   },
 ];
@@ -148,7 +148,7 @@ const slides = [
           aria-roledescription="slide"
           aria-label={`${i + 1} of ${slides.length}: ${s.label}`}
         >
-          <img src={s.src} alt={`BamDude — ${s.label}`} loading={i === 0 ? "eager" : "lazy"} fetchpriority={i === 0 ? "high" : "auto"} />
+          <img src={s.src} alt={`BamDude - ${s.label}`} loading={i === 0 ? "eager" : "lazy"} fetchpriority={i === 0 ? "high" : "auto"} />
         </article>
       ))}
     </div>
