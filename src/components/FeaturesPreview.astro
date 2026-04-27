@@ -1,12 +1,32 @@
 ---
 import type { Locale } from '../i18n';
 import { t, localePath } from '../i18n';
-import Features from './Features.astro';
-import { ArrowRight } from 'lucide-react';
+import enFeatures from '../content/en/features-grouped.json';
+import ukFeatures from '../content/uk/features-grouped.json';
+import {
+  Activity, ListOrdered, Archive, Folder, Send, Bell, Palette, Wrench, Zap, ShieldCheck, ArrowRight,
+} from 'lucide-react';
 
 interface Props { locale: Locale; }
 const { locale } = Astro.props;
 const i = t(locale);
+
+const data = locale === 'uk' ? ukFeatures : enFeatures;
+
+const iconMap: Record<string, typeof Activity> = {
+  activity: Activity,
+  'list-ordered': ListOrdered,
+  archive: Archive,
+  folder: Folder,
+  send: Send,
+  bell: Bell,
+  palette: Palette,
+  wrench: Wrench,
+  zap: Zap,
+  'shield-check': ShieldCheck,
+};
+
+const featuresHref = localePath(locale, 'features');
 ---
 <section id="features-preview" aria-label="Features preview" class="pt-12 pb-24">
   <div class="mx-auto max-w-6xl px-6">
@@ -15,11 +35,28 @@ const i = t(locale);
       <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">{i.featuresPreview.title}</h2>
       <p class="mt-4 text-bambu-text-secondary leading-relaxed">{i.featuresPreview.subtitle}</p>
     </div>
-    <div class="mt-12">
-      <Features locale={locale} />
+    <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+      {data.groups.map((group) => {
+        const Icon = iconMap[group.icon] ?? Activity;
+        return (
+          <a href={`${featuresHref}#${group.id}`}
+             class="group rounded-2xl border border-bambu-border bg-bambu-bg-secondary p-5 hover:border-bambu-green hover:-translate-y-0.5 transition flex flex-col gap-3">
+            <div class="flex items-center justify-between">
+              <div class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-bambu-green/10 text-bambu-green">
+                <Icon size={20} strokeWidth={2} />
+              </div>
+              <span class="text-bambu-text-muted opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition">
+                <ArrowRight size={16} strokeWidth={2.5} />
+              </span>
+            </div>
+            <h3 class="font-bold tracking-tight leading-snug">{group.title}</h3>
+            <p class="text-xs text-bambu-text-secondary leading-relaxed line-clamp-3">{group.description}</p>
+          </a>
+        );
+      })}
     </div>
     <div class="mt-12 flex justify-center">
-      <a href={localePath(locale, 'features')} class="inline-flex items-center gap-2 rounded-lg px-6 py-3 font-semibold border border-bambu-border bg-bambu-bg-secondary hover:border-bambu-green transition">
+      <a href={featuresHref} class="inline-flex items-center gap-2 rounded-lg px-6 py-3 font-semibold border border-bambu-border bg-bambu-bg-secondary hover:border-bambu-green transition">
         {i.featuresPreview.cta}
         <ArrowRight size={18} strokeWidth={2.5} />
       </a>

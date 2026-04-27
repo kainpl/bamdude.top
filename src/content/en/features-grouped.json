@@ -20,7 +20,7 @@
       "id": "farm",
       "icon": "list-ordered",
       "title": "Print farm queue",
-      "description": "A queue that picks the right idle printer and respects everything you set up.",
+      "description": "Per-printer queues with parallel dispatch, staggered start, and built-in SWAP-mode support.",
       "items": [
         { "title": "Parallel background dispatch", "body": "Send jobs to multiple printers simultaneously — startup-locked DB phase, parallel FTP and start." },
         { "title": "Per-printer queues", "body": "Each printer has its own ordered queue with idle/printing/paused/error tracking." },

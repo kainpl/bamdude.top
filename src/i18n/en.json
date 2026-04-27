@@ -20,8 +20,8 @@
   },
   "highlight": {
     "badge": "For the farm",
-    "title": "A print farm that runs itself",
-    "body": "Drop a job into the queue and BamDude picks the right idle printer — by model, by AMS slots, by current load. Dispatch starts two, three, ten machines in parallel instead of one at a time. A1 swappers cycle plate after plate through swap-mode macros. G-code macros tick off the repetitive bits — chamber light, end-of-print sequences, calibration runs — without anyone watching. You set the rules once; the farm prints.",
+    "title": "A whole farm from a single dashboard",
+    "body": "Send prints to several printers at the same time — parallel dispatch, no one-job-at-a-time gate. Per-printer queues with staggered start space out simultaneous bed-heat draws so the building doesn't brown out. SWAP-mode keeps an A1 farm cycling plate after plate through swap macros. Re-print onto any printer with the right AMS slots remapped from the source archive. G-code macros handle the small repetitive bits — chamber light, end-of-print sequences, calibration cycles — without anyone watching.",
     "cta": "Explore the features"
   },
   "supportedPrinters": {
@@ -68,7 +68,7 @@
   "featuresPreview": {
     "eyebrow": "What you get",
     "title": "Everything you need to run a Bambu Lab print farm",
-    "subtitle": "Six headline pieces — the rest live on the features page.",
+    "subtitle": "Ten feature groups, each one a click away.",
     "cta": "Explore all features"
   },
   "how": {
