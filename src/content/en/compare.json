@@ -8,6 +8,7 @@
       "highlights": [
         "100% LAN-based, no cloud account",
         "Multi-printer queue with parallel dispatch",
+        "Auto-queue routing by model + filament + color",
         "Full Telegram bot with multi-chat auth",
         "8+ notification channels in one editor",
         "Proxy mode for remote prints (no VPN)"
@@ -89,6 +90,7 @@
         "rows": [
           { "label": "Print queue with drag-and-drop", "values": ["yes", "no", "partial:Via plugins"] },
           { "label": "Multi-printer queue", "values": ["yes:Parallel dispatch", "no", "no"] },
+          { "label": "Auto-queue routing (model + filament + color)", "values": ["yes:SJF + starvation guard", "no", "no"] },
           { "label": "Staggered start", "values": ["yes:Bed-temp watchdog", "no", "no"] },
           { "label": "G-code macros with ACK", "values": ["yes:MQTT-confirmed", "no", "yes"] },
           { "label": "Smart plug control", "values": ["yes:Tasmota / HA / MQTT / REST", "no", "partial:Via plugins"] },

@@ -24,6 +24,7 @@
       "items": [
         { "title": "Parallel background dispatch", "body": "Send jobs to multiple printers simultaneously - startup-locked DB phase, parallel FTP and start." },
         { "title": "Per-printer queues", "body": "Each printer has its own ordered queue with idle/printing/paused/error tracking." },
+        { "title": "Auto-queue routing", "body": "Drop a print without naming a target - the router picks an idle printer that matches model, filament type, and (optionally) color. SJF + starvation guard for fair scheduling." },
         { "title": "Auto-pause on failure", "body": "When a print fails, the queue stops on that printer so you can decide what's next." },
         { "title": "Staggered start", "body": "Limit concurrent heating across the farm - bed temp watchdog prevents brownouts." },
         { "title": "Re-print with AMS mapping", "body": "Reprint to any printer, remap each filament slot from the source archive." },
@@ -126,7 +127,7 @@
       "items": [
         { "title": "Smart plug control", "body": "Tasmota, Home Assistant, MQTT, REST/webhook plugs - auto power on/off with prints." },
         { "title": "Energy tracking", "body": "Per-print kWh capture from the plug, plus date-range farm-wide totals." },
-        { "title": "Virtual printer modes", "body": "Print Queue (slicer → queue), File Manager (slicer → library), Proxy (TLS relay)." },
+        { "title": "Virtual printer modes", "body": "File Manager (review queue), Print Queue (slicer → fixed printer), Auto-Queue (slicer → router picks idle printer), Proxy (TLS relay)." },
         { "title": "Proxy mode for remote prints", "body": "Send from anywhere via TLS relay - no VPN, no port-forward, end-to-end encrypted." },
         { "title": "Obico AI failure detection", "body": "Optional ML-based failure detection with notify / pause / pause-and-power-off responses." }
       ]
