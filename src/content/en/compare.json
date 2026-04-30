@@ -57,7 +57,10 @@
           { "label": "Remote prints without VPN", "values": ["yes:Proxy mode", "yes:Via cloud", "no"] },
           { "label": "Docker deployment", "values": ["yes", "na:Mobile app", "yes"] },
           { "label": "Works with Bambu Studio / Orca", "values": ["yes", "yes", "partial:Via plugins"] },
-          { "label": "Multi-printer dashboard", "values": ["yes:Resizable cards", "partial:Basic list", "no:One instance per printer"] }
+          { "label": "Multi-printer dashboard", "values": ["yes:Resizable cards", "partial:Basic list", "no:One instance per printer"] },
+          { "label": "MakerWorld URL import", "values": ["yes:Plate-keyed dedup", "no", "no"] },
+          { "label": "Server-side slicing", "values": ["yes:OrcaSlicer / BambuStudio sidecar", "no", "partial:Via plugins"] },
+          { "label": "Tailscale (private tailnet)", "values": ["yes:Opt-in per VP, auto LE certs", "no", "no"] }
         ]
       },
       {
@@ -69,7 +72,8 @@
           { "label": "External camera (RTSP/USB)", "values": ["yes", "no", "yes"] },
           { "label": "Calibration UI", "values": ["yes:Model-aware", "partial", "partial"] },
           { "label": "AMS management + drying", "values": ["yes", "partial", "no"] },
-          { "label": "Printer SD-card browser", "values": ["yes:Bulk dl/del", "no", "yes"] }
+          { "label": "Printer SD-card browser", "values": ["yes:Bulk dl/del", "no", "yes"] },
+          { "label": "Long-lived camera tokens", "values": ["yes:For HA / Frigate / kiosks", "no", "no"] }
         ]
       },
       {
@@ -82,7 +86,9 @@
           { "label": "Side-by-side compare", "values": ["yes:2-5 prints", "no", "no"] },
           { "label": "Full-text search + dedup", "values": ["yes:Source-hash", "no", "partial"] },
           { "label": "Projects with print plan", "values": ["yes", "no", "no"] },
-          { "label": "Auto-cleanup retention", "values": ["yes", "no", "no"] }
+          { "label": "Auto-cleanup retention", "values": ["yes", "no", "no"] },
+          { "label": "Library + Archive Trash bins", "values": ["yes:Restore window + ref-aware delete", "no", "no"] },
+          { "label": "Printed / Not Printed filters", "values": ["yes", "no", "no"] }
         ]
       },
       {
@@ -96,7 +102,8 @@
           { "label": "Smart plug control", "values": ["yes:Tasmota / HA / MQTT / REST", "no", "partial:Via plugins"] },
           { "label": "Auto power on/off + temp watchdog", "values": ["yes", "no", "partial:Via plugins"] },
           { "label": "Re-print with AMS mapping", "values": ["yes", "no", "no"] },
-          { "label": "Swap mode (A1 plate-swappers)", "values": ["yes", "no", "no"] }
+          { "label": "Swap mode (A1 plate-swappers)", "values": ["yes", "no", "no"] },
+          { "label": "G-code injection per print", "values": ["yes:Per-model snippet library", "no", "partial:Via plugins"] }
         ]
       },
       {
@@ -105,7 +112,7 @@
           { "label": "Push notifications", "values": ["yes:8+ channels", "yes:Mobile push", "partial:Via plugins"] },
           { "label": "Full Telegram bot", "values": ["yes:Control + queue + maintenance", "no", "partial:Via plugins"] },
           { "label": "Multi-chat with roles", "values": ["yes", "no", "no"] },
-          { "label": "Discord / Pushover / ntfy", "values": ["yes", "no", "partial:Via plugins"] },
+          { "label": "Discord / Pushover / ntfy", "values": ["yes:Per-event ntfy priority", "no", "partial:Via plugins"] },
           { "label": "Email (SMTP) + webhooks", "values": ["yes", "no", "partial:Via plugins"] },
           { "label": "MarkdownV2 editor with templates", "values": ["yes", "no", "no"] }
         ]
@@ -116,6 +123,8 @@
           { "label": "Built-in spool inventory", "values": ["yes", "no", "partial:Via plugins"] },
           { "label": "Cost & lot tracking", "values": ["yes", "no", "no"] },
           { "label": "Spoolman integration", "values": ["yes:Two-way sync", "no", "partial:Via plugins"] },
+          { "label": "Per-spool category + low-stock", "values": ["yes", "no", "no"] },
+          { "label": "Multi-colour filament gradients", "values": ["yes:Painted / dual / silk", "no", "no"] },
           { "label": "Maintenance reminders", "values": ["yes:Hours + calendar", "no", "no"] },
           { "label": "Energy monitoring", "values": ["yes:Per-print kWh", "no", "no"] },
           { "label": "OrcaSlicer preset import", "values": ["yes", "no", "no"] }
@@ -126,10 +135,11 @@
         "rows": [
           { "label": "Always-on authentication", "values": ["yes", "yes", "partial:Optional"] },
           { "label": "MFA (TOTP + Email + Backup)", "values": ["yes", "no", "partial:Via plugins"] },
-          { "label": "OIDC SSO", "values": ["yes:PKCE + JWKS", "no", "no"] },
+          { "label": "OIDC SSO incl. Azure Entra ID", "values": ["yes:PKCE + JWKS, custom email_claim", "no", "no"] },
           { "label": "LDAP / Active Directory", "values": ["yes", "no", "partial:Via plugins"] },
           { "label": "Granular permissions (80+)", "values": ["yes", "no", "no"] },
-          { "label": "API keys + webhooks", "values": ["yes", "no", "yes"] }
+          { "label": "API keys + webhooks", "values": ["yes", "no", "yes"] },
+          { "label": "Per-request trace IDs", "values": ["yes:X-Trace-Id header + log correlation", "no", "no"] }
         ]
       },
       {

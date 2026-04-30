@@ -57,7 +57,10 @@
           { "label": "Віддалений друк без VPN", "values": ["yes:Proxy-режим", "yes:Через хмару", "no"] },
           { "label": "Docker-розгортання", "values": ["yes", "na:Мобільний застосунок", "yes"] },
           { "label": "Працює з Bambu Studio / Orca", "values": ["yes", "yes", "partial:Через плагіни"] },
-          { "label": "Дашборд багатьох принтерів", "values": ["yes:Картки змінного розміру", "partial:Простий список", "no:Один інстанс на принтер"] }
+          { "label": "Дашборд багатьох принтерів", "values": ["yes:Картки змінного розміру", "partial:Простий список", "no:Один інстанс на принтер"] },
+          { "label": "Імпорт з MakerWorld за URL", "values": ["yes:Дедуп за плитою", "no", "no"] },
+          { "label": "Серверний слайсинг", "values": ["yes:OrcaSlicer / BambuStudio sidecar", "no", "partial:Через плагіни"] },
+          { "label": "Tailscale (приватний tailnet)", "values": ["yes:Опційно на VP, авто-серти LE", "no", "no"] }
         ]
       },
       {
@@ -69,7 +72,8 @@
           { "label": "Зовнішня камера (RTSP/USB)", "values": ["yes", "no", "yes"] },
           { "label": "UI-калібрування", "values": ["yes:Model-aware", "partial", "partial"] },
           { "label": "AMS + сушіння", "values": ["yes", "partial", "no"] },
-          { "label": "Файл-браузер SD-картки", "values": ["yes:Bulk dl/del", "no", "yes"] }
+          { "label": "Файл-браузер SD-картки", "values": ["yes:Bulk dl/del", "no", "yes"] },
+          { "label": "Довготривалі токени камери", "values": ["yes:Для HA / Frigate / kiosk", "no", "no"] }
         ]
       },
       {
@@ -82,7 +86,9 @@
           { "label": "Side-by-side порівняння", "values": ["yes:2-5 принтів", "no", "no"] },
           { "label": "Повнотекстовий пошук + dedup", "values": ["yes:Source-hash", "no", "partial"] },
           { "label": "Проєкти з print plan", "values": ["yes", "no", "no"] },
-          { "label": "Авто-очистка з retention", "values": ["yes", "no", "no"] }
+          { "label": "Авто-очистка з retention", "values": ["yes", "no", "no"] },
+          { "label": "Корзини бібліотеки + архіву", "values": ["yes:Restore window + ref-aware delete", "no", "no"] },
+          { "label": "Фільтри Друкувалось / Не друкувалось", "values": ["yes", "no", "no"] }
         ]
       },
       {
@@ -96,7 +102,8 @@
           { "label": "Керування розетками", "values": ["yes:Tasmota / HA / MQTT / REST", "no", "partial:Через плагіни"] },
           { "label": "Авто on/off + watchdog темп.", "values": ["yes", "no", "partial:Через плагіни"] },
           { "label": "Реприн з AMS-мапінгом", "values": ["yes", "no", "no"] },
-          { "label": "Swap-режим (A1 swappers)", "values": ["yes", "no", "no"] }
+          { "label": "Swap-режим (A1 swappers)", "values": ["yes", "no", "no"] },
+          { "label": "Інжекція G-code на друк", "values": ["yes:Бібліотека сніпетів на модель", "no", "partial:Через плагіни"] }
         ]
       },
       {
@@ -105,7 +112,7 @@
           { "label": "Push-нотифікації", "values": ["yes:8+ каналів", "yes:Push", "partial:Через плагіни"] },
           { "label": "Повний Telegram-бот", "values": ["yes:Контроль + черга + обслуговування", "no", "partial:Через плагіни"] },
           { "label": "Мультичат із ролями", "values": ["yes", "no", "no"] },
-          { "label": "Discord / Pushover / ntfy", "values": ["yes", "no", "partial:Через плагіни"] },
+          { "label": "Discord / Pushover / ntfy", "values": ["yes:ntfy-пріоритет на подію", "no", "partial:Через плагіни"] },
           { "label": "Email (SMTP) + webhooks", "values": ["yes", "no", "partial:Через плагіни"] },
           { "label": "MarkdownV2-редактор з шаблонами", "values": ["yes", "no", "no"] }
         ]
@@ -116,6 +123,8 @@
           { "label": "Вбудований інвентар котушок", "values": ["yes", "no", "partial:Через плагіни"] },
           { "label": "Облік ціни і lot-номерів", "values": ["yes", "no", "no"] },
           { "label": "Spoolman інтеграція", "values": ["yes:Двостороння", "no", "partial:Через плагіни"] },
+          { "label": "Категорія + low-stock на котушку", "values": ["yes", "no", "no"] },
+          { "label": "Градієнти багатоколірного пластику", "values": ["yes:Painted / dual / silk", "no", "no"] },
           { "label": "Нагадування про обслуговування", "values": ["yes:Години + календар", "no", "no"] },
           { "label": "Облік енергії", "values": ["yes:kWh на друк", "no", "no"] },
           { "label": "Імпорт OrcaSlicer-пресетів", "values": ["yes", "no", "no"] }
@@ -126,10 +135,11 @@
         "rows": [
           { "label": "Always-on авторизація", "values": ["yes", "yes", "partial:Опціонально"] },
           { "label": "MFA (TOTP + Email + Backup)", "values": ["yes", "no", "partial:Через плагіни"] },
-          { "label": "OIDC SSO", "values": ["yes:PKCE + JWKS", "no", "no"] },
+          { "label": "OIDC SSO + Azure Entra ID", "values": ["yes:PKCE + JWKS, кастомний email_claim", "no", "no"] },
           { "label": "LDAP / Active Directory", "values": ["yes", "no", "partial:Через плагіни"] },
           { "label": "Гранулярні дозволи (80+)", "values": ["yes", "no", "no"] },
-          { "label": "API-ключі + webhooks", "values": ["yes", "no", "yes"] }
+          { "label": "API-ключі + webhooks", "values": ["yes", "no", "yes"] },
+          { "label": "Trace ID на запит", "values": ["yes:X-Trace-Id у відповіді + кореляція в логах", "no", "no"] }
         ]
       },
       {
