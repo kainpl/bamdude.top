@@ -32,7 +32,10 @@ export default defineConfig({
       serialize(item) {
         const buildTime = new Date().toISOString();
         item.lastmod = buildTime;
-        const path = new URL(item.url).pathname.replace(/\/uk(\/|$)/, '/').replace(/\/$/, '');
+        // Strip the protocol+host prefix to get the pathname. Avoids the
+        // `URL` global which isn't whitelisted in our flat ESLint config
+        // for .mjs files — same effect, one less rule to argue with.
+        const path = item.url.replace(/^https?:\/\/[^/]+/, '').replace(/\/uk(\/|$)/, '/').replace(/\/$/, '');
         // Map normalized path to a crawl signal.
         if (path === '' || path === '/') {
           item.priority = 1.0;
