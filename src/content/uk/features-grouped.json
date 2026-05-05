@@ -14,7 +14,9 @@
         { "title": "Калібрування з UI", "body": "Bed leveling, vibration, motor noise, nozzle offset, high-temp - з вебу або з Telegram, model-aware." },
         { "title": "Розшифровка HMS-помилок", "body": "Перекладає коди Bambu в людську мову, з історією на принтер." },
         { "title": "AMS-керування", "body": "Конфіг слотів, перечитка RFID, графіки сушіння, моніторинг вологості." },
-        { "title": "Файловий менеджер принтера", "body": "Перегляд SD-картки, bulk-завантаження або bulk-видалення віддалених файлів." }
+        { "title": "Файловий менеджер принтера", "body": "Перегляд SD-картки, bulk-завантаження або bulk-видалення віддалених файлів. Save-to-Library промоутить голий .3mf у .gcode.3mf, коли байти вже зрізані." },
+        { "title": "Оновлення прошивки по LAN", "body": "Витягує firmware ZIP з Bambu CDN, льотить на принтер по LAN-mode FTP, інсталяція через MQTT — без cloud-акаунту. curl_cffi-імперсонація Chrome обходить Cloudflare JA3-гейт; stale buildId self-heal-иться." },
+        { "title": "Mobile / PWA-інсталяція", "body": "Встанови BamDude як PWA на iOS / Android / desktop — standalone-вікно, оффлайн app shell, share-target uploads (Android), push-нотифікації (HTTPS)." }
       ]
     },
     {
@@ -50,7 +52,9 @@
         { "title": "Авто-очистка з retention", "body": "Видаляй .3mf через N днів простою, метадані / прев'ю / енергія / нотатки залишаються." },
         { "title": "Корзини бібліотеки + архіву", "body": "Soft-delete з вікном відновлення, scheduled-retention і reference-aware-видалення, що відмовляється стирати байти, на які ще посилається активний архів." },
         { "title": "Фільтри Друкувалось / Не друкувалось", "body": "Чіпи на сторінці архіву ділять перші друки і реприни — швидкий шлях знайти файли, що ще не йшли на друк." },
-        { "title": "Recovery 3MF-завантаження", "body": "FTP впав на старті? Retry на старті системи, реконекті, кінці друку, або вручну." }
+        { "title": "Recovery 3MF-завантаження", "body": "FTP впав на старті? Retry на старті системи, реконекті, кінці друку, або вручну." },
+        { "title": "Дашборд аналізу фейлів", "body": "Ретроспективна аналітика по архіву — failure rate за принтером, матеріалом, часом доби, тривалістю друку. Drill у конкретні архіви в один клік." },
+        { "title": "Експорт CSV / XLSX", "body": "Bulk-експорт відфільтрованих архівів і статистики під білінг, QA-логи чи BI. UTF-8 BOM CSV, multi-sheet XLSX." }
       ]
     },
     {
@@ -66,7 +70,9 @@
         { "title": "Друк напряму або в чергу", "body": "Файл → принтер (filter за моделлю) → Print Now або Add to Queue." },
         { "title": "Label-objects метадані", "body": "Skip-objects підтримка визначається при upload - кнопка вмикається лише коли слайсер реально це підтримує." },
         { "title": "Імпорт з MakerWorld за URL", "body": "Встав посилання на модель з MakerWorld, обери плиту — BamDude скачає 3MF прямо в бібліотеку. Бейдж походження тримає лінк на оригінал." },
-        { "title": "Серверний слайсинг", "body": "Кидай STL/3MF у контейнерний OrcaSlicer чи BambuStudio sidecar і отримуй готовий .gcode.3mf, не виходячи з апи." }
+        { "title": "Серверний слайсинг", "body": "Кидай STL/3MF у контейнерний OrcaSlicer чи BambuStudio sidecar і отримуй готовий .gcode.3mf, не виходячи з апи." },
+        { "title": "Per-user Bambu Cloud", "body": "Кожен користувач логіниться у власний Bambu Cloud-акаунт зі своєю регіональною зоною — без спільних кредів, без single-region lock-in. Токени Fernet-шифровані, sliding refresh, OIDC-style flow." },
+        { "title": "Локальні OrcaSlicer-пресети", "body": "Кидай .orca_filament / .bbscfg / .bbsflmt / ZIP-бандли напряму — BamDude резолвить inheritance пресетів з upstream OrcaSlicer. Cloud-free шлях для шопів без Bambu-акаунтів." }
       ]
     },
     {
@@ -155,6 +161,7 @@
         { "title": "OIDC SSO + Azure Entra ID", "body": "PKCE + state + nonce + JWKS з SSRF-захистом на issuer URL, конфігурований email_claim (preferred_username / upn) для Microsoft 365 / Entra ID." },
         { "title": "LDAP / Active Directory", "body": "LDAP-логін з мапінгом груп - для команд з готовою ідентичністю." },
         { "title": "Sliding-session refresh", "body": "Ротуючі refresh-токени, OWASP reuse detection, HttpOnly-cookie + 1h access JWT." },
+        { "title": "API-ключі з cloud-access scope", "body": "Per-user `bb_*` токени, scoped до підмножини прав власника. Opt-in cloud-access scope для маршрутів Bambu Cloud. X-API-Key або Authorization: Bearer — обидва. Hashed at rest, last_used_at для аудиту." },
         { "title": "REST + WebSocket API", "body": "Повний REST API з API-ключами + WebSocket для live-інтеграцій." },
         { "title": "Prometheus метрики", "body": "Виділений /metrics endpoint з лічильниками на ферму і принтер." },
         { "title": "Trace ID на запит", "body": "Кожен HTTP-запит отримує X-Trace-Id у відповіді й логи — щоб скорелювати одну дію користувача через HTTP / MQTT / scheduler." },

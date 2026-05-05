@@ -60,7 +60,8 @@
           { "label": "Multi-printer dashboard", "values": ["yes:Resizable cards", "partial:Basic list", "no:One instance per printer"] },
           { "label": "MakerWorld URL import", "values": ["yes:Plate-keyed dedup", "no", "no"] },
           { "label": "Server-side slicing", "values": ["yes:OrcaSlicer / BambuStudio sidecar", "no", "partial:Via plugins"] },
-          { "label": "Tailscale (private tailnet)", "values": ["yes:Opt-in per VP, auto LE certs", "no", "no"] }
+          { "label": "Tailscale (private tailnet)", "values": ["yes:Opt-in per VP, auto LE certs", "no", "no"] },
+          { "label": "LAN firmware updates", "values": ["yes:SD-card, no cloud needed", "yes:Cloud only", "no"] }
         ]
       },
       {
@@ -88,7 +89,9 @@
           { "label": "Projects with print plan", "values": ["yes", "no", "no"] },
           { "label": "Auto-cleanup retention", "values": ["yes", "no", "no"] },
           { "label": "Library + Archive Trash bins", "values": ["yes:Restore window + ref-aware delete", "no", "no"] },
-          { "label": "Printed / Not Printed filters", "values": ["yes", "no", "no"] }
+          { "label": "Printed / Not Printed filters", "values": ["yes", "no", "no"] },
+          { "label": "Failure analysis dashboard", "values": ["yes:By printer / material / time-of-day", "no", "no"] },
+          { "label": "CSV / XLSX export", "values": ["yes:Filter-aware", "no", "partial:Via plugins"] }
         ]
       },
       {

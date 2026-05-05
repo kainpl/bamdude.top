@@ -60,7 +60,8 @@
           { "label": "Дашборд багатьох принтерів", "values": ["yes:Картки змінного розміру", "partial:Простий список", "no:Один інстанс на принтер"] },
           { "label": "Імпорт з MakerWorld за URL", "values": ["yes:Дедуп за плитою", "no", "no"] },
           { "label": "Серверний слайсинг", "values": ["yes:OrcaSlicer / BambuStudio sidecar", "no", "partial:Через плагіни"] },
-          { "label": "Tailscale (приватний tailnet)", "values": ["yes:Опційно на VP, авто-серти LE", "no", "no"] }
+          { "label": "Tailscale (приватний tailnet)", "values": ["yes:Опційно на VP, авто-серти LE", "no", "no"] },
+          { "label": "Оновлення прошивки по LAN", "values": ["yes:SD-картка, без хмари", "yes:Тільки через хмару", "no"] }
         ]
       },
       {
@@ -88,7 +89,9 @@
           { "label": "Проєкти з print plan", "values": ["yes", "no", "no"] },
           { "label": "Авто-очистка з retention", "values": ["yes", "no", "no"] },
           { "label": "Корзини бібліотеки + архіву", "values": ["yes:Restore window + ref-aware delete", "no", "no"] },
-          { "label": "Фільтри Друкувалось / Не друкувалось", "values": ["yes", "no", "no"] }
+          { "label": "Фільтри Друкувалось / Не друкувалось", "values": ["yes", "no", "no"] },
+          { "label": "Дашборд аналізу фейлів", "values": ["yes:За принтером / матеріалом / часом доби", "no", "no"] },
+          { "label": "Експорт CSV / XLSX", "values": ["yes:Filter-aware", "no", "partial:Через плагіни"] }
         ]
       },
       {
