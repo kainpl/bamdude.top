@@ -1,5 +1,6 @@
 {
   "nav": {
+    "why": "Why BamDude",
     "features": "Features",
     "compare": "Compare",
     "install": "Install",
@@ -117,7 +118,84 @@
       "subtitle": "Self-hosting, supported printers, migration from Bambuddy, Postgres, network requirements.",
       "metaTitle": "FAQ - BamDude",
       "metaDescription": "Frequently asked questions about BamDude - self-hosting, supported Bambu Lab printers, migration, Postgres, Telegram setup."
+    },
+    "why": {
+      "eyebrow": "Why BamDude",
+      "title": "It's a fleet manager. Not a backend.",
+      "subtitle": "Why the slicer-first flow falls apart at fleet scale, and how BamDude's virtual-printer routing solves it without changing your habits.",
+      "metaTitle": "Why BamDude - fleet manager, not a passive backend",
+      "metaDescription": "BamDude is a fleet manager: slicer to BamDude to printers. Why that distinction matters for accurate history, spool tracking and multi-printer dispatch."
     }
+  },
+  "why": {
+    "teaser": {
+      "eyebrow": "Why BamDude",
+      "title": "It's a fleet manager. Not a backend.",
+      "body": "The classic flow - slice, hit Print, slicer talks to the printer directly - is fine for one or two machines. But when accurate history and real spool control start mattering, the slicer can't be the source of truth. BamDude flips the order: slicer to BamDude to printers. Hit Print, route it to a BamDude virtual printer, then in BamDude pick how many printers and how many copies. Files dispatch, swap macros run, history is written, every gram of filament is logged - across the whole fleet, from one place.",
+      "cta": "Read the full pitch"
+    },
+    "paradigms": {
+      "title": "Two ways to drive a 3D printer",
+      "classicTitle": "The classic way",
+      "classicLine1": "Slicer talks to the printer directly. You hit Print in BambuStudio or Orca and the file flies to the printer over LAN. In this model BamDude - like any external service - is a passive listener: it catches events from the printer, builds history \"where it can,\" tries to track filament on best-effort.",
+      "classicLine2": "Works fine when you have one or two printers and the cost of fuzzy history is acceptable. Once your fleet grows - or accurate logs and real spool control start driving business decisions - the slicer-is-in-charge model stops holding water.",
+      "fleetTitle": "The fleet-first way",
+      "fleetLine1": "Slicer talks to BamDude. BamDude talks to the printers. You slice as usual, but Print routes the file to a BamDude virtual printer in File Manager mode. Inside BamDude you pick which printers run the job and in how many copies.",
+      "fleetBullets": [
+        "Distributes the file to each printer",
+        "Runs the macros (including swap mode)",
+        "Watches progress and catches completion",
+        "Writes complete print history",
+        "Tracks every gram of filament that actually went into the print"
+      ],
+      "fleetLine2": "This is the canonical shape of a fleet manager: one source of truth orchestrating everything else. Bambu Farm Manager and Bambu Handy do the same job - BamDude does it self-hosted, with its own history, swap mode, queue, energy tracking, flexible notifications, and a full access-control system."
+    },
+    "example": {
+      "title": "Example: Benchy on 10 printers at once",
+      "subtitle": "10 A1 minis, swap mode, one copy per printer.",
+      "withoutTitle": "Without BamDude",
+      "withoutSteps": [
+        "Slice the Benchy.",
+        "Save the .3mf to disk.",
+        "Open SwapList.app, load the file, configure swaps, save the swap file.",
+        "Open Bambu Farm Manager, upload the swap file.",
+        "Hit Print, pick all 10 printers, start."
+      ],
+      "withTitle": "With BamDude",
+      "withSteps": [
+        "Slice the Benchy.",
+        "Hit Print, pick the BamDude virtual printer in File Manager mode.",
+        "Switch to BamDude, choose Schedule or Print.",
+        "Select all the minis, set 10 plates, hit Print."
+      ],
+      "afterword": "That's it. Files dispatch across the fleet, swap macros run, history is written, spools are accounted for."
+    },
+    "replaces": {
+      "title": "What this replaces",
+      "intro": "BamDude steps in for Bambu Farm Manager and Bambu Handy when you want:",
+      "items": [
+        "Self-hosted, with no mandatory cloud dependency (Bambu Cloud is opt-in, not required)",
+        "Print history that's guaranteed, not best effort",
+        "Spool accounting tied to actual print events",
+        "Equally capable control from Telegram, mobile, and the web UI",
+        "Flexible notifications with per-chat or per-channel preferences",
+        "A full API plus integrations - Spoolman, Home Assistant, OrcaSlicer / BambuStudio as sidecars, Prometheus, webhooks"
+      ]
+    },
+    "fallback": {
+      "title": "What if I print from the slicer or the printer screen?",
+      "body1": "BamDude knows how to pick that up after the fact - it'll add it to history and try to fetch the 3MF from the printer. But that path is the exception, not the rule.",
+      "body2": "Bambu's firmware is closed, which puts a hard ceiling on what an external server can learn after the event. If BamDude is offline at the moment something happens (link drops, server restart, anything), and the operator does 10 reprints by hand in that window - those 10 reprints stay invisible to BamDude forever. No passive listener can recover them with full accuracy, because they were never in the event stream the server got to see."
+    },
+    "takeaway": {
+      "title": "The architectural takeaway",
+      "intro": "As long as 3D-printer firmware stays closed, there's only one shape that holds up for a serious fleet:",
+      "blockquote": "Slicer ↔ Fleet manager ↔ Printers.",
+      "body": "Not slicer talks to printers directly while a manager somewhere listens in. Not three different UIs steering the same printers with no knowledge of each other. One centre that sees everything - because everything passes through it.",
+      "outro": "Virtual printers exist precisely to make that shift painless: you don't have to break the slice-and-Print habit. You just point the same Print button at the right place."
+    },
+    "ctaPrimary": "Quick start",
+    "ctaSecondary": "Set up a virtual printer"
   },
   "footer": {
     "product": "Product",

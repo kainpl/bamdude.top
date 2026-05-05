@@ -4,7 +4,7 @@ import { t, localePath } from '../i18n';
 import { ThemeToggle } from './islands/ThemeToggle';
 import { LangToggle } from './islands/LangToggle';
 
-type Active = 'home' | 'features' | 'compare' | 'install' | 'faq';
+type Active = 'home' | 'why' | 'features' | 'compare' | 'install' | 'faq';
 interface Props { locale: Locale; active?: Active; }
 const { locale, active = 'home' } = Astro.props;
 const i = t(locale);
@@ -12,6 +12,7 @@ const repo = import.meta.env.PUBLIC_GITHUB_REPO || 'https://github.com/kainpl/ba
 const docs = 'https://docs.bamdude.top';
 
 const items: { id: Active; href: string; label: string }[] = [
+  { id: 'why',      href: localePath(locale, 'why'),      label: i.nav.why },
   { id: 'features', href: localePath(locale, 'features'), label: i.nav.features },
   { id: 'compare',  href: localePath(locale, 'compare'),  label: i.nav.compare },
   { id: 'install',  href: localePath(locale, 'install'),  label: i.nav.install },
