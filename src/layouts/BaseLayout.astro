@@ -10,15 +10,42 @@ interface Props {
   description: string;
   locale: Locale;
   ogImage?: string;
+  ogType?: 'website' | 'article';
+  // Optional ISO timestamp for article-type pages. Omit on website-type.
+  ogUpdatedTime?: string;
+  // Page slug used to pick a per-page OG image. Defaults to 'home' which
+  // maps back to /og/<locale>/home.png. New value-prop pages (why, features,
+  // install, faq, compare) get their own card.
+  pageKey?: 'home' | 'why' | 'features' | 'install' | 'faq' | 'compare';
+  // Breadcrumb trail rendered as JSON-LD only (not visible).
+  // First entry is the root. Last entry is the current page.
+  breadcrumbs?: { name: string; href: string }[];
 }
 
-const { title, description, locale, ogImage = `/og/${locale}.png` } = Astro.props;
+const {
+  title,
+  description,
+  locale,
+  pageKey = 'home',
+  ogImage = `/og/${locale}/${pageKey}.png`,
+  ogType = 'website',
+  ogUpdatedTime,
+  breadcrumbs,
+} = Astro.props;
 const i = t(locale);
 const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://bamdude.top';
 const path = Astro.url.pathname;
 const canonical = `${siteUrl}${path}`;
 const alt = altLocale(locale);
-const altPath = locale === defaultLocale ? `/${alt}${path === '/' ? '/' : path}` : path.replace(`/${locale}`, alt === defaultLocale ? '' : `/${alt}`);
+// EN-equivalent of the current path drives both the alt-locale link and
+// x-default. For locale==='en' it's the path itself; for any other locale
+// strip the leading /<locale>.
+const enPath = locale === defaultLocale ? path : path.replace(new RegExp(`^/${locale}`), '') || '/';
+const altPath = locale === defaultLocale ? `/${alt}${path === '/' ? '/' : path}` : enPath;
+// x-default tells Google which page to serve when no language matches.
+// We use the EN path for the same content (NOT the homepage), so /uk/why
+// falls back to /why instead of /.
+const xDefaultUrl = `${siteUrl}${enPath}`;
 ---
 <!doctype html>
 <html lang={locale}>
@@ -30,21 +57,27 @@ const altPath = locale === defaultLocale ? `/${alt}${path === '/' ? '/' : path}`
     <link rel="canonical" href={canonical} />
     <link rel="alternate" hreflang={locale} href={canonical} />
     <link rel="alternate" hreflang={alt} href={`${siteUrl}${altPath}`} />
-    <link rel="alternate" hreflang="x-default" href={`${siteUrl}/`} />
+    <link rel="alternate" hreflang="x-default" href={xDefaultUrl} />
 
     <link rel="icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={`${siteUrl}${ogImage}`} />
     <meta property="og:locale" content={locale === 'en' ? 'en_US' : 'uk_UA'} />
     <meta property="og:locale:alternate" content={alt === 'en' ? 'en_US' : 'uk_UA'} />
+    {ogType === 'article' && ogUpdatedTime && (
+      <meta property="article:modified_time" content={ogUpdatedTime} />
+    )}
+    {ogType === 'article' && ogUpdatedTime && (
+      <meta property="og:updated_time" content={ogUpdatedTime} />
+    )}
     <meta name="twitter:card" content="summary_large_image" />
 
-    <script type="application/ld+json" set:html={JSON.stringify({
+    <script is:inline type="application/ld+json" set:html={JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
       name: 'BamDude',
@@ -56,6 +89,21 @@ const altPath = locale === defaultLocale ? `/${alt}${path === '/' ? '/' : path}`
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
       inLanguage: locale,
     })}></script>
+
+    {breadcrumbs && breadcrumbs.length > 1 && (
+      <script is:inline type="application/ld+json" set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: breadcrumbs.map((b, idx) => ({
+          '@type': 'ListItem',
+          position: idx + 1,
+          name: b.name,
+          item: `${siteUrl}${b.href}`,
+        })),
+      })} />
+    )}
+
+    <slot name="head-jsonld" />
 
     <!-- Consent Mode v2 default-deny stub. Loaded BEFORE any analytics. -->
     <script is:inline>

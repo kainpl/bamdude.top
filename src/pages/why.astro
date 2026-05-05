@@ -3,23 +3,30 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
 import ScrollProgress from '../components/ScrollProgress.astro';
 import PageHeader from '../components/PageHeader.astro';
-import FeaturesGrouped from '../components/FeaturesGrouped.astro';
-import FinalCTA from '../components/FinalCTA.astro';
+import WhyPage from '../components/WhyPage.astro';
 import Footer from '../components/Footer.astro';
 import { t, localePath } from '../i18n';
 const locale = 'en' as const;
 const i = t(locale);
-const p = i.pages.features;
+const p = i.pages.why;
 const breadcrumbs = [
   { name: 'Home', href: localePath(locale) },
-  { name: i.nav.features, href: localePath(locale, 'features') },
+  { name: i.nav.why, href: localePath(locale, 'why') },
 ];
+const ogUpdatedTime = new Date().toISOString();
 ---
-<BaseLayout title={p.metaTitle} description={p.metaDescription} locale={locale} pageKey="features" breadcrumbs={breadcrumbs}>
+<BaseLayout
+  title={p.metaTitle}
+  description={p.metaDescription}
+  locale={locale}
+  pageKey="why"
+  ogType="article"
+  ogUpdatedTime={ogUpdatedTime}
+  breadcrumbs={breadcrumbs}
+>
   <ScrollProgress />
-  <Nav locale={locale} active="features" />
+  <Nav locale={locale} active="why" />
   <PageHeader eyebrow={p.eyebrow} title={p.title} subtitle={p.subtitle} />
-  <FeaturesGrouped locale={locale} />
-  <FinalCTA locale={locale} />
+  <WhyPage locale={locale} />
   <Footer locale={locale} />
 </BaseLayout>

@@ -6,12 +6,16 @@ import PageHeader from '../components/PageHeader.astro';
 import InstallSteps from '../components/InstallSteps.astro';
 import FinalCTA from '../components/FinalCTA.astro';
 import Footer from '../components/Footer.astro';
-import { t } from '../i18n';
+import { t, localePath } from '../i18n';
 const locale = 'en' as const;
 const i = t(locale);
 const p = i.pages.install;
+const breadcrumbs = [
+  { name: 'Home', href: localePath(locale) },
+  { name: i.nav.install, href: localePath(locale, 'install') },
+];
 ---
-<BaseLayout title={p.metaTitle} description={p.metaDescription} locale={locale}>
+<BaseLayout title={p.metaTitle} description={p.metaDescription} locale={locale} pageKey="install" breadcrumbs={breadcrumbs}>
   <ScrollProgress />
   <Nav locale={locale} active="install" />
   <PageHeader eyebrow={p.eyebrow} title={p.title} subtitle={p.subtitle} />

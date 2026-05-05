@@ -29,7 +29,12 @@ BamDude lets you monitor, archive, schedule, and automate prints across one or m
 ## Pages
 
 - [Home](https://bamdude.top/)
+- [Why BamDude](https://bamdude.top/why) — fleet-manager pitch, slicer-to-BamDude-to-printers flow, Benchy-on-10-printers example
 - [Features](https://bamdude.top/features)
-- [Compare](https://bamdude.top/compare)
+- [Compare](https://bamdude.top/compare) — BamDude vs Bambu Handy vs OctoPrint
 - [Install](https://bamdude.top/install)
 - [FAQ](https://bamdude.top/faq)
+
+## Translations
+
+The site ships in English (default) and Ukrainian. The Ukrainian variant lives under /uk/, with the same set of pages: /uk/, /uk/why, /uk/features, /uk/compare, /uk/install, /uk/faq.

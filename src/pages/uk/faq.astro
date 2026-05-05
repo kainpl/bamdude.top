@@ -6,12 +6,28 @@ import PageHeader from '../../components/PageHeader.astro';
 import FAQ from '../../components/FAQ.astro';
 import FinalCTA from '../../components/FinalCTA.astro';
 import Footer from '../../components/Footer.astro';
-import { t } from '../../i18n';
+import faqData from '../../content/uk/faq.json';
+import { t, localePath } from '../../i18n';
 const locale = 'uk' as const;
 const i = t(locale);
 const p = i.pages.faq;
+const breadcrumbs = [
+  { name: 'Головна', href: localePath(locale) },
+  { name: i.nav.faq, href: localePath(locale, 'faq') },
+];
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  inLanguage: locale,
+  mainEntity: faqData.items.map((it) => ({
+    '@type': 'Question',
+    name: it.q,
+    acceptedAnswer: { '@type': 'Answer', text: it.a },
+  })),
+};
 ---
-<BaseLayout title={p.metaTitle} description={p.metaDescription} locale={locale}>
+<BaseLayout title={p.metaTitle} description={p.metaDescription} locale={locale} pageKey="faq" breadcrumbs={breadcrumbs}>
+  <script is:inline slot="head-jsonld" type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
   <ScrollProgress />
   <Nav locale={locale} active="faq" />
   <PageHeader eyebrow={p.eyebrow} title={p.title} subtitle={p.subtitle} />

@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { t, localePath } from '../i18n';
+
+// Astro emits a single static 404 (no per-locale variant under
+// prefixDefaultLocale: false). The page renders in EN by default; the page
+// itself offers a UK switch via the language toggle in the nav.
+const locale = 'en' as const;
+const i = t(locale);
+
+// Block this from indexing — there's nothing useful at a 404 URL and Google
+// will (rightly) avoid it anyway, but explicit is better than implicit.
+const ROBOTS = 'noindex, follow';
+
+const links: { label: string; href: string; key: string }[] = [
+  { key: 'home',     label: 'Home',          href: localePath(locale) },
+  { key: 'why',      label: i.nav.why,       href: localePath(locale, 'why') },
+  { key: 'features', label: i.nav.features,  href: localePath(locale, 'features') },
+  { key: 'install',  label: i.nav.install,   href: localePath(locale, 'install') },
+  { key: 'faq',      label: i.nav.faq,       href: localePath(locale, 'faq') },
+];
+---
+<BaseLayout title="Page not found · BamDude" description="That page is missing — pick another from the list." locale={locale} pageKey="home">
+  <meta slot="head-jsonld" name="robots" content={ROBOTS} />
+  <Nav locale={locale} />
+  <section class="mx-auto max-w-3xl px-6 py-24 text-center">
+    <span class="inline-block text-xs uppercase tracking-[0.2em] text-bambu-green font-semibold mb-4">404</span>
+    <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight">Page not found</h1>
+    <p class="mt-5 text-lg text-bambu-text-secondary leading-relaxed">
+      The page you tried to reach has been moved, renamed, or never existed. Pick somewhere to land:
+    </p>
+    <ul class="mt-10 flex flex-wrap justify-center gap-3">
+      {links.map((l) => (
+        <li>
+          <a href={l.href} class="inline-flex items-center gap-2 rounded-lg px-5 py-2.5 font-semibold border border-bambu-border bg-bambu-bg-secondary hover:border-bambu-green transition">
+            {l.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+  <Footer locale={locale} />
+</BaseLayout>
