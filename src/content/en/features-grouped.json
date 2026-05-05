@@ -14,7 +14,9 @@
         { "title": "Calibration UI", "body": "Bed leveling, vibration, motor noise, nozzle offset, high-temp heatbed - model-aware, from web or Telegram." },
         { "title": "HMS error decoding", "body": "Translates Bambu's numeric error codes to plain language with history per printer." },
         { "title": "AMS management", "body": "Slot config, RFID re-read, drying schedules, humidity tracking." },
-        { "title": "Printer file browser", "body": "Browse the printer's SD card, bulk-download or bulk-delete remote files." }
+        { "title": "Printer file browser", "body": "Browse the printer's SD card, bulk-download or bulk-delete remote files. Save-to-Library promotes bare .3mf to .gcode.3mf when the bytes are already sliced." },
+        { "title": "LAN firmware updates", "body": "Fetch Bambu firmware ZIPs from the CDN, push to the printer over LAN-mode FTP, install via MQTT — no cloud account. curl_cffi Chrome impersonation handles Cloudflare's JA3 gate; stale buildId self-heals." },
+        { "title": "Mobile / PWA install", "body": "Install BamDude as a PWA on iOS, Android, or desktop — standalone window, offline app shell, share-target uploads (Android), push notifications when HTTPS is on." }
       ]
     },
     {
@@ -50,7 +52,9 @@
         { "title": "Auto-cleanup retention", "body": "Drop the .3mf after N days idle, keep the metadata, thumbnail, energy, and notes." },
         { "title": "Library + Archive Trash bins", "body": "Soft-delete with restore window, scheduled retention, and reference-aware delete that refuses to drop bytes still pinned by an active archive." },
         { "title": "Printed / Not Printed filters", "body": "One-click chips on the archive page split first-time prints from reprints — fast path to find never-printed files." },
-        { "title": "3MF download recovery", "body": "Failed FTP at print start? Recovery retries on startup, reconnect, print-end, or manually." }
+        { "title": "3MF download recovery", "body": "Failed FTP at print start? Recovery retries on startup, reconnect, print-end, or manually." },
+        { "title": "Failure analysis dashboard", "body": "Retrospective analytics across the archive — failure rate by printer, material, time-of-day, and print duration. Drill into the offending archives in one click." },
+        { "title": "CSV / XLSX export", "body": "Filter-aware bulk export of archives + stats for billing, QA logs, or BI pipelines. UTF-8 BOM CSV, multi-sheet XLSX." }
       ]
     },
     {
@@ -66,7 +70,9 @@
         { "title": "Print directly or queue", "body": "Pick a file, pick a printer (model-filtered), print now or add to queue." },
         { "title": "Label-objects metadata", "body": "Skip-objects support detected at upload - button only enables when the slicer's profile actually emits it." },
         { "title": "MakerWorld URL import", "body": "Paste any MakerWorld model URL, pick a plate, BamDude downloads the 3MF straight into your library — provenance badge keeps the link back to the original." },
-        { "title": "Server-side slicing", "body": "Send STL/3MF to a containerised OrcaSlicer or BambuStudio sidecar and get a printable .gcode.3mf back without leaving the app." }
+        { "title": "Server-side slicing", "body": "Send STL/3MF to a containerised OrcaSlicer or BambuStudio sidecar and get a printable .gcode.3mf back without leaving the app." },
+        { "title": "Per-user Bambu Cloud", "body": "Each user signs into their own Bambu Cloud account with their own region — no shared credentials, no single-region lock-in. Tokens encrypted at rest, sliding refresh, OIDC-style flow." },
+        { "title": "Local OrcaSlicer presets", "body": "Drop .orca_filament / .bbscfg / .bbsflmt / ZIP bundles directly — BamDude resolves preset inheritance from upstream OrcaSlicer when needed. Cloud-free path for shops without Bambu accounts." }
       ]
     },
     {
@@ -155,6 +161,7 @@
         { "title": "OIDC SSO incl. Azure Entra ID", "body": "PKCE + state + nonce + JWKS, SSRF guards on issuer URL, configurable email_claim (preferred_username / upn) for Microsoft 365 / Entra ID." },
         { "title": "LDAP / Active Directory", "body": "Group-mapped LDAP login for shops with existing identity." },
         { "title": "Sliding-session refresh", "body": "Rotating refresh tokens, OWASP reuse detection, HttpOnly cookie + 1h access JWT." },
+        { "title": "API keys with cloud-access scope", "body": "Per-user `bb_*` tokens scoped to a subset of the owner's permissions. Opt-in cloud-access scope reaches Bambu Cloud routes. X-API-Key or Authorization: Bearer — both supported. Hashed at rest, last_used_at surfaced for audit." },
         { "title": "REST + WebSocket API", "body": "Full REST API with API keys, plus WebSocket for live status integrations." },
         { "title": "Prometheus metrics", "body": "Dedicated /metrics endpoint with farm-level and per-printer counters." },
         { "title": "Per-request trace IDs", "body": "Every HTTP request gets an X-Trace-Id header echoed in logs so you can correlate one user action across HTTP / MQTT / scheduler lines." },
