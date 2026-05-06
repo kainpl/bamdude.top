@@ -13,7 +13,7 @@
         { "title": "OBS-оверлей", "body": "Готова URL-адреса для OBS - статус, ETA, AMS прямо в стрімі." },
         { "title": "Калібрування з UI", "body": "Bed leveling, vibration, motor noise, nozzle offset, high-temp - з вебу або з Telegram, model-aware." },
         { "title": "Розшифровка HMS-помилок", "body": "Перекладає коди Bambu в людську мову, з історією на принтер." },
-        { "title": "AMS-керування", "body": "Конфіг слотів, перечитка RFID, графіки сушіння, моніторинг вологості." },
+        { "title": "AMS-керування", "body": "Конфіг слотів, перечитка RFID, load / unload прямо з картки принтера, графіки сушіння, моніторинг вологості." },
         { "title": "Файловий менеджер принтера", "body": "Перегляд SD-картки, bulk-завантаження або bulk-видалення віддалених файлів. Save-to-Library промоутить голий .3mf у .gcode.3mf, коли байти вже зрізані." },
         { "title": "Оновлення прошивки по LAN", "body": "Витягує firmware ZIP з Bambu CDN, льотить на принтер по LAN-mode FTP, інсталяція через MQTT — без cloud-акаунту. curl_cffi-імперсонація Chrome обходить Cloudflare JA3-гейт; stale buildId self-heal-иться." },
         { "title": "Mobile / PWA-інсталяція", "body": "Встанови BamDude як PWA на iOS / Android / desktop — standalone-вікно, оффлайн app shell, share-target uploads (Android), push-нотифікації (HTTPS)." }
@@ -116,7 +116,7 @@
         { "title": "Ціна і lot-номери", "body": "Ціна на котушку, дата покупки, діаметр, lot-номер для пакетів." },
         { "title": "Spoolman синхронізація", "body": "Двостороння синхронізація з Spoolman, якщо інвентар уже там ведеться." },
         { "title": "Каталог кольорів", "body": "Розпізнавання назв з урахуванням виробника (Bambu виграє для співпавшого hex)." },
-        { "title": "Градієнти багатоколірного пластику", "body": "Painted, dual-color і silk пластики рендеряться з реальними градієнтами на картках інвентаря, а не плоскими hex-квадратами." },
+        { "title": "Градієнти багатоколірного пластику", "body": "Dual-Color котушки рендеряться як hard-split смуги (а не плавний blend), Multicolor — як conic-gradient color-wheel, gradient залишається 135° linear blend, а Sparkle / Wood / Marble / Glow / Matte / Silk overlay-и видимо малюються на картках. У формі котушки live-preview, тож ефект видно до збереження." },
         { "title": "Категорія + low-stock на котушку", "body": "Тегай котушки за категорією (PETG / ABS / TPU…) і перевизначай глобальний low-stock поріг на конкретній котушці." },
         { "title": "Проєкти з print plan", "body": "Згрупуй друки в проєкт; копії на файл з live-обчисленням пластику/часу/ціни." },
         { "title": "URL + cover image на проєкт", "body": "Прикріпи посилання на MakerWorld / Printables / репо до проєкту й hero-обкладинку — світяться на картках і деталі проєкту." },

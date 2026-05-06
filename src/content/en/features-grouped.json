@@ -13,7 +13,7 @@
         { "title": "OBS overlay", "body": "Drop a single URL into OBS for a clean live-stream overlay with progress, ETA, and AMS." },
         { "title": "Calibration UI", "body": "Bed leveling, vibration, motor noise, nozzle offset, high-temp heatbed - model-aware, from web or Telegram." },
         { "title": "HMS error decoding", "body": "Translates Bambu's numeric error codes to plain language with history per printer." },
-        { "title": "AMS management", "body": "Slot config, RFID re-read, drying schedules, humidity tracking." },
+        { "title": "AMS management", "body": "Slot config, RFID re-read, load / unload from the printer card, drying schedules, humidity tracking." },
         { "title": "Printer file browser", "body": "Browse the printer's SD card, bulk-download or bulk-delete remote files. Save-to-Library promotes bare .3mf to .gcode.3mf when the bytes are already sliced." },
         { "title": "LAN firmware updates", "body": "Fetch Bambu firmware ZIPs from the CDN, push to the printer over LAN-mode FTP, install via MQTT — no cloud account. curl_cffi Chrome impersonation handles Cloudflare's JA3 gate; stale buildId self-heals." },
         { "title": "Mobile / PWA install", "body": "Install BamDude as a PWA on iOS, Android, or desktop — standalone window, offline app shell, share-target uploads (Android), push notifications when HTTPS is on." }
@@ -116,7 +116,7 @@
         { "title": "Cost & lot tracking", "body": "Per-spool cost, purchase date, filament diameter, and lot number for inventory bundles." },
         { "title": "Spoolman sync", "body": "Two-way sync with Spoolman for shops that already keep inventory there." },
         { "title": "Color catalog", "body": "Manufacturer-aware color name resolution (Bambu wins for matching hex)." },
-        { "title": "Multi-colour filament gradients", "body": "Painted, dual-colour, and silk filaments render their actual gradients on inventory cards instead of flat hex squares." },
+        { "title": "Multi-colour filament gradients", "body": "Dual-colour spools render as hard-split bars (not a smooth blend), Multicolor renders as a conic colour-wheel pie, gradient stays a 135° linear blend, and Sparkle / Wood / Marble / Glow / Matte / Silk overlays paint visibly on inventory cards. Live preview in the spool form so you see the effect before save." },
         { "title": "Per-spool category + low-stock", "body": "Tag spools by category (PETG / ABS / TPU…) and override the global low-stock threshold per spool." },
         { "title": "Projects with print plan", "body": "Group prints by project; per-file copies with live filament/time/cost totals." },
         { "title": "Project URL + cover image", "body": "Attach a MakerWorld / Printables / repo URL to a project plus a hero cover photo — surfaces on cards and the detail page." },
