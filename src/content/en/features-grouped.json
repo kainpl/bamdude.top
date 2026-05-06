@@ -117,6 +117,7 @@
         { "title": "Spoolman sync", "body": "Two-way sync with Spoolman for shops that already keep inventory there." },
         { "title": "Color catalog", "body": "Manufacturer-aware color name resolution (Bambu wins for matching hex)." },
         { "title": "Multi-colour filament gradients", "body": "Dual-colour spools render as hard-split bars (not a smooth blend), Multicolor renders as a conic colour-wheel pie, gradient stays a 135° linear blend, and Sparkle / Wood / Marble / Glow / Matte / Silk overlays paint visibly on inventory cards. Live preview in the spool form so you see the effect before save." },
+        { "title": "Printable PDF spool labels", "body": "Per-spool icon and bulk Print labels… header action. Four templates: AMS holder (30×15 mm), single box label (62×29 mm), Avery L7160 A4 (21/sheet), Avery 5160 US Letter (30/sheet). Each label carries swatch + brand + material + the spool's display name (using your configured naming template) + a QR code that deep-links back into BamDude on phone scan." },
         { "title": "Per-spool category + low-stock", "body": "Tag spools by category (PETG / ABS / TPU…) and override the global low-stock threshold per spool." },
         { "title": "Projects with print plan", "body": "Group prints by project; per-file copies with live filament/time/cost totals." },
         { "title": "Project URL + cover image", "body": "Attach a MakerWorld / Printables / repo URL to a project plus a hero cover photo — surfaces on cards and the detail page." },
