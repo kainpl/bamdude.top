@@ -144,8 +144,9 @@
         { "title": "Smart plug control", "body": "Tasmota, Home Assistant, MQTT, REST/webhook plugs - auto power on/off with prints." },
         { "title": "Energy tracking", "body": "Per-print kWh capture from the plug, plus date-range farm-wide totals." },
         { "title": "Virtual printer modes", "body": "File Manager (review queue), Print Queue (slicer → fixed printer), Auto-Queue (slicer → router picks idle printer), Proxy (TLS relay)." },
+        { "title": "Slicer-as-remote in non-proxy modes", "body": "When the VP has a target printer, the slicer sees real AMS / FTS / nozzle / k-profile state and streams the live camera through the VP — full slicer-as-remote without giving up BamDude's queue / archive / dispatch." },
         { "title": "Proxy mode for remote prints", "body": "Send from anywhere via TLS relay - no VPN, no port-forward, end-to-end encrypted." },
-        { "title": "Tailscale per-VP TLS", "body": "Opt-in: BamDude advertises virtual printers on your tailnet with auto-rotated Let's Encrypt certs and tailnet-FQDN SSDP." },
+        { "title": "Tailscale-aware VP card", "body": "Surfaces the host's tailnet IPs + MagicDNS hostname for paste-into-slicer when you reach BamDude over Tailscale; copy-to-clipboard in one click." },
         { "title": "VP archive name source toggle", "body": "Choose whether VP-routed archives take their print_name from 3MF metadata or the upload filename — per-install setting." },
         { "title": "Obico AI failure detection", "body": "Optional ML-based failure detection with notify / pause / pause-and-power-off responses." }
       ]

@@ -144,8 +144,9 @@
         { "title": "Керування розумними розетками", "body": "Tasmota, Home Assistant, MQTT, REST/webhook - авто-увімкнення/вимкнення з принтом." },
         { "title": "Облік енергії", "body": "kWh з розетки на кожен друк + сумарна енергія на ферму за період." },
         { "title": "Режими віртуального принтера", "body": "File Manager (review-черга), Print Queue (слайсер → конкретний принтер), Auto-Queue (слайсер → router сам обирає принтер), Proxy (TLS-релей)." },
+        { "title": "Slicer-as-remote у non-proxy режимах", "body": "Коли VP має target-принтер, слайсер бачить живий стан AMS / FTS / типу сопла / k-profiles і отримує живу камеру через VP — повноцінний slicer-as-remote без втрати черги / архіву / диспетчеризації BamDude." },
         { "title": "Proxy для віддаленого друку", "body": "Друк звідусіль через TLS-релей - без VPN, без port-forward, end-to-end шифрування." },
-        { "title": "Tailscale TLS на VP", "body": "Опційний режим: BamDude анонсує віртуальні принтери в твій tailnet з авто-оновленими сертами Let's Encrypt і tailnet-FQDN SSDP." },
+        { "title": "VP-картка з Tailscale", "body": "Показує tailnet-IP та MagicDNS-хостнейм хоста для paste-into-slicer, коли BamDude доступний через Tailscale; copy-to-clipboard в один клік." },
         { "title": "Джерело імені архіву VP", "body": "Обери, звідки VP бере print_name архіву — з 3MF-метаданих чи назви файлу. Налаштування на інсталяцію." },
         { "title": "Obico AI-детекція фейлу", "body": "Опційна ML-детекція з відповідями notify / pause / pause-and-power-off." }
       ]
