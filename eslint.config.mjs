@@ -35,5 +35,9 @@ export default [
       '@typescript-eslint/ban-ts-comment': 'off',
     },
   },
-  { ignores: ['dist/', 'node_modules/', '.astro/'] },
+  // relay/ is a self-contained Node sub-project (Fastify) with its own
+  // eslint.config.mjs (which knows about Node globals: process, console,
+  // Buffer, fetch). Root lint runs against the Astro site only — `cd relay
+  // && npm run lint` covers the relay separately.
+  { ignores: ['dist/', 'node_modules/', '.astro/', 'relay/'] },
 ];
