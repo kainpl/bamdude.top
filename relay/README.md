@@ -91,22 +91,33 @@ The relay rides alongside the landing site on the same host. The site's self-hos
 
 ### One-time server setup
 
-1. **Create the screenshots directory + set SGID for group inheritance:**
+1. **Determine which user the nginx workers actually run as:**
+
+   ```bash
+   ps -eo user,group,comm | grep nginx | grep -v grep
+   # OR check the config:
+   grep ^user /etc/nginx/nginx.conf
+   ```
+
+   Debian / Ubuntu nginx packages default to `www-data:www-data`. The official nginx.org repository packages (and most RHEL/CentOS-style installs) default to `nginx:nginx`. You need the actual worker user/group below — substitute `<NGINX_GROUP>` accordingly in the next step.
+
+2. **Create the screenshots directory + set SGID for group inheritance:**
 
    ```bash
    sudo -u bamdude-runner mkdir -p /opt/bamdude-relay/screenshots
-   sudo chgrp www-data /opt/bamdude-relay/screenshots
+   # Substitute www-data or nginx based on what step 1 showed.
+   sudo chgrp <NGINX_GROUP> /opt/bamdude-relay/screenshots
    # 2750 = SGID + 750. SGID on the directory makes every file the relay
-   # writes inherit the directory's group (www-data) regardless of the
-   # runner's umask. Without this, files land as bamdude-runner:bamdude-runner
-   # and on some Debian/Ubuntu nginx builds (with strict-build hardening
-   # mediating filesystem access) the world-read mode 0644 isn't enough —
-   # nginx returns Permission denied at stat() despite traversal perms
-   # being correct. Empirically observed on Ubuntu 22.04 + nginx 1.26.3.
+   # writes inherit the directory's group (the nginx worker group)
+   # regardless of the runner's umask. Without it, files land as
+   # bamdude-runner:bamdude-runner and nginx returns Permission denied at
+   # stat() because the nginx worker user isn't in the bamdude-runner
+   # group. Empirically caught on Ubuntu 22.04 + nginx.org's nginx 1.26.3
+   # where workers run as `nginx`, not `www-data` like the Debian package.
    sudo chmod 2750 /opt/bamdude-relay/screenshots
    ```
 
-   nginx (`www-data`) reads it via group; the runner user (`bamdude-runner`) writes through the relay process. Sits inside the install dir so the whole relay tree (code + state) is under `/opt/bamdude-relay`. The deploy workflow's rsync excludes `screenshots` so subsequent deploys don't wipe uploaded images.
+   nginx reads via group; the runner user (`bamdude-runner`) writes through the relay process. Sits inside the install dir so the whole relay tree (code + state) is under `/opt/bamdude-relay`. The deploy workflow's rsync excludes `screenshots` so subsequent deploys don't wipe uploaded images.
 
 2. **Drop the env file:**
 
