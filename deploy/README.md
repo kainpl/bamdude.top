@@ -173,17 +173,20 @@ The static site shares this server with the **bug-report relay** — a small Fas
 - `/etc/bamdude-relay.env` — env file with `GITHUB_PAT` etc., owned by `bamdude-runner`, mode `0600`. Source of truth for relay config; `relay/.env.example` documents every key.
 - `/opt/bamdude-relay/screenshots` — where uploaded screenshots are written. nginx serves it at `/bug-attachments/<uuid>.jpg`. Excluded from the deploy rsync so deploys don't wipe uploaded images; a full reinstall (`rm -rf /opt/bamdude-relay`) does wipe them.
 - `/etc/systemd/system/bamdude-relay.service` — systemd unit (copy of `relay/deploy/relay.service`).
-- A polkit rule allowing `bamdude-runner` to `systemctl restart bamdude-relay` without sudo password — drop this in `/etc/polkit-1/rules.d/50-bamdude-relay.rules`:
+- A sudoers rule allowing `bamdude-runner` to passwordless-`systemctl restart bamdude-relay` only — drop this in `/etc/sudoers.d/bamdude-relay` (mode 0440, validated with `visudo -c`):
 
-  ```javascript
-  polkit.addRule(function(action, subject) {
-      if (action.id == "org.freedesktop.systemd1.manage-units" &&
-          action.lookup("unit") == "bamdude-relay.service" &&
-          subject.user == "bamdude-runner") {
-          return polkit.Result.YES;
-      }
-  });
   ```
+  bamdude-runner ALL=(ALL) NOPASSWD: /usr/bin/systemctl restart bamdude-relay
+  bamdude-runner ALL=(ALL) NOPASSWD: /usr/bin/systemctl restart bamdude-relay.service
+  bamdude-runner ALL=(ALL) NOPASSWD: /usr/bin/systemctl is-active bamdude-relay
+  bamdude-runner ALL=(ALL) NOPASSWD: /usr/bin/systemctl is-active bamdude-relay.service
+  bamdude-runner ALL=(ALL) NOPASSWD: /bin/systemctl restart bamdude-relay
+  bamdude-runner ALL=(ALL) NOPASSWD: /bin/systemctl restart bamdude-relay.service
+  bamdude-runner ALL=(ALL) NOPASSWD: /bin/systemctl is-active bamdude-relay
+  bamdude-runner ALL=(ALL) NOPASSWD: /bin/systemctl is-active bamdude-relay.service
+  ```
+
+  Both `/usr/bin/...` and `/bin/...` are listed because sudoers compares paths literally — usrmerge'd Debian/Ubuntu may resolve to either depending on the shell's `PATH`. The relay/README.md "One-time server setup" walks through this with copy-paste commands and verification. polkit was the original recommendation but doesn't ship by default on headless VPS images (no `/etc/polkit-1/rules.d/`).
 
 The nginx server block already proxies `/api/bug-report` → `127.0.0.1:3001` and serves `/bug-attachments/` from the screenshots dir — both blocks are in `deploy/nginx.conf`. After updating nginx.conf on the host: `sudo nginx -t && sudo systemctl reload nginx`.
 

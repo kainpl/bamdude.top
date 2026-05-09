@@ -127,15 +127,40 @@ The relay rides alongside the landing site on the same host. The site's self-hos
    sudo systemctl status bamdude-relay
    ```
 
-4. **Wire nginx:** the existing `deploy/nginx.conf` shipped with this repo gained a `location /api/bug-report` block + a `location /bug-attachments/` block. Reload after deploy:
+4. **Grant the runner passwordless restart of just `bamdude-relay`** — without this, the deploy workflow's `sudo systemctl restart bamdude-relay` step fails with `a password is required`:
+
+   ```bash
+   sudo install -m 0440 /dev/stdin /etc/sudoers.d/bamdude-relay <<'EOF'
+   bamdude-runner ALL=(ALL) NOPASSWD: /usr/bin/systemctl restart bamdude-relay
+   bamdude-runner ALL=(ALL) NOPASSWD: /usr/bin/systemctl restart bamdude-relay.service
+   bamdude-runner ALL=(ALL) NOPASSWD: /usr/bin/systemctl is-active bamdude-relay
+   bamdude-runner ALL=(ALL) NOPASSWD: /usr/bin/systemctl is-active bamdude-relay.service
+   bamdude-runner ALL=(ALL) NOPASSWD: /bin/systemctl restart bamdude-relay
+   bamdude-runner ALL=(ALL) NOPASSWD: /bin/systemctl restart bamdude-relay.service
+   bamdude-runner ALL=(ALL) NOPASSWD: /bin/systemctl is-active bamdude-relay
+   bamdude-runner ALL=(ALL) NOPASSWD: /bin/systemctl is-active bamdude-relay.service
+   EOF
+   sudo visudo -c -f /etc/sudoers.d/bamdude-relay  # expect: parsed OK
+   ```
+
+   Sudoers compares paths *literally*, so both `/usr/bin/systemctl` and `/bin/systemctl` are listed — modern Debian/Ubuntu after usrmerge have `/bin` as a symlink to `/usr/bin`, but the sudoers rule still has to spell out the exact resolved path that's in the runner's `PATH` at deploy time. Listing both covers either resolution. Verify the rule works:
+
+   ```bash
+   sudo -u bamdude-runner sudo -n systemctl restart bamdude-relay
+   sudo systemctl is-active bamdude-relay  # active
+   ```
+
+   Both commands should succeed with no password prompt; if either prompts, double-check `which systemctl` and the file you wrote.
+
+5. **Wire nginx:** the existing `deploy/nginx.conf` shipped with this repo gained a `location /api/bug-report` block + a `location /bug-attachments/` block. Reload after deploy:
 
    ```bash
    sudo nginx -t && sudo systemctl reload nginx
    ```
 
-5. **Cloudflare Cache Rule** — explicitly bypass cache for `/api/bug-report*` so retries don't hit a stale 502 response. Bypass for `/bug-attachments/*` is not strictly required (GitHub fetches the image via the public URL when rendering the issue, then caches it on its own CDN — Cloudflare can cache the image freely thereafter).
+6. **Cloudflare Cache Rule** — explicitly bypass cache for `/api/bug-report*` so retries don't hit a stale 502 response. Bypass for `/bug-attachments/*` is not strictly required (GitHub fetches the image via the public URL when rendering the issue, then caches it on its own CDN — Cloudflare can cache the image freely thereafter).
 
-6. **Nightly screenshot pruning** (optional but recommended — issues stay open for months, image files grow):
+7. **Nightly screenshot pruning** (optional but recommended — issues stay open for months, image files grow):
 
    ```bash
    echo '0 4 * * * root find /opt/bamdude-relay/screenshots -type f -mtime +90 -delete' \

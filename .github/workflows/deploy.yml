@@ -74,6 +74,15 @@ jobs:
         env:
           RELAY_PATH: /opt/bamdude-relay
         run: |
+          # Diagnostic: surface the sudoers context so a NOPASSWD mismatch is
+          # debuggable from CI logs. Cheap to keep — runs once per deploy.
+          echo "[debug] whoami=$(whoami)"
+          echo "[debug] id=$(id)"
+          echo "[debug] which systemctl=$(which systemctl)"
+          echo "[debug] sudo -n --list:"
+          sudo -n --list 2>&1 | head -30 || true
+          echo "[debug] /etc/sudoers.d files:"
+          ls -la /etc/sudoers.d/ 2>&1 | head -20 || true
           if [ ! -f relay/package.json ]; then
             echo "No relay/package.json — skipping relay deploy."
             exit 0
