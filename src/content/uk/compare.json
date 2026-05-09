@@ -125,7 +125,7 @@
         "rows": [
           { "label": "Вбудований інвентар котушок", "values": ["yes", "no", "partial:Через плагіни"] },
           { "label": "Облік ціни і lot-номерів", "values": ["yes", "no", "no"] },
-          { "label": "Spoolman інтеграція", "values": ["yes:Двостороння", "no", "partial:Через плагіни"] },
+          { "label": "Spoolman інтеграція", "values": ["yes:Двостороння + структуровані slot-присвоєння + K-профайли по котушці", "no", "partial:Через плагіни"] },
           { "label": "Категорія + low-stock на котушку", "values": ["yes", "no", "no"] },
           { "label": "Градієнти багатоколірного пластику", "values": ["yes:Painted / dual / silk", "no", "no"] },
           { "label": "Нагадування про обслуговування", "values": ["yes:Години + календар", "no", "no"] },
@@ -138,6 +138,7 @@
         "rows": [
           { "label": "Always-on авторизація", "values": ["yes", "yes", "partial:Опціонально"] },
           { "label": "MFA (TOTP + Email + Backup)", "values": ["yes", "no", "partial:Через плагіни"] },
+          { "label": "MFA + OIDC секрети шифровані at-rest", "values": ["yes:Default-on, авто-bootstrap Fernet-ключа", "no", "no"] },
           { "label": "OIDC SSO + Azure Entra ID", "values": ["yes:PKCE + JWKS, кастомний email_claim", "no", "no"] },
           { "label": "LDAP / Active Directory", "values": ["yes", "no", "partial:Через плагіни"] },
           { "label": "Гранулярні дозволи (80+)", "values": ["yes", "no", "no"] },
@@ -151,7 +152,9 @@
           { "label": "REST + WebSocket API", "values": ["yes:Повний API", "no", "yes"] },
           { "label": "MQTT publishing для HA", "values": ["yes", "no", "yes"] },
           { "label": "Prometheus / Grafana метрики", "values": ["yes", "no", "partial:Через плагіни"] },
-          { "label": "Git-бекап (GitHub/GitLab)", "values": ["yes", "no", "no"] },
+          { "label": "Git-бекап (GitHub / GitLab / Gitea / Forgejo)", "values": ["yes:Усі чотири провайдери", "no", "no"] },
+          { "label": "Bug report з UI + санітизовані логи", "values": ["yes:Плаваюча кнопка → релей → GitHub issue", "no", "no"] },
+          { "label": "Slicer Preset Bundles (.bbscfg)", "values": ["yes:Імпорт раз, слайс багато разів", "no", "no"] },
           { "label": "SQLite + PostgreSQL", "values": ["yes", "na", "partial:Тільки SQLite"] },
           { "label": "Веб-дашборд (PWA)", "values": ["yes", "no:Тільки мобайл", "yes"] },
           { "label": "Багато мов", "values": ["yes:EN + UK", "yes", "yes"] },

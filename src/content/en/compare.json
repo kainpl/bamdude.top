@@ -125,7 +125,7 @@
         "rows": [
           { "label": "Built-in spool inventory", "values": ["yes", "no", "partial:Via plugins"] },
           { "label": "Cost & lot tracking", "values": ["yes", "no", "no"] },
-          { "label": "Spoolman integration", "values": ["yes:Two-way sync", "no", "partial:Via plugins"] },
+          { "label": "Spoolman integration", "values": ["yes:Two-way sync + structured slot assignments + per-spool K-profiles", "no", "partial:Via plugins"] },
           { "label": "Per-spool category + low-stock", "values": ["yes", "no", "no"] },
           { "label": "Multi-colour filament gradients", "values": ["yes:Painted / dual / silk", "no", "no"] },
           { "label": "Maintenance reminders", "values": ["yes:Hours + calendar", "no", "no"] },
@@ -138,6 +138,7 @@
         "rows": [
           { "label": "Always-on authentication", "values": ["yes", "yes", "partial:Optional"] },
           { "label": "MFA (TOTP + Email + Backup)", "values": ["yes", "no", "partial:Via plugins"] },
+          { "label": "MFA + OIDC secrets encrypted at rest", "values": ["yes:Default-on, auto-bootstrapped Fernet key", "no", "no"] },
           { "label": "OIDC SSO incl. Azure Entra ID", "values": ["yes:PKCE + JWKS, custom email_claim", "no", "no"] },
           { "label": "LDAP / Active Directory", "values": ["yes", "no", "partial:Via plugins"] },
           { "label": "Granular permissions (80+)", "values": ["yes", "no", "no"] },
@@ -151,7 +152,9 @@
           { "label": "REST + WebSocket API", "values": ["yes:Full API", "no", "yes"] },
           { "label": "MQTT publishing for HA", "values": ["yes", "no", "yes"] },
           { "label": "Prometheus / Grafana metrics", "values": ["yes", "no", "partial:Via plugins"] },
-          { "label": "Git backup (GitHub/GitLab)", "values": ["yes", "no", "no"] },
+          { "label": "Git backup (GitHub / GitLab / Gitea / Forgejo)", "values": ["yes:All four providers", "no", "no"] },
+          { "label": "In-app bug-report with sanitized log capture", "values": ["yes:Floating button → relay → GitHub issue", "no", "no"] },
+          { "label": "Slicer Preset Bundles (.bbscfg)", "values": ["yes:Import once, slice many", "no", "no"] },
           { "label": "SQLite + PostgreSQL", "values": ["yes", "na", "partial:SQLite only"] },
           { "label": "Web dashboard (PWA)", "values": ["yes", "no:Mobile only", "yes"] },
           { "label": "Multi-language", "values": ["yes:EN + UK", "yes", "yes"] },

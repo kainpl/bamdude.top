@@ -64,6 +64,40 @@ jobs:
           fi
           rsync -a --delete --human-readable --stats ./dist/ "${DEPLOY_PATH%/}/"
 
+      # Relay (Fastify) ships alongside the static site under relay/ — see
+      # relay/README.md for the full architecture + first-time server setup.
+      # rsync into /opt/bamdude-relay, install prod deps, restart the systemd
+      # unit. Skips cleanly if relay/package.json is missing (lets the deploy
+      # workflow keep working on a checkout that hasn't pulled the relay
+      # changes yet).
+      - name: Sync + restart relay
+        env:
+          RELAY_PATH: /opt/bamdude-relay
+        run: |
+          if [ ! -f relay/package.json ]; then
+            echo "No relay/package.json — skipping relay deploy."
+            exit 0
+          fi
+          # First-time bootstrap: create the install dir if missing. The
+          # runner user must own it — see relay/README.md.
+          if [ ! -d "$RELAY_PATH" ]; then
+            echo "$RELAY_PATH does not exist; ensure one-time setup is done." >&2
+            exit 1
+          fi
+          rsync -a --delete \
+            --exclude node_modules \
+            --exclude .env \
+            relay/ "$RELAY_PATH/"
+          (cd "$RELAY_PATH" && npm ci --omit=dev)
+          # The runner user gets a polkit rule to restart bamdude-relay only;
+          # see relay/README.md "One-time server setup" step 3.
+          sudo systemctl restart bamdude-relay
+          sleep 1
+          sudo systemctl is-active --quiet bamdude-relay
+          # Probe the health endpoint before declaring success — fail loudly
+          # if the relay didn't come back up after the rsync.
+          curl -fsS http://127.0.0.1:3001/health > /dev/null
+
       # ``secrets`` context is forbidden in step ``if:`` expressions, so we
       # check at shell level instead. Step always runs but no-ops cleanly
       # when the optional Cloudflare secrets aren't set.

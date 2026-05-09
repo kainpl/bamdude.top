@@ -165,6 +165,30 @@ npm run typecheck && npm run lint && npm run test && npm run build
 rsync -avz --delete dist/ deploy@server:/var/www/bamdude.top/
 ```
 
+## Bug-report relay (`relay/`)
+
+The static site shares this server with the **bug-report relay** — a small Fastify service that receives JSON from the in-app **Report a Bug** button shipped with BamDude and creates GitHub issues against `kainpl/bamdude` using a maintainer-controlled PAT. See `relay/README.md` for the full contract + one-time server setup. Quick recap of what the deploy workflow expects to already exist:
+
+- `/opt/bamdude-relay` — install directory, owned by `bamdude-runner`. The workflow rsyncs `relay/` into here, runs `npm ci --omit=dev`, then `systemctl restart bamdude-relay`.
+- `/etc/bamdude-relay.env` — env file with `GITHUB_PAT` etc., owned by `bamdude-runner`, mode `0600`. Source of truth for relay config; `relay/.env.example` documents every key.
+- `/var/lib/bamdude-relay/screenshots` — where uploaded screenshots are written. nginx serves it at `/bug-attachments/<uuid>.jpg`.
+- `/etc/systemd/system/bamdude-relay.service` — systemd unit (copy of `relay/deploy/relay.service`).
+- A polkit rule allowing `bamdude-runner` to `systemctl restart bamdude-relay` without sudo password — drop this in `/etc/polkit-1/rules.d/50-bamdude-relay.rules`:
+
+  ```javascript
+  polkit.addRule(function(action, subject) {
+      if (action.id == "org.freedesktop.systemd1.manage-units" &&
+          action.lookup("unit") == "bamdude-relay.service" &&
+          subject.user == "bamdude-runner") {
+          return polkit.Result.YES;
+      }
+  });
+  ```
+
+The nginx server block already proxies `/api/bug-report` → `127.0.0.1:3001` and serves `/bug-attachments/` from the screenshots dir — both blocks are in `deploy/nginx.conf`. After updating nginx.conf on the host: `sudo nginx -t && sudo systemctl reload nginx`.
+
+The deploy workflow's relay step is non-fatal when `relay/` is missing from the checkout (legacy main commits without the relay still deploy cleanly), but fatal when `relay/` exists and `/opt/bamdude-relay` doesn't (forces you to do the one-time setup before the next deploy lands).
+
 ## Security notes
 
 - **The runner trusts whatever is in `main`.** Don't accept PRs into `main` from external contributors without review — anything that lands triggers a build that runs on your server. Self-hosted runners + public PRs is a known footgun. PRs land in `dev` first; only manual promotion (`merge --ff-only dev`) reaches `main`.
