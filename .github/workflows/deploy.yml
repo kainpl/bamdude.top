@@ -74,15 +74,6 @@ jobs:
         env:
           RELAY_PATH: /opt/bamdude-relay
         run: |
-          # Diagnostic: surface the sudoers context so a NOPASSWD mismatch is
-          # debuggable from CI logs. Cheap to keep — runs once per deploy.
-          echo "[debug] whoami=$(whoami)"
-          echo "[debug] id=$(id)"
-          echo "[debug] which systemctl=$(which systemctl)"
-          echo "[debug] sudo -n --list:"
-          sudo -n --list 2>&1 | head -30 || true
-          echo "[debug] /etc/sudoers.d files:"
-          ls -la /etc/sudoers.d/ 2>&1 | head -20 || true
           if [ ! -f relay/package.json ]; then
             echo "No relay/package.json — skipping relay deploy."
             exit 0
@@ -102,11 +93,15 @@ jobs:
             --exclude screenshots \
             relay/ "$RELAY_PATH/"
           (cd "$RELAY_PATH" && npm ci --omit=dev)
-          # The runner user gets a polkit rule to restart bamdude-relay only;
-          # see relay/README.md "One-time server setup" step 3.
-          sudo systemctl restart bamdude-relay
+          # The runner user gets a sudoers rule to restart bamdude-relay only;
+          # see relay/README.md "One-time server setup" step 4. Three things to
+          # match the rule precisely so sudo finds the NOPASSWD entry:
+          #   - explicit -n (non-interactive — avoids tty prompt fallback)
+          #   - explicit /usr/bin/systemctl path (matches sudoers rule path)
+          #   - is-active without --quiet (sudoers requires exact arg match)
+          sudo -n /usr/bin/systemctl restart bamdude-relay
           sleep 1
-          sudo systemctl is-active --quiet bamdude-relay
+          sudo -n /usr/bin/systemctl is-active bamdude-relay > /dev/null
           # Probe the health endpoint before declaring success — fail loudly
           # if the relay didn't come back up after the rsync.
           curl -fsS http://127.0.0.1:3001/health > /dev/null
