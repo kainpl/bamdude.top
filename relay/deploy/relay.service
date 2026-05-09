@@ -1,0 +1,71 @@
+# systemd unit for the BamDude bug-report relay.
+#
+# Install with:
+#   sudo cp relay/deploy/relay.service /etc/systemd/system/bamdude-relay.service
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now bamdude-relay
+#
+# Tail logs:
+#   sudo journalctl -u bamdude-relay -f
+#
+# The unit runs under the same `bamdude-runner` user that owns the website's
+# DEPLOY_PATH — keeping a single unprivileged user for both the static-site
+# rsync and the relay process means the deploy workflow can restart this unit
+# via `systemctl --user` style mechanisms or a polkit rule (see deploy.yml).
+
+[Unit]
+Description=BamDude bug-report relay (Fastify on Node 22)
+Documentation=https://github.com/kainpl/bamdude.top/blob/main/relay/README.md
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=bamdude-runner
+Group=bamdude-runner
+
+# Where the relay code lives. The deploy workflow rsyncs `relay/` into here
+# and runs `npm ci --omit=dev` before restarting the unit.
+WorkingDirectory=/opt/bamdude-relay
+EnvironmentFile=/etc/bamdude-relay.env
+
+# Pinned Node binary path — `actions/setup-node` installs Node into the
+# runner's tool cache on first deploy. Switch to /usr/bin/node if you've
+# installed Node system-wide via apt/nvm.
+ExecStart=/usr/bin/env node /opt/bamdude-relay/src/index.js
+
+Restart=on-failure
+RestartSec=5
+StartLimitInterval=120
+StartLimitBurst=5
+
+# Hardening — the relay only needs network out + the screenshots dir + the
+# env file. Lock everything else down.
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+PrivateTmp=yes
+PrivateDevices=yes
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+RestrictNamespaces=yes
+RestrictRealtime=yes
+LockPersonality=yes
+SystemCallArchitectures=native
+SystemCallFilter=@system-service
+SystemCallFilter=~@privileged @resources
+
+# Writable paths — only the screenshots dir. ProtectSystem=strict makes the
+# rest of /opt read-only (which is what we want for the relay code), so the
+# screenshots subdir needs an explicit RW exception.
+ReadWritePaths=/opt/bamdude-relay/screenshots
+
+# stdout/stderr → journald so `journalctl -u bamdude-relay` works.
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=bamdude-relay
+
+[Install]
+WantedBy=multi-user.target

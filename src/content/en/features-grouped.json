@@ -13,7 +13,7 @@
         { "title": "OBS overlay", "body": "Drop a single URL into OBS for a clean live-stream overlay with progress, ETA, and AMS." },
         { "title": "Calibration UI", "body": "Bed leveling, vibration, motor noise, nozzle offset, high-temp heatbed - model-aware, from web or Telegram." },
         { "title": "HMS error decoding", "body": "Translates Bambu's numeric error codes to plain language with history per printer." },
-        { "title": "AMS management", "body": "Slot config, RFID re-read, drying schedules, humidity tracking." },
+        { "title": "AMS management", "body": "Slot config, RFID re-read, load / unload from the printer card, drying schedules, humidity tracking." },
         { "title": "Printer file browser", "body": "Browse the printer's SD card, bulk-download or bulk-delete remote files. Save-to-Library promotes bare .3mf to .gcode.3mf when the bytes are already sliced." },
         { "title": "LAN firmware updates", "body": "Fetch Bambu firmware ZIPs from the CDN, push to the printer over LAN-mode FTP, install via MQTT — no cloud account. curl_cffi Chrome impersonation handles Cloudflare's JA3 gate; stale buildId self-heals." },
         { "title": "Mobile / PWA install", "body": "Install BamDude as a PWA on iOS, Android, or desktop — standalone window, offline app shell, share-target uploads (Android), push notifications when HTTPS is on." }
@@ -71,6 +71,7 @@
         { "title": "Label-objects metadata", "body": "Skip-objects support detected at upload - button only enables when the slicer's profile actually emits it." },
         { "title": "MakerWorld URL import", "body": "Paste any MakerWorld model URL, pick a plate, BamDude downloads the 3MF straight into your library — provenance badge keeps the link back to the original." },
         { "title": "Server-side slicing", "body": "Send STL/3MF to a containerised OrcaSlicer or BambuStudio sidecar and get a printable .gcode.3mf back without leaving the app." },
+        { "title": "Slicer Preset Bundles (.bbscfg)", "body": "Import a BambuStudio Printer Preset Bundle once and reference its triplets (printer + process + filament) by name on every slice — bypasses the cloud / local / standard tier resolution entirely. Idempotent re-uploads keyed on bundle hash; per-bundle Settings panel for delete." },
         { "title": "Per-user Bambu Cloud", "body": "Each user signs into their own Bambu Cloud account with their own region — no shared credentials, no single-region lock-in. Tokens encrypted at rest, sliding refresh, OIDC-style flow." },
         { "title": "Local OrcaSlicer presets", "body": "Drop .orca_filament / .bbscfg / .bbsflmt / ZIP bundles directly — BamDude resolves preset inheritance from upstream OrcaSlicer when needed. Cloud-free path for shops without Bambu accounts." }
       ]
@@ -114,9 +115,10 @@
         { "title": "Built-in spool inventory", "body": "Add spools with brand, color, weight, cost; AMS slot assignment per printer." },
         { "title": "Auto consumption tracking", "body": "Filament used per print is deducted from the assigned spool - no manual math." },
         { "title": "Cost & lot tracking", "body": "Per-spool cost, purchase date, filament diameter, and lot number for inventory bundles." },
-        { "title": "Spoolman sync", "body": "Two-way sync with Spoolman for shops that already keep inventory there." },
+        { "title": "Spoolman sync + first-class inventory UI", "body": "Two-way sync with Spoolman for shops that already keep inventory there. Plus a full BamDude-side inventory experience on Spoolman-mode installs: structured slot assignments per (printer, AMS, tray) survive reboots, K-profiles per spool round-trip across BamDude installs that share one Spoolman, and the storage_location column shows on every spool card." },
         { "title": "Color catalog", "body": "Manufacturer-aware color name resolution (Bambu wins for matching hex)." },
-        { "title": "Multi-colour filament gradients", "body": "Painted, dual-colour, and silk filaments render their actual gradients on inventory cards instead of flat hex squares." },
+        { "title": "Multi-colour filament gradients", "body": "Dual-colour spools render as hard-split bars (not a smooth blend), Multicolor renders as a conic colour-wheel pie, gradient stays a 135° linear blend, and Sparkle / Wood / Marble / Glow / Matte / Silk overlays paint visibly on inventory cards. Live preview in the spool form so you see the effect before save." },
+        { "title": "Printable PDF spool labels", "body": "Per-spool icon and bulk Print labels… header action. Four templates: AMS holder (30×15 mm), single box label (62×29 mm), Avery L7160 A4 (21/sheet), Avery 5160 US Letter (30/sheet). Each label carries swatch + brand + material + the spool's display name (using your configured naming template) + a QR code that deep-links back into BamDude on phone scan." },
         { "title": "Per-spool category + low-stock", "body": "Tag spools by category (PETG / ABS / TPU…) and override the global low-stock threshold per spool." },
         { "title": "Projects with print plan", "body": "Group prints by project; per-file copies with live filament/time/cost totals." },
         { "title": "Project URL + cover image", "body": "Attach a MakerWorld / Printables / repo URL to a project plus a hero cover photo — surfaces on cards and the detail page." },
@@ -144,8 +146,9 @@
         { "title": "Smart plug control", "body": "Tasmota, Home Assistant, MQTT, REST/webhook plugs - auto power on/off with prints." },
         { "title": "Energy tracking", "body": "Per-print kWh capture from the plug, plus date-range farm-wide totals." },
         { "title": "Virtual printer modes", "body": "File Manager (review queue), Print Queue (slicer → fixed printer), Auto-Queue (slicer → router picks idle printer), Proxy (TLS relay)." },
+        { "title": "Slicer-as-remote in non-proxy modes", "body": "When the VP has a target printer, the slicer sees real AMS / FTS / nozzle / k-profile state and streams the live camera through the VP — full slicer-as-remote without giving up BamDude's queue / archive / dispatch." },
         { "title": "Proxy mode for remote prints", "body": "Send from anywhere via TLS relay - no VPN, no port-forward, end-to-end encrypted." },
-        { "title": "Tailscale per-VP TLS", "body": "Opt-in: BamDude advertises virtual printers on your tailnet with auto-rotated Let's Encrypt certs and tailnet-FQDN SSDP." },
+        { "title": "Tailscale-aware VP card", "body": "Surfaces the host's tailnet IPs + MagicDNS hostname for paste-into-slicer when you reach BamDude over Tailscale; copy-to-clipboard in one click." },
         { "title": "VP archive name source toggle", "body": "Choose whether VP-routed archives take their print_name from 3MF metadata or the upload filename — per-install setting." },
         { "title": "Obico AI failure detection", "body": "Optional ML-based failure detection with notify / pause / pause-and-power-off responses." }
       ]
@@ -158,6 +161,7 @@
       "items": [
         { "title": "Granular permissions", "body": "80+ resource:action permissions, three default groups (Admin / Operator / Viewer)." },
         { "title": "TOTP + Email OTP + Backup codes", "body": "Multi-factor auth with backup codes; per-user enrollment, admin-resettable." },
+        { "title": "MFA + OIDC secrets encrypted at rest by default", "body": "Auto-bootstrapped Fernet key (env → file → generated, mode 0600) — every TOTP secret + OIDC client_secret encrypted on disk without a manual env-var step. Status dashboard shows key source, encrypted vs legacy plaintext counts, and decryption-broken alerts. Backup ZIP packages the key alongside the DB so a restored install on a fresh host keeps decrypting." },
         { "title": "OIDC SSO incl. Azure Entra ID", "body": "PKCE + state + nonce + JWKS, SSRF guards on issuer URL, configurable email_claim (preferred_username / upn) for Microsoft 365 / Entra ID." },
         { "title": "LDAP / Active Directory", "body": "Group-mapped LDAP login for shops with existing identity." },
         { "title": "Sliding-session refresh", "body": "Rotating refresh tokens, OWASP reuse detection, HttpOnly cookie + 1h access JWT." },
@@ -166,8 +170,9 @@
         { "title": "Prometheus metrics", "body": "Dedicated /metrics endpoint with farm-level and per-printer counters." },
         { "title": "Per-request trace IDs", "body": "Every HTTP request gets an X-Trace-Id header echoed in logs so you can correlate one user action across HTTP / MQTT / scheduler lines." },
         { "title": "MQTT publishing", "body": "Forward printer state to your home MQTT broker for Home Assistant / Node-RED." },
-        { "title": "Git backup", "body": "Schedule automatic config backups to GitHub or GitLab - restore from any commit." },
-        { "title": "OrcaSlicer preset import", "body": "Drop your local Orca filament profiles into BamDude in one click." }
+        { "title": "Git backup", "body": "Schedule automatic config backups to GitHub, GitLab, Gitea, or Forgejo — restore from any commit. Per-backend `git_providers/` package handles the API shape divergences (Forgejo plays Gitea-shape; GitHub uses Issues vs GitLab Issues, etc.)." },
+        { "title": "OrcaSlicer preset import", "body": "Drop your local Orca filament profiles into BamDude in one click." },
+        { "title": "In-app bug report", "body": "Floating Bug button on every page — describe the issue, optionally drop a screenshot, click Start Debug Logging, reproduce, then Stop & Submit. Sanitized logs (printer names / serials / IPs / passwords / emails / API keys redacted) + screenshot + structured support snapshot get posted to the bamdude.top relay, which creates a GitHub issue. The relay holds the PAT, BamDude never does." }
       ]
     }
   ]
