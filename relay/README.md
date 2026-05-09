@@ -24,10 +24,10 @@ Cloudflare (proxied)
 nginx on bamdude.top
   ├─ static / → /var/www/bamdude.top
   ├─ /api/bug-report → 127.0.0.1:3001 (this relay)
-  └─ /bug-attachments/<uuid>.jpg → /var/lib/bamdude-relay/screenshots/...
+  └─ /bug-attachments/<uuid>.jpg → /opt/bamdude-relay/screenshots/...
        ↓
        Fastify relay (this directory)
-         ├─ writes screenshot to /var/lib/bamdude-relay/screenshots/<uuid>.jpg
+         ├─ writes screenshot to /opt/bamdude-relay/screenshots/<uuid>.jpg
          └─ POST https://api.github.com/repos/kainpl/bamdude/issues  (with PAT)
 ```
 
@@ -94,12 +94,12 @@ The relay rides alongside the landing site on the same host. The site's self-hos
 1. **Create the screenshots directory:**
 
    ```bash
-   sudo mkdir -p /var/lib/bamdude-relay/screenshots
-   sudo chown bamdude-runner:www-data /var/lib/bamdude-relay/screenshots
-   sudo chmod 750 /var/lib/bamdude-relay/screenshots
+   sudo -u bamdude-runner mkdir -p /opt/bamdude-relay/screenshots
+   sudo chgrp www-data /opt/bamdude-relay/screenshots
+   sudo chmod 750 /opt/bamdude-relay/screenshots
    ```
 
-   nginx (`www-data`) reads it; the runner user (`bamdude-runner`) writes through the relay process.
+   nginx (`www-data`) reads it via group; the runner user (`bamdude-runner`) writes through the relay process. Sits inside the install dir so the whole relay tree (code + state) is under `/opt/bamdude-relay`. The deploy workflow's rsync excludes `screenshots` so subsequent deploys don't wipe uploaded images.
 
 2. **Drop the env file:**
 
@@ -109,7 +109,7 @@ The relay rides alongside the landing site on the same host. The site's self-hos
    GITHUB_REPO=kainpl/bamdude
    HOST=127.0.0.1
    PORT=3001
-   SCREENSHOT_DIR=/var/lib/bamdude-relay/screenshots
+   SCREENSHOT_DIR=/opt/bamdude-relay/screenshots
    SCREENSHOT_PUBLIC_BASE=https://bamdude.top/bug-attachments
    MAX_BODY_BYTES=12582912
    RATE_LIMIT_MAX=10
@@ -138,7 +138,7 @@ The relay rides alongside the landing site on the same host. The site's self-hos
 6. **Nightly screenshot pruning** (optional but recommended — issues stay open for months, image files grow):
 
    ```bash
-   echo '0 4 * * * find /var/lib/bamdude-relay/screenshots -type f -mtime +90 -delete' \
+   echo '0 4 * * * root find /opt/bamdude-relay/screenshots -type f -mtime +90 -delete' \
      | sudo tee /etc/cron.d/bamdude-relay-prune
    ```
 

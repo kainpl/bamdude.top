@@ -169,9 +169,9 @@ rsync -avz --delete dist/ deploy@server:/var/www/bamdude.top/
 
 The static site shares this server with the **bug-report relay** — a small Fastify service that receives JSON from the in-app **Report a Bug** button shipped with BamDude and creates GitHub issues against `kainpl/bamdude` using a maintainer-controlled PAT. See `relay/README.md` for the full contract + one-time server setup. Quick recap of what the deploy workflow expects to already exist:
 
-- `/opt/bamdude-relay` — install directory, owned by `bamdude-runner`. The workflow rsyncs `relay/` into here, runs `npm ci --omit=dev`, then `systemctl restart bamdude-relay`.
+- `/opt/bamdude-relay` — install directory, owned by `bamdude-runner`. The workflow rsyncs `relay/` into here (excluding `node_modules`, `.env`, and `screenshots`), runs `npm ci --omit=dev`, then `systemctl restart bamdude-relay`.
 - `/etc/bamdude-relay.env` — env file with `GITHUB_PAT` etc., owned by `bamdude-runner`, mode `0600`. Source of truth for relay config; `relay/.env.example` documents every key.
-- `/var/lib/bamdude-relay/screenshots` — where uploaded screenshots are written. nginx serves it at `/bug-attachments/<uuid>.jpg`.
+- `/opt/bamdude-relay/screenshots` — where uploaded screenshots are written. nginx serves it at `/bug-attachments/<uuid>.jpg`. Excluded from the deploy rsync so deploys don't wipe uploaded images; a full reinstall (`rm -rf /opt/bamdude-relay`) does wipe them.
 - `/etc/systemd/system/bamdude-relay.service` — systemd unit (copy of `relay/deploy/relay.service`).
 - A polkit rule allowing `bamdude-runner` to `systemctl restart bamdude-relay` without sudo password — drop this in `/etc/polkit-1/rules.d/50-bamdude-relay.rules`:
 

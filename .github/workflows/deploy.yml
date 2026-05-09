@@ -84,9 +84,13 @@ jobs:
             echo "$RELAY_PATH does not exist; ensure one-time setup is done." >&2
             exit 1
           fi
+          # NOTE: --exclude screenshots — the screenshots dir lives inside
+          # the install dir (operator state, not code). Without this exclude
+          # rsync --delete would wipe every uploaded screenshot on every push.
           rsync -a --delete \
             --exclude node_modules \
             --exclude .env \
+            --exclude screenshots \
             relay/ "$RELAY_PATH/"
           (cd "$RELAY_PATH" && npm ci --omit=dev)
           # The runner user gets a polkit rule to restart bamdude-relay only;
