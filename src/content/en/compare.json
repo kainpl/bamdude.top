@@ -154,6 +154,7 @@
           { "label": "Prometheus / Grafana metrics", "values": ["yes", "no", "partial:Via plugins"] },
           { "label": "Git backup (GitHub / GitLab / Gitea / Forgejo)", "values": ["yes:All four providers", "no", "no"] },
           { "label": "In-app bug-report with sanitized log capture", "values": ["yes:Floating button → relay → GitHub issue", "no", "no"] },
+          { "label": "In-app updater (stable + beta channel)", "values": ["yes:Tag-aware git checkout, Docker install gets resolved-tag commands", "no", "partial:Docker pull only"] },
           { "label": "Slicer Preset Bundles (.bbscfg)", "values": ["yes:Import once, slice many", "no", "no"] },
           { "label": "SQLite + PostgreSQL", "values": ["yes", "na", "partial:SQLite only"] },
           { "label": "Web dashboard (PWA)", "values": ["yes", "no:Mobile only", "yes"] },

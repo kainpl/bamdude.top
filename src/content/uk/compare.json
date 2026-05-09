@@ -154,6 +154,7 @@
           { "label": "Prometheus / Grafana метрики", "values": ["yes", "no", "partial:Через плагіни"] },
           { "label": "Git-бекап (GitHub / GitLab / Gitea / Forgejo)", "values": ["yes:Усі чотири провайдери", "no", "no"] },
           { "label": "Bug report з UI + санітизовані логи", "values": ["yes:Плаваюча кнопка → релей → GitHub issue", "no", "no"] },
+          { "label": "In-app апдейтер (stable + beta канал)", "values": ["yes:Tag-aware git checkout, Docker отримує команди з resolved-тегом", "no", "partial:Тільки Docker pull"] },
           { "label": "Slicer Preset Bundles (.bbscfg)", "values": ["yes:Імпорт раз, слайс багато разів", "no", "no"] },
           { "label": "SQLite + PostgreSQL", "values": ["yes", "na", "partial:Тільки SQLite"] },
           { "label": "Веб-дашборд (PWA)", "values": ["yes", "no:Тільки мобайл", "yes"] },
