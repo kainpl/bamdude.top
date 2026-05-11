@@ -109,7 +109,8 @@
         { "title": "Print-finish photo", "body": "Camera snapshot attached to the success notification, with filament usage details." },
         { "title": "HMS + bed-cooled alerts", "body": "Get pinged when an HMS error fires or when the bed cools enough to remove the part." },
         { "title": "Queue events", "body": "Notifications for waiting, skipped, failed - only the events you opt into." },
-        { "title": "Per-event ntfy priority", "body": "Pick the ntfy priority (default / high / urgent) per event type, so finished prints don't shout but failures do." }
+        { "title": "Per-event ntfy priority", "body": "Pick the ntfy priority (default / high / urgent) per event type, so finished prints don't shout but failures do." },
+        { "title": "Pause / Resume with classified reason", "body": "RUNNING↔PAUSE transitions fire dedicated notifications carrying a normalised reason (door / filament runout / presence-check / file-pause / AI defect / plate-objects / user / HMS-other) and a paused-for counter on resume. Printer cards render a live PauseChip with the same reason + mm:ss ticker while paused — so you can tell at a glance whether the operator already knows." }
       ]
     },
     {
