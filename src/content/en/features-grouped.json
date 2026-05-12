@@ -8,6 +8,7 @@
       "items": [
         { "title": "Live status via WebSocket", "body": "Temperatures, fans, layer count, AMS, current job - all push-updated, no polling." },
         { "title": "Multi-printer dashboard", "body": "Resizable cards, group by location, jump to any printer in one click." },
+        { "title": "Custom sidebar links + drag-to-reorder", "body": "Admins add wiki / helpdesk / Grafana / external printer links directly into the sidebar, scoped to one of six nav groups (Operations / Workshop / Resources / Care / System / Links). Drag-and-drop reorder within a group or move whole groups as a block — never accidentally scramble the grouping." },
         { "title": "Camera streaming", "body": "Live MJPEG and snapshots, plus optional RTSP/USB external cameras." },
         { "title": "Long-lived camera tokens", "body": "Mint multi-year stream tokens for Home Assistant / Frigate / kiosk dashboards instead of renewing per-session 60-min tokens." },
         { "title": "OBS overlay", "body": "Drop a single URL into OBS for a clean live-stream overlay with progress, ETA, and AMS." },
@@ -29,6 +30,7 @@
         { "title": "Per-printer queues", "body": "Each printer has its own ordered queue with idle/printing/paused/error tracking." },
         { "title": "Auto-queue routing", "body": "Drop a print without naming a target - the router picks an idle printer that matches model, filament type, and (optionally) color. SJF + starvation guard for fair scheduling." },
         { "title": "Auto-pause on failure", "body": "When a print fails, the queue stops on that printer so you can decide what's next." },
+        { "title": "Cancel-during-dispatch pauses (not errors)", "body": "Cancelling during the upload/start window moves the queue to paused (not error) and the item to cancelled (not failed) — nothing failed, you just changed your mind. A Restart button on the cancelled item puts it back at the end of the queue with one click." },
         { "title": "Staggered start", "body": "Limit concurrent heating across the farm - bed temp watchdog prevents brownouts." },
         { "title": "Re-print with AMS mapping", "body": "Reprint to any printer, remap each filament slot from the source archive." },
         { "title": "Swap mode (A1 plate-swappers)", "body": "Built-in support for Kit / STL / JobOx swappers with macro-driven plate changes." },
@@ -45,6 +47,7 @@
       "items": [
         { "title": "Automatic 3MF archiving", "body": "Every print stored with metadata, thumbnail, gcode hash, and runtime data." },
         { "title": "Three.js 3D viewer", "body": "Inspect every plate in-browser with multi-color preview before reprinting." },
+        { "title": "Build-plate icon on archive cards", "body": "Every card shows an OrcaSlicer-style bed icon next to the printer / model name reflecting the plate the 3MF was sliced for (Cool / SuperTack / Engineering / High Temp / Textured PEI / Smooth PEI). Hover tooltip carries the full name — no need to open the source 3MF in a slicer just to read the bed setting before a re-print." },
         { "title": "Full-text search & dedup", "body": "Source-hash chain-of-custody so patched files (e.g. M970-disabled) still dedup correctly." },
         { "title": "Photo attachments & notes", "body": "Attach failure photos, post-process pics, freeform notes per archive." },
         { "title": "Side-by-side compare", "body": "Compare 2–5 prints (settings, filament, time, weight) in one view." },
@@ -70,6 +73,9 @@
         { "title": "Print directly or queue", "body": "Pick a file, pick a printer (model-filtered), print now or add to queue." },
         { "title": "Label-objects metadata", "body": "Skip-objects support detected at upload - button only enables when the slicer's profile actually emits it." },
         { "title": "MakerWorld URL import", "body": "Paste any MakerWorld model URL, pick a plate, BamDude downloads the 3MF straight into your library — provenance badge keeps the link back to the original." },
+        { "title": "MakerWorld History tab + per-variant dedupe", "body": "Server-paginated 4-column grid of every MakerWorld import with locally-cached cover images, search across filename/title/author, sort by date/title/author, and a per-variant 'already imported' badge with a one-click View-in-Library deep-link on the resolve preview — never pay a duplicate download." },
+        { "title": "MakerWorld Re-download", "body": "Author pushed an update? Re-download overwrites the 3MF bytes + cover + metadata in place. library_file_id stays stable so queue items, project links, and archives keep resolving to the same row." },
+        { "title": "MakerWorld design metadata captured", "body": "Title, author, license, sliced-for printer, full compatibility list, materials, AMS requirement, and a deep-link back to the original — all written to a child meta table on import and used to drive the History grid." },
         { "title": "Server-side slicing", "body": "Send STL/3MF to a containerised OrcaSlicer or BambuStudio sidecar and get a printable .gcode.3mf back without leaving the app." },
         { "title": "Slicer Preset Bundles (.bbscfg)", "body": "Import a BambuStudio Printer Preset Bundle once and reference its triplets (printer + process + filament) by name on every slice — bypasses the cloud / local / standard tier resolution entirely. Idempotent re-uploads keyed on bundle hash; per-bundle Settings panel for delete." },
         { "title": "Per-user Bambu Cloud", "body": "Each user signs into their own Bambu Cloud account with their own region — no shared credentials, no single-region lock-in. Tokens encrypted at rest, sliding refresh, OIDC-style flow." },
@@ -103,7 +109,8 @@
         { "title": "Print-finish photo", "body": "Camera snapshot attached to the success notification, with filament usage details." },
         { "title": "HMS + bed-cooled alerts", "body": "Get pinged when an HMS error fires or when the bed cools enough to remove the part." },
         { "title": "Queue events", "body": "Notifications for waiting, skipped, failed - only the events you opt into." },
-        { "title": "Per-event ntfy priority", "body": "Pick the ntfy priority (default / high / urgent) per event type, so finished prints don't shout but failures do." }
+        { "title": "Per-event ntfy priority", "body": "Pick the ntfy priority (default / high / urgent) per event type, so finished prints don't shout but failures do." },
+        { "title": "Pause / Resume with classified reason", "body": "RUNNING↔PAUSE transitions fire dedicated notifications carrying a normalised reason (door / filament runout / presence-check / file-pause / AI defect / plate-objects / user / HMS-other) and a paused-for counter on resume. Printer cards render a live PauseChip with the same reason + mm:ss ticker while paused — so you can tell at a glance whether the operator already knows." }
       ]
     },
     {
@@ -118,7 +125,11 @@
         { "title": "Spoolman sync + first-class inventory UI", "body": "Two-way sync with Spoolman for shops that already keep inventory there. Plus a full BamDude-side inventory experience on Spoolman-mode installs: structured slot assignments per (printer, AMS, tray) survive reboots, K-profiles per spool round-trip across BamDude installs that share one Spoolman, and the storage_location column shows on every spool card." },
         { "title": "Color catalog", "body": "Manufacturer-aware color name resolution (Bambu wins for matching hex)." },
         { "title": "Multi-colour filament gradients", "body": "Dual-colour spools render as hard-split bars (not a smooth blend), Multicolor renders as a conic colour-wheel pie, gradient stays a 135° linear blend, and Sparkle / Wood / Marble / Glow / Matte / Silk overlays paint visibly on inventory cards. Live preview in the spool form so you see the effect before save." },
-        { "title": "Printable PDF spool labels", "body": "Per-spool icon and bulk Print labels… header action. Four templates: AMS holder (30×15 mm), single box label (62×29 mm), Avery L7160 A4 (21/sheet), Avery 5160 US Letter (30/sheet). Each label carries swatch + brand + material + the spool's display name (using your configured naming template) + a QR code that deep-links back into BamDude on phone scan." },
+        { "title": "Printable PDF spool labels", "body": "Per-spool icon and bulk Print labels… header action. Five templates: AMS holder (30×15 mm), 40×30 box label (DK/Brother roll), 62×29 box label (Brother PT/QL + Dymo), Avery L7160 A4 (21/sheet), Avery 5160 US Letter (30/sheet). Each label carries swatch + bold brand + material + hex colour code + the spool's display name (using your configured naming template) + a QR code that deep-links back into BamDude on phone scan." },
+        { "title": "Copy Spool", "body": "Duplicate a spool in one click: pre-fills the form with everything except weight_used (reset to 0). Source row untouched; the new row gets its own id. Works in both local and Spoolman modes." },
+        { "title": "Pre-load assignment (weigh-then-assign)", "body": "Assign a fresh spool to an AMS slot before loading the filament. The assignment persists immediately; the printer-side configuration auto-fires the moment the slot transitions to loaded (keyed on the AMS load state, so 3rd-party spools without readable RFID trigger the replay too). The toast tells you the configuration is pending, not lying about success — Bambu firmware silently drops filament-setting commands for unloaded slots." },
+        { "title": "Stock forecasting + Logistics view", "body": "Per-SKU reorder intelligence on top of the real consumption history. Exponentially-weighted daily-rate (30-day half-life), 95%-service-level safety stock, days-left projection, reorder-by date, and a top-5 stacked-area chart with ROP reference lines. Inline editors for lead-time, safety-margin (days|grams), alert snooze. Companion Shopping List tracks SKUs through pending → purchased → received and auto-creates stock spools on receipt. New notification toggles for reorder and stock-break alerts (currently UI-only). Hidden in Spoolman mode." },
+        { "title": "Spool form preset dropdown shows all printer/nozzle variants", "body": "All P1S / X1C / A1 variants of the same filament render as separate rows with the full @printer suffix visible, instead of collapsing into one. Local OrcaSlicer / BambuStudio profiles merge alongside cloud presets — earlier versions hid them whenever the user was logged into Bambu Cloud." },
         { "title": "Per-spool category + low-stock", "body": "Tag spools by category (PETG / ABS / TPU…) and override the global low-stock threshold per spool." },
         { "title": "Projects with print plan", "body": "Group prints by project; per-file copies with live filament/time/cost totals." },
         { "title": "Project URL + cover image", "body": "Attach a MakerWorld / Printables / repo URL to a project plus a hero cover photo — surfaces on cards and the detail page." },
