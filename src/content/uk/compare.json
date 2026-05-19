@@ -71,7 +71,7 @@
           { "label": "Розшифровка HMS-помилок", "values": ["yes", "partial:Базові коди", "no"] },
           { "label": "Стрімінг камери + OBS-оверлей", "values": ["yes", "no", "partial:Через плагіни"] },
           { "label": "Зовнішня камера (RTSP/USB)", "values": ["yes", "no", "yes"] },
-          { "label": "UI-калібрування", "values": ["yes:Model-aware", "partial", "partial"] },
+          { "label": "Калібрування принтера (стіл / вібрації / мотори)", "values": ["yes:Model-aware", "partial", "partial"] },
           { "label": "AMS + сушіння", "values": ["yes", "partial", "no"] },
           { "label": "Файл-браузер SD-картки", "values": ["yes:Bulk dl/del", "no", "yes"] },
           { "label": "Довготривалі токени камери", "values": ["yes:Для HA / Frigate / kiosk", "no", "no"] }
@@ -130,6 +130,7 @@
           { "label": "Градієнти багатоколірного пластику", "values": ["yes:Painted / dual / silk", "no", "no"] },
           { "label": "Нагадування про обслуговування", "values": ["yes:Години + календар", "no", "no"] },
           { "label": "Облік енергії", "values": ["yes:kWh на друк", "no", "no"] },
+          { "label": "Майстер калібрування філаменту в застосунку", "values": ["yes:Pressure Advance / Flow / вежі швидкості та VFA — нарізка під твої пресети, друк, результат збережено", "no:Лише Bambu Studio / екран принтера", "no"] },
           { "label": "Імпорт OrcaSlicer-пресетів", "values": ["yes", "no", "no"] }
         ]
       },
@@ -160,8 +161,7 @@
           { "label": "Веб-дашборд (PWA)", "values": ["yes", "no:Тільки мобайл", "yes"] },
           { "label": "Багато мов", "values": ["yes:EN + UK", "yes", "yes"] },
           { "label": "Темна / світла теми", "values": ["yes", "yes", "yes"] },
-          { "label": "Open source", "values": ["yes:AGPL-3.0", "no", "yes:AGPL-3.0"] },
-          { "label": "Автотести + CI", "values": ["yes:5000+ тестів, кожен push/PR", "na:Закритий код", "partial:Лише ядро, плагіни без тестів"] }
+          { "label": "Open source", "values": ["yes:AGPL-3.0", "no", "yes:AGPL-3.0"] }
         ]
       }
     ]
