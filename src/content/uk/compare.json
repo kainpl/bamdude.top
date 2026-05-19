@@ -160,7 +160,8 @@
           { "label": "Веб-дашборд (PWA)", "values": ["yes", "no:Тільки мобайл", "yes"] },
           { "label": "Багато мов", "values": ["yes:EN + UK", "yes", "yes"] },
           { "label": "Темна / світла теми", "values": ["yes", "yes", "yes"] },
-          { "label": "Open source", "values": ["yes:AGPL-3.0", "no", "yes:AGPL-3.0"] }
+          { "label": "Open source", "values": ["yes:AGPL-3.0", "no", "yes:AGPL-3.0"] },
+          { "label": "Автотести + CI", "values": ["yes:5000+ тестів, кожен push/PR", "na:Закритий код", "partial:Лише ядро, плагіни без тестів"] }
         ]
       }
     ]

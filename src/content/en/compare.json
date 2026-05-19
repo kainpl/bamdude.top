@@ -160,7 +160,8 @@
           { "label": "Web dashboard (PWA)", "values": ["yes", "no:Mobile only", "yes"] },
           { "label": "Multi-language", "values": ["yes:EN + UK", "yes", "yes"] },
           { "label": "Dark / light themes", "values": ["yes", "yes", "yes"] },
-          { "label": "Open source", "values": ["yes:AGPL-3.0", "no", "yes:AGPL-3.0"] }
+          { "label": "Open source", "values": ["yes:AGPL-3.0", "no", "yes:AGPL-3.0"] },
+          { "label": "Automated test suite + CI", "values": ["yes:5,000+ tests, every push/PR", "na:Closed source", "partial:Core only, plugins untested"] }
         ]
       }
     ]
