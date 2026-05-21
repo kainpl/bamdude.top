@@ -165,32 +165,11 @@ npm run typecheck && npm run lint && npm run test && npm run build
 rsync -avz --delete dist/ deploy@server:/var/www/bamdude.top/
 ```
 
-## Bug-report relay (`relay/`)
+## Bug-report + telemetry API (moved out)
 
-The static site shares this server with the **bug-report relay** — a small Fastify service that receives JSON from the in-app **Report a Bug** button shipped with BamDude and creates GitHub issues against `kainpl/bamdude` using a maintainer-controlled PAT. See `relay/README.md` for the full contract + one-time server setup. Quick recap of what the deploy workflow expects to already exist:
+The in-app **Report a Bug** relay used to live here as a Fastify sub-project under `relay/`. It has moved into the separate **[`kainpl/bamdude-telemetry`](https://github.com/kainpl/bamdude-telemetry)** project (NestJS), which also serves the anonymized telemetry ingest and the admin dashboard. It runs on the same `127.0.0.1:3001` and the same public paths (`/api/bug-report`, `/bug-attachments/`, plus `/api/telemetry`, `/api/auth`, `/api/admin`), so deployed BamDude installs are unaffected.
 
-- `/opt/bamdude-relay` — install directory, owned by `bamdude-runner`. The workflow rsyncs `relay/` into here (excluding `node_modules`, `.env`, and `screenshots`), runs `npm ci --omit=dev`, then `systemctl restart bamdude-relay`.
-- `/etc/bamdude-relay.env` — env file with `GITHUB_PAT` etc., owned by `bamdude-runner`, mode `0600`. Source of truth for relay config; `relay/.env.example` documents every key.
-- `/opt/bamdude-relay/screenshots` — where uploaded screenshots are written. nginx serves it at `/bug-attachments/<uuid>.jpg`. Excluded from the deploy rsync so deploys don't wipe uploaded images; a full reinstall (`rm -rf /opt/bamdude-relay`) does wipe them.
-- `/etc/systemd/system/bamdude-relay.service` — systemd unit (copy of `relay/deploy/relay.service`).
-- A sudoers rule allowing `bamdude-runner` to passwordless-`systemctl restart bamdude-relay` only — drop this in `/etc/sudoers.d/bamdude-relay` (mode 0440, validated with `visudo -c`):
-
-  ```
-  bamdude-runner ALL=(ALL) NOPASSWD: /usr/bin/systemctl restart bamdude-relay
-  bamdude-runner ALL=(ALL) NOPASSWD: /usr/bin/systemctl restart bamdude-relay.service
-  bamdude-runner ALL=(ALL) NOPASSWD: /usr/bin/systemctl is-active bamdude-relay
-  bamdude-runner ALL=(ALL) NOPASSWD: /usr/bin/systemctl is-active bamdude-relay.service
-  bamdude-runner ALL=(ALL) NOPASSWD: /bin/systemctl restart bamdude-relay
-  bamdude-runner ALL=(ALL) NOPASSWD: /bin/systemctl restart bamdude-relay.service
-  bamdude-runner ALL=(ALL) NOPASSWD: /bin/systemctl is-active bamdude-relay
-  bamdude-runner ALL=(ALL) NOPASSWD: /bin/systemctl is-active bamdude-relay.service
-  ```
-
-  Both `/usr/bin/...` and `/bin/...` are listed because sudoers compares paths literally — usrmerge'd Debian/Ubuntu may resolve to either depending on the shell's `PATH`. The relay/README.md "One-time server setup" walks through this with copy-paste commands and verification. polkit was the original recommendation but doesn't ship by default on headless VPS images (no `/etc/polkit-1/rules.d/`).
-
-The nginx server block already proxies `/api/bug-report` → `127.0.0.1:3001` and serves `/bug-attachments/` from the screenshots dir — both blocks are in `deploy/nginx.conf`. After updating nginx.conf on the host: `sudo nginx -t && sudo systemctl reload nginx`.
-
-The deploy workflow's relay step is non-fatal when `relay/` is missing from the checkout (legacy main commits without the relay still deploy cleanly), but fatal when `relay/` exists and `/opt/bamdude-relay` doesn't (forces you to do the one-time setup before the next deploy lands).
+This landing repo now only publishes the static site. The API's systemd unit, env, and the nginx location blocks live in `bamdude-telemetry/deploy/`. The bamdude.top vhost (`deploy/nginx.conf` here) keeps the `/api/*` + `/bug-attachments/` location blocks — they proxy to that service; the screenshots dir moved to `/var/lib/bamdude-telemetry/screenshots`.
 
 ## Security notes
 
