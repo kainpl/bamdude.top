@@ -18,7 +18,7 @@
         { "title": "HMS error decoding", "body": "Translates Bambu's numeric error codes to plain language with history per printer." },
         { "title": "AMS management", "body": "Slot config, RFID re-read, load / unload from the printer card, AMS Settings dialog (Bambu Studio parity — RFID auto-read on insert/power-on, remaining-capacity estimate, filament backup, air-print detection, AMS calibrate, A1 firmware FULL↔LITE switch, H2D AMS reorder), drying schedules, humidity tracking." },
         { "title": "Printer file browser", "body": "Browse the printer's SD card, bulk-download or bulk-delete remote files. Save-to-Library promotes bare .3mf to .gcode.3mf when the bytes are already sliced." },
-        { "title": "LAN firmware updates", "body": "Fetch Bambu firmware ZIPs from the CDN, push to the printer over LAN-mode FTP, install via MQTT — no cloud account. curl_cffi Chrome impersonation handles Cloudflare's JA3 gate; stale buildId self-heals." },
+        { "title": "LAN firmware updates", "body": "Fetch Bambu firmware from the CDN, push to the printer's SD card over LAN-mode FTP, apply from the printer screen — no cloud account. Update one printer or the whole farm at once: the Firmware page groups printers by model, downloads each firmware once, pushes in parallel, skips mid-print printers, and keeps a per-run update log. A durable local store keeps every version (so you can roll back even after Bambu pulls it). curl_cffi Chrome impersonation handles Cloudflare's JA3 gate; stale buildId self-heals." },
         { "title": "Mobile / PWA install", "body": "Install BamDude as a PWA on iOS, Android, or desktop — standalone window, offline app shell, share-target uploads (Android), push notifications when HTTPS is on." }
       ]
     },
