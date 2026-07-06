@@ -32,6 +32,7 @@
       { "title": "Серія P1", "models": "P1P, P1S", "primary": "p1s", "secondary": "p1p" },
       { "title": "Серія P2", "models": "P2S", "primary": "p2s" },
       { "title": "Серія A1", "models": "A1, A1 Mini", "primary": "a1", "secondary": "a1mini" },
+      { "title": "Серія A2", "models": "A2L", "note": "Linear rail + cutter head", "primary": "a2l" },
       { "title": "Серія X2", "models": "X2D", "note": "Dual nozzle, steel-rod gantry", "primary": "x2d" }
     ]
   },
@@ -66,7 +67,7 @@
   "featuresPreview": {
     "eyebrow": "Що ти отримуєш",
     "title": "Все що потрібно для ферми Bambu Lab",
-    "subtitle": "Десять груп фіч - кожна на одному кліку.",
+    "subtitle": "Одинадцять груп фіч - кожна на одному кліку.",
     "cta": "Усі можливості"
   },
   "how": {
@@ -105,7 +106,7 @@
     "install": {
       "eyebrow": "Встановлення",
       "title": "Встанови BamDude",
-      "subtitle": "Три шляхи - Docker, Docker Compose чи ручний Python - плюс перший вхід і налаштування бота.",
+      "subtitle": "Чотири шляхи - Docker, Docker Compose, нативний Windows-інсталятор чи ручний Python - плюс перший вхід і налаштування бота.",
       "metaTitle": "Встановлення - BamDude",
       "metaDescription": "Встановлення BamDude через Docker, Docker Compose чи Python; перший вхід, додавання принтера, опційний Telegram-бот."
     },

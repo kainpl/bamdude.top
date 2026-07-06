@@ -36,6 +36,7 @@
       { "title": "P1 Series", "models": "P1P, P1S", "primary": "p1s", "secondary": "p1p" },
       { "title": "P2 Series", "models": "P2S", "primary": "p2s" },
       { "title": "A1 Series", "models": "A1, A1 Mini", "primary": "a1", "secondary": "a1mini" },
+      { "title": "A2 Series", "models": "A2L", "note": "Linear rail + cutter head", "primary": "a2l" },
       { "title": "X2 Series", "models": "X2D", "note": "Dual nozzle, steel-rod gantry", "primary": "x2d" }
     ]
   },
@@ -70,7 +71,7 @@
   "featuresPreview": {
     "eyebrow": "What you get",
     "title": "Everything you need to run a Bambu Lab print farm",
-    "subtitle": "Ten feature groups, each one a click away.",
+    "subtitle": "Eleven feature groups, each one a click away.",
     "cta": "Explore all features"
   },
   "how": {
@@ -109,7 +110,7 @@
     "install": {
       "eyebrow": "Install",
       "title": "Install BamDude",
-      "subtitle": "Three paths - Docker, Docker Compose, or manual Python - plus first login and bot setup.",
+      "subtitle": "Four paths - Docker, Docker Compose, a native Windows installer, or manual Python - plus first login and bot setup.",
       "metaTitle": "Install - BamDude",
       "metaDescription": "Install BamDude with Docker, Docker Compose or manual Python; first-login setup, add printer, optional Telegram bot."
     },
