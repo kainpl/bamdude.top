@@ -4,7 +4,7 @@ import { t, localePath } from '../i18n';
 import enFeatures from '../content/en/features-grouped.json';
 import ukFeatures from '../content/uk/features-grouped.json';
 import {
-  Activity, ListOrdered, Archive, Folder, Send, Bell, Palette, Wrench, Zap, ShieldCheck, ArrowRight,
+  Activity, ListOrdered, Archive, Folder, Send, Bell, Palette, Wrench, Zap, ShieldCheck, ArrowRight, Gauge,
 } from 'lucide-react';
 
 interface Props { locale: Locale; }
@@ -24,6 +24,7 @@ const iconMap: Record<string, typeof Activity> = {
   wrench: Wrench,
   zap: Zap,
   'shield-check': ShieldCheck,
+  gauge: Gauge,
 };
 
 const featuresHref = localePath(locale, 'features');

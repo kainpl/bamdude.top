@@ -71,7 +71,7 @@
           { "label": "HMS error decoding", "values": ["yes", "partial:Basic codes", "no"] },
           { "label": "Camera streaming + OBS overlay", "values": ["yes", "no", "partial:Via plugins"] },
           { "label": "External camera (RTSP/USB)", "values": ["yes", "no", "yes"] },
-          { "label": "Calibration UI", "values": ["yes:Model-aware", "partial", "partial"] },
+          { "label": "Printer calibration (bed / vibration / motor)", "values": ["yes:Model-aware", "partial", "partial"] },
           { "label": "AMS management + drying", "values": ["yes", "partial", "no"] },
           { "label": "Printer SD-card browser", "values": ["yes:Bulk dl/del", "no", "yes"] },
           { "label": "Long-lived camera tokens", "values": ["yes:For HA / Frigate / kiosks", "no", "no"] }
@@ -130,6 +130,7 @@
           { "label": "Multi-colour filament gradients", "values": ["yes:Painted / dual / silk", "no", "no"] },
           { "label": "Maintenance reminders", "values": ["yes:Hours + calendar", "no", "no"] },
           { "label": "Energy monitoring", "values": ["yes:Per-print kWh", "no", "no"] },
+          { "label": "In-app filament calibration wizard", "values": ["yes:Pressure Advance / Flow / speed & VFA towers — sliced against your presets, printed, result saved", "no:Bambu Studio / printer screen only", "no"] },
           { "label": "OrcaSlicer preset import", "values": ["yes", "no", "no"] }
         ]
       },

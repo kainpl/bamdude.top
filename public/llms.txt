@@ -2,7 +2,7 @@
 
 > Self-hosted print archive, management, and automation system for Bambu Lab 3D printers.
 
-BamDude lets you monitor, archive, schedule, and automate prints across one or many Bambu Lab printers locally - no cloud account required. It supports the X1, H2, P1, P2, A1, and X2 series, ships with a full Telegram bot (multi-chat with role-based permissions), and integrates with Spoolman, Home Assistant, Prometheus, MQTT, OrcaSlicer, LDAP/AD, and OIDC.
+BamDude lets you monitor, archive, schedule, and automate prints across one or many Bambu Lab printers locally - no cloud account required. It supports the X1, H2, P1, P2, A1, A2, and X2 series, ships with a full Telegram bot (multi-chat with role-based permissions), and integrates with Spoolman, Home Assistant, Prometheus, MQTT, OrcaSlicer, LDAP/AD, and OIDC.
 
 ## Key features
 

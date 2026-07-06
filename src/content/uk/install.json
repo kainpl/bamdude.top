@@ -36,6 +36,16 @@
       ]
     },
     {
+      "id": "windows",
+      "icon": "windows",
+      "title": "Windows-інсталятор (.exe)",
+      "subtitle": "Без Python і Node — один самодостатній інсталятор під Windows.",
+      "body": "Завантаж **bamdude-windows-setup.exe** зі [сторінки Releases](https://github.com/kainpl/bamdude/releases) і запусти. Він містить вбудований Python, готовий фронтенд і ffmpeg, ставиться в `C:\\Program Files\\BamDude`, тримає дані й логи в `C:\\ProgramData\\BamDude` і реєструє BamDude як Windows-сервіс, що на завантаженні віддає http://localhost:8000. Ярлик у Start Menu відкриває веб-UI.",
+      "notes": [
+        "Щоб оновитись — завантаж новіший інсталятор і запусти знову: дані, налаштування й принтери зберігаються."
+      ]
+    },
+    {
       "id": "manual",
       "icon": "terminal",
       "title": "Ручний запуск (Python venv)",

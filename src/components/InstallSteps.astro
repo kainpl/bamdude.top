@@ -2,7 +2,7 @@
 import type { Locale } from '../i18n';
 import enInstall from '../content/en/install.json';
 import ukInstall from '../content/uk/install.json';
-import { Container, Layers, Terminal, UserPlus, Printer, Send, ArrowRight, ChevronRight } from 'lucide-react';
+import { Container, Layers, Terminal, UserPlus, Printer, Send, MonitorDown, ArrowRight, ChevronRight } from 'lucide-react';
 
 interface Props { locale: Locale; }
 const { locale } = Astro.props;
@@ -12,6 +12,7 @@ const data = locale === 'uk' ? ukInstall : enInstall;
 const iconMap: Record<string, typeof Container> = {
   container: Container,
   layers: Layers,
+  windows: MonitorDown,
   terminal: Terminal,
   'user-plus': UserPlus,
   printer: Printer,

@@ -36,6 +36,16 @@
       ]
     },
     {
+      "id": "windows",
+      "icon": "windows",
+      "title": "Windows installer (.exe)",
+      "subtitle": "No Python or Node — one self-contained setup for Windows.",
+      "body": "Download **bamdude-windows-setup.exe** from the [Releases page](https://github.com/kainpl/bamdude/releases) and run it. It bundles an embedded Python, the pre-built frontend and ffmpeg, installs to `C:\\Program Files\\BamDude`, keeps your data and logs in `C:\\ProgramData\\BamDude`, and registers BamDude as a Windows Service that serves http://localhost:8000 on boot. A Start Menu shortcut opens the web UI.",
+      "notes": [
+        "To update, download the newer installer and re-run it — your data, settings and printers are preserved."
+      ]
+    },
+    {
       "id": "manual",
       "icon": "terminal",
       "title": "Manual install (Python venv)",
