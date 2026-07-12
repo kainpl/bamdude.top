@@ -165,6 +165,7 @@
       "description": "Per-printer counters, model-aware tasks, mark done from anywhere.",
       "items": [
         { "title": "Per-printer Maintenance Mode", "body": "Park a printer 'out of service' without deleting it — it drops out of queue dispatch, scheduling, auto-drying and metrics and shows an amber Maintenance pill until you bring it back. Toggle it from the printer's ⋮ menu." },
+        { "title": "Archive a printer", "body": "Retired a printer — sold, decommissioned, swapped out? Archive it instead of deleting: it vanishes from the Printers page, every picker, queues, dispatch and MQTT while its full print history is kept. Archiving is blocked mid-print and cancels the printer's pending queue items; restore it (or delete for good) under Settings → Printing. Distinct from Maintenance Mode, which only parks a printer temporarily." },
         { "title": "Model-aware task types", "body": "Each printer model gets the maintenance items it actually has (e.g. carbon-rod wipe on X1)." },
         { "title": "Counters with overdue alerts", "body": "Hours-based + calendar-based reminders; UI badges and notifications." },
         { "title": "Mark done from bot", "body": "Tap an actionable Telegram button to log the task - counters reset instantly." },
