@@ -179,6 +179,7 @@
       "description": "Smart plugs, virtual printer, AI failure detection - opt in to what you need.",
       "items": [
         { "title": "Smart plug control", "body": "Tasmota, Home Assistant, MQTT, REST/webhook plugs - auto power on/off with prints." },
+        { "title": "Accessory plugs know their place", "body": "Mark which plug actually powers the printer. Switch off a chamber filter, a light or a dryer and the printer stays online and keeps taking work from the queue." },
         { "title": "Energy tracking", "body": "Per-print kWh capture from the plug, plus date-range farm-wide totals." },
         { "title": "Virtual printer modes", "body": "File Manager (review queue), Print Queue (slicer → fixed printer), Auto-Queue (slicer → router picks idle printer), Proxy (TLS relay)." },
         { "title": "Slicer-as-remote in non-proxy modes", "body": "When the VP has a target printer, the slicer sees real AMS / FTS / nozzle / k-profile state and streams the live camera through the VP — full slicer-as-remote without giving up BamDude's queue / archive / dispatch." },
