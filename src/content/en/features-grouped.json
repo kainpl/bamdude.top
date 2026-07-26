@@ -128,6 +128,7 @@
       "description": "Track filament inventory and group prints into projects.",
       "items": [
         { "title": "Built-in spool inventory", "body": "Add spools with brand, color, weight, cost; AMS slot assignment per printer." },
+        { "title": "Mass actions on the Filament tab", "body": "Tick the spools you mean - a row, a whole group, the visible page, or everything matching the current filter - then Edit, Print labels, Reset usage, Archive, Restore or Delete them in one go. Works the same in built-in and Spoolman modes. Destructive actions confirm first, and the selection clears itself whenever the filter or tab changes, so a bulk delete can never land on rows you are no longer looking at." },
         { "title": "Auto consumption tracking", "body": "Filament used per print is deducted from the assigned spool - no manual math." },
         { "title": "Cost & lot tracking", "body": "Per-spool cost, purchase date, filament diameter, and lot number for inventory bundles." },
         { "title": "Spoolman sync + first-class inventory UI", "body": "Two-way sync with Spoolman for shops that already keep inventory there. Plus a full BamDude-side inventory experience on Spoolman-mode installs: structured slot assignments per (printer, AMS, tray) survive reboots, K-profiles per spool round-trip across BamDude installs that share one Spoolman, and the storage_location column shows on every spool card." },
