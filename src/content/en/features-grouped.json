@@ -10,10 +10,10 @@
         { "title": "Multi-printer dashboard", "body": "Resizable cards, group by location, jump to any printer in one click." },
         { "title": "Custom sidebar links + drag-to-reorder", "body": "Admins add wiki / helpdesk / Grafana / external printer links directly into the sidebar, scoped to one of six nav groups (Operations / Workshop / Resources / Care / System / Links). Drag-and-drop reorder within a group or move whole groups as a block — never accidentally scramble the grouping." },
         { "title": "Camera streaming", "body": "Live MJPEG and snapshots, plus optional RTSP/USB external cameras." },
-        { "title": "Camera Wall", "body": "Flip the Printers page to Cam wall and watch every printer's camera in one live grid. On-screen tiles stream live (capped so a Raspberry Pi keeps up), off-screen ones pause, and each tile carries a status overlay + HMS badge — click any tile to open it full-size." },
+        {"title": "Camera Wall", "body": "Flip the Printers page to Cam wall and watch every printer's camera in one live grid — or open it at its own /camwall URL to bookmark it or pin it to a wall-mounted screen. On-screen tiles stream live (capped so a Raspberry Pi keeps up), off-screen ones pause, and each tile carries a status overlay + HMS badge. A TV or Pi with no login runs it with a Cam Wall token, which serves only what a tile draws — never a printer's address or the name of the file being printed."},
         { "title": "In-app camera diagnostics", "body": "A Diagnose button on the camera viewer runs a staged check — network reachability then a real first-frame capture — and shows exactly which stage failed with a plain-language fix-it hint, so a 'camera broken' problem resolves on screen instead of in a support ticket." },
-        { "title": "Long-lived camera tokens", "body": "Mint multi-year stream tokens for Home Assistant / Frigate / kiosk dashboards instead of renewing per-session 60-min tokens." },
-        { "title": "OBS overlay", "body": "Drop a single URL into OBS for a clean live-stream overlay with progress, ETA, and AMS." },
+        {"title": "Long-lived camera tokens", "body": "Mint multi-year tokens for Home Assistant / Frigate / kiosk dashboards instead of renewing per-session 60-min ones. Three separate scopes — camera stream, Cam Wall, streaming overlay — that never widen one another, so a token handed out for video can't enumerate your fleet or read what's on the bed."},
+        {"title": "OBS overlay", "body": "Drop a single URL into OBS for a clean live-stream overlay with progress, ETA, and AMS. OBS has no login session, so it authenticates with a Streaming Overlay token — one printer, nothing else."},
         { "title": "Calibration UI", "body": "Bed leveling, vibration, motor noise, nozzle offset, high-temp heatbed - model-aware, from web or Telegram." },
         { "title": "Printer Settings dialog", "body": "Bambu Studio parity — toggle ~15 print-time behaviours from the kebab menu: AI failure detections with Low/Medium/High sensitivity (spaghetti, pile-up, clumping, air-print, first-layer, monitoring), FOD + displacement, filament-tangle, nozzle-blob, open-door check (Off/Pause/Halt), purify air (Off/Inside/Outside), auto-recovery, prompt sound, snapshot, save-remote, plate marker + alignment. Per-model gating hides what your printer doesn't support; every change audited to printer_setting_audit." },
         { "title": "HMS error decoding", "body": "Translates Bambu's numeric error codes to plain language with per-printer history — and surfaces the same fix-it buttons the printer's own screen offers (Resume, Stop, Ignore & Resume, Stop Drying…), one click straight to the printer." },
@@ -32,7 +32,7 @@
         { "title": "Parallel background dispatch", "body": "Send jobs to multiple printers simultaneously - startup-locked DB phase, parallel FTP and start." },
         { "title": "Per-printer queues", "body": "Each printer has its own ordered queue with idle/printing/paused/error tracking." },
         { "title": "Group, drag-reorder & sort by ETA", "body": "Tame a long queue: bundle items into a collapsible batch, drag a row by its grip handle to reorder, and sort the Printers page by ETA so the printer finishing next sits on top." },
-        { "title": "Auto-queue routing", "body": "Drop a print without naming a target - the router picks an idle printer that matches model, filament type, and (optionally) color. SJF + starvation guard for fair scheduling." },
+        { "title": "Auto-queue routing", "body": "Drop a print without naming a target - the router picks a suitable printer by model, filament type, and (optionally) color, preferring one that can start right away. SJF + starvation guard for fair scheduling." },
         { "title": "Auto-pause on failure", "body": "When a print fails, the queue stops on that printer so you can decide what's next." },
         { "title": "Cancel-during-dispatch pauses (not errors)", "body": "Cancelling during the upload/start window moves the queue to paused (not error) and the item to cancelled (not failed) — nothing failed, you just changed your mind. A Restart button on the cancelled item puts it back at the end of the queue with one click." },
         { "title": "Staggered start", "body": "Limit concurrent heating across the farm - bed temp watchdog prevents brownouts." },
@@ -40,7 +40,9 @@
         { "title": "Swap mode (A1 plate-swappers)", "body": "Built-in support for Kit / STL / JobOx swappers with macro-driven plate changes." },
         { "title": "G-code macros with ACK", "body": "Send macros from the printer card; MQTT-confirmed completion, real-time status." },
         { "title": "Quick vibration check toggle", "body": "Per-job toggle that comments out M970 in 3MF gcode and recalculates MD5 sidecars." },
-        { "title": "G-code injection per print", "body": "Per-printer-model snippet library; toggle Inject G-code on a job to splice start/end snippets directly into the plate gcode." }
+        { "title": "G-code injection per print", "body": "Per-printer-model snippet library; toggle Inject G-code on a job to splice start/end snippets directly into the plate gcode." },
+        { "title": "Slice settings", "body": "Save a slice setup once — printer + process + per-slot filament presets + bed type — then load all four back into the Slice dialog with a single pick instead of choosing them again. A preset that has since been deleted is never applied silently: the affected slot keeps its automatic pick and is named in a warning, so you never slice with something you did not choose. Printing a batch is the auto-queue's job, not the pipeline's." },
+        { "title": "Preheat & heat-soak", "body": "Hold the bed — and, on chamber-equipped printers, the chamber — at temperature before an engineering-filament job starts: the soak ABS / ASA / PA / PC need that Bambu firmware won't wait for. The chamber target derives per print from the loaded AMS filament types (editable map), and three hardware tiers are handled automatically — active M141 heater (H2 series / X2D / X1E), sensor-only radiant wait (X1C / P2S), or a soak timer (P1S / A1). Off by default, with a per-print override in the Print dialog." }
       ]
     },
     {
@@ -126,6 +128,7 @@
       "description": "Track filament inventory and group prints into projects.",
       "items": [
         { "title": "Built-in spool inventory", "body": "Add spools with brand, color, weight, cost; AMS slot assignment per printer." },
+        { "title": "Mass actions on the Filament tab", "body": "Tick the spools you mean - a row, a whole group, the visible page, or everything matching the current filter - then Edit, Print labels, Reset usage, Archive, Restore or Delete them in one go. Works the same in built-in and Spoolman modes. Destructive actions confirm first, and the selection clears itself whenever the filter or tab changes, so a bulk delete can never land on rows you are no longer looking at." },
         { "title": "Auto consumption tracking", "body": "Filament used per print is deducted from the assigned spool - no manual math." },
         { "title": "Cost & lot tracking", "body": "Per-spool cost, purchase date, filament diameter, and lot number for inventory bundles." },
         { "title": "Spoolman sync + first-class inventory UI", "body": "Two-way sync with Spoolman for shops that already keep inventory there. Plus a full BamDude-side inventory experience on Spoolman-mode installs: structured slot assignments per (printer, AMS, tray) survive reboots, K-profiles per spool round-trip across BamDude installs that share one Spoolman, and the storage_location column shows on every spool card." },
@@ -163,6 +166,7 @@
       "description": "Per-printer counters, model-aware tasks, mark done from anywhere.",
       "items": [
         { "title": "Per-printer Maintenance Mode", "body": "Park a printer 'out of service' without deleting it — it drops out of queue dispatch, scheduling, auto-drying and metrics and shows an amber Maintenance pill until you bring it back. Toggle it from the printer's ⋮ menu." },
+        { "title": "Archive a printer", "body": "Retired a printer — sold, decommissioned, swapped out? Archive it instead of deleting: it vanishes from the Printers page, every picker, queues, dispatch and MQTT while its full print history is kept. Archiving is blocked mid-print and cancels the printer's pending queue items; restore it (or delete for good) under Settings → Printing. Distinct from Maintenance Mode, which only parks a printer temporarily." },
         { "title": "Model-aware task types", "body": "Each printer model gets the maintenance items it actually has (e.g. carbon-rod wipe on X1)." },
         { "title": "Counters with overdue alerts", "body": "Hours-based + calendar-based reminders; UI badges and notifications." },
         { "title": "Mark done from bot", "body": "Tap an actionable Telegram button to log the task - counters reset instantly." },
@@ -176,9 +180,11 @@
       "description": "Smart plugs, virtual printer, AI failure detection - opt in to what you need.",
       "items": [
         { "title": "Smart plug control", "body": "Tasmota, Home Assistant, MQTT, REST/webhook plugs - auto power on/off with prints." },
+        { "title": "Accessory plugs know their place", "body": "Mark which plug actually powers the printer. Switch off a chamber filter, a light or a dryer and the printer stays online and keeps taking work from the queue." },
         { "title": "Energy tracking", "body": "Per-print kWh capture from the plug, plus date-range farm-wide totals." },
-        { "title": "Virtual printer modes", "body": "File Manager (review queue), Print Queue (slicer → fixed printer), Auto-Queue (slicer → router picks idle printer), Proxy (TLS relay)." },
+        { "title": "Virtual printer modes", "body": "File Manager (review queue), Print Queue (slicer → fixed printer), Auto-Queue (slicer → router picks a suitable printer), Proxy (TLS relay)." },
         { "title": "Slicer-as-remote in non-proxy modes", "body": "When the VP has a target printer, the slicer sees real AMS / FTS / nozzle / k-profile state and streams the live camera through the VP — full slicer-as-remote without giving up BamDude's queue / archive / dispatch." },
+        { "title": "Live print progress in the slicer", "body": "The slicer's Device tab shows the target printer's real stage, percentage, layer and time remaining — and the Send button stays enabled throughout, so you can queue the next job while the current one prints." },
         { "title": "Proxy mode for remote prints", "body": "Send from anywhere via TLS relay - no VPN, no port-forward, end-to-end encrypted." },
         { "title": "Tailscale-aware VP card", "body": "Surfaces the host's tailnet IPs + MagicDNS hostname for paste-into-slicer when you reach BamDude over Tailscale; copy-to-clipboard in one click." },
         { "title": "VP archive name source toggle", "body": "Choose whether VP-routed archives take their print_name from 3MF metadata or the upload filename — per-install setting." },

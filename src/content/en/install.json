@@ -52,7 +52,7 @@
       "subtitle": "For developers or environments where Docker is not an option.",
       "command": "git clone https://github.com/kainpl/bamdude.git\ncd bamdude\npython3 -m venv venv && source venv/bin/activate\npip install -r requirements.txt\nuvicorn backend.app.main:app --host 0.0.0.0 --port 8000",
       "notes": [
-        "Python 3.10+ (3.11/3.12 recommended).",
+        "Python 3.12+ (only for this manual route — Docker and the Windows installer bundle their own).",
         "For the frontend: `cd frontend && npm install && npm run dev` in a second terminal."
       ]
     },
