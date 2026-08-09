@@ -10,7 +10,7 @@
         "Multi-printer queue with parallel dispatch",
         "Auto-queue routing by model + filament + color",
         "Full Telegram bot with multi-chat auth",
-        "8+ notification channels in one editor",
+        "9 notification channels in one editor",
         "Proxy mode for remote prints (no VPN)"
       ]
     },
@@ -112,10 +112,10 @@
       {
         "title": "Notifications & Bot",
         "rows": [
-          { "label": "Push notifications", "values": ["yes:8+ channels", "yes:Mobile push", "partial:Via plugins"] },
+          { "label": "Push notifications", "values": ["yes:9 channels", "yes:Mobile push", "partial:Via plugins"] },
           { "label": "Full Telegram bot", "values": ["yes:Control + queue + maintenance", "no", "partial:Via plugins"] },
           { "label": "Multi-chat with roles", "values": ["yes", "no", "no"] },
-          { "label": "Discord / Pushover / ntfy", "values": ["yes:Per-event ntfy priority", "no", "partial:Via plugins"] },
+          { "label": "Discord / Pushover / ntfy / Bark", "values": ["yes:Per-event priority; Bark Critical bypasses Silent + Focus", "no", "partial:Via plugins"] },
           { "label": "Email (SMTP) + webhooks", "values": ["yes", "no", "partial:Via plugins"] },
           { "label": "MarkdownV2 editor with templates", "values": ["yes", "no", "no"] }
         ]
@@ -140,7 +140,7 @@
           { "label": "Always-on authentication", "values": ["yes", "yes", "partial:Optional"] },
           { "label": "MFA (TOTP + Email + Backup)", "values": ["yes", "no", "partial:Via plugins"] },
           { "label": "MFA + OIDC secrets encrypted at rest", "values": ["yes:Default-on, auto-bootstrapped Fernet key", "no", "no"] },
-          { "label": "OIDC SSO incl. Azure Entra ID", "values": ["yes:PKCE + JWKS, custom email_claim", "no", "no"] },
+          { "label": "OIDC SSO incl. Azure Entra ID", "values": ["yes:PKCE + JWKS, custom email_claim, declarable in env vars", "no", "no"] },
           { "label": "LDAP / Active Directory", "values": ["yes", "no", "partial:Via plugins"] },
           { "label": "Granular permissions (80+)", "values": ["yes", "no", "no"] },
           { "label": "API keys + webhooks", "values": ["yes", "no", "yes"] },

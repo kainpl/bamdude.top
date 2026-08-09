@@ -15,6 +15,10 @@
           "body": "Resizable cards, group by location, jump to any printer in one click."
         },
         {
+          "title": "Print progress in the browser tab",
+          "body": "Optional, per browser. The tab title carries the percentage of the print finishing soonest and the tab icon becomes a matching progress ring in your accent colour — a window parked on another screen tells you how the farm is doing without switching to it."
+        },
+        {
           "title": "Custom sidebar links + drag-to-reorder",
           "body": "Admins add wiki / helpdesk / Grafana / external printer links directly into the sidebar, scoped to one of six nav groups (Operations / Workshop / Resources / Care / System / Links). Drag-and-drop reorder within a group or move whole groups as a block — never accidentally scramble the grouping."
         },
@@ -49,6 +53,10 @@
         {
           "title": "HMS error decoding",
           "body": "Translates Bambu's numeric error codes to plain language with per-printer history — and surfaces the same fix-it buttons the printer's own screen offers (Resume, Stop, Ignore & Resume, Stop Drying…), one click straight to the printer."
+        },
+        {
+          "title": "Air-duct fans on the P2S and X2D",
+          "body": "The second auxiliary fan — an add-on kit on the P2S, factory-fitted on the X2D — is never reported as a plain speed field, so nothing could show it. It now appears as its own badge with its speed, and you can set that speed from the badge. Names come from Bambu Studio's own printer definitions, so the same position reads Left on a P2S and Right on an X2D."
         },
         {
           "title": "AMS management",
@@ -219,6 +227,10 @@
           "body": "Pick a file, pick a printer (model-filtered), print now or add to queue."
         },
         {
+          "title": "Schedule a whole selection",
+          "body": "Tick any number of sliced files and press Schedule: the usual scheduling window opens for the first, marked 1/3, then the next. Each file keeps the full set of choices — printers or the auto-queue, plates, filament mapping, options, quantity, when to start. Close it at any point and whatever you did not get to stays selected."
+        },
+        {
           "title": "Label-objects metadata",
           "body": "Skip-objects support detected at upload - button only enables when the slicer's profile actually emits it."
         },
@@ -245,6 +257,10 @@
         {
           "title": "Re-slice for any printer",
           "body": "Re-slice a saved 3MF for a different printer — even across nozzle classes (single ↔ dual-nozzle H2D/H2C/X2D). Pick the target profile and BamDude arranges the objects for the new bed; 'slice all plates' merges a multi-plate project into one file."
+        },
+        {
+          "title": "Keep the designer's print settings",
+          "body": "MakerWorld models often deviate from the stock profile on purpose — five walls, 100% infill, a 0.1 mm first layer — and a re-slice used to throw all of it away. The Slice dialog now lists exactly which settings the author changed, with a checkbox each: design intent ticked, machine-tuned values (speeds, accelerations, temperatures) listed but not. Bambu Studio writes that list into the 3MF itself, so nothing is guessed."
         },
         {
           "title": "Slicer Preset Bundles (.bbscfg)",
@@ -311,8 +327,16 @@
       "description": "Eight channels, one editor, one routing config.",
       "items": [
         {
-          "title": "8+ delivery channels",
-          "body": "Telegram, Discord, Email (SMTP), Pushover, ntfy, CallMeBot, Home Assistant, custom webhooks."
+          "title": "9 delivery channels",
+          "body": "Telegram, Discord, Email (SMTP), Pushover, ntfy, Bark, CallMeBot, Home Assistant, custom webhooks."
+        },
+        {
+          "title": "Bark, for the failure at 3 a.m.",
+          "body": "The free iOS push app that needs no account — install it, paste the device key. Its Critical interruption level is delivered through Silent mode and through Focus, so the print that stopped in the night actually wakes somebody; Time Sensitive breaks through scheduled summaries without going that far. Public relay or your own bark-server."
+        },
+        {
+          "title": "Home Assistant push options",
+          "body": "A Data (JSON) field that goes straight into the service call, the same place an automation would put it — priority: high and ttl: 0 to arrive immediately rather than whenever the phone next wakes, channel to give printer alerts their own sound. Checked when you save it and again when it is sent."
         },
         {
           "title": "MarkdownV2 template editor",
@@ -508,7 +532,7 @@
         },
         {
           "title": "Virtual printer modes",
-          "body": "File Manager (review queue), Print Queue (slicer → fixed printer), Auto-Queue (slicer → router picks a suitable printer), Proxy (TLS relay)."
+          "body": "File Manager (review queue), Print Queue (slicer → fixed printer), Auto-Queue (slicer → router picks a suitable printer), Proxy (TLS relay). Per-VP, it can also keep the AMS slots the slicer resolved instead of matching by filament type and colour — the only way to tell two spools of the same colour apart."
         },
         {
           "title": "Slicer-as-remote in non-proxy modes",
@@ -532,7 +556,7 @@
         },
         {
           "title": "Obico AI failure detection",
-          "body": "Optional ML-based failure detection with notify / pause / pause-and-power-off responses."
+          "body": "Optional ML-based failure detection with notify / pause / pause-and-power-off responses. Every printer card carries an AI badge — grey while nothing is watched, then green, amber or red as a monitored print is classified — so you can follow it without leaving the Printers page."
         }
       ]
     },
@@ -557,6 +581,10 @@
         {
           "title": "OIDC SSO incl. Azure Entra ID",
           "body": "PKCE + state + nonce + JWKS, SSRF guards on issuer URL, configurable email_claim (preferred_username / upn) for Microsoft 365 / Entra ID."
+        },
+        {
+          "title": "SSO declared in environment variables",
+          "body": "For compose / Helm / GitOps installs where clicking through Settings once is not part of the deployment. Set four BAMDUDE_OIDC_* variables and the provider is created on startup and reapplied on every restart — shown read-only in Settings, because an edit would be accepted and then silently undone. Removing the variables disables it rather than deleting it, so linked accounts keep their link."
         },
         {
           "title": "LDAP / Active Directory",

@@ -10,7 +10,7 @@
         "Черга на ферму з паралельним диспатчем",
         "Авто-черга за моделлю + філаментом + кольором",
         "Повноцінний Telegram-бот з мультичат-авторизацією",
-        "8+ каналів нотифікацій у одному редакторі",
+        "9 каналів нотифікацій у одному редакторі",
         "Proxy-режим для віддаленого друку (без VPN)"
       ]
     },
@@ -112,10 +112,10 @@
       {
         "title": "Нотифікації і бот",
         "rows": [
-          { "label": "Push-нотифікації", "values": ["yes:8+ каналів", "yes:Push", "partial:Через плагіни"] },
+          { "label": "Push-нотифікації", "values": ["yes:9 каналів", "yes:Push", "partial:Через плагіни"] },
           { "label": "Повний Telegram-бот", "values": ["yes:Контроль + черга + обслуговування", "no", "partial:Через плагіни"] },
           { "label": "Мультичат із ролями", "values": ["yes", "no", "no"] },
-          { "label": "Discord / Pushover / ntfy", "values": ["yes:ntfy-пріоритет на подію", "no", "partial:Через плагіни"] },
+          { "label": "Discord / Pushover / ntfy / Bark", "values": ["yes:пріоритет на подію; Bark Critical проходить крізь Silent + Focus", "no", "partial:Через плагіни"] },
           { "label": "Email (SMTP) + webhooks", "values": ["yes", "no", "partial:Через плагіни"] },
           { "label": "MarkdownV2-редактор з шаблонами", "values": ["yes", "no", "no"] }
         ]
@@ -140,7 +140,7 @@
           { "label": "Always-on авторизація", "values": ["yes", "yes", "partial:Опціонально"] },
           { "label": "MFA (TOTP + Email + Backup)", "values": ["yes", "no", "partial:Через плагіни"] },
           { "label": "MFA + OIDC секрети шифровані at-rest", "values": ["yes:Default-on, авто-bootstrap Fernet-ключа", "no", "no"] },
-          { "label": "OIDC SSO + Azure Entra ID", "values": ["yes:PKCE + JWKS, кастомний email_claim", "no", "no"] },
+          { "label": "OIDC SSO + Azure Entra ID", "values": ["yes:PKCE + JWKS, кастомний email_claim, оголошується у env", "no", "no"] },
           { "label": "LDAP / Active Directory", "values": ["yes", "no", "partial:Через плагіни"] },
           { "label": "Гранулярні дозволи (80+)", "values": ["yes", "no", "no"] },
           { "label": "API-ключі + webhooks", "values": ["yes", "no", "yes"] },
