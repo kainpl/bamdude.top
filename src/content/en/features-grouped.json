@@ -293,6 +293,10 @@
         {
           "title": "Local OrcaSlicer presets",
           "body": "Drop .orca_filament / .bbscfg / .bbsflmt / ZIP bundles directly — BamDude resolves preset inheritance from upstream OrcaSlicer when needed. Cloud-free path for shops without Bambu accounts."
+        },
+        {
+          "title": "Links that say what they do, and links that stay unique",
+          "body": "Linking a library folder to an archive puts an \"open source folder\" shortcut on that archive - and nothing on the folder, which is why the field never explained itself. It does now. It is also one archive to one folder: claiming one another folder already holds is refused by name, instead of quietly taking it away from a folder you are not looking at. Archived projects, meanwhile, have left the pickers entirely - except where something is already linked to one, which stays visible so saving the dialog cannot erase it."
         }
       ]
     },
