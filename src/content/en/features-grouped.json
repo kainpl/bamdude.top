@@ -23,6 +23,10 @@
           "body": "Per-fan speeds, air-duct mode and filtration, each fan labelled the way your own machine names it. Printers that describe no air duct at all - P1S, P1P, X1C, A1 - used to show three read-only numbers; they now get the same working controls, built from what they do report."
         },
         {
+          "title": "A timelapse is never promised to a printer that cannot record it",
+          "body": "The tick used to go to any printer, including one with no card in it - the request went nowhere and the print finished with no video and no explanation. Now a machine that cannot record is named when you pick printers, with which of three problems it has, and a queue whose printer has run out of room pauses instead of quietly dropping the recording. Printers with internal storage or a timelapse kit are never asked about the card at all."
+        },
+        {
           "title": "Multi-printer dashboard",
           "body": "Resizable cards, group by location, jump to any printer in one click."
         },
