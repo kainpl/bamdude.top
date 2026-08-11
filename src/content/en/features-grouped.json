@@ -11,6 +11,18 @@
           "body": "Temperatures, fans, layer count, AMS, current job - all push-updated, no polling."
         },
         {
+          "title": "Motion control, the way Studio does it",
+          "body": "A round pad for the toolhead with 10 mm and 1 mm rings and Home in the middle, the nozzle-bed gap beside it, and manual extrude / retract with the extruder drawn from Bambu Studio's own artwork. BamDude reads which axes the printer says are homed rather than guessing, and refuses a cold extruder below 170 degrees - grinding a flat onto the filament is not a mistake worth making twice."
+        },
+        {
+          "title": "Set temperatures, not just read them",
+          "body": "Nozzle, bed and chamber, both nozzles on dual-nozzle machines, with the limits your printer actually reports. An X1 on 220 V mains accepts a lower bed temperature than one on 110 V, and the chamber ceiling differs per model - so the number in front of you is the number the machine will honour. Zero always means off."
+        },
+        {
+          "title": "Fan and air-duct control on every printer",
+          "body": "Per-fan speeds, air-duct mode and filtration, each fan labelled the way your own machine names it. Printers that describe no air duct at all - P1S, P1P, X1C, A1 - used to show three read-only numbers; they now get the same working controls, built from what they do report."
+        },
+        {
           "title": "Multi-printer dashboard",
           "body": "Resizable cards, group by location, jump to any printer in one click."
         },
