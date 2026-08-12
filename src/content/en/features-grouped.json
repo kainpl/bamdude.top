@@ -207,6 +207,10 @@
           "body": "Failed FTP at print start? Recovery retries on startup, reconnect, print-end, or manually."
         },
         {
+          "title": "Save a printed file back into the library",
+          "body": "Pick a folder and the archive's 3MF is read in the way an upload is — metadata, thumbnail, per-plate detail and badges already filled in. Saving the same print twice keeps the copy already there instead of making a second one."
+        },
+        {
           "title": "Failure analysis dashboard",
           "body": "Retrospective analytics across the archive — failure rate by printer, material, time-of-day, and print duration. Drill into the offending archives in one click."
         },
@@ -449,6 +453,10 @@
         {
           "title": "Projects with print plan",
           "body": "Group prints by project; per-file copies with live filament/time/cost totals."
+        },
+        {
+          "title": "Defective parts count against the target",
+          "body": "A project needing forty usable parts is not finished because forty came off the plates. Record the scrap against the print and the parts tally is net of it. A target can also be set to zero, to mean \"don't measure this project that way\"."
         },
         {
           "title": "Project URL + cover image",
