@@ -655,6 +655,34 @@
           "body": "Settings → System → Install Update робить повну послідовність (git fetch --tags, reset --hard на tag, pip install, npm build) не виходячи з UI. Опційний Include beta updates toggle показує `vX.Y.ZbN` релізи теж — beta-детекція dual-signal (version-name convention АБО GitHub prerelease flag). Docker-інсталам auto-apply не дозволяється (git/pip/npm у запущеному контейнері — recipe для розбитого image), натомість UI показує і image-pull і source-build команди з resolved-тегом pre-filled — з beta-специфічним hint що `:latest` бети не трекає, тож явний `image: kainpl/bamdude:0.4.5b1` обов'язковий."
         }
       ]
+    },
+    {
+      "id": "deployment",
+      "icon": "server",
+      "title": "Розгортання",
+      "description": "Працює там, де стоять твої принтери — контейнер, служба Windows або звичайна Linux-машина.",
+      "items": [
+        {
+          "title": "Один Docker-контейнер",
+          "body": "SQLite із коробки, PostgreSQL коли переростеш. `--network host` лишає SSDP-автопошук принтерів робочим."
+        },
+        {
+          "title": "Нативний інсталятор для Windows",
+          "body": "`.exe` для Windows 10/11 — без Docker, без WSL, без окремого Python. Несе вбудований Python і ffmpeg, реєструє BamDude як службу Windows, що стартує при завантаженні, і тримає твої дані в `C:\\ProgramData\\BamDude` — вони переживають і оновлення, і видалення."
+        },
+        {
+          "title": "Linux і macOS нативно",
+          "body": "Скрипт встановлення налаштовує systemd або launchd — коли контейнер це на один шар більше, ніж треба."
+        },
+        {
+          "title": "Reverse proxy і HTTPS",
+          "body": "Стає за nginx, Caddy чи Traefik; secure-куки підлаштовуються під схему автоматично."
+        },
+        {
+          "title": "Ставиться на телефон як застосунок",
+          "body": "PWA — додай дашборд на домашній екран, і він відкривається як нативний застосунок, без жодного стору."
+        }
+      ]
     }
   ]
 }

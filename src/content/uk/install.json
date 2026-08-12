@@ -40,7 +40,7 @@
       "icon": "windows",
       "title": "Windows-інсталятор (.exe)",
       "subtitle": "Без Python і Node — один самодостатній інсталятор під Windows.",
-      "body": "Завантаж **bamdude-windows-setup.exe** зі [сторінки Releases](https://github.com/kainpl/bamdude/releases) і запусти. Він містить вбудований Python, готовий фронтенд і ffmpeg, ставиться в `C:\\Program Files\\BamDude`, тримає дані й логи в `C:\\ProgramData\\BamDude` і реєструє BamDude як Windows-сервіс, що на завантаженні віддає http://localhost:8000. Ярлик у Start Menu відкриває веб-UI.",
+      "body": "Завантаж **[bamdude-windows-x64-setup.exe](https://github.com/kainpl/bamdude/releases/latest/download/bamdude-windows-x64-setup.exe)** і запусти. Він містить вбудований Python, готовий фронтенд і ffmpeg, ставиться в `C:\\Program Files\\BamDude`, тримає дані й логи в `C:\\ProgramData\\BamDude` і реєструє BamDude як Windows-сервіс, що на завантаженні віддає http://localhost:8000. Ярлик у Start Menu відкриває веб-UI.",
       "notes": [
         "Щоб оновитись — завантаж новіший інсталятор і запусти знову: дані, налаштування й принтери зберігаються."
       ]
@@ -85,9 +85,18 @@
   "next": {
     "title": "Що далі",
     "links": [
-      { "label": "Повний гайд оновлення і міграцій", "href": "https://docs.bamdude.top/getting-started/upgrading/" },
-      { "label": "Reverse proxy + HTTPS", "href": "https://docs.bamdude.top/getting-started/reverse-proxy/" },
-      { "label": "Рецепти Docker Compose", "href": "https://docs.bamdude.top/getting-started/docker/" }
+      {
+        "label": "Повний гайд оновлення і міграцій",
+        "href": "https://docs.bamdude.top/getting-started/upgrading/"
+      },
+      {
+        "label": "Reverse proxy + HTTPS",
+        "href": "https://docs.bamdude.top/getting-started/reverse-proxy/"
+      },
+      {
+        "label": "Рецепти Docker Compose",
+        "href": "https://docs.bamdude.top/getting-started/docker/"
+      }
     ]
   }
 }

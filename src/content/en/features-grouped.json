@@ -655,6 +655,34 @@
           "body": "Settings → System → Install Update does the full sequence (git fetch --tags, reset --hard to the tag, pip install, npm build) without leaving the UI. Optional Include beta updates toggle surfaces `vX.Y.ZbN` releases too — beta detection is dual-signal (version-name convention OR GitHub prerelease flag). Docker installs aren't auto-applied (running git/pip/npm in a live container would corrupt the image), but the UI shows both image-pull and source-build commands with the resolved tag pre-filled — including a beta-specific hint that `:latest` doesn't track betas, so explicit `image: kainpl/bamdude:0.4.5b1` pinning is required."
         }
       ]
+    },
+    {
+      "id": "deployment",
+      "icon": "server",
+      "title": "Deployment",
+      "description": "Runs where your printers are — a container, a Windows service, or a plain Linux box.",
+      "items": [
+        {
+          "title": "One Docker container",
+          "body": "SQLite out of the box, PostgreSQL when you outgrow it. `--network host` keeps SSDP printer discovery working."
+        },
+        {
+          "title": "Native Windows installer",
+          "body": "A signed-in-place `.exe` for Windows 10/11 — no Docker, no WSL, no separate Python. Bundles an embedded Python and ffmpeg, registers BamDude as a Windows Service that starts on boot, and keeps your data in `C:\\ProgramData\\BamDude` across upgrades and uninstalls."
+        },
+        {
+          "title": "Linux and macOS natively",
+          "body": "An install script that sets up systemd or launchd, for when a container is one layer too many."
+        },
+        {
+          "title": "Reverse proxy and HTTPS",
+          "body": "Sits behind nginx, Caddy or Traefik; secure cookies follow the scheme automatically."
+        },
+        {
+          "title": "Installs as an app on your phone",
+          "body": "PWA — add the dashboard to the home screen and it opens like a native app, no store involved."
+        }
+      ]
     }
   ]
 }
