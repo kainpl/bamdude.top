@@ -66,7 +66,7 @@ const iconMap: Record<string, typeof Code> = {
             links, so they are selectable rather than clickable. */}
         <div id="support" class="mt-10 rounded-xl border border-bambu-border bg-bambu-bg-secondary p-6">
           <h3 class="flex items-center gap-2 font-bold text-bambu-text">
-            <PiggyBank size={20} strokeWidth={2.25} class="text-bambu-green" />
+            <PiggyBank size={20} strokeWidth={2.25} className="text-bambu-green" />
             {i.helpWanted.donateTitle}
           </h3>
           <p class="mt-2 text-sm text-bambu-text-muted">{i.helpWanted.donateBody}</p>
@@ -76,12 +76,12 @@ const iconMap: Record<string, typeof Code> = {
               {i.helpWanted.donateMono}
             </a>
             <span class="inline-flex items-center gap-2">
-              <Wallet size={16} strokeWidth={2.25} class="text-bambu-text-muted" />
+              <Wallet size={16} strokeWidth={2.25} className="text-bambu-text-muted" />
               <span class="text-bambu-text-muted">{i.helpWanted.donatePaypalLabel}:</span>
               <code class="select-all break-all text-bambu-text">{i.helpWanted.donatePaypal}</code>
             </span>
             <span class="inline-flex items-center gap-2">
-              <Bitcoin size={16} strokeWidth={2.25} class="text-bambu-text-muted" />
+              <Bitcoin size={16} strokeWidth={2.25} className="text-bambu-text-muted" />
               <span class="text-bambu-text-muted">{i.helpWanted.donateCryptoLabel}:</span>
               <code class="select-all break-all text-bambu-text">{i.helpWanted.donateCrypto}</code>
             </span>
