@@ -31,28 +31,99 @@
     "subtitle": "Works with the full range of Bambu Lab printers via Developer Mode.",
     "badge": "Supported",
     "series": [
-      { "title": "X1 Series", "models": "X1 Carbon, X1E", "primary": "x1c", "secondary": "x1e" },
-      { "title": "H2 Series", "models": "H2D, H2D Pro, H2C, H2S", "note": "Dual nozzle + nozzle rack", "primary": "h2d", "secondary": "h2c" },
-      { "title": "P1 Series", "models": "P1P, P1S", "primary": "p1s", "secondary": "p1p" },
-      { "title": "P2 Series", "models": "P2S", "primary": "p2s" },
-      { "title": "A1 Series", "models": "A1, A1 Mini", "primary": "a1", "secondary": "a1mini" },
-      { "title": "A2 Series", "models": "A2L", "note": "Linear rail + cutter head", "primary": "a2l" },
-      { "title": "X2 Series", "models": "X2D", "note": "Dual nozzle, steel-rod gantry", "primary": "x2d" }
+      {
+        "title": "X1 Series",
+        "models": "X1 Carbon, X1E",
+        "primary": "x1c",
+        "secondary": "x1e"
+      },
+      {
+        "title": "H2 Series",
+        "models": "H2D, H2D Pro, H2C, H2S",
+        "note": "Dual nozzle + nozzle rack",
+        "primary": "h2d",
+        "secondary": "h2c"
+      },
+      {
+        "title": "P1 Series",
+        "models": "P1P, P1S",
+        "primary": "p1s",
+        "secondary": "p1p"
+      },
+      {
+        "title": "P2 Series",
+        "models": "P2S",
+        "primary": "p2s"
+      },
+      {
+        "title": "A1 Series",
+        "models": "A1, A1 Mini",
+        "primary": "a1",
+        "secondary": "a1mini"
+      },
+      {
+        "title": "A2 Series",
+        "models": "A2L",
+        "note": "Linear rail + cutter head",
+        "primary": "a2l"
+      },
+      {
+        "title": "X2 Series",
+        "models": "X2D",
+        "note": "Dual nozzle, steel-rod gantry",
+        "primary": "x2d"
+      }
     ]
   },
   "techStack": {
     "title": "Built with modern stack",
     "subtitle": "Reliable, well-known, easy to extend.",
     "items": [
-      { "icon": "python", "label": "Python", "sub": "Backend runtime" },
-      { "icon": "fastapi", "label": "FastAPI", "sub": "Async REST API" },
-      { "icon": "react", "label": "React", "sub": "Frontend UI" },
-      { "icon": "typescript", "label": "TypeScript", "sub": "Type-safe code" },
-      { "icon": "tailwindcss", "label": "Tailwind CSS", "sub": "Styling" },
-      { "icon": "database", "label": "SQLite / PostgreSQL", "sub": "Default + optional" },
-      { "icon": "threedotjs", "label": "Three.js", "sub": "3D model viewer" },
-      { "icon": "mqtt", "label": "MQTT", "sub": "Native Bambu protocol" },
-      { "icon": "telegram", "label": "aiogram 3.x", "sub": "Telegram bot framework" }
+      {
+        "icon": "python",
+        "label": "Python",
+        "sub": "Backend runtime"
+      },
+      {
+        "icon": "fastapi",
+        "label": "FastAPI",
+        "sub": "Async REST API"
+      },
+      {
+        "icon": "react",
+        "label": "React",
+        "sub": "Frontend UI"
+      },
+      {
+        "icon": "typescript",
+        "label": "TypeScript",
+        "sub": "Type-safe code"
+      },
+      {
+        "icon": "tailwindcss",
+        "label": "Tailwind CSS",
+        "sub": "Styling"
+      },
+      {
+        "icon": "database",
+        "label": "SQLite / PostgreSQL",
+        "sub": "Default + optional"
+      },
+      {
+        "icon": "threedotjs",
+        "label": "Three.js",
+        "sub": "3D model viewer"
+      },
+      {
+        "icon": "mqtt",
+        "label": "MQTT",
+        "sub": "Native Bambu protocol"
+      },
+      {
+        "icon": "telegram",
+        "label": "aiogram 3.x",
+        "sub": "Telegram bot framework"
+      }
     ]
   },
   "helpWanted": {
@@ -60,29 +131,64 @@
     "title": "Build BamDude with us",
     "body": "BamDude is a small open-source project run by a print-farm operator who needed a tool that didn't exist yet. The features you see came from real farm-floor problems - there's plenty more on the list. Whatever angle you want in, there's room.",
     "items": [
-      { "icon": "code", "title": "Code contributors", "body": "Pick an open issue, fix a bug, ship a feature. PRs land on the dev branch." },
-      { "icon": "lightbulb", "title": "Feature ideas + testing", "body": "Run a beta tag on your farm, share what broke and what you wished worked differently. Real-world stress is the most valuable input." },
-      { "icon": "languages", "title": "Translators", "body": "JSON-driven i18n in both backend and frontend - adding a language is a single PR. Currently EN + UK; whatever language your local print shop talks, we'll take it." },
-      { "icon": "book-open", "title": "Documentation help", "body": "docs.bamdude.top has its own repo. Found a stale instruction or a missing screenshot? Open a PR." }
+      {
+        "icon": "code",
+        "title": "Code contributors",
+        "body": "Pick an open issue, fix a bug, ship a feature. PRs land on the dev branch."
+      },
+      {
+        "icon": "lightbulb",
+        "title": "Feature ideas + testing",
+        "body": "Run a beta tag on your farm, share what broke and what you wished worked differently. Real-world stress is the most valuable input."
+      },
+      {
+        "icon": "languages",
+        "title": "Translators",
+        "body": "JSON-driven i18n in both backend and frontend - adding a language is a single PR. Currently EN + UK; whatever language your local print shop talks, we'll take it."
+      },
+      {
+        "icon": "book-open",
+        "title": "Documentation help",
+        "body": "docs.bamdude.top has its own repo. Found a stale instruction or a missing screenshot? Open a PR."
+      }
     ],
     "ctaForum": "Join the Telegram forum",
-    "ctaIssues": "Open an issue on GitHub"
+    "ctaIssues": "Open an issue on GitHub",
+    "donateTitle": "Or just chip in",
+    "donateBody": "BamDude is free and stays free — AGPL-3.0, no paid tiers, no pro edition. If it saved you an evening, there is a jar.",
+    "donateMono": "Monobank jar",
+    "donatePaypalLabel": "PayPal",
+    "donateCryptoLabel": "USDT (TRC20)",
+    "donateMonoUrl": "https://send.monobank.ua/jar/2vREyf3SrF",
+    "donatePaypal": "pushkar.valeriy@gmail.com",
+    "donateCrypto": "TWe1MaXz7mpDZZqDkY7Az7NdZ6s9H5fvMF"
   },
   "featuresPreview": {
     "eyebrow": "What you get",
     "title": "Everything you need to run a Bambu Lab print farm",
-    "subtitle": "Eleven feature groups, each one a click away.",
+    "subtitle": "Twelve feature groups, each one a click away.",
     "cta": "Explore all features"
   },
   "how": {
     "title": "Up and running in 5 minutes",
     "steps": [
-      { "title": "Pull the Docker image", "body": "One container, SQLite by default, Postgres optional." },
-      { "title": "Add your printers", "body": "Auto-discover via SSDP or paste in IP and access code." },
-      { "title": "Print from web or Telegram", "body": "Queue, monitor, and react to events from anywhere." }
+      {
+        "title": "Pull the Docker image",
+        "body": "One container, SQLite by default, Postgres optional."
+      },
+      {
+        "title": "Add your printers",
+        "body": "Auto-discover via SSDP or paste in IP and access code."
+      },
+      {
+        "title": "Print from web or Telegram",
+        "body": "Queue, monitor, and react to events from anywhere."
+      }
     ]
   },
-  "faq": { "title": "Questions you probably have" },
+  "faq": {
+    "title": "Questions you probably have"
+  },
   "cta": {
     "title": "Get started in 5 minutes",
     "subtitle": "Free, open source, AGPL-3.0 licensed. No cloud lock-in. Ever.",
@@ -209,10 +315,20 @@
     "privacy": "Privacy",
     "cookies": "Cookie settings",
     "rights": "All rights reserved.",
-    "disclaimer": "Bambu Lab is a trademark of Bambu Lab Co., Ltd. BamDude is an independent project, not affiliated with Bambu Lab."
+    "disclaimer": "Bambu Lab is a trademark of Bambu Lab Co., Ltd. BamDude is an independent project, not affiliated with Bambu Lab.",
+    "donate": "Support the project"
   },
-  "theme": { "system": "System", "light": "Light", "dark": "Dark", "label": "Theme" },
-  "lang": { "label": "Language", "en": "English", "uk": "Українська" },
+  "theme": {
+    "system": "System",
+    "light": "Light",
+    "dark": "Dark",
+    "label": "Theme"
+  },
+  "lang": {
+    "label": "Language",
+    "en": "English",
+    "uk": "Українська"
+  },
   "cookie": {
     "title": "We use a cookie for analytics",
     "body": "Google Analytics 4 helps us understand which features get used. Loaded only after you accept.",
@@ -221,5 +337,12 @@
     "customize": "Customize",
     "analyticsLabel": "Analytics (Google Analytics 4)",
     "save": "Save preferences"
+  },
+  "origin": {
+    "badge": "Where this came from",
+    "title": "BamDude grew out of a volunteer workshop",
+    "body": "The author volunteers with DrukArmy, Ukraine's largest volunteer 3D-printing effort for the front line — printing, and running the FPV direction as senior curator. BamDude came straight out of that work: batches, deadlines and a farm that has to keep moving around the clock do not fit any off-the-shelf tool. Every feature here earned its place on a real order first. That is also why Ukrainian is a first-class locale.",
+    "ctaJoin": "Join DrukArmy",
+    "ctaAbout": "About DrukArmy"
   }
 }

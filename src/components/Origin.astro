@@ -1,0 +1,56 @@
+---
+import type { Locale } from '../i18n';
+import { t } from '../i18n';
+import { Heart, ArrowRight, ExternalLink } from 'lucide-react';
+
+/**
+ * Where BamDude came from.
+ *
+ * Not a sponsor band and not a partnership claim — the author volunteers with
+ * ДрукАрмія (prints and curates parts for the front), and this project grew out
+ * of that workload. That is the honest version, it is stronger than any badge,
+ * and it is the reason the Ukrainian locale exists at all.
+ *
+ * The join link is the author's own invite, so the section earns them people
+ * rather than just crediting them.
+ */
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const i = t(locale);
+
+const invite = 'https://app.drukarmy.org.ua/inv/ujnv7w8i';
+const about = 'https://drukarmy.org.ua/ua/about-us';
+---
+<section aria-label="Origin" class="py-16">
+  <div class="mx-auto max-w-5xl px-6">
+    <div class="rounded-2xl border border-bambu-border bg-bambu-bg-secondary p-8 sm:p-10">
+      <span class="inline-flex items-center gap-2 rounded-full bg-bambu-green/10 px-3 py-1 text-xs font-semibold text-bambu-green">
+        <Heart size={14} strokeWidth={2.5} />
+        {i.origin.badge}
+      </span>
+      <h2 class="mt-4 text-2xl font-bold text-bambu-text sm:text-3xl">{i.origin.title}</h2>
+      <p class="mt-4 max-w-3xl text-bambu-text-muted">{i.origin.body}</p>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a
+          href={invite}
+          target="_blank"
+          rel="noopener"
+          class="inline-flex items-center gap-2 rounded-lg bg-bambu-green px-5 py-2.5 font-semibold text-white transition hover:bg-bambu-green-light"
+        >
+          {i.origin.ctaJoin}
+          <ArrowRight size={16} strokeWidth={2.5} />
+        </a>
+        <a
+          href={about}
+          target="_blank"
+          rel="noopener"
+          class="inline-flex items-center gap-2 rounded-lg border border-bambu-border bg-bambu-bg px-5 py-2.5 font-semibold transition hover:border-bambu-green"
+        >
+          {i.origin.ctaAbout}
+          <ExternalLink size={16} strokeWidth={2.25} />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
