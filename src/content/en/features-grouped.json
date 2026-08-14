@@ -88,7 +88,11 @@
         },
         {
           "title": "Timelapses off whichever medium recorded them",
-          "body": "On built-in storage the printer names the print each recording belongs to, so the video attaches to the right archive outright rather than being guessed at from timestamps."
+          "body": "The printer reports the full path of the recording it has just finished, so that file is attached by name instead of \"the first one that was not there before\". On built-in storage it also names the print each recording belongs to, matching the video to the right archive outright rather than guessing from timestamps."
+        },
+        {
+          "title": "You choose where the timelapse is recorded",
+          "body": "On a printer with both built-in storage and a card, the print dialog offers which one records it - the same choice Bambu Studio puts behind its folder icon. The pick travels with the queue item and is checked against the card again at dispatch, so a card removed in the meantime means the recording falls back to internal storage rather than the print failing. A job sent from a slicer to a Virtual Printer keeps the slicer's own pick."
         },
         {
           "title": "LAN firmware updates",
