@@ -80,7 +80,15 @@
         },
         {
           "title": "Printer file browser",
-          "body": "Browse the printer's SD card, bulk-download or bulk-delete remote files. Save-to-Library promotes bare .3mf to .gcode.3mf when the bytes are already sliced."
+          "body": "Browse the printer's SD card and, on X2D / P2S / H2, its built-in storage - one switch between the two, with listing, download, plate previews, Save-to-Library and delete working on both. Save-to-Library promotes bare .3mf to .gcode.3mf when the bytes are already sliced."
+        },
+        {
+          "title": "Printing without an SD card",
+          "body": "Printers that keep files internally no longer need a card to be sent a job: with no card in, the file goes to built-in storage over the printer's own file channel. A card that is in but unreadable still stops the print instead of being routed around."
+        },
+        {
+          "title": "Timelapses off whichever medium recorded them",
+          "body": "On built-in storage the printer names the print each recording belongs to, so the video attaches to the right archive outright rather than being guessed at from timestamps."
         },
         {
           "title": "LAN firmware updates",
