@@ -80,7 +80,19 @@
         },
         {
           "title": "Printer file browser",
-          "body": "Browse the printer's SD card, bulk-download or bulk-delete remote files. Save-to-Library promotes bare .3mf to .gcode.3mf when the bytes are already sliced."
+          "body": "Browse the printer's SD card and, on X2D / P2S / H2, its built-in storage - one switch between the two, with listing, download, plate previews, Save-to-Library and delete working on both. Save-to-Library promotes bare .3mf to .gcode.3mf when the bytes are already sliced."
+        },
+        {
+          "title": "Printing without an SD card",
+          "body": "Printers that keep files internally no longer need a card to be sent a job: with no card in, the file goes to built-in storage over the printer's own file channel. A card that is in but unreadable still stops the print instead of being routed around."
+        },
+        {
+          "title": "Timelapses off whichever medium recorded them",
+          "body": "The printer reports the full path of the recording it has just finished, so that file is attached by name instead of \"the first one that was not there before\". On built-in storage it also names the print each recording belongs to, matching the video to the right archive outright rather than guessing from timestamps."
+        },
+        {
+          "title": "You choose where the timelapse is recorded",
+          "body": "On a printer with both built-in storage and a card, the print dialog offers which one records it - the same choice Bambu Studio puts behind its folder icon. The pick travels with the queue item and is checked against the card again at dispatch, so a card removed in the meantime means the recording falls back to internal storage rather than the print failing. A job sent from a slicer to a Virtual Printer keeps the slicer's own pick."
         },
         {
           "title": "LAN firmware updates",
