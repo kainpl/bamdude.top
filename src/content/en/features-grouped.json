@@ -91,6 +91,10 @@
           "body": "The printer reports the full path of the recording it has just finished, so that file is attached by name instead of \"the first one that was not there before\". On built-in storage it also names the print each recording belongs to, matching the video to the right archive outright rather than guessing from timestamps."
         },
         {
+          "title": "The printer's storage stops filling up by itself",
+          "body": "One file sent is several files on the machine: BamDude uploads the model, and the printer writes its own copy into the card's cache and, if you have it set that way, into built-in storage too. Cleanup after a print now clears all of them, on both media, and checks each file's contents before deleting it - the same name is what a print sent straight from Bambu Studio leaves behind, and that one is left alone. Timelapses can be cleared the same way once BamDude has them, though that stays off until you ask for it."
+        },
+        {
           "title": "You choose where the timelapse is recorded",
           "body": "On a printer with both built-in storage and a card, the print dialog offers which one records it - the same choice Bambu Studio puts behind its folder icon. The pick travels with the queue item and is checked against the card again at dispatch, so a card removed in the meantime means the recording falls back to internal storage rather than the print failing. A job sent from a slicer to a Virtual Printer keeps the slicer's own pick."
         },
