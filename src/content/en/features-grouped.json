@@ -11,6 +11,10 @@
           "body": "Temperatures, fans, layer count, AMS, current job - all push-updated, no polling."
         },
         {
+          "title": "Skip a failed part, keep the plate",
+          "body": "One part comes loose on a plate of twenty and the usual answer is Stop, which throws away the nineteen that are fine. BamDude shows the plate from above with a numbered marker on every object, placed from the slicer's own pick data - click one and only that part is cancelled. Parts already skipped stay visible so nothing shifts under your cursor, and the archive's defective-part count follows the printer's own report rather than our command."
+        },
+        {
           "title": "Motion control, the way Studio does it",
           "body": "A round pad for the toolhead with 10 mm and 1 mm rings and Home in the middle, the nozzle-bed gap beside it, and manual extrude / retract with the extruder drawn from Bambu Studio's own artwork. BamDude reads which axes the printer says are homed rather than guessing, and refuses a cold extruder below 170 degrees - grinding a flat onto the filament is not a mistake worth making twice."
         },
@@ -337,6 +341,18 @@
         {
           "title": "Full printer control",
           "body": "Pause, resume, stop, light, speed, camera snapshot - all from chat."
+        },
+        {
+          "title": "Skip an object from the chat",
+          "body": "The bot sends the plate seen from above with a numbered pin on each part and a keyboard of those numbers. Press one, confirm by name, and the rest of the plate carries on - the markers come from the same code the browser uses, so a number means the same part in both."
+        },
+        {
+          "title": "Controls under the camera snapshot",
+          "body": "You pull a snapshot, see a print failing, and act in the same message. Pause, resume, stop and skip ride along with the photo, from the button and from /camera - no VPN, no browser. Stop asks first."
+        },
+        {
+          "title": "Send the bot a file",
+          "body": "Throw a 3MF into the chat and it lands in the library with the same checks, thumbnails and duplicate detection as a web upload, then offers to print it or queue it right there."
         },
         {
           "title": "Multi-chat with roles",
