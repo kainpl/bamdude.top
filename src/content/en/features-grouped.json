@@ -11,6 +11,10 @@
           "body": "Temperatures, fans, layer count, AMS, current job - all push-updated, no polling."
         },
         {
+          "title": "Skip a failed part, keep the plate",
+          "body": "One part comes loose on a plate of twenty and the usual answer is Stop, which throws away the nineteen that are fine. BamDude shows the plate from above with a numbered marker on every object, placed from the slicer's own pick data - click one and only that part is cancelled. Parts already skipped stay visible so nothing shifts under your cursor, and the archive's defective-part count follows the printer's own report rather than our command."
+        },
+        {
           "title": "Motion control, the way Studio does it",
           "body": "A round pad for the toolhead with 10 mm and 1 mm rings and Home in the middle, the nozzle-bed gap beside it, and manual extrude / retract with the extruder drawn from Bambu Studio's own artwork. BamDude reads which axes the printer says are homed rather than guessing, and refuses a cold extruder below 170 degrees - grinding a flat onto the filament is not a mistake worth making twice."
         },
@@ -89,6 +93,10 @@
         {
           "title": "Timelapses off whichever medium recorded them",
           "body": "The printer reports the full path of the recording it has just finished, so that file is attached by name instead of \"the first one that was not there before\". On built-in storage it also names the print each recording belongs to, matching the video to the right archive outright rather than guessing from timestamps."
+        },
+        {
+          "title": "The printer's storage stops filling up by itself",
+          "body": "One file sent is several files on the machine: BamDude uploads the model, and the printer writes its own copy into the card's cache and, if you have it set that way, into built-in storage too. Cleanup after a print now clears all of them, on both media, and checks each file's contents before deleting it - the same name is what a print sent straight from Bambu Studio leaves behind, and that one is left alone. Timelapses can be cleared the same way once BamDude has them, though that stays off until you ask for it."
         },
         {
           "title": "You choose where the timelapse is recorded",
@@ -215,6 +223,10 @@
           "body": "One-click chips on the archive page split first-time prints from reprints — fast path to find never-printed files."
         },
         {
+          "title": "Big files archive too",
+          "body": "A print's 3MF is read back over the same SD card the print is reading from, so it arrives slowly — a 22 MB file measured over eight minutes on a busy P1S. The FTP timeout now bounds a stalled connection rather than the whole transfer, so a large plate lands complete instead of as a bare row with no thumbnail, no 3D preview and no metadata."
+        },
+        {
           "title": "3MF download recovery",
           "body": "Failed FTP at print start? Recovery retries on startup, reconnect, print-end, or manually."
         },
@@ -329,6 +341,18 @@
         {
           "title": "Full printer control",
           "body": "Pause, resume, stop, light, speed, camera snapshot - all from chat."
+        },
+        {
+          "title": "Skip an object from the chat",
+          "body": "The bot sends the plate seen from above with a numbered pin on each part and a keyboard of those numbers. Press one, confirm by name, and the rest of the plate carries on - the markers come from the same code the browser uses, so a number means the same part in both."
+        },
+        {
+          "title": "Controls under the camera snapshot",
+          "body": "You pull a snapshot, see a print failing, and act in the same message. Pause, resume, stop and skip ride along with the photo, from the button and from /camera - no VPN, no browser. Stop asks first."
+        },
+        {
+          "title": "Send the bot a file",
+          "body": "Throw a 3MF into the chat and it lands in the library with the same checks, thumbnails and duplicate detection as a web upload, then offers to print it or queue it right there."
         },
         {
           "title": "Multi-chat with roles",
