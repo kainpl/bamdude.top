@@ -219,6 +219,10 @@
           "body": "One-click chips on the archive page split first-time prints from reprints — fast path to find never-printed files."
         },
         {
+          "title": "Big files archive too",
+          "body": "A print's 3MF is read back over the same SD card the print is reading from, so it arrives slowly — a 22 MB file measured over eight minutes on a busy P1S. The FTP timeout now bounds a stalled connection rather than the whole transfer, so a large plate lands complete instead of as a bare row with no thumbnail, no 3D preview and no metadata."
+        },
+        {
           "title": "3MF download recovery",
           "body": "Failed FTP at print start? Recovery retries on startup, reconnect, print-end, or manually."
         },
