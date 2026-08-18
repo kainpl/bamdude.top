@@ -119,6 +119,18 @@
       "description": "Per-printer queues with parallel dispatch, staggered start, and built-in SWAP-mode support.",
       "items": [
         {
+          "title": "Drop a batch, not a file",
+          "body": "As many files as you like onto a printer, its queue or the auto-queue. Anything that cannot print says why, by name."
+        },
+        {
+          "title": "Copy one printer's queue to others",
+          "body": "Same model, pick what and where. Filament is mapped per printer, so four printers is still one dialog per file."
+        },
+        {
+          "title": "Load a queue from the library",
+          "body": "Browse, tick files across folders, send the lot. Only what can actually run on that printer is offered."
+        },
+        {
           "title": "Parallel background dispatch",
           "body": "Send jobs to multiple printers simultaneously - startup-locked DB phase, parallel FTP and start."
         },
@@ -250,6 +262,10 @@
       "title": "File Library",
       "description": "Upload, organize, and print directly - no slicer round-trip required.",
       "items": [
+        {
+          "title": "The same file is never stored twice",
+          "body": "Every way a file can arrive is checked by content hash first - uploads, drops, the API, project imports, your slicer, and linked NAS folders."
+        },
         {
           "title": "Upload & folder organize",
           "body": "Drag-and-drop folder structure with duplicate detection on hash."
@@ -434,6 +450,10 @@
       "title": "Spools & Projects",
       "description": "Track filament inventory and group prints into projects.",
       "items": [
+        {
+          "title": "Duplicate a project",
+          "body": "The plan, the files, the BOM and the targets under a new name. The history stays with the prints that happened."
+        },
         {
           "title": "Built-in spool inventory",
           "body": "Add spools with brand, color, weight, cost; AMS slot assignment per printer."
