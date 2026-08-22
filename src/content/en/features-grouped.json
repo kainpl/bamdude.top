@@ -483,8 +483,16 @@
           "body": "Dual-colour spools render as hard-split bars (not a smooth blend), Multicolor renders as a conic colour-wheel pie, gradient stays a 135° linear blend, and Sparkle / Wood / Marble / Glow / Matte / Silk overlays paint visibly on inventory cards. Live preview in the spool form so you see the effect before save."
         },
         {
-          "title": "Printable PDF spool labels",
-          "body": "Per-spool icon and bulk Print labels… header action. Six templates: AMS holder (74×33 mm), AMS holder (75×55 mm), 40×30 box label (DK/Brother roll), 62×29 box label (Brother PT/QL + Dymo), Avery L7160 A4 (21/sheet), Avery 5160 US Letter (30/sheet). Each label carries swatch + bold brand + material + hex colour code + the spool's display name (using your configured naming template) + a QR code that deep-links back into BamDude on phone scan."
+          "title": "Draw your own spool labels",
+          "body": "A label is a list of boxes with millimetre positions, not a layout baked into the code — so you draw it with the mouse under Settings → Filament → Marking. Text, QR, barcode (EAN-13, Code 128, Code 39, EAN-8, UPC-A, ITF) and a block of the spool's colour as a rectangle, circle or rounded rectangle. Content is written with placeholders — {brand}, {remaining_pct}, {deeplink} — the same vocabulary as your spool-naming setting. Boxes snap to each other and to the label's edges and centre, and the picture in the middle is not a drawing of your label: it comes from the renderer that produces the printed file, so what you see is what comes out. The designs BamDude ships are a starting point you can redraw, not a fixed set."
+        },
+        {
+          "title": "Any label on any paper",
+          "body": "Sheets are a separate thing from designs: a sheet states the page size, the grid, the margins and the gaps, and nothing about what goes in a cell. So you pick the paper, then pick the design — one label per page, an Avery layout, or a page geometry you measured yourself on A4, A5 or US Letter. Preview the page lays a design into every cell before anything reaches adhesive stock, a grid that runs off its paper is refused when you save it, and a design too big for the cells is offered greyed out with both measurements rather than quietly shrunk — a label shrunk to fit is a label whose barcode no longer scans."
+        },
+        {
+          "title": "Print to a label printer on your desk",
+          "body": "A server in a container cannot reach a USB printer on somebody's machine, so BamDude does not try: it renders the label, queues it, and the BamDude Bridge app on that desktop comes and takes it. Nothing is exposed and no port is opened. Designs declare which kind of printer they are drawn for — a colour block is offered on the ones going out as PDF, where they may be landing on an inkjet or a laser, and not on the ones going to a one-bit thermal head where it could never print. A printer whose loaded stock is smaller than the design says so before you press it."
         },
         {
           "title": "Copy Spool",
