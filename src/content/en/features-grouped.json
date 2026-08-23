@@ -507,8 +507,12 @@
           "body": "Per-SKU reorder intelligence on top of the real consumption history. Exponentially-weighted daily-rate (30-day half-life), 95%-service-level safety stock, days-left projection, reorder-by date, and a top-5 stacked-area chart with ROP reference lines. Inline editors for lead-time, safety-margin (days|grams), alert snooze. Companion Shopping List tracks SKUs through pending → purchased → received and auto-creates stock spools on receipt. New notification toggles for reorder and stock-break alerts (currently UI-only). Hidden in Spoolman mode."
         },
         {
-          "title": "Spool form preset dropdown shows all printer/nozzle variants",
-          "body": "All P1S / X1C / A1 variants of the same filament render as separate rows with the full @printer suffix visible, instead of collapsing into one. Local OrcaSlicer / BambuStudio profiles merge alongside cloud presets — earlier versions hid them whenever the user was logged into Bambu Cloud."
+          "title": "Filament families, the way the slicers model them",
+          "body": "One identity behind every filament - a built-in catalog distilled from Bambu Studio and OrcaSlicer, plus your own cloud presets mirrored in the background. Spools, AMS slots, K-profiles and slicing all key on the family, so a custom filament finally matches its own calibration instead of collapsing onto Generic."
+        },
+        {
+          "title": "Create your own filament, push it to Bambu Cloud",
+          "body": "Vendor + type + serial, exactly like Bambu Studio's Create Filament dialog, with a Bambu-Studio-compatible identity and a preset cloned per printer profile you tick. Push it to your Bambu account and the desktop slicer sees it on its next sync - or create it from the Bambu Cloud tab and it is born in the cloud."
         },
         {
           "title": "Per-spool category + low-stock",
