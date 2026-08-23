@@ -515,6 +515,10 @@
           "body": "Vendor + type + serial, exactly like Bambu Studio's Create Filament dialog, with a Bambu-Studio-compatible identity and a preset cloned per printer profile you tick. Push it to your Bambu account and the desktop slicer sees it on its next sync - or create it from the Bambu Cloud tab and it is born in the cloud."
         },
         {
+          "title": "Runouts close the books at exactly zero",
+          "body": "A filament runout is the one moment reality reports an exact figure: 0 g. BamDude splits the print at the runout layer between the spent spool and its replacement (per-layer G-code accuracy, AMS backup switches and same-slot refills included), then closes the spent spool at exactly its label weight - drift can no longer accumulate. Jams are never mistaken for runouts, a runout notification prompts you to assign the replacement, and the printer card shows filament-so-far live while a print runs."
+        },
+        {
           "title": "Per-spool category + low-stock",
           "body": "Tag spools by category (PETG / ABS / TPU…) and override the global low-stock threshold per spool."
         },
