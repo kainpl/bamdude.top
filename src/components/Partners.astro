@@ -1,0 +1,77 @@
+---
+import type { Locale } from '../i18n';
+import { t } from '../i18n';
+import { ArrowRight, ExternalLink } from 'lucide-react';
+
+/**
+ * Partners & friends.
+ *
+ * Sits right after Origin: Origin tells where BamDude came from, this block
+ * names who it stands beside. Logos ride on a white tile — both marks were
+ * drawn for light backgrounds and would sink into the dark theme otherwise.
+ */
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const i = t(locale);
+
+const partners = [
+  {
+    name: i.partners.drukarmyName,
+    desc: i.partners.drukarmyDesc,
+    logo: '/images/partners/drukarmy.png',
+    site: 'https://drukarmy.org.ua/ua',
+    join: 'https://app.drukarmy.org.ua/inv/ujnv7w8i',
+  },
+  {
+    name: i.partners.addithubName,
+    desc: i.partners.addithubDesc,
+    logo: '/images/partners/addithub.png',
+    site: 'https://addithub.com/',
+    join: null,
+  },
+];
+---
+<section aria-label="Partners" class="py-16">
+  <div class="mx-auto max-w-5xl px-6">
+    <div class="text-center max-w-2xl mx-auto">
+      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">{i.partners.title}</h2>
+      <p class="mt-4 text-bambu-text-secondary leading-relaxed">{i.partners.subtitle}</p>
+    </div>
+    <div class="mt-10 grid gap-6 sm:grid-cols-2">
+      {partners.map((p) => (
+        <div class="rounded-2xl border border-bambu-border bg-bambu-bg-secondary p-6 flex flex-col">
+          <div class="flex items-center gap-4">
+            <div class="w-16 h-16 shrink-0 rounded-xl bg-white p-2 flex items-center justify-center">
+              <img src={p.logo} alt={p.name} class="max-w-full max-h-full object-contain" loading="lazy" />
+            </div>
+            <h3 class="text-xl font-bold text-bambu-text">{p.name}</h3>
+          </div>
+          <p class="mt-4 text-sm leading-relaxed text-bambu-text-muted flex-1">{p.desc}</p>
+          <div class="mt-5 flex flex-wrap gap-3">
+            {p.join && (
+              <a
+                href={p.join}
+                target="_blank"
+                rel="noopener"
+                class="inline-flex items-center gap-2 rounded-lg bg-bambu-green px-4 py-2 text-sm font-semibold text-white transition hover:bg-bambu-green-light"
+              >
+                {i.partners.join}
+                <ArrowRight size={15} strokeWidth={2.5} />
+              </a>
+            )}
+            <a
+              href={p.site}
+              target="_blank"
+              rel="noopener"
+              class="inline-flex items-center gap-2 rounded-lg border border-bambu-border bg-bambu-bg px-4 py-2 text-sm font-semibold transition hover:border-bambu-green"
+            >
+              {i.partners.visit}
+              <ExternalLink size={15} strokeWidth={2.25} />
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
