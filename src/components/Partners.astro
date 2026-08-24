@@ -24,6 +24,13 @@ const partners = [
     join: 'https://app.drukarmy.org.ua/inv/ujnv7w8i',
   },
   {
+    name: i.partners.dragonsName,
+    desc: i.partners.dragonsDesc,
+    logo: '/images/partners/dragons.png',
+    site: 'https://dragons.in.ua/',
+    join: null,
+  },
+  {
     name: i.partners.addithubName,
     desc: i.partners.addithubDesc,
     logo: '/images/partners/addithub.png',
@@ -38,7 +45,7 @@ const partners = [
       <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">{i.partners.title}</h2>
       <p class="mt-4 text-bambu-text-secondary leading-relaxed">{i.partners.subtitle}</p>
     </div>
-    <div class="mt-10 grid gap-6 sm:grid-cols-2">
+    <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {partners.map((p) => (
         <div class="rounded-2xl border border-bambu-border bg-bambu-bg-secondary p-6 flex flex-col">
           <div class="flex items-center gap-4">
