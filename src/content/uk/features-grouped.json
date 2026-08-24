@@ -331,8 +331,8 @@
           "body": "Кожен користувач логіниться у власний Bambu Cloud-акаунт зі своєю регіональною зоною — без спільних кредів, без single-region lock-in. Токени Fernet-шифровані, sliding refresh, OIDC-style flow."
         },
         {
-          "title": "Orca Cloud profile sync",
-          "body": "Логінься в хмару OrcaSlicer (Supabase sync) поряд з Bambu Cloud — і твої синхронізовані printer / process / filament профілі з'являються у slice modal та AMS-slot picker, вище за Bambu Cloud, local і standard. Повні метадані inline, тож filament type і колір префіляться безкоштовно. Вхід через Google / Apple / GitHub / email по paste-based PKCE flow. Per-user токени, just-in-time refresh."
+          "title": "Синк і пуш профілів Orca Cloud",
+          "body": "Одне парування device-кодом — під власною зареєстрованою ідентичністю BamDude, тож картка підтвердження називає того, хто справді питає — і твої синхронізовані профілі принтерів / процесів / філаментів з'являються у slice-діалозі та пікері AMS-слотів, вище за Bambu Cloud, локальні та стандартні. Повні метадані одразу, тож тип і колір філаменту підставляються безкоштовно. Авторські сім'ї філаменту пушаться назад в Orca Cloud, з явним вирішенням конфліктів, коли профіль змінили у хмарі. Per-user токени, just-in-time refresh."
         },
         {
           "title": "Локальні OrcaSlicer-пресети",

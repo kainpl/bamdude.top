@@ -331,8 +331,8 @@
           "body": "Each user signs into their own Bambu Cloud account with their own region — no shared credentials, no single-region lock-in. Tokens encrypted at rest, sliding refresh, OIDC-style flow."
         },
         {
-          "title": "Orca Cloud profile sync",
-          "body": "Sign into OrcaSlicer's cloud (Supabase sync) alongside Bambu Cloud and your synced printer / process / filament profiles show up in the slice modal and AMS-slot picker — ranked above Bambu Cloud, local, and standard. Full metadata inline, so filament type and colour pre-fill for free. Google / Apple / GitHub / email sign-in via a paste-based PKCE flow. Per-user tokens, just-in-time refresh."
+          "title": "Orca Cloud profile sync & push",
+          "body": "Pair once with a device code — under BamDude's own registered app identity, so the approval card names who is actually asking — and your synced printer / process / filament profiles show up in the slice modal and AMS-slot picker, ranked above Bambu Cloud, local, and standard. Full metadata inline, so filament type and colour pre-fill for free. Authored filament families push back to Orca Cloud too, with explicit conflict resolution when a profile changed in the cloud. Per-user tokens, just-in-time refresh."
         },
         {
           "title": "Local OrcaSlicer presets",
