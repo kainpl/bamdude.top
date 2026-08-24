@@ -6,7 +6,7 @@ interface Props { locale: Locale; }
 const { locale } = Astro.props;
 const i = t(locale);
 ---
-<section aria-label="Supported printers" class="py-24">
+<section id="printers" aria-label="Supported printers" class="scroll-mt-20 py-24">
   <div class="mx-auto max-w-6xl px-6">
     <div class="text-center max-w-2xl mx-auto">
       <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">{i.supportedPrinters.title}</h2>
