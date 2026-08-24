@@ -344,5 +344,15 @@
     "body": "The author volunteers with DrukArmy, Ukraine's largest volunteer 3D-printing effort for the front line — printing, and running the FPV direction as senior curator. BamDude came straight out of that work: batches, deadlines and a farm that has to keep moving around the clock do not fit any off-the-shelf tool. Every feature here earned its place on a real order first. That is also why Ukrainian is a first-class locale.",
     "ctaJoin": "Join DrukArmy",
     "ctaAbout": "About DrukArmy"
+  },
+  "partners": {
+    "title": "Partners & friends",
+    "subtitle": "The communities and platforms BamDude grows alongside.",
+    "visit": "Website",
+    "join": "Join DrukArmy",
+    "drukarmyName": "DrukArmy",
+    "drukarmyDesc": "Ukraine's largest volunteer 3D-printing community, printing for the front line. BamDude was born in this workshop — and if you have a printer, there is useful work waiting for it.",
+    "addithubName": "AdditHub",
+    "addithubDesc": "Ukraine's #1 3D-printing marketplace: post a job and verified makers place blind bids — FDM, SLA and SLS printing, 3D modelling and post-processing."
   }
 }
