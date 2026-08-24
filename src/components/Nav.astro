@@ -18,6 +18,13 @@ const items: { id: Active; href: string; label: string }[] = [
   { id: 'install',  href: localePath(locale, 'install'),  label: i.nav.install },
   { id: 'faq',      href: localePath(locale, 'faq'),      label: i.nav.faq },
 ];
+
+// Section anchors on the home page (the "frames"). From any other page the
+// link navigates home first — the anchor survives the trip, and the global
+// smooth-scroll + each section's scroll-mt handle the landing.
+const anchors: { href: string; label: string }[] = [
+  { href: `${localePath(locale)}#partners`, label: i.nav.partners },
+];
 ---
 <header class="sticky top-0 z-40 backdrop-blur bg-bambu-bg/80 border-b border-bambu-border">
   <nav class="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
@@ -32,6 +39,9 @@ const items: { id: Active; href: string; label: string }[] = [
            aria-current={active === it.id ? 'page' : undefined}>
           {it.label}
         </a>
+      ))}
+      {anchors.map((a) => (
+        <a href={a.href} class="hover:text-bambu-green transition">{a.label}</a>
       ))}
       <a href={docs} class="hover:text-bambu-green transition" target="_blank" rel="noopener">{i.nav.docs}</a>
       <a href={repo} class="hover:text-bambu-green transition" target="_blank" rel="noopener">{i.nav.github}</a>
