@@ -411,6 +411,14 @@
           "body": "Telegram, Discord, Email (SMTP), Pushover, ntfy, Bark, CallMeBot, Home Assistant, custom webhooks."
         },
         {
+          "title": "Printer scope on every channel",
+          "body": "All, one, or several printers — per provider, and per Telegram chat, where the scope also limits the bot itself: printer lists, cameras, queue view and controls. The admin's chat watches the whole farm while a partner's chat on the same bot sees only their machines."
+        },
+        {
+          "title": "Progress milestones only for long prints",
+          "body": "Mute the 25/50/75% messages for prints estimated shorter than N minutes — per Telegram chat and per provider, so a chat that wants every half-hour job and one that only cares about overnight prints coexist on one bot."
+        },
+        {
           "title": "Bark, for the failure at 3 a.m.",
           "body": "The free iOS push app that needs no account — install it, paste the device key. Its Critical interruption level is delivered through Silent mode and through Focus, so the print that stopped in the night actually wakes somebody; Time Sensitive breaks through scheduled summaries without going that far. Public relay or your own bark-server."
         },
