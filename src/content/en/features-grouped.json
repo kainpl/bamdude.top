@@ -715,6 +715,10 @@
           "body": "Every HTTP request gets an X-Trace-Id header echoed in logs so you can correlate one user action across HTTP / MQTT / scheduler lines."
         },
         {
+          "title": "BamDude Cloud link (opt-in)",
+          "body": "Pair the farm to the cloud.bamdude.top portal and it reports outward: which of the printers you chose to publish are running, how far along, the events worth knowing, and a single camera frame on request. One-way by design — nothing prints from the portal, the request list is fixed in the version you installed, and the link can be cut from either side, with a month of link history so \"when did this farm go dark\" has an answer."
+        },
+        {
           "title": "MQTT publishing",
           "body": "Forward printer state to your home MQTT broker for Home Assistant / Node-RED."
         },
