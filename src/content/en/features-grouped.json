@@ -124,7 +124,7 @@
         },
         {
           "title": "Copy one printer's queue to others",
-          "body": "Same model, pick what and where. Filament is mapped per printer, so four printers is still one dialog per file."
+          "body": "Same model, pick what and where. Items that would be answered the same way are grouped into one dialog, filament is mapped per printer inside it, and each copied item keeps the plate it was queued with — a block you grouped in the source queue comes out as a block on the target."
         },
         {
           "title": "Load a queue from the library",
