@@ -475,6 +475,10 @@
           "body": "Filament used per print is deducted from the assigned spool - no manual math."
         },
         {
+          "title": "The whole farm's filament ledger, in one list",
+          "body": "A History view beside Table and Cards: every consumption record there is - what was printed, off which spool, on which printer, how many grams and what it cost. Search, filter by printer, material, brand, outcome, a date range or the spool's own state, sort by any column, and page - all computed by the server, so a year of prints costs the browser nothing. The running total is for the whole filter, not the page on screen, so what a month cost you is one date range away. Spools you archived or deleted keep their rows, marked rather than hidden: the grams they carry were still printed."
+        },
+        {
           "title": "Cost & lot tracking",
           "body": "Per-spool cost, purchase date, filament diameter, and lot number for inventory bundles."
         },
