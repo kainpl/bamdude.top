@@ -100,7 +100,7 @@
           { "label": "Print queue with drag-and-drop", "values": ["yes", "no", "partial:Via plugins"] },
           { "label": "Multi-printer queue", "values": ["yes:Parallel dispatch", "no", "no"] },
           { "label": "Auto-queue routing (model + filament + color)", "values": ["yes:SJF + starvation guard", "no", "no"] },
-          { "label": "Staggered start", "values": ["yes:Bed-temp watchdog", "no", "no"] },
+          { "label": "Staggered start", "values": ["yes:Per-phase caps, bed-temp watchdog", "no", "no"] },
           { "label": "G-code macros with ACK", "values": ["yes:MQTT-confirmed", "no", "yes"] },
           { "label": "Smart plug control", "values": ["yes:Tasmota / HA / MQTT / REST", "no", "partial:Via plugins"] },
           { "label": "Auto power on/off + temp watchdog", "values": ["yes", "no", "partial:Via plugins"] },

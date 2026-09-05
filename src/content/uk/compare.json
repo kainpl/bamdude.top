@@ -100,7 +100,7 @@
           { "label": "Черга з drag-and-drop", "values": ["yes", "no", "partial:Через плагіни"] },
           { "label": "Черга на багато принтерів", "values": ["yes:Паралельний диспатч", "no", "no"] },
           { "label": "Авто-черга (модель + філамент + колір)", "values": ["yes:SJF + захист від голодування", "no", "no"] },
-          { "label": "Поетапний старт", "values": ["yes:Watchdog темп. столу", "no", "no"] },
+          { "label": "Поетапний старт", "values": ["yes:Ліміт на фазу, watchdog темп. столу", "no", "no"] },
           { "label": "G-code макроси з ACK", "values": ["yes:MQTT-підтверджено", "no", "yes"] },
           { "label": "Керування розетками", "values": ["yes:Tasmota / HA / MQTT / REST", "no", "partial:Через плагіни"] },
           { "label": "Авто on/off + watchdog темп.", "values": ["yes", "no", "partial:Через плагіни"] },
