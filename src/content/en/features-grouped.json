@@ -264,7 +264,7 @@
       "items": [
         {
           "title": "The same file is never stored twice",
-          "body": "Every way a file can arrive is checked by content hash first - uploads, drops, the API, project imports, your slicer, and linked NAS folders."
+          "body": "Every way a file can arrive is checked by content hash first - uploads, drops, the API, product imports, your slicer, and linked NAS folders."
         },
         {
           "title": "Upload & folder organize",
@@ -337,10 +337,6 @@
         {
           "title": "Local OrcaSlicer presets",
           "body": "Drop .orca_filament / .bbscfg / .bbsflmt / ZIP bundles directly — BamDude resolves preset inheritance from upstream OrcaSlicer when needed. Cloud-free path for shops without Bambu accounts."
-        },
-        {
-          "title": "Links that say what they do, and links that stay unique",
-          "body": "Linking a library folder to an archive puts an \"open source folder\" shortcut on that archive - and nothing on the folder, which is why the field never explained itself. It does now. It is also one archive to one folder: claiming one another folder already holds is refused by name, instead of quietly taking it away from a folder you are not looking at. Archived projects, meanwhile, have left the pickers entirely - except where something is already linked to one, which stays visible so saving the dialog cannot erase it."
         },
         {
           "title": "A printed file can go back into the library",
@@ -453,15 +449,55 @@
       ]
     },
     {
-      "id": "spools",
-      "icon": "palette",
-      "title": "Spools & Projects",
-      "description": "Track filament inventory and group prints into projects.",
+      "id": "orders",
+      "icon": "clipboard-list",
+      "title": "Orders & Products",
+      "description": "What was ordered and for whom, what each product is made of, and what to print next to finish it.",
       "items": [
         {
-          "title": "Duplicate a project",
-          "body": "The plan, the files, the BOM and the targets under a new name. The history stays with the prints that happened."
+          "title": "An order lists what was asked for, not a folder of files",
+          "body": "Each line is product × quantity - for a customer, at a price, with a due date and a priority on the order itself. Material on a line is a hard requirement and colour is a note beside it. Progress is counted in finished units from the parts the prints actually produced, and the scarcest part says how many units could be assembled today. Customers are a list of their own, gathering every order somebody placed and the totals across them. An order keeps its cover picture and its link out to MakerWorld, Printables or a repo."
         },
+        {
+          "title": "A product says how the thing is made",
+          "body": "Which printed and purchased parts make one unit, and which sliced plates produce them. Link a library file or a whole folder to a product and the plates and parts fill themselves in from what is inside the file - an object name the product has not met yet becomes a part of it. A plate's yield is read again on every look rather than cached, so re-slicing a file changes what it makes instead of leaving a stale number behind. One product lives in many orders, and the product is the template - there are no separate ones to keep in step."
+        },
+        {
+          "title": "What to print next, worked out per line",
+          "body": "Under every line sits a plan: the plates that would cover what it still needs, ranked by useful parts per hour, with everything already printed, running, queued or taken from stock subtracted first - so a plan you have half sent stops asking for the prints you already sent. Each row shows time, filament and cost per print beside a count you can change, and the surplus and the totals follow that number as you type it. Send one row to the auto-queue, send the whole plan at once, or open the usual print dialog to put a row on one named printer."
+        },
+        {
+          "title": "Two printer models, two files, one plan",
+          "body": "A part sliced for two machines is two library files with the same yield, and a plan that picks one of them makes the other invisible to half the farm. Every row carries a File switch instead, labelled with the printer model each file was sliced for: choosing one re-does that row's time, filament and cost while the count stays exactly where it was. Split across files shares one row's count between them - the auto-queue routes each item by the model its file names, so this is the only way one order line reaches two printer models at once, and a split whose numbers do not add up refuses to be sent rather than quietly sending the wrong one."
+        },
+        {
+          "title": "A print started anywhere is filed under the order that needs it",
+          "body": "Printing or queueing a library file - from the File Manager, a printer card, the queue page or the auto-queue - shows an Order field: the open orders still short of that plate, how many prints each of them is short, and the product each is for, with the first one already chosen. Choosing nothing files nothing. A print started from the printer's own screen is attributed afterwards from the order page, and a plate carrying parts of two products feeds every line that matches, not just the first one it finds."
+        },
+        {
+          "title": "Extra parts go on a shelf, not in the bin",
+          "body": "A plate makes four lids and the order needed three. Bank the surplus and the fourth lid moves onto that product's free stock: how many whole kits are on the shelf, the balance of every part, and a ledger of how each one got there. A print that finishes under no order is credited automatically, and filing it under an order afterwards takes the credit back. Ordering the same product again is where it pays - From stock reserves kits for the line, and the need, the progress bar and the plan all count them as done, so a line covered from the shelf asks for no prints at all."
+        },
+        {
+          "title": "Defective parts count against the order",
+          "body": "An order needing forty usable parts is not finished because forty came off the plates. Skipping an object mid-print attributes the scrap to that part by itself, and the archive editor lets you mark exactly which parts came out bad instead of typing one number for the whole plate. What the order counts is what is left."
+        },
+        {
+          "title": "The model card was inside the 3MF all along",
+          "body": "The description, the designer, the licence, where it came from, the pictures, the bill of materials and the assembly guide the designer shipped - a product reads all of it from any file linked to it, and never writes a byte back into the library file. The pictures become a gallery you can reorder and open full-size, one of them the product's cover. And a product exports to a ZIP - card, composition, attachments, cover and every file linked to it - that another BamDude imports, matching files it already has by content rather than duplicating them."
+        },
+        {
+          "title": "Re-order in one click",
+          "body": "Duplicating an order brings its lines, customer, price, notes and attachments across under a new name, and opens the copy as active. History never travels with it - that stays with the prints that actually happened - and a reorder reserves nothing from stock, because a copy must not quietly empty the shelf."
+        }
+      ]
+    },
+    {
+      "id": "spools",
+      "icon": "palette",
+      "title": "Spools & Filament",
+      "description": "Track filament inventory - from the reel on the shelf to the gram in the print.",
+      "items": [
         {
           "title": "Built-in spool inventory",
           "body": "Add spools with brand, color, weight, cost; AMS slot assignment per printer."
@@ -533,22 +569,6 @@
         {
           "title": "Per-spool category + low-stock",
           "body": "Tag spools by category (PETG / ABS / TPU…) and override the global low-stock threshold per spool."
-        },
-        {
-          "title": "Projects with print plan",
-          "body": "Group prints by project; per-file copies with live filament/time/cost totals."
-        },
-        {
-          "title": "Defective parts count against the target",
-          "body": "A project needing forty usable parts is not finished because forty came off the plates. Record the scrap against the print and the parts tally is net of it. A target can also be set to zero, to mean \"don't measure this project that way\"."
-        },
-        {
-          "title": "Project URL + cover image",
-          "body": "Attach a MakerWorld / Printables / repo URL to a project plus a hero cover photo — surfaces on cards and the detail page."
-        },
-        {
-          "title": "ZIP / JSON export",
-          "body": "Move a project between BamDude installs or back it up offsite."
         }
       ]
     },

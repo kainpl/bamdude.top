@@ -86,7 +86,7 @@
           { "label": "Фото і нотатки", "values": ["yes", "no", "no"] },
           { "label": "Side-by-side порівняння", "values": ["yes:2-5 принтів", "no", "no"] },
           { "label": "Повнотекстовий пошук + dedup", "values": ["yes:Source-hash", "no", "partial"] },
-          { "label": "Проєкти з print plan", "values": ["yes", "no", "no"] },
+          { "label": "Замовлення, вироби й замовники", "values": ["yes:Із планом друку на кожен рядок", "no", "no"] },
           { "label": "Авто-очистка з retention", "values": ["yes", "no", "no"] },
           { "label": "Корзини бібліотеки + архіву", "values": ["yes:Restore window + ref-aware delete", "no", "no"] },
           { "label": "Фільтри Друкувалось / Не друкувалось", "values": ["yes", "no", "no"] },

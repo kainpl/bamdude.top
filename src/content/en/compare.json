@@ -86,7 +86,7 @@
           { "label": "Photo attachments + notes", "values": ["yes", "no", "no"] },
           { "label": "Side-by-side compare", "values": ["yes:2-5 prints", "no", "no"] },
           { "label": "Full-text search + dedup", "values": ["yes:Source-hash", "no", "partial"] },
-          { "label": "Projects with print plan", "values": ["yes", "no", "no"] },
+          { "label": "Orders, products and customers", "values": ["yes:With a per-line print plan", "no", "no"] },
           { "label": "Auto-cleanup retention", "values": ["yes", "no", "no"] },
           { "label": "Library + Archive Trash bins", "values": ["yes:Restore window + ref-aware delete", "no", "no"] },
           { "label": "Printed / Not Printed filters", "values": ["yes", "no", "no"] },
