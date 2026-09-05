@@ -3,7 +3,7 @@
     { "q": "Is it really free?", "a": "Yes. AGPL-3.0-licensed, self-hosted, no paid tier. The only thing you pay for is your own server (or run it on a Raspberry Pi)." },
     { "q": "Which printers are supported?", "a": "Bambu Lab X1 (X1C, X1E), H2 (H2D, H2D Pro, H2C, H2S), P1 (P1P, P1S), P2 (P2S), A1 (A1, A1 mini), A2 (A2L) and X2 (X2D). Anything that exposes the standard Bambu MQTT and FTP endpoints with Developer Mode enabled." },
     { "q": "Do I need to expose it to the internet?", "a": "No. The web UI runs on your local network. The Telegram bot reaches Telegram's API outbound - no inbound port required." },
-    { "q": "Can I migrate from Bambuddy?", "a": "Yes - BamDude is schema-compatible up to its forking point. The upgrade guide in the docs walks you through migrations." },
+    { "q": "Can I migrate from Bambuddy?", "a": "Not any more. BamDude forked from Bambuddy 2.2.2 and the two have diverged too far for a one-time import; start with an empty data directory and re-add your printers and spools." },
     { "q": "Cloud or local?", "a": "Strictly local. BamDude talks to your printers over your LAN using Developer Mode. No cloud calls except optional Obico AI failure detection (opt-in)." },
     { "q": "Does it support PostgreSQL?", "a": "Yes. SQLite is the default for the easy path; switch to Postgres via DATABASE_URL when your archive grows." },
     { "q": "Will my Telegram chat get spammed?", "a": "You configure per-chat notification settings, quiet hours, and event types. Defaults are conservative." }
