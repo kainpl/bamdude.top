@@ -13,9 +13,15 @@ export function t(locale: Locale): Strings {
 export const locales: Locale[] = ['en', 'uk'];
 export const defaultLocale: Locale = 'en';
 
+// Always the canonical shape — trailing slash, the one BaseLayout's
+// <link rel="canonical"> and the sitemap advertise. `build.format:
+// 'directory'` makes `/why` a 301 to `/why/` on nginx, so a slash-less
+// internal link hands Google a redirect for every hop; Search Console
+// showed the whole site sitting in "discovered, not crawled" behind that.
 export function localePath(locale: Locale, path: string = ''): string {
-  const cleaned = path.startsWith('/') ? path.slice(1) : path;
-  return locale === defaultLocale ? `/${cleaned}` : `/${locale}/${cleaned}`;
+  const cleaned = path.replace(/^\/+/, '').replace(/\/+$/, '');
+  const base = locale === defaultLocale ? '/' : `/${locale}/`;
+  return cleaned ? `${base}${cleaned}/` : base;
 }
 
 export function altLocale(locale: Locale): Locale {
