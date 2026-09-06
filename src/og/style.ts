@@ -25,7 +25,7 @@ const ACCENT: [number, number, number] = [88, 170, 77]; // #58AA4D
 const INK: [number, number, number] = [244, 246, 240]; // #F4F6F0
 const MUTED: [number, number, number] = [138, 145, 121]; // #8A9179
 
-export const OG_FONTS = ['./public/fonts/inter-400.ttf', './public/fonts/inter-800.ttf'];
+const OG_FONTS = ['./public/fonts/inter-400.ttf', './public/fonts/inter-800.ttf'];
 
 export function ogStyle(): Omit<OGImageOptions, 'title' | 'description'> {
   return {

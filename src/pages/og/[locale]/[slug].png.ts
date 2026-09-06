@@ -10,10 +10,14 @@ import { generateOpenGraphImage } from 'astro-og-canvas';
 import { t, locales, type Locale } from '../../../i18n';
 import { ogStyle } from '../../../og/style';
 
-// Slugs map 1:1 to BaseLayout's `pageKey` prop. A new pageKey value without
-// a card here renders 404 for the OG image (most clients tolerate it). A new
-// slug here without a matching pageKey wastes build time but breaks nothing.
-const slugs = ['home', 'why', 'features', 'install', 'faq', 'compare'] as const;
+// Slugs map 1:1 to BaseLayout's `pageKey` prop EXCEPT 'home' — BaseLayout
+// routes that pageKey to the static pack card (/brand/social/og-dark-1200x630.png)
+// instead of this route, so 'home' is deliberately absent here. The legacy
+// src/pages/og/[locale].png.ts route keeps rendering the home copy, but only
+// for shares that cached its old URL. A new pageKey value without a card here
+// renders 404 for the OG image (most clients tolerate it). A new slug here
+// without a matching pageKey wastes build time but breaks nothing.
+const slugs = ['why', 'features', 'install', 'faq', 'compare'] as const;
 type Slug = (typeof slugs)[number];
 
 // Per-(locale, slug) headline + subline shown on the social card. The page's
@@ -23,7 +27,6 @@ type Slug = (typeof slugs)[number];
 function cardCopy(locale: Locale, slug: Slug): { title: string; description: string } {
   const i = t(locale);
   switch (slug) {
-    case 'home':     return { title: i.hero.title, description: 'bamdude.top · self-hosted · AGPL-3.0' };
     case 'why':      return { title: i.pages.why.title, description: i.pages.why.subtitle };
     case 'features': return { title: i.pages.features.title, description: i.pages.features.subtitle };
     case 'install':  return { title: i.pages.install.title, description: i.pages.install.subtitle };
