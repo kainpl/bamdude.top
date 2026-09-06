@@ -1,0 +1,39 @@
+{
+  "name": "BamDude",
+  "short_name": "BamDude",
+  "description": "Self-hosted & Cloud print archive and management system for Bambu Lab 3D printers",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0B0D0A",
+  "theme_color": "#12150F",
+  "icons": [
+    {
+      "src": "/brand/png/icon-tile-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/brand/png/icon-tile-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/brand/png/maskable-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/brand/png/maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/brand/svg/mark-adaptive.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

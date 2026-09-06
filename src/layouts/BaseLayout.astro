@@ -29,7 +29,7 @@ const {
   description,
   locale,
   pageKey = 'home',
-  ogImage = `/og/${locale}/${pageKey}.png`,
+  ogImage = pageKey === 'home' ? '/brand/social/og-dark-1200x630.png' : `/og/${locale}/${pageKey}.png`,
   ogType = 'website',
   ogUpdatedTime,
   breadcrumbs,
@@ -74,7 +74,7 @@ const organization = {
   '@id': orgId,
   name: 'BamDude',
   url: `${siteUrl}/`,
-  logo: { '@type': 'ImageObject', url: `${siteUrl}/android-chrome-512x512.png`, width: 512, height: 512 },
+  logo: { '@type': 'ImageObject', url: `${siteUrl}/brand/png/icon-tile-512.png`, width: 512, height: 512 },
   sameAs: [repo, dockerHub],
 };
 const jsonLd = {
@@ -153,8 +153,11 @@ const jsonLd = {
     <link rel="alternate" hreflang={alt} href={`${siteUrl}${altPath}`} />
     <link rel="alternate" hreflang="x-default" href={xDefaultUrl} />
 
-    <link rel="icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" href="/brand/svg/mark-adaptive.svg" type="image/svg+xml" />
+    <link rel="icon" href="/brand/favicon.ico" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/brand/png/apple-touch-icon.png" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F4F6F0" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#12150F" />
 
     <meta property="og:site_name" content="BamDude" />
     <meta property="og:type" content={ogType} />

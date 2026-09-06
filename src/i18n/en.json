@@ -317,7 +317,8 @@
     "cookies": "Cookie settings",
     "rights": "All rights reserved.",
     "disclaimer": "Bambu Lab is a trademark of Bambu Lab Co., Ltd. BamDude is an independent project, not affiliated with Bambu Lab.",
-    "donate": "Support the project"
+    "donate": "Support the project",
+    "brand": "Brand assets"
   },
   "theme": {
     "system": "System",
