@@ -156,7 +156,7 @@
         },
         {
           "title": "Staggered start",
-          "body": "Limit concurrent heating across the farm - per electrical phase or room when you split the cap by printer tags or locations; a bed-temp watchdog prevents brownouts."
+          "body": "Limit concurrent heating across the farm - per electrical phase or room when you split the cap by printer tags or locations, with a cap of its own for any group that needs one; a bed-temp watchdog prevents brownouts."
         },
         {
           "title": "Re-print with AMS mapping",
