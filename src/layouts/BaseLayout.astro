@@ -15,9 +15,10 @@ interface Props {
   ogType?: 'website' | 'article';
   // Optional ISO timestamp for article-type pages. Omit on website-type.
   ogUpdatedTime?: string;
-  // Page slug used to pick a per-page OG image. Defaults to 'home' which
-  // maps back to /og/<locale>/home.png. New value-prop pages (why, features,
-  // install, faq, compare) get their own card.
+  // Page slug used to pick the OG image. 'home' (the default) takes the
+  // static pack card /brand/social/og-dark-1200x630.png; the value-prop
+  // pages (why, features, install, faq, compare) get a generated card from
+  // /og/<locale>/<slug>.png.
   pageKey?: 'home' | 'why' | 'features' | 'install' | 'faq' | 'compare';
   // Breadcrumb trail rendered as JSON-LD only (not visible).
   // First entry is the root. Last entry is the current page.
