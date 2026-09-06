@@ -17,6 +17,11 @@ export default [
     files: ['**/*.cjs'],
     languageOptions: { sourceType: 'commonjs' },
   },
+  // Plain Node scripts (run with `node`, outside Astro/browser) need Node globals
+  {
+    files: ['scripts/**/*.mjs'],
+    languageOptions: { globals: { process: 'readonly', console: 'readonly' } },
+  },
   // Inline scripts inside .astro files and test helpers use patterns that
   // are valid in their runtime context but would trip ESLint rules designed
   // for module code. Relax only the rules that fire in those contexts.

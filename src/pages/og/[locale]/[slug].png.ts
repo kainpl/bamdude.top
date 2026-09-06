@@ -8,6 +8,7 @@
 import type { APIRoute } from 'astro';
 import { generateOpenGraphImage } from 'astro-og-canvas';
 import { t, locales, type Locale } from '../../../i18n';
+import { ogStyle } from '../../../og/style';
 
 // Slugs map 1:1 to BaseLayout's `pageKey` prop. A new pageKey value without
 // a card here renders 404 for the OG image (most clients tolerate it). A new
@@ -31,10 +32,6 @@ function cardCopy(locale: Locale, slug: Slug): { title: string; description: str
   }
 }
 
-// Pre-merged Latin + Cyrillic TTFs so a single typeface covers both scripts
-// — see /og/[locale].png.ts header comment for the merging recipe.
-const FONTS = ['./public/fonts/inter-400.ttf', './public/fonts/inter-800.ttf'];
-
 export function getStaticPaths() {
   const paths: { params: { locale: string; slug: string } }[] = [];
   for (const locale of locales) {
@@ -52,14 +49,7 @@ export const GET: APIRoute = async ({ params }) => {
   const body = await generateOpenGraphImage({
     title: copy.title,
     description: copy.description,
-    bgGradient: [[10, 10, 10], [0, 90, 30]],
-    border: { color: [0, 174, 66], width: 8, side: 'inline-start' },
-    padding: 80,
-    fonts: FONTS,
-    font: {
-      title: { families: ['Inter ExtraBold'], weight: 'Normal', color: [255, 255, 255] },
-      description: { families: ['Inter'], weight: 'Normal', color: [200, 200, 200] },
-    },
+    ...ogStyle(),
   });
   return new Response(body, { headers: { 'Content-Type': 'image/png' } });
 };
