@@ -31,7 +31,7 @@
       "subtitle": "Build the image yourself, easier to extend.",
       "command": "git clone https://github.com/kainpl/bamdude.git\ncd bamdude\ndocker compose up -d --build",
       "notes": [
-        "Uses the `docker-compose.yml` shipped in the repo. Edit it to add Postgres, MQTT, or Spoolman as siblings.",
+        "Uses the `docker-compose.yml` shipped in the repo. A `docker-compose.postgres.yml` override sits next to it if you want PostgreSQL in its own container; MQTT or Spoolman can be added as siblings the same way.",
         "Subsequent rebuilds: `docker compose pull && docker compose up -d --build`."
       ]
     },
@@ -54,6 +54,17 @@
       "notes": [
         "Python 3.12+ (only for this manual route — Docker and the Windows installer bundle their own).",
         "For the frontend: `cd frontend && npm install && npm run dev` in a second terminal."
+      ]
+    },
+    {
+      "id": "database",
+      "icon": "database",
+      "title": "Choose your database",
+      "subtitle": "SQLite by default. One variable switches to PostgreSQL - bundled or your own.",
+      "body": "`DATABASE_URL` picks the storage: leave it empty for **SQLite** (the default, one file, fine for most farms), set it to `embedded` for the **PostgreSQL 18 that ships with BamDude** and that BamDude runs for you, or give a `postgresql+asyncpg://` URL for **your own server**. Switching from SQLite imports your existing database automatically on the next start.",
+      "notes": [
+        "Every installer asks: `install.sh` has `--db sqlite|embedded|external`, the Windows setup has a **Database** page, and `docker-install.sh` offers the same choice.",
+        "The bundled server listens on `127.0.0.1` only and keeps its own generated password; pin `EMBEDDED_PG_PORT=6432` if you want to reach it with psql or DBeaver."
       ]
     },
     {
@@ -96,6 +107,10 @@
       {
         "label": "Docker Compose recipes",
         "href": "https://docs.bamdude.top/getting-started/docker/"
+      },
+      {
+        "label": "PostgreSQL: bundled or your own",
+        "href": "https://docs.bamdude.top/features/postgresql/"
       }
     ]
   }

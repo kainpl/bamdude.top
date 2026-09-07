@@ -780,7 +780,7 @@
       "items": [
         {
           "title": "One Docker container",
-          "body": "SQLite out of the box, PostgreSQL when you outgrow it. `--network host` keeps SSDP printer discovery working."
+          "body": "SQLite out of the box; when you outgrow it, PostgreSQL either bundled (BamDude runs it for you) or your own server. `--network host` keeps SSDP printer discovery working."
         },
         {
           "title": "Native Windows installer",
