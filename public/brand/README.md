@@ -26,7 +26,8 @@ brand/
   favicon-on-dark.ico              same sizes, white bars (dark UI / dark browser chrome)
   cloud-favicon.ico                Cloud mark, same six sizes (dark bars)
   cloud-favicon-on-dark.ico        Cloud mark, white bars
-  app-icon.ico                     16 → 256 px, dark tile (desktop app)
+  app-icon.ico                     16 → 256 px, dark tile at 64/128/256 only
+  app-icon-tile.ico                same sizes, dark tile at EVERY size (Windows installer)
   browserconfig.xml                Windows tile config
   site.webmanifest                 PWA manifest (BamDude)
   site.cloud.webmanifest           PWA manifest (BamDude Cloud)
@@ -61,6 +62,23 @@ brand/
     github-social-1280x640.png     GitHub repo social preview
     readme-banner-1600x400.png     README header
     x-header-1500x500.png          X / Twitter profile header
+```
+
+### Which app icon
+
+`app-icon.ico` carries the dark tile only at 64/128/256 — its 16/32/48 frames are
+the bare mark on transparent. Anywhere Windows renders the small frames (Explorer
+lists, the Programs list, a setup `.exe`) that reads as a floating glyph with no
+ground, so the icon looks like a different mark at different sizes.
+
+`app-icon-tile.ico` is the same icon with the tile kept at **every** size, and is
+what the Windows installer ships. Both are kept: `app-icon.ico` is unchanged for
+anything already using it. Regenerate the tiled variant from the tile PNG:
+
+```bash
+python -c "from PIL import Image; s=Image.open('png/icon-tile-512.png').convert('RGBA'); \
+  z=[16,32,48,64,128,256]; f=[s.resize((n,n), Image.LANCZOS) for n in z]; \
+  f[-1].save('app-icon-tile.ico', format='ICO', sizes=[(n,n) for n in z], append_images=f[:-1])"
 ```
 
 ## HTML snippet
