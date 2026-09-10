@@ -151,6 +151,10 @@
           "body": "The router checks the exact model and every used filament channel against each printer's AMS, external feeds, and nozzles. Choose automatic, AMS-only, or external-only feeds; require exact colors globally or per channel. The form separates AMS-connected, no-AMS, and unknown configurations, with compatible and ready counts. Multicolor stays supported; copy count never relaxes the rules. Ready printers take priority, with SJF and starvation protection for scheduling."
         },
         {
+          "title": "Rebalancing across printer models",
+          "body": "An order line's work is split between printer models when it is queued — and used to stay there: if the P1S machines freed up early, the X1C copies kept waiting in their own pile. With rebalancing on, idle printers of another model take a line's still-pending prints whenever that finishes the line sooner, and the plates and counts are recalculated for that model's bed: a 6-part plate becomes three 2-part prints on a mini, two parts become one print on a bigger bed with at most a plate's worth of surplus. Off by default; the line's Rebalance button and the auto-queue panel run it on demand. Prints already on a printer, scheduled, staged, pinned or aimed at a location never move."
+        },
+        {
           "title": "Auto-pause on failure",
           "body": "When a print fails, the queue stops on that printer so you can decide what's next."
         },
