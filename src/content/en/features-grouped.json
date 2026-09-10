@@ -124,7 +124,7 @@
         },
         {
           "title": "Copy one printer's queue to others",
-          "body": "Same model, pick what and where. Items that would be answered the same way are grouped into one dialog, filament is mapped per printer inside it, and each copied item keeps the plate it was queued with — a block you grouped in the source queue comes out as a block on the target."
+          "body": "Same model, choose the items and destinations. Copies keep their plate, order, grouping, and feed and color rules. Shared answers use one dialog per group; a manual mapping needs review for the destination, and file-specific channel choices open the next file for review."
         },
         {
           "title": "Load a queue from the library",
@@ -144,7 +144,7 @@
         },
         {
           "title": "Auto-queue routing",
-          "body": "Drop a print without naming a target - the router picks a suitable printer by model, filament type, and (optionally) color, preferring one that can start right away. SJF + starvation guard for fair scheduling."
+          "body": "The router checks the exact model and every used filament channel against each printer's AMS, external feeds, and nozzles. Choose automatic, AMS-only, or external-only feeds; require exact colors globally or per channel. The form separates AMS-connected, no-AMS, and unknown configurations, with compatible and ready counts. Multicolor stays supported; copy count never relaxes the rules. Ready printers take priority, with SJF and starvation protection for scheduling."
         },
         {
           "title": "Auto-pause on failure",
@@ -159,8 +159,8 @@
           "body": "Limit concurrent heating across the farm - per electrical phase or room when you split the cap by printer tags or locations, with a cap of its own for any group that needs one; a bed-temp watchdog prevents brownouts."
         },
         {
-          "title": "Re-print with AMS mapping",
-          "body": "Reprint to any printer, remap each filament slot from the source archive."
+          "title": "Reprint with filament mapping",
+          "body": "Reprint the selected plate using the destination's current AMS or external feeds. Saved feed and color rules survive repeats; physical slot choices need review for a different printer. Routing is checked again immediately before start."
         },
         {
           "title": "Swap mode (A1 plate-swappers)",
@@ -464,7 +464,7 @@
         },
         {
           "title": "What to print next, worked out per line",
-          "body": "Under every line sits a plan: the plates that would cover what it still needs, ranked by useful parts per hour, with everything already printed, running, queued or taken from stock subtracted first - so a plan you have half sent stops asking for the prints you already sent. Each row shows time, filament and cost per print beside a count you can change, and the surplus and the totals follow that number as you type it. Send one row to the auto-queue, send the whole plan at once, or open the usual print dialog to put a row on one named printer."
+          "body": "Under every line sits a plan: the plates that would cover what it still needs, ranked by useful parts per hour, with everything already printed, running, queued or taken from stock subtracted first - so a plan you have half sent stops asking for the prints you already sent. Each row shows time, filament and cost per print beside a count you can change, and the surplus and the totals follow that number as you type it. Send one row to the auto-queue, send the whole plan at once, or open the usual print dialog to put a row on one named printer. The actual plate and every used channel are validated before queueing; the selected file, quantity, and order line stay intact."
         },
         {
           "title": "Two printer models, two files, one plan",
@@ -668,7 +668,7 @@
         },
         {
           "title": "Virtual printer modes",
-          "body": "File Manager (review queue), Print Queue (slicer → fixed printer), Auto-Queue (slicer → router picks a suitable printer), Proxy (TLS relay). Per-VP, it can also keep the AMS slots the slicer resolved instead of matching by filament type and colour — the only way to tell two spools of the same colour apart."
+          "body": "File Manager (review queue), Print Queue (slicer → fixed printer), Auto-Queue (slicer → router chooses by complete filament and feed requirements), Proxy (TLS relay). A fixed-target queue VP can retain the slicer's physical AMS choices, with validation before start; automatic routing resolves sources for the selected printer."
         },
         {
           "title": "Slicer-as-remote in non-proxy modes",
