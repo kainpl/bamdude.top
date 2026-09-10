@@ -7,6 +7,10 @@
       "description": "See and steer every printer in real time, from a single dashboard.",
       "items": [
         {
+          "title": "Status monitor for a second display",
+          "body": "Printers and Queue use uniform tiles, ordered by attention, current-print ETA or queue ETA. Auto fits 50 printers on Full HD at normal zoom without grouping; smaller screens scroll. Use a signed-in window or a revocable TV token with operational status only, without cameras, job names or control. Coming in the next release."
+        },
+        {
           "title": "Live status via WebSocket",
           "body": "Temperatures, fans, layer count, AMS, current job - all push-updated, no polling."
         },

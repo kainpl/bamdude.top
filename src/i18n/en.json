@@ -27,6 +27,19 @@
     "body": "Send prints to several printers at the same time - parallel dispatch, no one-job-at-a-time gate. Per-printer queues with staggered start space out simultaneous bed-heat draws so the building doesn't brown out. SWAP-mode keeps an A1 farm cycling plate after plate through swap macros. Reprints check the selected plate against the destination's current AMS and external feeds, retaining feed and color rules. G-code macros handle the small repetitive bits - chamber light, end-of-print sequences, calibration cycles - without anyone watching.",
     "cta": "Explore the features"
   },
+  "monitor": {
+    "title": "See which printer needs you next",
+    "body": "Keep the farm on a second display while you work. The status monitor puts errors and pauses first, then the prints finishing soonest.",
+    "points": [
+      "Printers and Queue share one tile layout, with color, text and icons for each state.",
+      "Auto fits 50 printers on Full HD. Group by location or tag and sort by print or queue ETA.",
+      "Leave a TV signed out with its own revocable token. Read-only status, without cameras or job names."
+    ],
+    "cta": "Set up the status monitor",
+    "availability": "Coming in the next release",
+    "imageAlt": "Status monitor showing 50 printer tiles, including errors, pauses and prints in progress",
+    "caption": "Example farm · Ukrainian interface · Open the full-size screenshot"
+  },
   "supportedPrinters": {
     "title": "Supported printers",
     "subtitle": "Works with the full range of Bambu Lab printers via Developer Mode.",
