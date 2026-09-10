@@ -483,6 +483,10 @@
           "body": "A plate makes four lids and the order needed three. Bank the surplus and the fourth lid moves onto that product's free stock: how many whole kits are on the shelf, the balance of every part, and a ledger of how each one got there. A print that finishes under no order is credited automatically, and filing it under an order afterwards takes the credit back. Ordering the same product again is where it pays - From stock reserves kits for the line, and the need, the progress bar and the plan all count them as done, so a line covered from the shelf asks for no prints at all."
         },
         {
+          "title": "The whole farm's shelves on one tab",
+          "body": "Stock is the fourth tab of the Projects section: every product with anything on its shelf, kits first, expanding into the balance of each part and the active orders holding kits in reserve - each a link. Under it, one journal of every movement on the farm, filtered by product or reason, loading older pages until the ledger runs out and saying so. Adjust a shelf from its row through the same dialog the product page has. It reads the same ledger and writes nothing new."
+        },
+        {
           "title": "Defective parts count against the order",
           "body": "An order needing forty usable parts is not finished because forty came off the plates. Skipping an object mid-print attributes the scrap to that part by itself, and the archive editor lets you mark exactly which parts came out bad instead of typing one number for the whole plate. What the order counts is what is left."
         },
