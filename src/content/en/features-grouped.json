@@ -155,6 +155,10 @@
           "body": "An order line's work is split between printer models when it is queued — and used to stay there: if the P1S machines freed up early, the X1C copies kept waiting in their own pile. With rebalancing on, idle printers of another model take a line's still-pending prints whenever that finishes the line sooner, and the plates and counts are recalculated for that model's bed: a 6-part plate becomes three 2-part prints on a mini, two parts become one print on a bigger bed with at most a plate's worth of surplus. Off by default; the line's Rebalance button and the auto-queue panel run it on demand. Prints already on a printer, scheduled, staged, pinned or aimed at a location never move."
         },
         {
+          "title": "Defects where the operator stands",
+          "body": "Scrap used to be typed in one place — the archive editor, three screens away from the plate. Now every completed print card on an order page shows what came off the plate and how many went in the bin, and offers Defects…; on the printer card the finished print's counters sit beside Clear plate and Repeat, and either answer carries them; in Telegram the completion message offers Defects…, and both plate answers lead to a one-tap-per-part prompt. Statistics gain Defects by printer — printed, defective and the rate. A print that was already counted into free stock has its shelf corrected when defects are recorded later, in either direction, with the correction in the stock journal."
+        },
+        {
           "title": "Auto-pause on failure",
           "body": "When a print fails, the queue stops on that printer so you can decide what's next."
         },
