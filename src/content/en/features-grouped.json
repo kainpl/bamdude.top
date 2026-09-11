@@ -159,6 +159,10 @@
           "body": "Scrap used to be typed in one place — the archive editor, three screens away from the plate. Now every completed print card on an order page shows what came off the plate and how many went in the bin, and offers Defects…; on the printer card the finished print's counters sit beside Clear plate and Repeat, and either answer carries them; in Telegram the completion message offers Defects…, and both plate answers lead to a one-tap-per-part prompt. Statistics gain Defects by printer — printed, defective and the rate. A print that was already counted into free stock has its shelf corrected when defects are recorded later, in either direction, with the correction in the stock journal."
         },
         {
+          "title": "Quantity that says what it means",
+          "body": "The Print dialog's number used to mean «on each printer you picked» — three printers at 4 made twelve prints while the field said four. Now a line under the field states the outcome, and a toggle offers Per printer or Total: a total is dealt round-robin across the picked printers in the order they are listed, 13 on three becoming 5 / 4 / 4, with the line naming who gets what. Your choice is remembered in the browser; the auto-queue's field was always a total."
+        },
+        {
           "title": "Auto-pause on failure",
           "body": "When a print fails, the queue stops on that printer so you can decide what's next."
         },
