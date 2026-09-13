@@ -7,6 +7,10 @@
       "description": "See and steer every printer in real time, from a single dashboard.",
       "items": [
         {
+          "title": "Optional isolated camera process",
+          "body": "An experimental worker runs camera connections and video processing in a supervised process, with useful INFO logs for diagnosis. Enable it explicitly after testing your host; it does not automatically enable hardware acceleration or remove browser connection limits. Available in the next release."
+        },
+        {
           "title": "Status monitor for a second display",
           "body": "Printers and Queue use uniform tiles, ordered by attention, current-print ETA or queue ETA. Auto fits 50 printers on Full HD at normal zoom without grouping; smaller screens scroll. Use a signed-in window or a revocable TV token with operational status only, without cameras, job names or control. Coming in the next release."
         },
@@ -52,7 +56,7 @@
         },
         {
           "title": "Camera Wall",
-          "body": "Flip the Printers page to Cam wall and watch every printer's camera in one live grid — or open it at its own /camwall URL to bookmark it or pin it to a wall-mounted screen. On-screen tiles stream live (capped so a Raspberry Pi keeps up), off-screen ones pause, and each tile carries a status overlay + HMS badge. A TV or Pi with no login runs it with a Cam Wall token, which serves only what a tile draws — never a printer's address or the name of the file being printed."
+          "body": "Flip the Printers page to Cam wall and watch every printer's camera in one live grid — or open it at its own /camwall URL to bookmark it or pin it to a wall-mounted screen. On-screen tiles stream live (capped so a Raspberry Pi keeps up), off-screen ones pause, and each tile carries a status overlay + HMS badge. A TV or Pi with no login runs it with a Cam Wall token, which serves only what a tile draws — never a printer's address or the name of the file being printed. Coming in the next release: automatic live limits for HTTP/1 or unknown transport, and snapshots that retain the last image and show their successful update time."
         },
         {
           "title": "In-app camera diagnostics",
