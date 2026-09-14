@@ -131,6 +131,10 @@
           "body": "As many files as you like onto a printer, its queue or the auto-queue. Anything that cannot print says why, by name."
         },
         {
+          "title": "Queued work keeps its own verified file",
+          "body": "Accepting a job takes one immutable copy into BamDude data storage. An SMB share can disconnect, a laptop can sleep, and the original library file or archive can move or be deleted without changing work already queued. Identical files are stored once, and portable backups carry the copies their database snapshot names."
+        },
+        {
           "title": "Copy one printer's queue to others",
           "body": "Same model, choose the items and destinations. Copies keep their plate, order, grouping, and feed and color rules. Shared answers use one dialog per group; a manual mapping needs review for the destination, and file-specific channel choices open the next file for review."
         },
