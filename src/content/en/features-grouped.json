@@ -155,6 +155,10 @@
           "body": "Tame a long queue: bundle items into a collapsible batch, drag a row by its grip handle to reorder, and sort the Printers page by ETA so the printer finishing next sits on top."
         },
         {
+          "title": "Put an urgent job next",
+          "body": "Tick Run next in the Schedule dialog to place an ASAP job before a selected printer's pending work. A physical print is never interrupted; selected plates stay together, and Auto-Queue keeps its own routing order."
+        },
+        {
           "title": "Auto-queue routing",
           "body": "The router checks the exact model and every used filament channel against each printer's AMS, external feeds, and nozzles. Choose automatic, AMS-only, or external-only feeds; require exact colors globally or per channel. The form separates AMS-connected, no-AMS, and unknown configurations, with compatible and ready counts. Multicolor stays supported; copy count never relaxes the rules. Ready printers take priority, with SJF and starvation protection for scheduling."
         },
