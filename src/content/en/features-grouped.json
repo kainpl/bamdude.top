@@ -132,7 +132,7 @@
         },
         {
           "title": "Queued work keeps its own verified file",
-          "body": "Accepting a job takes one immutable copy into BamDude data storage. An SMB share can disconnect, a laptop can sleep, and the original library file or archive can move or be deleted without changing work already queued. Identical files are stored once, and portable backups carry the copies their database snapshot names."
+          "body": "Accepting a job stores one verified, immutable copy of its exact bytes in BamDude data. An SMB share can disconnect, a laptop can sleep, and the original library file or archive can move or be deleted without changing work already queued. Identical bytes use one copy until the last queued job releases it; portable backups carry the copies their database snapshot names."
         },
         {
           "title": "Copy one printer's queue to others",
