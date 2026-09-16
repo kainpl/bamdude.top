@@ -25,6 +25,10 @@
       "a": "Yes, two ways. SQLite is the default; set DATABASE_URL=embedded and BamDude runs a PostgreSQL 18 it ships with itself, or point DATABASE_URL at your own server. Switching imports your existing database automatically."
     },
     {
+      "q": "Do I need Telegram or e-mail to see what happened?",
+      "a": "No. The Bell in the app holds a per-user inbox that fills whether or not any external channel is configured, so an alarm about hardware has somewhere to land from the first minute. External channels are for reaching you when you are not looking at the farm."
+    },
+    {
       "q": "Will my Telegram chat get spammed?",
       "a": "You configure per-chat notification settings, quiet hours, and event types. Defaults are conservative."
     }
