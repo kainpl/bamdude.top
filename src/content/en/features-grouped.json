@@ -91,6 +91,10 @@
           "body": "Slot config, RFID re-read, load / unload from the printer card, AMS Settings dialog (Bambu Studio parity — RFID auto-read on insert/power-on, remaining-capacity estimate, filament backup, air-print detection, AMS calibrate, A1 firmware FULL↔LITE switch, H2D AMS reorder), drying schedules, humidity tracking."
         },
         {
+          "title": "Tell the AMS that several spools are one",
+          "body": "Per printer, off by default: a printer can be told to advertise manually assigned spools under one canonical colour and/or the Generic profile of their base material, so the firmware treats several compatible spools as one auto-refill group. Only what the printer is told changes — the real spool, its colour, brand and accounting stay exactly as they were, routing and dispatch keep matching the real spool, and RFID spools are never touched. The AMS Backup dialog gains an apply-to-assigned-slots action with a preview and a per-slot reason, and the same button rolls the slots back. The printer's own reported backup groups remain the only proof a group actually formed."
+        },
+        {
           "title": "Printer file browser",
           "body": "Browse the printer's SD card and, on X2D / P2S / H2, its built-in storage - one switch between the two, with listing, download, plate previews, Save-to-Library and delete working on both. Save-to-Library promotes bare .3mf to .gcode.3mf when the bytes are already sliced."
         },
@@ -430,6 +434,10 @@
       "title": "Notifications",
       "description": "Eight channels, one editor, one routing config.",
       "items": [
+        {
+          "title": "An inbox in the app, before any channel is set up",
+          "body": "Every event the farm raises — a failed print, a filament runout, an AMS alarm, queue trouble, a sensor past its limit — lands in the Bell in the sidebar, in the inbox of each person subscribed to it: live unread count, read/unread kept per person, filters by level, printer and period. It fills on a farm with no external provider configured at all, which is the point — an alarm about hardware used to have nowhere to go until somebody had set up a bot or a mail server. Each person picks their own events, warnings and errors by default; history retention is a farm setting, 30 days out of the box. The per-user e-mail switches that used to be the whole Notifications page are now one tab inside the centre."
+        },
         {
           "title": "9 delivery channels",
           "body": "Telegram, Discord, Email (SMTP), Pushover, ntfy, Bark, CallMeBot, Home Assistant, custom webhooks."

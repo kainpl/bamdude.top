@@ -113,6 +113,7 @@
         "title": "Notifications & Bot",
         "rows": [
           { "label": "Push notifications", "values": ["yes:9 channels", "yes:Mobile push", "partial:Via plugins"] },
+          { "label": "In-app notification centre", "values": ["yes:Per-user inbox, no external channel needed", "no", "no"] },
           { "label": "Full Telegram bot", "values": ["yes:Control + queue + maintenance", "no", "partial:Via plugins"] },
           { "label": "Multi-chat with roles", "values": ["yes", "no", "no"] },
           { "label": "Discord / Pushover / ntfy / Bark", "values": ["yes:Per-event priority; Bark Critical bypasses Silent + Focus", "no", "partial:Via plugins"] },

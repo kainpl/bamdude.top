@@ -113,6 +113,7 @@
         "title": "Нотифікації і бот",
         "rows": [
           { "label": "Push-нотифікації", "values": ["yes:9 каналів", "yes:Push", "partial:Через плагіни"] },
+          { "label": "Центр нотифікацій у застосунку", "values": ["yes:Вхідні на кожного користувача, без зовнішнього каналу", "no", "no"] },
           { "label": "Повний Telegram-бот", "values": ["yes:Контроль + черга + обслуговування", "no", "partial:Через плагіни"] },
           { "label": "Мультичат із ролями", "values": ["yes", "no", "no"] },
           { "label": "Discord / Pushover / ntfy / Bark", "values": ["yes:пріоритет на подію; Bark Critical проходить крізь Silent + Focus", "no", "partial:Через плагіни"] },
