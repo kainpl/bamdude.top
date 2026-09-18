@@ -31,7 +31,7 @@
       "subtitle": "Build the image yourself, easier to extend.",
       "command": "git clone https://github.com/kainpl/bamdude.git\ncd bamdude\ndocker compose up -d --build",
       "notes": [
-        "Uses the `docker-compose.yml` shipped in the repo. A `docker-compose.postgres.yml` override sits next to it if you want PostgreSQL in its own container; MQTT or Spoolman can be added as siblings the same way.",
+        "Uses the `docker-compose.yml` shipped in the repo. Two overrides sit next to it: `docker-compose.postgres.yml` for PostgreSQL in its own container and `docker-compose.signal.yml` for a signal-cli-rest-api that feeds Signal notifications; MQTT or Spoolman can be added as siblings the same way.",
         "Subsequent rebuilds: `docker compose pull && docker compose up -d --build`."
       ]
     },
