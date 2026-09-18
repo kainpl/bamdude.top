@@ -439,8 +439,8 @@
           "body": "Every event the farm raises — a failed print, a filament runout, an AMS alarm, queue trouble, a sensor past its limit — lands in the Bell in the sidebar, in the inbox of each person subscribed to it: live unread count, read/unread kept per person, filters by level, printer and period. It fills on a farm with no external provider configured at all, which is the point — an alarm about hardware used to have nowhere to go until somebody had set up a bot or a mail server. Each person picks their own events, warnings and errors by default; history retention is a farm setting, 30 days out of the box. The per-user e-mail switches that used to be the whole Notifications page are now one tab inside the centre."
         },
         {
-          "title": "9 delivery channels",
-          "body": "Telegram, Discord, Email (SMTP), Pushover, ntfy, Bark, CallMeBot, Home Assistant, custom webhooks."
+          "title": "10 delivery channels",
+          "body": "Telegram, Discord, Email (SMTP), Pushover, ntfy, Bark, CallMeBot, Signal CLI API, Home Assistant, custom webhooks."
         },
         {
           "title": "Printer scope on every channel",
