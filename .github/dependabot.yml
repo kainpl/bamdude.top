@@ -1,0 +1,31 @@
+# Dependabot's behaviour here is deliberately the same as it was with no file
+# at all — security updates only. `open-pull-requests-limit: 0` is what keeps
+# it that way: it switches OFF version updates, which adding an `updates:`
+# block would otherwise switch on, and a landing page does not need a weekly
+# PR for every patch release. The block exists for the `ignore` list below.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 0
+    ignore:
+      # ⚠️ These three are not "accepted risk", they are UNSATISFIABLE, and
+      # Dependabot was burning a failed job on each one every time it looked.
+      # Its own log says it plainly for uuid: "The latest possible version
+      # that can be installed is 8.3.2 because of the following conflicting
+      # dependencies". All three sit under `@lhci/cli`, which still bundles an
+      # express 4 / inquirer 6 / puppeteer chain of its own, so no version of
+      # anything we depend on moves them.
+      #
+      # They are dev-only: `npm audit --omit=dev` reports nothing, and none of
+      # this reaches a visitor — Lighthouse CI is a local gate, not part of the
+      # build or the deploy.
+      #
+      # Remove an entry the moment `@lhci/cli` ships a tree without it; the
+      # quickest check is `npm ls uuid tmp qs`, which today answers with
+      # `@lhci/cli` at the top of every path.
+      - dependency-name: uuid
+      - dependency-name: tmp
+      - dependency-name: qs
