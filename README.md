@@ -4,12 +4,25 @@ Marketing landing for [BamDude](https://github.com/kainpl/bamdude) — self-host
 
 ## Stack
 
-- Astro 6 (SSG) + React islands
+- Astro 7 (SSG) + React islands
 - Tailwind CSS v4
 - TypeScript (strict)
 - `lucide-react`, `astro-og-canvas`, `@astrojs/sitemap`
 - Vitest for island unit tests
 - Lighthouse CI gate
+
+## Dependencies
+
+Versions are pinned exactly, not by range: a landing page is built once and
+served for weeks, so "whatever resolves today" is not a property worth having.
+
+⚠️ **`@astrojs/language-server` is held at 2.16.6 by an `overrides` entry, and
+that is deliberate.** 2.17.0 stops understanding `.astro` files — `npm run
+typecheck` reports ~196 errors that are not in the source, complaining about
+closing tags and about variables declared two lines above inside
+`<script is:inline>`. `npm update` and `npm audit fix` both reach for it, so
+the pin is what keeps them safe to run. Drop the override, run the typecheck,
+and put it back if the count is not zero.
 
 ## Local dev
 
