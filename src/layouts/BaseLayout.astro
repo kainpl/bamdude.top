@@ -154,7 +154,13 @@ const jsonLd = {
     <link rel="alternate" hreflang={alt} href={`${siteUrl}${altPath}`} />
     <link rel="alternate" hreflang="x-default" href={xDefaultUrl} />
 
-    <link rel="icon" href="/brand/svg/mark-adaptive.svg" type="image/svg+xml" />
+    {/* The TILE, not the adaptive mark: a tab strip is not a page, and an
+        SVG favicon resolves `prefers-color-scheme` against the PAGE, so the
+        adaptive mark's near-black bars vanish into a dark tab strip wherever
+        the page happens to be light — which is exactly what the docs tab did
+        (2026-09-20: one green dash and nothing else). The tile carries its own
+        background and is legible either way. */}
+    <link rel="icon" href="/brand/svg/mark-tile.svg" type="image/svg+xml" />
     <link rel="icon" href="/brand/favicon.ico" sizes="32x32" />
     <link rel="apple-touch-icon" href="/brand/png/apple-touch-icon.png" />
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F4F6F0" />
