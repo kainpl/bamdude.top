@@ -3,7 +3,7 @@ import type { Locale } from '../i18n';
 import enFeatures from '../content/en/features-grouped.json';
 import ukFeatures from '../content/uk/features-grouped.json';
 import {
-  Activity, ListOrdered, Archive, Folder, Send, Bell, Palette, Wrench, Zap, ShieldCheck, Server, Check, Gauge,
+  Activity, ListOrdered, Archive, Folder, Send, Bell, ClipboardList, Palette, Wrench, Zap, ShieldCheck, Server, Check, Gauge,
 } from 'lucide-react';
 
 interface Props { locale: Locale; }
@@ -18,6 +18,7 @@ const iconMap: Record<string, typeof Activity> = {
   folder: Folder,
   send: Send,
   bell: Bell,
+  'clipboard-list': ClipboardList,
   palette: Palette,
   wrench: Wrench,
   zap: Zap,

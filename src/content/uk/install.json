@@ -31,7 +31,7 @@
       "subtitle": "Збираєш образ сам, простіше розширювати.",
       "command": "git clone https://github.com/kainpl/bamdude.git\ncd bamdude\ndocker compose up -d --build",
       "notes": [
-        "Використовує `docker-compose.yml` з репо. Додавай Postgres, MQTT чи Spoolman як сервіси-сусіди.",
+        "Використовує `docker-compose.yml` з репо. Поруч лежать два override: `docker-compose.postgres.yml` для PostgreSQL в окремому контейнері і `docker-compose.signal.yml` для signal-cli-rest-api, що живить сповіщення в Signal; MQTT чи Spoolman додаються сервісами-сусідами так само.",
         "Наступні ребілди: `docker compose pull && docker compose up -d --build`."
       ]
     },
@@ -54,6 +54,17 @@
       "notes": [
         "Python 3.12+ (лише для цього ручного шляху — Docker і Windows-інсталятор везуть власний).",
         "Для фронтенду: `cd frontend && npm install && npm run dev` в другому терміналі."
+      ]
+    },
+    {
+      "id": "database",
+      "icon": "database",
+      "title": "Оберіть базу даних",
+      "subtitle": "Типово SQLite. Одна змінна перемикає на PostgreSQL — вбудований або власний.",
+      "body": "`DATABASE_URL` обирає сховище: лишіть порожнім для **SQLite** (типово, один файл, цього вистачає більшості ферм), поставте `embedded` для **PostgreSQL 18, який їде разом із BamDude** і яким BamDude керує сам, або вкажіть URL `postgresql+asyncpg://` для **власного сервера**. Під час переходу зі SQLite наявна база імпортується автоматично на наступному старті.",
+      "notes": [
+        "Питають усі інсталятори: в `install.sh` є `--db sqlite|embedded|external`, у Windows-майстрі — сторінка **Database**, `docker-install.sh` пропонує той самий вибір.",
+        "Вбудований сервер слухає лише `127.0.0.1` і тримає власний згенерований пароль; запіньте `EMBEDDED_PG_PORT=6432`, щоб діставати до нього psql чи DBeaver."
       ]
     },
     {
@@ -96,6 +107,10 @@
       {
         "label": "Рецепти Docker Compose",
         "href": "https://docs.bamdude.top/getting-started/docker/"
+      },
+      {
+        "label": "PostgreSQL: вбудований або власний",
+        "href": "https://docs.bamdude.top/features/postgresql/"
       }
     ]
   }

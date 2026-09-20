@@ -2,7 +2,7 @@
 import type { Locale } from '../i18n';
 import enInstall from '../content/en/install.json';
 import ukInstall from '../content/uk/install.json';
-import { Container, Layers, Terminal, UserPlus, Printer, Send, MonitorDown, ArrowRight, ChevronRight } from 'lucide-react';
+import { Container, Layers, Terminal, UserPlus, Printer, Send, MonitorDown, Database, ArrowRight, ChevronRight } from 'lucide-react';
 
 interface Props { locale: Locale; }
 const { locale } = Astro.props;
@@ -17,6 +17,7 @@ const iconMap: Record<string, typeof Container> = {
   'user-plus': UserPlus,
   printer: Printer,
   send: Send,
+  database: Database,
 };
 
 // Bold inline markdown (`**word**` and `[link](url)`) — minimal renderer for body/notes lines.

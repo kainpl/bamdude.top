@@ -7,6 +7,14 @@
       "description": "See and steer every printer in real time, from a single dashboard.",
       "items": [
         {
+          "title": "Optional isolated camera process",
+          "body": "An experimental worker runs camera connections and video processing in a supervised process, with useful INFO logs for diagnosis. Enable it explicitly after testing your host; it does not automatically enable hardware acceleration or remove browser connection limits. Available in the next release."
+        },
+        {
+          "title": "Status monitor for a second display",
+          "body": "Printers and Queue use uniform tiles, ordered by attention, current-print ETA or queue ETA. Auto fits 50 printers on Full HD at normal zoom without grouping; smaller screens scroll. Use a signed-in window or a revocable TV token with operational status only, without cameras, job names or control. Coming in the next release."
+        },
+        {
           "title": "Live status via WebSocket",
           "body": "Temperatures, fans, layer count, AMS, current job - all push-updated, no polling."
         },
@@ -48,7 +56,7 @@
         },
         {
           "title": "Camera Wall",
-          "body": "Flip the Printers page to Cam wall and watch every printer's camera in one live grid — or open it at its own /camwall URL to bookmark it or pin it to a wall-mounted screen. On-screen tiles stream live (capped so a Raspberry Pi keeps up), off-screen ones pause, and each tile carries a status overlay + HMS badge. A TV or Pi with no login runs it with a Cam Wall token, which serves only what a tile draws — never a printer's address or the name of the file being printed."
+          "body": "Flip the Printers page to Cam wall and watch every printer's camera in one live grid — or open it at its own /camwall URL to bookmark it or pin it to a wall-mounted screen. On-screen tiles stream live (capped so a Raspberry Pi keeps up), off-screen ones pause, and each tile carries a status overlay + HMS badge. A TV or Pi with no login runs it with a Cam Wall token, which serves only what a tile draws — never a printer's address or the name of the file being printed. Coming in the next release: automatic live limits for HTTP/1 or unknown transport, and snapshots that retain the last image and show their successful update time."
         },
         {
           "title": "In-app camera diagnostics",
@@ -81,6 +89,10 @@
         {
           "title": "AMS management",
           "body": "Slot config, RFID re-read, load / unload from the printer card, AMS Settings dialog (Bambu Studio parity — RFID auto-read on insert/power-on, remaining-capacity estimate, filament backup, air-print detection, AMS calibrate, A1 firmware FULL↔LITE switch, H2D AMS reorder), drying schedules, humidity tracking."
+        },
+        {
+          "title": "Tell the AMS that several spools are one",
+          "body": "Per printer, off by default: a printer can be told to advertise manually assigned spools under one canonical colour and/or the Generic profile of their base material, so the firmware treats several compatible spools as one auto-refill group. Only what the printer is told changes — the real spool, its colour, brand and accounting stay exactly as they were, routing and dispatch keep matching the real spool, and RFID spools are never touched. The AMS Backup dialog gains an apply-to-assigned-slots action with a preview and a per-slot reason, and the same button rolls the slots back. The printer's own reported backup groups remain the only proof a group actually formed."
         },
         {
           "title": "Printer file browser",
@@ -123,8 +135,12 @@
           "body": "As many files as you like onto a printer, its queue or the auto-queue. Anything that cannot print says why, by name."
         },
         {
+          "title": "Queued work keeps its own verified file",
+          "body": "Accepting a job stores one verified, immutable copy of its exact bytes in BamDude data. An SMB share can disconnect, a laptop can sleep, and the original library file or archive can move or be deleted without changing work already queued. Identical bytes use one copy until the last queued job releases it; portable backups carry the copies their database snapshot names."
+        },
+        {
           "title": "Copy one printer's queue to others",
-          "body": "Same model, pick what and where. Filament is mapped per printer, so four printers is still one dialog per file."
+          "body": "Same model, choose the items and destinations. Copies keep their plate, order, grouping, and feed and color rules. Shared answers use one dialog per group; a manual mapping needs review for the destination, and file-specific channel choices open the next file for review."
         },
         {
           "title": "Load a queue from the library",
@@ -143,8 +159,24 @@
           "body": "Tame a long queue: bundle items into a collapsible batch, drag a row by its grip handle to reorder, and sort the Printers page by ETA so the printer finishing next sits on top."
         },
         {
+          "title": "Put an urgent job next",
+          "body": "Tick Run next in the Schedule dialog to place an ASAP job before a selected printer's pending work. A physical print is never interrupted; selected plates stay together, and Auto-Queue keeps its own routing order."
+        },
+        {
           "title": "Auto-queue routing",
-          "body": "Drop a print without naming a target - the router picks a suitable printer by model, filament type, and (optionally) color, preferring one that can start right away. SJF + starvation guard for fair scheduling."
+          "body": "The router checks the exact model and every used filament channel against each printer's AMS, external feeds, and nozzles. Choose automatic, AMS-only, or external-only feeds; require exact colors globally or per channel. The form separates AMS-connected, no-AMS, and unknown configurations, with compatible and ready counts. Multicolor stays supported; copy count never relaxes the rules. Ready printers take priority, with SJF and starvation protection for scheduling."
+        },
+        {
+          "title": "Rebalancing across printer models",
+          "body": "An order line's work is split between printer models when it is queued — and used to stay there: if the P1S machines freed up early, the X1C copies kept waiting in their own pile. With rebalancing on, idle printers of another model take a line's still-pending prints whenever that finishes the line sooner, and the plates and counts are recalculated for that model's bed: a 6-part plate becomes three 2-part prints on a mini, two parts become one print on a bigger bed with at most a plate's worth of surplus. Off by default; the line's Rebalance button and the auto-queue panel run it on demand. Prints already on a printer, scheduled, staged, pinned or aimed at a location never move."
+        },
+        {
+          "title": "Defects where the operator stands",
+          "body": "Scrap used to be typed in one place — the archive editor, three screens away from the plate. Now every completed print card on an order page shows what came off the plate and how many went in the bin, and offers Defects…; on the printer card the finished print's counters sit beside Clear plate and Repeat, and either answer carries them; in Telegram the completion message offers Defects…, and both plate answers lead to a one-tap-per-part prompt. Statistics gain Defects by printer — printed, defective and the rate. A print that was already counted into free stock has its shelf corrected when defects are recorded later, in either direction, with the correction in the stock journal."
+        },
+        {
+          "title": "Quantity that says what it means",
+          "body": "The Print dialog's number used to mean «on each printer you picked» — three printers at 4 made twelve prints while the field said four. Now a line under the field states the outcome, and a toggle offers Per printer or Total: a total is dealt round-robin across the picked printers in the order they are listed, 13 on three becoming 5 / 4 / 4, with the line naming who gets what. Your choice is remembered in the browser; the auto-queue's field was always a total."
         },
         {
           "title": "Auto-pause on failure",
@@ -156,11 +188,11 @@
         },
         {
           "title": "Staggered start",
-          "body": "Limit concurrent heating across the farm - bed temp watchdog prevents brownouts."
+          "body": "Limit concurrent heating across the farm - per electrical phase or room when you split the cap by printer tags or locations, with a cap of its own for any group that needs one; a bed-temp watchdog prevents brownouts."
         },
         {
-          "title": "Re-print with AMS mapping",
-          "body": "Reprint to any printer, remap each filament slot from the source archive."
+          "title": "Reprint with filament mapping",
+          "body": "Reprint the selected plate using the destination's current AMS or external feeds. Saved feed and color rules survive repeats; physical slot choices need review for a different printer. Routing is checked again immediately before start."
         },
         {
           "title": "Swap mode (A1 plate-swappers)",
@@ -264,7 +296,7 @@
       "items": [
         {
           "title": "The same file is never stored twice",
-          "body": "Every way a file can arrive is checked by content hash first - uploads, drops, the API, project imports, your slicer, and linked NAS folders."
+          "body": "Every way a file can arrive is checked by content hash first - uploads, drops, the API, product imports, your slicer, and linked NAS folders."
         },
         {
           "title": "Upload & folder organize",
@@ -339,10 +371,6 @@
           "body": "Drop .orca_filament / .bbscfg / .bbsflmt / ZIP bundles directly — BamDude resolves preset inheritance from upstream OrcaSlicer when needed. Cloud-free path for shops without Bambu accounts."
         },
         {
-          "title": "Links that say what they do, and links that stay unique",
-          "body": "Linking a library folder to an archive puts an \"open source folder\" shortcut on that archive - and nothing on the folder, which is why the field never explained itself. It does now. It is also one archive to one folder: claiming one another folder already holds is refused by name, instead of quietly taking it away from a folder you are not looking at. Archived projects, meanwhile, have left the pickers entirely - except where something is already linked to one, which stays visible so saving the dialog cannot erase it."
-        },
-        {
           "title": "A printed file can go back into the library",
           "body": "Asked for by a user. Pick a folder and the archive's 3MF is copied in, read the same way an upload is — metadata, thumbnail, per-plate details and badges already filled in, rather than an anonymous file. Saving the same print twice does not make a second copy: the library recognises identical content, keeps the one already there, and says so."
         }
@@ -407,8 +435,20 @@
       "description": "Eight channels, one editor, one routing config.",
       "items": [
         {
-          "title": "9 delivery channels",
-          "body": "Telegram, Discord, Email (SMTP), Pushover, ntfy, Bark, CallMeBot, Home Assistant, custom webhooks."
+          "title": "An inbox in the app, before any channel is set up",
+          "body": "Every event the farm raises — a failed print, a filament runout, an AMS alarm, queue trouble, a sensor past its limit — lands in the Bell in the sidebar, in the inbox of each person subscribed to it: live unread count, read/unread kept per person, filters by level, printer and period. It fills on a farm with no external provider configured at all, which is the point — an alarm about hardware used to have nowhere to go until somebody had set up a bot or a mail server. Each person picks their own events, warnings and errors by default; history retention is a farm setting, 30 days out of the box. The per-user e-mail switches that used to be the whole Notifications page are now one tab inside the centre."
+        },
+        {
+          "title": "10 delivery channels",
+          "body": "Telegram, Discord, Email (SMTP), Pushover, ntfy, Bark, CallMeBot, Signal CLI API, Home Assistant, custom webhooks."
+        },
+        {
+          "title": "Printer scope on every channel",
+          "body": "All, one, or several printers — per provider, and per Telegram chat, where the scope also limits the bot itself: printer lists, cameras, queue view and controls. The admin's chat watches the whole farm while a partner's chat on the same bot sees only their machines."
+        },
+        {
+          "title": "Progress milestones only for long prints",
+          "body": "Mute the 25/50/75% messages for prints estimated shorter than N minutes — per Telegram chat and per provider, so a chat that wants every half-hour job and one that only cares about overnight prints coexist on one bot."
         },
         {
           "title": "Bark, for the failure at 3 a.m.",
@@ -445,15 +485,59 @@
       ]
     },
     {
-      "id": "spools",
-      "icon": "palette",
-      "title": "Spools & Projects",
-      "description": "Track filament inventory and group prints into projects.",
+      "id": "orders",
+      "icon": "clipboard-list",
+      "title": "Orders & Products",
+      "description": "What was ordered and for whom, what each product is made of, and what to print next to finish it.",
       "items": [
         {
-          "title": "Duplicate a project",
-          "body": "The plan, the files, the BOM and the targets under a new name. The history stays with the prints that happened."
+          "title": "An order lists what was asked for, not a folder of files",
+          "body": "Each line is product × quantity - for a customer, at a price, with a due date and a priority on the order itself. Material on a line is a hard requirement and colour is a note beside it. Progress is counted in finished units from the parts the prints actually produced, and the scarcest part says how many units could be assembled today. Customers are a list of their own, gathering every order somebody placed and the totals across them. An order keeps its cover picture and its link out to MakerWorld, Printables or a repo."
         },
+        {
+          "title": "A product says how the thing is made",
+          "body": "Which printed and purchased parts make one unit, and which sliced plates produce them. Link a library file or a whole folder to a product and the plates and parts fill themselves in from what is inside the file - an object name the product has not met yet becomes a part of it. A plate's yield is read again on every look rather than cached, so re-slicing a file changes what it makes instead of leaving a stale number behind. One product lives in many orders, and the product is the template - there are no separate ones to keep in step."
+        },
+        {
+          "title": "What to print next, worked out per line",
+          "body": "Under every line sits a plan: the plates that would cover what it still needs, ranked by useful parts per hour, with everything already printed, running, queued or taken from stock subtracted first - so a plan you have half sent stops asking for the prints you already sent. Each row shows time, filament and cost per print beside a count you can change, and the surplus and the totals follow that number as you type it. Send one row to the auto-queue, send the whole plan at once, or open the usual print dialog to put a row on one named printer. The actual plate and every used channel are validated before queueing; the selected file, quantity, and order line stay intact."
+        },
+        {
+          "title": "Two printer models, two files, one plan",
+          "body": "A part sliced for two machines is two library files with the same yield, and a plan that picks one of them makes the other invisible to half the farm. Every row carries a File switch instead, labelled with the printer model each file was sliced for: choosing one re-does that row's time, filament and cost while the count stays exactly where it was. Split across files shares one row's count between them - the auto-queue routes each item by the model its file names, so this is the only way one order line reaches two printer models at once, and a split whose numbers do not add up refuses to be sent rather than quietly sending the wrong one."
+        },
+        {
+          "title": "A print started anywhere is filed under the order that needs it",
+          "body": "Printing or queueing a library file - from the File Manager, a printer card, the queue page or the auto-queue - shows an Order field: the open orders still short of that plate, how many prints each of them is short, and the product each is for, with the first one already chosen. Choosing nothing files nothing. A print started from the printer's own screen is attributed afterwards from the order page, and a plate carrying parts of two products feeds every line that matches, not just the first one it finds."
+        },
+        {
+          "title": "Extra parts go on a shelf, not in the bin",
+          "body": "A plate makes four lids and the order needed three. Bank the surplus and the fourth lid moves onto that product's free stock: how many whole kits are on the shelf, the balance of every part, and a ledger of how each one got there. A print that finishes under no order is credited automatically, and filing it under an order afterwards takes the credit back. Ordering the same product again is where it pays - From stock reserves kits for the line, and the need, the progress bar and the plan all count them as done, so a line covered from the shelf asks for no prints at all."
+        },
+        {
+          "title": "The whole farm's shelves on one tab",
+          "body": "Stock is the fourth tab of the Projects section: every product with anything on its shelf, kits first, expanding into the balance of each part and the active orders holding kits in reserve - each a link. Under it, one journal of every movement on the farm, filtered by product or reason, loading older pages until the ledger runs out and saying so. Adjust a shelf from its row through the same dialog the product page has. It reads the same ledger and writes nothing new."
+        },
+        {
+          "title": "Defective parts count against the order",
+          "body": "An order needing forty usable parts is not finished because forty came off the plates. Skipping an object mid-print attributes the scrap to that part by itself, and the archive editor lets you mark exactly which parts came out bad instead of typing one number for the whole plate. What the order counts is what is left."
+        },
+        {
+          "title": "The model card was inside the 3MF all along",
+          "body": "The description, the designer, the licence, where it came from, the pictures, the bill of materials and the assembly guide the designer shipped - a product reads all of it from any file linked to it, and never writes a byte back into the library file. The pictures become a gallery you can reorder and open full-size, one of them the product's cover. And a product exports to a ZIP - card, composition, attachments, cover and every file linked to it - that another BamDude imports, matching files it already has by content rather than duplicating them."
+        },
+        {
+          "title": "Re-order in one click",
+          "body": "Duplicating an order brings its lines, customer, price, notes and attachments across under a new name, and opens the copy as active. History never travels with it - that stays with the prints that actually happened - and a reorder reserves nothing from stock, because a copy must not quietly empty the shelf."
+        }
+      ]
+    },
+    {
+      "id": "spools",
+      "icon": "palette",
+      "title": "Spools & Filament",
+      "description": "Track filament inventory - from the reel on the shelf to the gram in the print.",
+      "items": [
         {
           "title": "Built-in spool inventory",
           "body": "Add spools with brand, color, weight, cost; AMS slot assignment per printer."
@@ -465,6 +549,10 @@
         {
           "title": "Auto consumption tracking",
           "body": "Filament used per print is deducted from the assigned spool - no manual math."
+        },
+        {
+          "title": "The whole farm's filament ledger, in one list",
+          "body": "A History view beside Table and Cards: every consumption record there is - what was printed, off which spool, on which printer, how many grams and what it cost. Search, filter by printer, material, brand, outcome, a date range or the spool's own state, sort by any column, and page - all computed by the server, so a year of prints costs the browser nothing. The running total is for the whole filter, not the page on screen, so what a month cost you is one date range away. Spools you archived or deleted keep their rows, marked rather than hidden: the grams they carry were still printed."
         },
         {
           "title": "Cost & lot tracking",
@@ -521,22 +609,6 @@
         {
           "title": "Per-spool category + low-stock",
           "body": "Tag spools by category (PETG / ABS / TPU…) and override the global low-stock threshold per spool."
-        },
-        {
-          "title": "Projects with print plan",
-          "body": "Group prints by project; per-file copies with live filament/time/cost totals."
-        },
-        {
-          "title": "Defective parts count against the target",
-          "body": "A project needing forty usable parts is not finished because forty came off the plates. Record the scrap against the print and the parts tally is net of it. A target can also be set to zero, to mean \"don't measure this project that way\"."
-        },
-        {
-          "title": "Project URL + cover image",
-          "body": "Attach a MakerWorld / Printables / repo URL to a project plus a hero cover photo — surfaces on cards and the detail page."
-        },
-        {
-          "title": "ZIP / JSON export",
-          "body": "Move a project between BamDude installs or back it up offsite."
         }
       ]
     },
@@ -636,7 +708,7 @@
         },
         {
           "title": "Virtual printer modes",
-          "body": "File Manager (review queue), Print Queue (slicer → fixed printer), Auto-Queue (slicer → router picks a suitable printer), Proxy (TLS relay). Per-VP, it can also keep the AMS slots the slicer resolved instead of matching by filament type and colour — the only way to tell two spools of the same colour apart."
+          "body": "File Manager (review queue), Print Queue (slicer → fixed printer), Auto-Queue (slicer → router chooses by complete filament and feed requirements), Proxy (TLS relay). A fixed-target queue VP can retain the slicer's physical AMS choices, with validation before start; automatic routing resolves sources for the selected printer."
         },
         {
           "title": "Slicer-as-remote in non-proxy modes",
@@ -748,7 +820,7 @@
       "items": [
         {
           "title": "One Docker container",
-          "body": "SQLite out of the box, PostgreSQL when you outgrow it. `--network host` keeps SSDP printer discovery working."
+          "body": "SQLite out of the box; when you outgrow it, PostgreSQL either bundled (BamDude runs it for you) or your own server. `--network host` keeps SSDP printer discovery working."
         },
         {
           "title": "Native Windows installer",

@@ -24,8 +24,21 @@
   "highlight": {
     "badge": "For the farm",
     "title": "A whole farm from a single dashboard",
-    "body": "Send prints to several printers at the same time - parallel dispatch, no one-job-at-a-time gate. Per-printer queues with staggered start space out simultaneous bed-heat draws so the building doesn't brown out. SWAP-mode keeps an A1 farm cycling plate after plate through swap macros. Re-print onto any printer with the right AMS slots remapped from the source archive. G-code macros handle the small repetitive bits - chamber light, end-of-print sequences, calibration cycles - without anyone watching.",
+    "body": "Send prints to several printers at the same time - parallel dispatch, no one-job-at-a-time gate. Per-printer queues with staggered start space out simultaneous bed-heat draws so the building doesn't brown out. Every accepted job keeps a verified saved source, so copying its queue work survives a lost SMB share or original file. SWAP-mode keeps an A1 farm cycling plate after plate through swap macros. Reprints check the selected plate against the destination's current AMS and external feeds, retaining feed and color rules. G-code macros handle the small repetitive bits - chamber light, end-of-print sequences, calibration cycles - without anyone watching.",
     "cta": "Explore the features"
+  },
+  "monitor": {
+    "title": "See which printer needs you next",
+    "body": "Keep the farm on a second display while you work. The status monitor puts errors and pauses first, then the prints finishing soonest.",
+    "points": [
+      "Printers and Queue share one tile layout, with color, text and icons for each state.",
+      "Auto fits 50 printers on Full HD. Group by location or tag and sort by print or queue ETA.",
+      "Leave a TV signed out with its own revocable token. Read-only status, without cameras or job names."
+    ],
+    "cta": "Set up the status monitor",
+    "availability": "Coming in the next release",
+    "imageAlt": "Status monitor showing 50 printer tiles, including errors, pauses and prints in progress",
+    "caption": "Example farm · Ukrainian interface · Open the full-size screenshot"
   },
   "supportedPrinters": {
     "title": "Supported printers",
@@ -167,7 +180,7 @@
   "featuresPreview": {
     "eyebrow": "What you get",
     "title": "Everything you need to run a Bambu Lab print farm",
-    "subtitle": "Twelve feature groups, each one a click away.",
+    "subtitle": "Thirteen feature groups, each one a click away.",
     "cta": "Explore all features"
   },
   "how": {
@@ -317,7 +330,8 @@
     "cookies": "Cookie settings",
     "rights": "All rights reserved.",
     "disclaimer": "Bambu Lab is a trademark of Bambu Lab Co., Ltd. BamDude is an independent project, not affiliated with Bambu Lab.",
-    "donate": "Support the project"
+    "donate": "Support the project",
+    "brand": "Brand assets"
   },
   "theme": {
     "system": "System",

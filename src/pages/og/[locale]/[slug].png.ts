@@ -8,11 +8,16 @@
 import type { APIRoute } from 'astro';
 import { generateOpenGraphImage } from 'astro-og-canvas';
 import { t, locales, type Locale } from '../../../i18n';
+import { ogStyle } from '../../../og/style';
 
-// Slugs map 1:1 to BaseLayout's `pageKey` prop. A new pageKey value without
-// a card here renders 404 for the OG image (most clients tolerate it). A new
-// slug here without a matching pageKey wastes build time but breaks nothing.
-const slugs = ['home', 'why', 'features', 'install', 'faq', 'compare'] as const;
+// Slugs map 1:1 to BaseLayout's `pageKey` prop EXCEPT 'home' — BaseLayout
+// routes that pageKey to the static pack card (/brand/social/og-dark-1200x630.png)
+// instead of this route, so 'home' is deliberately absent here. The legacy
+// src/pages/og/[locale].png.ts route keeps rendering the home copy, but only
+// for shares that cached its old URL. A new pageKey value without a card here
+// renders 404 for the OG image (most clients tolerate it). A new slug here
+// without a matching pageKey wastes build time but breaks nothing.
+const slugs = ['why', 'features', 'install', 'faq', 'compare'] as const;
 type Slug = (typeof slugs)[number];
 
 // Per-(locale, slug) headline + subline shown on the social card. The page's
@@ -22,7 +27,6 @@ type Slug = (typeof slugs)[number];
 function cardCopy(locale: Locale, slug: Slug): { title: string; description: string } {
   const i = t(locale);
   switch (slug) {
-    case 'home':     return { title: i.hero.title, description: 'bamdude.top · self-hosted · AGPL-3.0' };
     case 'why':      return { title: i.pages.why.title, description: i.pages.why.subtitle };
     case 'features': return { title: i.pages.features.title, description: i.pages.features.subtitle };
     case 'install':  return { title: i.pages.install.title, description: i.pages.install.subtitle };
@@ -30,10 +34,6 @@ function cardCopy(locale: Locale, slug: Slug): { title: string; description: str
     case 'compare':  return { title: i.pages.compare.title, description: i.pages.compare.subtitle };
   }
 }
-
-// Pre-merged Latin + Cyrillic TTFs so a single typeface covers both scripts
-// — see /og/[locale].png.ts header comment for the merging recipe.
-const FONTS = ['./public/fonts/inter-400.ttf', './public/fonts/inter-800.ttf'];
 
 export function getStaticPaths() {
   const paths: { params: { locale: string; slug: string } }[] = [];
@@ -52,14 +52,7 @@ export const GET: APIRoute = async ({ params }) => {
   const body = await generateOpenGraphImage({
     title: copy.title,
     description: copy.description,
-    bgGradient: [[10, 10, 10], [0, 90, 30]],
-    border: { color: [0, 174, 66], width: 8, side: 'inline-start' },
-    padding: 80,
-    fonts: FONTS,
-    font: {
-      title: { families: ['Inter ExtraBold'], weight: 'Normal', color: [255, 255, 255] },
-      description: { families: ['Inter'], weight: 'Normal', color: [200, 200, 200] },
-    },
+    ...ogStyle(),
   });
   return new Response(body, { headers: { 'Content-Type': 'image/png' } });
 };

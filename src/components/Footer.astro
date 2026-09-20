@@ -13,7 +13,8 @@ const year = new Date().getFullYear();
   <div class="mx-auto max-w-6xl px-6 py-16 grid grid-cols-1 md:grid-cols-4 gap-8 text-sm">
     <div>
       <div class="flex items-center gap-2 font-extrabold tracking-tight">
-        <img src="/images/logo-icon.png" alt="BamDude" class="h-7 w-auto" width="28" height="28" />
+        <img src="/brand/svg/mark-on-light.svg" alt="" aria-hidden="true" class="h-7 w-7 dark:hidden" width="28" height="28" />
+        <img src="/brand/svg/mark-on-dark.svg" alt="" aria-hidden="true" class="hidden h-7 w-7 dark:block" width="28" height="28" />
         <span>BamDude</span>
       </div>
       <p class="mt-3 text-bambu-text-muted leading-relaxed">{i.footer.disclaimer}</p>
@@ -27,6 +28,7 @@ const year = new Date().getFullYear();
         <li><a href={localePath(locale, 'faq')} class="hover:text-bambu-green">{i.nav.faq}</a></li>
         <li><a href={docs} class="hover:text-bambu-green" target="_blank" rel="noopener">{i.nav.docs}</a></li>
         <li><a href={`${repo}/blob/main/CHANGELOG.md`} class="hover:text-bambu-green" target="_blank" rel="noopener">Changelog</a></li>
+        <li><a href="https://github.com/kainpl/bamdude.top/tree/main/public/brand" class="hover:text-bambu-green" target="_blank" rel="noopener">{i.footer.brand}</a></li>
       </ul>
     </div>
     <div>

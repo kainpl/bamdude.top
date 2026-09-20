@@ -29,7 +29,8 @@ const anchors: { href: string; label: string }[] = [
 <header class="sticky top-0 z-40 backdrop-blur bg-bambu-bg/80 border-b border-bambu-border">
   <nav class="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
     <a href={localePath(locale)} class={`flex items-center gap-2 font-extrabold text-lg tracking-tight transition ${active === 'home' ? 'text-bambu-green' : 'hover:text-bambu-green'}`}>
-      <img src="/images/logo-icon.png" alt="BamDude" class="h-8 w-auto" width="32" height="32" />
+      <img src="/brand/svg/mark-on-light.svg" alt="" aria-hidden="true" class="h-8 w-8 dark:hidden" width="32" height="32" />
+      <img src="/brand/svg/mark-on-dark.svg" alt="" aria-hidden="true" class="hidden h-8 w-8 dark:block" width="32" height="32" />
       <span>BamDude</span>
     </a>
     <div class="hidden md:flex items-center gap-6 text-sm">
