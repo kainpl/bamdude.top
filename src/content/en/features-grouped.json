@@ -132,7 +132,7 @@
       "items": [
         {
           "title": "Drop a batch, not a file",
-          "body": "As many files as you like onto a printer, its queue or the auto-queue. Anything that cannot print says why, by name."
+          "body": "As many files as you like onto a printer, its queue or the auto-queue. Anything that cannot print says why, by name. Coming next release: unverified or incompatible assignments disable normal submission; queuing to wait requires explicit confirmation. A missing Auto-Queue target model has its own save-for-the-future action. Waiting work can hold up later jobs on a selected printer."
         },
         {
           "title": "Queued work keeps its own verified file",
