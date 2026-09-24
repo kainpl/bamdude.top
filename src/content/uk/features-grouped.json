@@ -772,7 +772,7 @@
         },
         {
           "title": "API-ключі з cloud-access scope",
-          "body": "Per-user `bb_*` токени, scoped до підмножини прав власника. Opt-in cloud-access scope для маршрутів Bambu Cloud. X-API-Key або Authorization: Bearer — обидва. Hashed at rest, last_used_at для аудиту."
+          "body": "Per-user `bd_*` токени, scoped до підмножини прав власника. Opt-in cloud-access scope для маршрутів Bambu Cloud. X-API-Key або Authorization: Bearer — обидва. Hashed at rest, last_used_at для аудиту."
         },
         {
           "title": "REST + WebSocket API",

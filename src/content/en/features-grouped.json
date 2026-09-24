@@ -772,7 +772,7 @@
         },
         {
           "title": "API keys with cloud-access scope",
-          "body": "Per-user `bb_*` tokens scoped to a subset of the owner's permissions. Opt-in cloud-access scope reaches Bambu Cloud routes. X-API-Key or Authorization: Bearer — both supported. Hashed at rest, last_used_at surfaced for audit."
+          "body": "Per-user `bd_*` tokens scoped to a subset of the owner's permissions. Opt-in cloud-access scope reaches Bambu Cloud routes. X-API-Key or Authorization: Bearer — both supported. Hashed at rest, last_used_at surfaced for audit."
         },
         {
           "title": "REST + WebSocket API",
