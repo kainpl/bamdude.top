@@ -42,7 +42,7 @@
   },
   "supportedPrinters": {
     "title": "Підтримувані принтери",
-    "subtitle": "Працює з усім модельним рядом Bambu Lab через Developer Mode.",
+    "subtitle": "Підтримує наведені нижче моделі Bambu Lab через Developer Mode.",
     "badge": "Підтримується",
     "series": [
       {

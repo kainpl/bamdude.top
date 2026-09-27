@@ -42,7 +42,7 @@
   },
   "supportedPrinters": {
     "title": "Supported printers",
-    "subtitle": "Works with the full range of Bambu Lab printers via Developer Mode.",
+    "subtitle": "Supports the Bambu Lab models listed below via Developer Mode.",
     "badge": "Supported",
     "series": [
       {
