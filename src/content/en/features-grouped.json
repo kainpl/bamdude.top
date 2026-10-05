@@ -7,8 +7,8 @@
       "description": "See and steer every printer in real time, from a single dashboard.",
       "items": [
         {
-          "title": "Optional isolated camera process",
-          "body": "An experimental worker runs camera connections and video processing in a supervised process, with useful INFO logs for diagnosis. Enable it explicitly after testing your host; it does not automatically enable hardware acceleration or remove browser connection limits. Available in the next release."
+          "title": "Supervised camera process",
+          "body": "Camera connections, snapshots, live views and video processing run in a supervised local worker. A failed camera worker can restart without blocking printing or queues, and the System page shows its health. Hardware acceleration and browser connection limits still depend on the host."
         },
         {
           "title": "Status monitor for a second display",
