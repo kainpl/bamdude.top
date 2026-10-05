@@ -132,7 +132,7 @@
       "items": [
         {
           "title": "Drop a batch, not a file",
-          "body": "As many files as you like onto a printer, its queue or the auto-queue. Anything that cannot print says why, by name. Coming next release: unverified or incompatible assignments disable normal submission; queuing to wait requires explicit confirmation. A missing Auto-Queue target model has its own save-for-the-future action. Waiting work can hold up later jobs on a selected printer."
+          "body": "As many files as you like onto a printer, its queue or the auto-queue. Anything that cannot print says why, by name. Unverified or incompatible assignments disable normal submission; queuing to wait requires explicit confirmation. A missing Auto-Queue target model has its own save-for-the-future action. Waiting work can hold up later jobs on a selected printer."
         },
         {
           "title": "Queued work keeps its own verified file",
@@ -519,8 +519,8 @@
           "body": "A plate makes four lids and the order needed three. Bank the surplus and the fourth lid moves onto that product's free stock: how many whole kits are on the shelf, the balance of every part, and a ledger of how each one got there. A print that finishes under no order is credited automatically, and filing it under an order afterwards takes the credit back. Ordering the same product again is where it pays - From stock reserves kits for the line, and the need, the progress bar and the plan all count them as done, so a line covered from the shelf asks for no prints at all."
         },
         {
-          "title": "The whole farm's shelves on one tab",
-          "body": "Stock is the fourth tab of the Projects section: every product with anything on its shelf, kits first, expanding into the balance of each part and the active orders holding kits in reserve - each a link. Under it, one journal of every movement on the farm, filtered by product or reason, loading older pages until the ledger runs out and saying so. Adjust a shelf from its row through the same dialog the product page has. It reads the same ledger and writes nothing new."
+          "title": "Finished goods and free parts, in one stock section",
+          "body": "Stock is its own section under Projects. Finished-goods positions track each product configuration: on hand, reserved, available and minimum. Receive and stocktake units, assemble them from free parts, reserve them for orders, and issue them with numbered dispatch notes. Free parts have their own shelf with kit counts per configuration; a paged journal records movements in both ledgers."
         },
         {
           "title": "Defective parts count against the order",
