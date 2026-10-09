@@ -561,6 +561,14 @@
         {
           "title": "Add a library file to an order",
           "body": "Open Add to order… from a file or its plate gallery, choose an active order and create a one-off line with that file preselected. Orders, Products, Customers and Stock each have their own permissions."
+        },
+        {
+          "title": "Reserve loose stock components",
+          "body": "Take from stock can reserve individual parts even when there is no complete kit. The print plan asks only for missing components; receipts combine allocated stock and printed parts without counting stock twice."
+        },
+        {
+          "title": "Plan a saved percentage of spare parts",
+          "body": "Printed BOM parts can add an extra percentage, rounded up once for the order line. A line keeps its saved setting when the catalog changes; extras are planned, received and issued separately from complete units."
         }
       ]
     },
@@ -649,6 +657,10 @@
         {
           "title": "Use the rest of a label sheet",
           "body": "Choose the first free label on a partially used sheet. The first page starts there, later pages start at the top, and the labels keep their designed size."
+        },
+        {
+          "title": "Sort grouped filament",
+          "body": "Column headers order groups and their expanded spools by ID, lot, purchase date, location, label weight, net weight and remaining percentage. Groups sort before pagination; group weight columns use totals."
         }
       ]
     },
@@ -885,26 +897,6 @@
         {
           "title": "Installs as an app on your phone",
           "body": "PWA — add the dashboard to the home screen and it opens like a native app, no store involved."
-        }
-      ]
-    },
-    {
-      "id": "development",
-      "icon": "server",
-      "title": "After 0.7.0",
-      "description": "Available in current development after 0.7.0, not in the 0.7.0 release image. Check your installed version and the release changelog.",
-      "items": [
-        {
-          "title": "Sort grouped filament",
-          "body": "Column headers order groups and their expanded spools by ID, lot, purchase date, location, label weight, net weight and remaining percentage. Groups sort before pagination; group weight columns use totals."
-        },
-        {
-          "title": "Reserve loose stock components",
-          "body": "Take from stock can reserve individual parts even when there is no complete kit. The print plan asks only for missing components; receipts combine allocated stock and printed parts without counting stock twice."
-        },
-        {
-          "title": "Plan a saved percentage of spare parts",
-          "body": "Printed BOM parts can add an extra percentage, rounded up once for the order line. A line keeps its saved setting when the catalog changes; extras are planned, received and issued separately from complete units."
         }
       ]
     }
