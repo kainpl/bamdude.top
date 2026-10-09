@@ -50,7 +50,7 @@
       "icon": "terminal",
       "title": "Ручний запуск (Python venv)",
       "subtitle": "Для розробників або середовищ, де Docker недоступний.",
-      "command": "git clone https://github.com/kainpl/bamdude.git\ncd bamdude\npython3 -m venv venv && source venv/bin/activate\npip install -r requirements.txt\nuvicorn backend.app.main:app --host 0.0.0.0 --port 8000",
+      "command": "git clone https://github.com/kainpl/bamdude.git\ncd bamdude\npython3 -m venv venv && source venv/bin/activate\npip install -r requirements.txt\nuvicorn backend.app.main:app --host 0.0.0.0 --port 8000 --loop asyncio --timeout-graceful-shutdown 15",
       "notes": [
         "Python 3.12+ (лише для цього ручного шляху — Docker і Windows-інсталятор везуть власний).",
         "Для фронтенду: `cd frontend && npm install && npm run dev` в другому терміналі."
@@ -64,7 +64,8 @@
       "body": "`DATABASE_URL` обирає сховище: лишіть порожнім для **SQLite** (типово, один файл, цього вистачає більшості ферм), поставте `embedded` для **PostgreSQL 18, який їде разом із BamDude** і яким BamDude керує сам, або вкажіть URL `postgresql+asyncpg://` для **власного сервера**. Під час переходу зі SQLite наявна база імпортується автоматично на наступному старті.",
       "notes": [
         "Питають усі інсталятори: в `install.sh` є `--db sqlite|embedded|external`, у Windows-майстрі — сторінка **Database**, `docker-install.sh` пропонує той самий вибір.",
-        "Вбудований сервер слухає лише `127.0.0.1` і тримає власний згенерований пароль; запіньте `EMBEDDED_PG_PORT=6432`, щоб діставати до нього psql чи DBeaver."
+        "Вбудований сервер слухає лише `127.0.0.1` і тримає власний згенерований пароль; запіньте `EMBEDDED_PG_PORT=6432`, щоб діставати до нього psql чи DBeaver.",
+        "Для повної діагностики власного PostgreSQL увімкніть pg_stat_statements. Оновлення образу BamDude не налаштовує цей сервер; скористайтеся документацією PostgreSQL."
       ]
     },
     {

@@ -50,7 +50,7 @@
       "icon": "terminal",
       "title": "Manual install (Python venv)",
       "subtitle": "For developers or environments where Docker is not an option.",
-      "command": "git clone https://github.com/kainpl/bamdude.git\ncd bamdude\npython3 -m venv venv && source venv/bin/activate\npip install -r requirements.txt\nuvicorn backend.app.main:app --host 0.0.0.0 --port 8000",
+      "command": "git clone https://github.com/kainpl/bamdude.git\ncd bamdude\npython3 -m venv venv && source venv/bin/activate\npip install -r requirements.txt\nuvicorn backend.app.main:app --host 0.0.0.0 --port 8000 --loop asyncio --timeout-graceful-shutdown 15",
       "notes": [
         "Python 3.12+ (only for this manual route — Docker and the Windows installer bundle their own).",
         "For the frontend: `cd frontend && npm install && npm run dev` in a second terminal."
@@ -64,7 +64,8 @@
       "body": "`DATABASE_URL` picks the storage: leave it empty for **SQLite** (the default, one file, fine for most farms), set it to `embedded` for the **PostgreSQL 18 that ships with BamDude** and that BamDude runs for you, or give a `postgresql+asyncpg://` URL for **your own server**. Switching from SQLite imports your existing database automatically on the next start.",
       "notes": [
         "Every installer asks: `install.sh` has `--db sqlite|embedded|external`, the Windows setup has a **Database** page, and `docker-install.sh` offers the same choice.",
-        "The bundled server listens on `127.0.0.1` only and keeps its own generated password; pin `EMBEDDED_PG_PORT=6432` if you want to reach it with psql or DBeaver."
+        "The bundled server listens on `127.0.0.1` only and keeps its own generated password; pin `EMBEDDED_PG_PORT=6432` if you want to reach it with psql or DBeaver.",
+        "For full diagnostics on your own PostgreSQL, enable pg_stat_statements. Updating the BamDude image does not configure that server; follow the PostgreSQL documentation."
       ]
     },
     {

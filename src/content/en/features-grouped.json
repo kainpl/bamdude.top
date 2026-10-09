@@ -16,7 +16,7 @@
         },
         {
           "title": "Live status via WebSocket",
-          "body": "Temperatures, fans, layer count, AMS, current job - all push-updated, no polling."
+          "body": "Temperatures, fans, layers, AMS and current jobs arrive over WebSocket. Bounded fallback reads cover missed live updates; hidden tabs pause farm reads and catch up when shown."
         },
         {
           "title": "Skip a failed part, keep the plate",
@@ -121,6 +121,14 @@
         {
           "title": "Mobile / PWA install",
           "body": "Install BamDude as a PWA on iOS, Android, or desktop — standalone window, offline app shell, share-target uploads (Android), push notifications when HTTPS is on."
+        },
+        {
+          "title": "Scheduled AMS drying",
+          "body": "Start now, after a delay, at a time, when the printer is free, or on selected weekdays with an optional latest-start window. Requires an AMS and printer that support remote drying; P1 printers remain screen-only."
+        },
+        {
+          "title": "Choose H2C rack nozzles",
+          "body": "Pick R1–R6 for each rack filament group in the print dialog. Unsuitable positions explain why they cannot be used; automatic selection is available, and a manual choice is checked again before dispatch."
         }
       ]
     },
@@ -289,6 +297,10 @@
         {
           "title": "CSV / XLSX export",
           "body": "Filter-aware bulk export of archives + stats for billing, QA logs, or BI pipelines. UTF-8 BOM CSV, multi-sheet XLSX."
+        },
+        {
+          "title": "Correct an archived print’s filament weight",
+          "body": "Edit Filament used (g), including for a print whose 3MF could not be recovered. Statistics, cost and order figures use it; no spool is debited by this edit."
         }
       ]
     },
@@ -377,6 +389,10 @@
         {
           "title": "A printed file can go back into the library",
           "body": "Asked for by a user. Pick a folder and the archive's 3MF is copied in, read the same way an upload is — metadata, thumbnail, per-plate details and badges already filled in, rather than an anonymous file. Saving the same print twice does not make a second copy: the library recognises identical content, keeps the one already there, and says so."
+        },
+        {
+          "title": "File preparation has its own health panel",
+          "body": "Uploads and mounted-folder scans prepare 3MF metadata in a supervised local worker. Slow reads stay outside the web server; System reports file preparation separately from model previews, cameras and filament analysis."
         }
       ]
     },
@@ -508,7 +524,7 @@
         },
         {
           "title": "Two printer models, two files, one plan",
-          "body": "A part sliced for two machines is two library files with the same yield, and a plan that picks one of them makes the other invisible to half the farm. Every row carries a File switch instead, labelled with the printer model each file was sliced for: choosing one re-does that row's time, filament and cost while the count stays exactly where it was. Split across files shares one row's count between them - the auto-queue routes each item by the model its file names, so this is the only way one order line reaches two printer models at once, and a split whose numbers do not add up refuses to be sent rather than quietly sending the wrong one."
+          "body": "A part sliced for two machines is two library files with the same yield, and a plan that picks one of them makes the other invisible to half the farm. Every row carries a File switch instead, labelled with the printer model each file was sliced for: choosing one re-does that row's time, filament and cost while the count stays exactly where it was. Split across files shares one row's count between them - the auto-queue routes each item by the model its file names, so this is one way to share an order line between printer models, and a split whose numbers do not add up refuses to be sent rather than quietly sending the wrong one."
         },
         {
           "title": "A print started anywhere is filed under the order that needs it",
@@ -533,6 +549,18 @@
         {
           "title": "Re-order in one click",
           "body": "Duplicating an order brings its lines, customer, price, notes and attachments across under a new name, and opens the copy as active. History never travels with it - that stays with the prints that actually happened - and a reorder reserves nothing from stock, because a copy must not quietly empty the shelf."
+        },
+        {
+          "title": "A catalog of configurations",
+          "body": "Products have SKUs, versions, categories and variant groups. Each order line keeps its selected configuration; finished stock and dispatch notes identify that configuration too."
+        },
+        {
+          "title": "Five order views, one workflow",
+          "body": "Cards, table, kanban, workspace and deadlines show the same orders. Stages, responsible operators, quality-check counts and readiness estimates help decide what needs attention; incomplete forecasts say what is missing."
+        },
+        {
+          "title": "Add a library file to an order",
+          "body": "Open Add to order… from a file or its plate gallery, choose an active order and create a one-off line with that file preselected. Orders, Products, Customers and Stock each have their own permissions."
         }
       ]
     },
@@ -613,6 +641,14 @@
         {
           "title": "Per-spool category + low-stock",
           "body": "Tag spools by category (PETG / ABS / TPU…) and override the global low-stock threshold per spool."
+        },
+        {
+          "title": "Archive a spool after a proven runout",
+          "body": "An optional, default-off setting archives a spool once its runout is closed and the printer has moved to a backup or replacement. Works with built-in inventory and Spoolman; a reel reinserted to keep printing stays active."
+        },
+        {
+          "title": "Use the rest of a label sheet",
+          "body": "Choose the first free label on a partially used sheet. The first page starts there, later pages start at the top, and the labels keep their designed size."
         }
       ]
     },
@@ -737,6 +773,10 @@
         {
           "title": "Obico AI failure detection",
           "body": "Optional ML-based failure detection with notify / pause / pause-and-power-off responses. Every printer card carries an AI badge — grey while nothing is watched, then green, amber or red as a monitored print is classified — so you can follow it without leaving the Printers page."
+        },
+        {
+          "title": "Home Assistant and shared sensor bindings",
+          "body": "Bind numeric or binary HA sensors to printers or spool storage, with independent alerts and history. One Zigbee sensor can serve several places too. Optional printer alert rules hold queued starts; stale or unavailable HA readings release the hold, so this is an operational rule rather than a safety interlock."
         }
       ]
     },
@@ -813,6 +853,10 @@
         {
           "title": "In-app updater with stable + beta channels",
           "body": "Settings → System → Install Update does the full sequence (git fetch --tags, reset --hard to the tag, pip install, npm build) without leaving the UI. Optional Include beta updates toggle surfaces `vX.Y.ZbN` releases too — beta detection is dual-signal (version-name convention OR GitHub prerelease flag). Docker installs aren't auto-applied (running git/pip/npm in a live container would corrupt the image), but the UI shows both image-pull and source-build commands with the resolved tag pre-filled — including a beta-specific hint that `:latest` doesn't track betas, so explicit `image: kainpl/bamdude:0.4.5b1` pinning is required."
+        },
+        {
+          "title": "Printer-scoped API keys and private media",
+          "body": "Restrict an API key to selected printers across reads, controls and their queues; a restricted key cannot use Auto-Queue. Thumbnails and timelapses require permission-aware access, separate from camera tokens. Finished-print photos linked by notifications remain public."
         }
       ]
     },
@@ -841,6 +885,26 @@
         {
           "title": "Installs as an app on your phone",
           "body": "PWA — add the dashboard to the home screen and it opens like a native app, no store involved."
+        }
+      ]
+    },
+    {
+      "id": "development",
+      "icon": "server",
+      "title": "After 0.7.0",
+      "description": "Available in current development after 0.7.0, not in the 0.7.0 release image. Check your installed version and the release changelog.",
+      "items": [
+        {
+          "title": "Sort grouped filament",
+          "body": "Column headers order groups and their expanded spools by ID, lot, purchase date, location, label weight, net weight and remaining percentage. Groups sort before pagination; group weight columns use totals."
+        },
+        {
+          "title": "Reserve loose stock components",
+          "body": "Take from stock can reserve individual parts even when there is no complete kit. The print plan asks only for missing components; receipts combine allocated stock and printed parts without counting stock twice."
+        },
+        {
+          "title": "Plan a saved percentage of spare parts",
+          "body": "Printed BOM parts can add an extra percentage, rounded up once for the order line. A line keeps its saved setting when the catalog changes; extras are planned, received and issued separately from complete units."
         }
       ]
     }
