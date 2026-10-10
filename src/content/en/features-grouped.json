@@ -568,7 +568,7 @@
         },
         {
           "title": "Plan a saved percentage of spare parts",
-          "body": "Printed BOM parts can add an extra percentage, rounded up once for the order line. A line keeps its saved setting when the catalog changes; extras are planned, received and issued separately from complete units."
+          "body": "Printed BOM parts can add an extra percentage, rounded up once for the order line. A line keeps its saved setting when the catalog changes. The base kit composition stays unchanged; extras are planned, received and issued separately, and customer orders must deliver them before closing."
         }
       ]
     },
@@ -629,6 +629,10 @@
         {
           "title": "Pre-load assignment (weigh-then-assign)",
           "body": "Assign a fresh spool to an AMS slot before loading the filament. The assignment persists immediately; the printer-side configuration auto-fires the moment the slot transitions to loaded (keyed on the AMS load state, so 3rd-party spools without readable RFID trigger the replay too). The toast tells you the configuration is pending, not lying about success — Bambu firmware silently drops filament-setting commands for unloaded slots."
+        },
+        {
+          "title": "Assign full stock spools on loading",
+          "body": "Opt in per printer and choose an exact filament group from built-in inventory. Loading a new full, untagged reel into an empty AMS slot assigns the oldest eligible unused spool; RFID and manual assignments take priority. External holders require a confirmed runout and your resume. Returning the old partial reel after runout needs manual assignment first."
         },
         {
           "title": "Stock forecasting + Logistics view",
