@@ -7,6 +7,14 @@
       "description": "See and steer every printer in real time, from a single dashboard.",
       "items": [
         {
+          "title": "Confirmed actions across selected printers",
+          "body": "Home axes, run supported calibrations, record maintenance, control queues, maintenance mode and lights for a selected set. Preview recipients and skips, confirm once, and see each result. Printers are checked again before their action; motion requires an empty-plate acknowledgement and fresh idle status."
+        },
+        {
+          "title": "Prepared-file auto-ejection for orders",
+          "body": "An experimental opt-in for operator-prepared hardware and finish G-code. New jobs keep their own mode and camera policy; fresh camera checks normally guard dispatch after successful ejection. BamDude adds no ejection motion. Explicit camera opt-out needs two warnings, while ordinary or failed previous prints still require manual plate confirmation."
+        },
+        {
           "title": "Supervised camera process",
           "body": "Camera connections, snapshots, live views and video processing run in a supervised local worker. A failed camera worker can restart without blocking printing or queues, and the System page shows its health. Hardware acceleration and browser connection limits still depend on the host."
         },
@@ -53,6 +61,10 @@
         {
           "title": "Camera streaming",
           "body": "Live MJPEG and snapshots, plus optional RTSP/USB external cameras."
+        },
+        {
+          "title": "A plate-detection area that follows the bed",
+          "body": "Use a rectangle or draw a polygon on the original camera image to exclude the surrounding frame and background. Move vertices or edit coordinates without replacing calibration photos. An unavailable polygon check pauses a normal print for inspection instead of declaring the plate empty."
         },
         {
           "title": "Camera Wall",
