@@ -11,6 +11,10 @@
           "body": "Home axes, run supported calibrations, record maintenance, control queues, maintenance mode and lights for a selected set. Preview recipients and skips, confirm once, and see each result. Printers are checked again before their action; motion requires an empty-plate acknowledgement and fresh idle status."
         },
         {
+          "title": "Print parameters for each sliced model",
+          "body": "Give each model in an order's print plan its own calibration, timelapse and preheat choices. New jobs retain the saved settings for their captured file, even when routed to a compatible printer. Existing jobs and operator profiles stay unchanged."
+        },
+        {
           "title": "Prepared-file auto-ejection for orders",
           "body": "An experimental opt-in for operator-prepared hardware and finish G-code. New jobs keep their own mode and camera policy; fresh camera checks normally guard dispatch after successful ejection. BamDude adds no ejection motion. Explicit camera opt-out needs two warnings, while ordinary or failed previous prints still require manual plate confirmation."
         },
