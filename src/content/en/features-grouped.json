@@ -535,6 +535,10 @@
           "body": "Which printed and purchased parts make one unit, and which sliced plates produce them. Link a library file or a whole folder to a product and the plates and parts fill themselves in from what is inside the file - an object name the product has not met yet becomes a part of it. A plate's yield is read again on every look rather than cached, so re-slicing a file changes what it makes instead of leaving a stale number behind. One product lives in many orders, and the product is the template - there are no separate ones to keep in step."
         },
         {
+          "title": "Every part has its own picture",
+          "body": "Each printed part of a product gets a picture rendered on the server from the sliced G-code, in the colours of its filament - not the whole plate, the part itself. A part sliced on several plates can show the instance you pick, and any part can show your own photo instead. The pictures sit beside part names on the product, in an order's lines and plan, in stock and in dispatch, and the Docker image and the Windows installer bring the pinned Node.js the renderer needs."
+        },
+        {
           "title": "What to print next, worked out per line",
           "body": "Under every line sits a plan: the plates that would cover what it still needs, ranked by useful parts per hour, with everything already printed, running, queued or taken from stock subtracted first - so a plan you have half sent stops asking for the prints you already sent. Each row shows time, filament and cost per print beside a count you can change, and the surplus and the totals follow that number as you type it. Send one row to the auto-queue, send the whole plan at once, or open the usual print dialog to put a row on one named printer. The actual plate and every used channel are validated before queueing; the selected file, quantity, and order line stay intact."
         },
