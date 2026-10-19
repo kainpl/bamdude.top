@@ -7,6 +7,18 @@
       "description": "See and steer every printer in real time, from a single dashboard.",
       "items": [
         {
+          "title": "Confirmed actions across selected printers",
+          "body": "Home axes, run supported calibrations, record maintenance, control queues, maintenance mode and lights for a selected set. Preview recipients and skips, confirm once, and see each result. Printers are checked again before their action; motion requires an empty-plate acknowledgement and fresh idle status."
+        },
+        {
+          "title": "Print parameters for each sliced model",
+          "body": "Give each model in an order's print plan its own calibration, timelapse and preheat choices. New jobs retain the saved settings for their captured file, even when routed to a compatible printer. Existing jobs and operator profiles stay unchanged."
+        },
+        {
+          "title": "Prepared-file auto-ejection for orders",
+          "body": "An experimental opt-in for operator-prepared hardware and finish G-code. New jobs keep their own mode and camera policy; fresh camera checks normally guard dispatch after successful ejection. BamDude adds no ejection motion. Explicit camera opt-out needs two warnings, while ordinary or failed previous prints still require manual plate confirmation."
+        },
+        {
           "title": "Supervised camera process",
           "body": "Camera connections, snapshots, live views and video processing run in a supervised local worker. A failed camera worker can restart without blocking printing or queues, and the System page shows its health. Hardware acceleration and browser connection limits still depend on the host."
         },
@@ -16,7 +28,7 @@
         },
         {
           "title": "Live status via WebSocket",
-          "body": "Temperatures, fans, layer count, AMS, current job - all push-updated, no polling."
+          "body": "Temperatures, fans, layers, AMS and current jobs arrive over WebSocket. Bounded fallback reads cover missed live updates; hidden tabs pause farm reads and catch up when shown."
         },
         {
           "title": "Skip a failed part, keep the plate",
@@ -53,6 +65,10 @@
         {
           "title": "Camera streaming",
           "body": "Live MJPEG and snapshots, plus optional RTSP/USB external cameras."
+        },
+        {
+          "title": "A plate-detection area that follows the bed",
+          "body": "Use a rectangle or draw a polygon on the original camera image to exclude the surrounding frame and background. Move vertices or edit coordinates without replacing calibration photos. An unavailable polygon check pauses a normal print for inspection instead of declaring the plate empty."
         },
         {
           "title": "Camera Wall",
@@ -121,6 +137,14 @@
         {
           "title": "Mobile / PWA install",
           "body": "Install BamDude as a PWA on iOS, Android, or desktop — standalone window, offline app shell, share-target uploads (Android), push notifications when HTTPS is on."
+        },
+        {
+          "title": "Scheduled AMS drying",
+          "body": "Start now, after a delay, at a time, when the printer is free, or on selected weekdays with an optional latest-start window. Requires an AMS and printer that support remote drying; P1 printers remain screen-only."
+        },
+        {
+          "title": "Choose H2C rack nozzles",
+          "body": "Pick R1–R6 for each rack filament group in the print dialog. Unsuitable positions explain why they cannot be used; automatic selection is available, and a manual choice is checked again before dispatch."
         }
       ]
     },
@@ -289,6 +313,10 @@
         {
           "title": "CSV / XLSX export",
           "body": "Filter-aware bulk export of archives + stats for billing, QA logs, or BI pipelines. UTF-8 BOM CSV, multi-sheet XLSX."
+        },
+        {
+          "title": "Correct an archived print’s filament weight",
+          "body": "Edit Filament used (g), including for a print whose 3MF could not be recovered. Statistics, cost and order figures use it; no spool is debited by this edit."
         }
       ]
     },
@@ -313,6 +341,10 @@
         {
           "title": "STL thumbnails",
           "body": "Thumbnail-render STL on upload so you see the part, not a filename."
+        },
+        {
+          "title": "STEP thumbnails",
+          "body": "STEP and STP models get a picture of their shape too, made in the background by the Open CASCADE kernel behind sliced files and STL previews. A model too large or only partly readable says why instead of showing half a part. The Docker image and the Windows installer carry the CAD component; on a native install it is your choice."
         },
         {
           "title": "External folder mounting",
@@ -377,6 +409,10 @@
         {
           "title": "A printed file can go back into the library",
           "body": "Asked for by a user. Pick a folder and the archive's 3MF is copied in, read the same way an upload is — metadata, thumbnail, per-plate details and badges already filled in, rather than an anonymous file. Saving the same print twice does not make a second copy: the library recognises identical content, keeps the one already there, and says so."
+        },
+        {
+          "title": "File preparation has its own health panel",
+          "body": "Uploads and mounted-folder scans prepare 3MF metadata in a supervised local worker. Slow reads stay outside the web server; System reports file preparation separately from model previews, cameras and filament analysis."
         }
       ]
     },
@@ -503,12 +539,16 @@
           "body": "Which printed and purchased parts make one unit, and which sliced plates produce them. Link a library file or a whole folder to a product and the plates and parts fill themselves in from what is inside the file - an object name the product has not met yet becomes a part of it. A plate's yield is read again on every look rather than cached, so re-slicing a file changes what it makes instead of leaving a stale number behind. One product lives in many orders, and the product is the template - there are no separate ones to keep in step."
         },
         {
+          "title": "Every part has its own picture",
+          "body": "Each printed part of a product gets a picture rendered on the server from the sliced G-code, in the colours of its filament - not the whole plate, the part itself. A part sliced on several plates can show the instance you pick, and any part can show your own photo instead. The pictures sit beside part names on the product, in an order's lines and plan, in stock and in dispatch, and the Docker image and the Windows installer bring the pinned Node.js the renderer needs."
+        },
+        {
           "title": "What to print next, worked out per line",
           "body": "Under every line sits a plan: the plates that would cover what it still needs, ranked by useful parts per hour, with everything already printed, running, queued or taken from stock subtracted first - so a plan you have half sent stops asking for the prints you already sent. Each row shows time, filament and cost per print beside a count you can change, and the surplus and the totals follow that number as you type it. Send one row to the auto-queue, send the whole plan at once, or open the usual print dialog to put a row on one named printer. The actual plate and every used channel are validated before queueing; the selected file, quantity, and order line stay intact."
         },
         {
           "title": "Two printer models, two files, one plan",
-          "body": "A part sliced for two machines is two library files with the same yield, and a plan that picks one of them makes the other invisible to half the farm. Every row carries a File switch instead, labelled with the printer model each file was sliced for: choosing one re-does that row's time, filament and cost while the count stays exactly where it was. Split across files shares one row's count between them - the auto-queue routes each item by the model its file names, so this is the only way one order line reaches two printer models at once, and a split whose numbers do not add up refuses to be sent rather than quietly sending the wrong one."
+          "body": "A part sliced for two machines is two library files with the same yield, and a plan that picks one of them makes the other invisible to half the farm. Every row carries a File switch instead, labelled with the printer model each file was sliced for: choosing one re-does that row's time, filament and cost while the count stays exactly where it was. Split across files shares one row's count between them - the auto-queue routes each item by the model its file names, so this is one way to share an order line between printer models, and a split whose numbers do not add up refuses to be sent rather than quietly sending the wrong one."
         },
         {
           "title": "A print started anywhere is filed under the order that needs it",
@@ -533,6 +573,26 @@
         {
           "title": "Re-order in one click",
           "body": "Duplicating an order brings its lines, customer, price, notes and attachments across under a new name, and opens the copy as active. History never travels with it - that stays with the prints that actually happened - and a reorder reserves nothing from stock, because a copy must not quietly empty the shelf."
+        },
+        {
+          "title": "A catalog of configurations",
+          "body": "Products have SKUs, versions, categories and variant groups. Each order line keeps its selected configuration; finished stock and dispatch notes identify that configuration too."
+        },
+        {
+          "title": "Five order views, one workflow",
+          "body": "Cards, table, kanban, workspace and deadlines show the same orders. Stages, responsible operators, quality-check counts and readiness estimates help decide what needs attention; incomplete forecasts say what is missing."
+        },
+        {
+          "title": "Add a library file to an order",
+          "body": "Open Add to order… from a file or its plate gallery, choose an active order and create a one-off line with that file preselected. Orders, Products, Customers and Stock each have their own permissions."
+        },
+        {
+          "title": "Reserve loose stock components",
+          "body": "Take from stock can reserve individual parts even when there is no complete kit. The print plan asks only for missing components; receipts combine allocated stock and printed parts without counting stock twice."
+        },
+        {
+          "title": "Plan a saved percentage of spare parts",
+          "body": "Printed BOM parts can add an extra percentage, rounded up once for the order line. A line keeps its saved setting when the catalog changes. The base kit composition stays unchanged; extras are planned, received and issued separately, and customer orders must deliver them before closing."
         }
       ]
     },
@@ -595,6 +655,10 @@
           "body": "Assign a fresh spool to an AMS slot before loading the filament. The assignment persists immediately; the printer-side configuration auto-fires the moment the slot transitions to loaded (keyed on the AMS load state, so 3rd-party spools without readable RFID trigger the replay too). The toast tells you the configuration is pending, not lying about success — Bambu firmware silently drops filament-setting commands for unloaded slots."
         },
         {
+          "title": "Assign full stock spools on loading",
+          "body": "Opt in per printer and choose an exact filament group from built-in inventory. Loading a new full, untagged reel into an empty AMS slot assigns the oldest eligible unused spool; RFID and manual assignments take priority. External holders require a confirmed runout and your resume. Returning the old partial reel after runout needs manual assignment first."
+        },
+        {
           "title": "Stock forecasting + Logistics view",
           "body": "Per-SKU reorder intelligence on top of the real consumption history. Exponentially-weighted daily-rate (30-day half-life), 95%-service-level safety stock, days-left projection, reorder-by date, and a top-5 stacked-area chart with ROP reference lines. Inline editors for lead-time, safety-margin (days|grams), alert snooze. Companion Shopping List tracks SKUs through pending → purchased → received and auto-creates stock spools on receipt. New notification toggles for reorder and stock-break alerts (currently UI-only). Hidden in Spoolman mode."
         },
@@ -613,6 +677,18 @@
         {
           "title": "Per-spool category + low-stock",
           "body": "Tag spools by category (PETG / ABS / TPU…) and override the global low-stock threshold per spool."
+        },
+        {
+          "title": "Archive a spool after a proven runout",
+          "body": "An optional, default-off setting archives a spool once its runout is closed and the printer has moved to a backup or replacement. Works with built-in inventory and Spoolman; a reel reinserted to keep printing stays active."
+        },
+        {
+          "title": "Use the rest of a label sheet",
+          "body": "Choose the first free label on a partially used sheet. The first page starts there, later pages start at the top, and the labels keep their designed size."
+        },
+        {
+          "title": "Sort grouped filament",
+          "body": "Column headers order groups and their expanded spools by ID, lot, purchase date, location, label weight, net weight and remaining percentage. Groups sort before pagination; group weight columns use totals."
         }
       ]
     },
@@ -737,6 +813,10 @@
         {
           "title": "Obico AI failure detection",
           "body": "Optional ML-based failure detection with notify / pause / pause-and-power-off responses. Every printer card carries an AI badge — grey while nothing is watched, then green, amber or red as a monitored print is classified — so you can follow it without leaving the Printers page."
+        },
+        {
+          "title": "Home Assistant and shared sensor bindings",
+          "body": "Bind numeric or binary HA sensors to printers or spool storage, with independent alerts and history. One Zigbee sensor can serve several places too. Optional printer alert rules hold queued starts; stale or unavailable HA readings release the hold, so this is an operational rule rather than a safety interlock."
         }
       ]
     },
@@ -813,6 +893,10 @@
         {
           "title": "In-app updater with stable + beta channels",
           "body": "Settings → System → Install Update does the full sequence (git fetch --tags, reset --hard to the tag, pip install, npm build) without leaving the UI. Optional Include beta updates toggle surfaces `vX.Y.ZbN` releases too — beta detection is dual-signal (version-name convention OR GitHub prerelease flag). Docker installs aren't auto-applied (running git/pip/npm in a live container would corrupt the image), but the UI shows both image-pull and source-build commands with the resolved tag pre-filled — including a beta-specific hint that `:latest` doesn't track betas, so explicit `image: kainpl/bamdude:0.4.5b1` pinning is required."
+        },
+        {
+          "title": "Printer-scoped API keys and private media",
+          "body": "Restrict an API key to selected printers across reads, controls and their queues; a restricted key cannot use Auto-Queue. Thumbnails and timelapses require permission-aware access, separate from camera tokens. Finished-print photos linked by notifications remain public."
         }
       ]
     },
