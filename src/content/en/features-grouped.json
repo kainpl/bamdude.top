@@ -343,6 +343,10 @@
           "body": "Thumbnail-render STL on upload so you see the part, not a filename."
         },
         {
+          "title": "STEP thumbnails",
+          "body": "STEP and STP models get a picture of their shape too, made in the background by the Open CASCADE kernel behind sliced files and STL previews. A model too large or only partly readable says why instead of showing half a part. The Docker image and the Windows installer carry the CAD component; on a native install it is your choice."
+        },
+        {
           "title": "External folder mounting",
           "body": "Mount a NAS share or USB drive read-only into the library."
         },
