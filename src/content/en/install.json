@@ -53,7 +53,8 @@
       "command": "git clone https://github.com/kainpl/bamdude.git\ncd bamdude\npython3 -m venv venv && source venv/bin/activate\npip install -r requirements.txt\nuvicorn backend.app.main:app --host 0.0.0.0 --port 8000 --loop asyncio --timeout-graceful-shutdown 15",
       "notes": [
         "Python 3.12+ (only for this manual route — Docker and the Windows installer bundle their own).",
-        "For the frontend: `cd frontend && npm install && npm run dev` in a second terminal."
+        "For the frontend: `cd frontend && npm install && npm run dev` in a second terminal.",
+        "STEP thumbnails need a separate CAD component that `pip install` does not bring: with the same venv, `python -m backend.app.step_runtime choose enabled --by cli`, then `install` and `status --check` — see [STEP previews](https://docs.bamdude.top/getting-started/installation/#step-previews). Docker and the Windows installer carry it already."
       ]
     },
     {
