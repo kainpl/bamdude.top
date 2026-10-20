@@ -7,6 +7,10 @@
       "description": "See and steer every printer in real time, from a single dashboard.",
       "items": [
         {
+          "title": "Review the farm after a crash",
+          "body": "After an unconfirmed shutdown, new automatic prints, plug ON and heating wait for an authorized operator. Existing firmware-recovered prints are observed; manual queue pauses and plate checks remain in place."
+        },
+        {
           "title": "Confirmed actions across selected printers",
           "body": "Home axes, run supported calibrations, record maintenance, control queues, maintenance mode and lights for a selected set. Preview recipients and skips, confirm once, and see each result. Printers are checked again before their action; motion requires an empty-plate acknowledgement and fresh idle status."
         },
