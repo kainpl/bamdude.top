@@ -552,7 +552,7 @@
         },
         {
           "title": "What to print next, worked out per line",
-          "body": "Under every line sits a plan: the plates that would cover what it still needs, ranked by useful parts per hour, with everything already printed, running, queued or taken from stock subtracted first - so a plan you have half sent stops asking for the prints you already sent. Each row shows time, filament and cost per print beside a count you can change, and the surplus and the totals follow that number as you type it. Send one row to the auto-queue, send the whole plan at once, or open the usual print dialog to put a row on one named printer. The actual plate and every used channel are validated before queueing; the selected file, quantity, and order line stay intact."
+          "body": "Under every line sits a plan: the plates that would cover what it still needs, chosen by when the farm as it is loaded would finish the work - one printer gets one 10-piece plate rather than two 5-piece prints, several printers still share it - with everything already printed, running, queued or taken from stock subtracted first - so a plan you have half sent stops asking for the prints you already sent. Each row shows time, filament and cost per print beside a count you can change, and the surplus and the totals follow that number as you type it. Send one row to the auto-queue, send the whole plan at once, or open the usual print dialog to put a row on one named printer. The actual plate and every used channel are validated before queueing; the selected file, quantity, and order line stay intact."
         },
         {
           "title": "Two printer models, two files, one plan",
