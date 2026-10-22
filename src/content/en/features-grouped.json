@@ -8,7 +8,7 @@
       "items": [
         {
           "title": "Review the farm after a crash",
-          "body": "After an unconfirmed shutdown, new automatic prints, plug ON and heating wait for an authorized operator. Existing firmware-recovered prints are observed; manual queue pauses and plate checks remain in place."
+          "body": "After an unconfirmed shutdown, new prints, automatic plug ON and preheating wait for an authorized operator. Existing prints and their completion macros continue; reconnecting a printer does not revoke the farm's approval. Manual queue pauses and plate checks remain in place."
         },
         {
           "title": "Confirmed actions across selected printers",
