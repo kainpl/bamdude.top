@@ -9,20 +9,25 @@ Marketing landing for [BamDude](https://github.com/kainpl/bamdude) — self-host
 - TypeScript (strict)
 - `lucide-react`, `astro-og-canvas`, `@astrojs/sitemap`
 - Vitest for island unit tests
-- Lighthouse CI gate
+- Lighthouse CLI for optional local audits
 
 ## Dependencies
 
-Versions are pinned exactly, not by range: a landing page is built once and
-served for weeks, so "whatever resolves today" is not a property worth having.
+Core dependency versions are pinned; the lockfile fixes every resolved version.
+Use `npm ci` to reproduce the checked build instead of resolving dependencies
+anew when deploying.
 
-⚠️ **`@astrojs/language-server` is held at 2.16.6 by an `overrides` entry, and
-that is deliberate.** 2.17.0 stops understanding `.astro` files — `npm run
-typecheck` reports ~196 errors that are not in the source, complaining about
-closing tags and about variables declared two lines above inside
-`<script is:inline>`. `npm update` and `npm audit fix` both reach for it, so
-the pin is what keeps them safe to run. Drop the override, run the typecheck,
-and put it back if the count is not zero.
+The old `@astrojs/language-server` override has been removed: the lockfile's
+2.17.3, through `@astrojs/check` 0.9.12, typechecks the site without the false
+`.astro` errors seen with 2.17.0. It also updates the YAML parser used by the
+checker. Keep `npm run typecheck` in dependency-update acceptance.
+
+Run both `npm audit` and `npm audit --omit=dev` when updating. The remaining
+audit findings are under the optional Lighthouse CLI, which is not run by
+the build or deploy workflows and is not shipped to visitors. Its current
+release still requires older dependency lines; `npm audit fix --force`
+proposes a breaking downgrade, not a compatible repair. Do not force newer
+major versions into that tree just to silence the audit.
 
 ## Local dev
 
@@ -40,7 +45,7 @@ npm run dev           # http://localhost:4321
 - `npm run typecheck` — `astro check`
 - `npm run lint` / `npm run format`
 - `npm run test` / `npm run test:watch` / `npm run test:coverage`
-- `npm run lighthouse` — Lighthouse CI gate (CI / production-URL audits; local under-scores)
+- `npm run lighthouse` — optional Lighthouse audit (not wired into CI/deploy; local performance can under-score)
 
 ## Deploy
 
