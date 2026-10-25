@@ -7,6 +7,10 @@
       "description": "See and steer every printer in real time, from a single dashboard.",
       "items": [
         {
+          "title": "Review the farm after a crash",
+          "body": "After an unconfirmed shutdown, new prints, automatic plug ON and preheating wait for an authorized operator. Existing prints and their completion macros continue; reconnecting a printer does not revoke the farm's approval. Manual queue pauses and plate checks remain in place."
+        },
+        {
           "title": "Confirmed actions across selected printers",
           "body": "Home axes, run supported calibrations, record maintenance, control queues, maintenance mode and lights for a selected set. Preview recipients and skips, confirm once, and see each result. Printers are checked again before their action; motion requires an empty-plate acknowledgement and fresh idle status."
         },
@@ -479,6 +483,10 @@
           "body": "Every event the farm raises — a failed print, a filament runout, an AMS alarm, queue trouble, a sensor past its limit — lands in the Bell in the sidebar, in the inbox of each person subscribed to it: live unread count, read/unread kept per person, filters by level, printer and period. It fills on a farm with no external provider configured at all, which is the point — an alarm about hardware used to have nowhere to go until somebody had set up a bot or a mail server. Each person picks their own events, warnings and errors by default; history retention is a farm setting, 30 days out of the box. The per-user e-mail switches that used to be the whole Notifications page are now one tab inside the centre."
         },
         {
+          "title": "AutoQueue alerts when attention is needed",
+          "body": "Busy printers keep their waiting status without repeated alerts. Material, mapping and availability obstacles are grouped into one message of new facts; renaming printers, changing order or adding copies does not repeat it. Existing inbox, provider and Telegram-chat subscriptions still apply."
+        },
+        {
           "title": "10 delivery channels",
           "body": "Telegram, Discord, Email (SMTP), Pushover, ntfy, Bark, CallMeBot, Signal CLI API, Home Assistant, custom webhooks."
         },
@@ -544,7 +552,7 @@
         },
         {
           "title": "What to print next, worked out per line",
-          "body": "Under every line sits a plan: the plates that would cover what it still needs, ranked by useful parts per hour, with everything already printed, running, queued or taken from stock subtracted first - so a plan you have half sent stops asking for the prints you already sent. Each row shows time, filament and cost per print beside a count you can change, and the surplus and the totals follow that number as you type it. Send one row to the auto-queue, send the whole plan at once, or open the usual print dialog to put a row on one named printer. The actual plate and every used channel are validated before queueing; the selected file, quantity, and order line stay intact."
+          "body": "Under every line sits a plan: the plates that would cover what it still needs, chosen by when the farm as it is loaded would finish the work - one printer gets one 10-piece plate rather than two 5-piece prints, several printers still share it - with everything already printed, running, queued or taken from stock subtracted first - so a plan you have half sent stops asking for the prints you already sent. Each row shows time, filament and cost per print beside a count you can change, and the surplus and the totals follow that number as you type it. Send one row to the auto-queue, send the whole plan at once, or open the usual print dialog to put a row on one named printer. The actual plate and every used channel are validated before queueing; the selected file, quantity, and order line stay intact."
         },
         {
           "title": "Two printer models, two files, one plan",
