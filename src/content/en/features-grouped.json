@@ -108,7 +108,7 @@
         },
         {
           "title": "AMS management",
-          "body": "Slot config, RFID re-read, load / unload from the printer card, AMS Settings dialog (Bambu Studio parity — RFID auto-read on insert/power-on, remaining-capacity estimate, filament backup, air-print detection, AMS calibrate, A1 firmware FULL↔LITE switch, H2D AMS reorder), drying schedules, humidity tracking."
+          "body": "AMS Lite works on both A1 and A1 mini: configure slots, load / unload, assign inventory spools and use the printer's filament backup. External feeding is also supported. Other AMS features — RFID re-read, remaining-capacity estimation, humidity and drying — appear according to the connected unit and firmware. Lite supports RFID identification of Bambu spools, but has no humidity readings or active drying. Firmware switching is offered only when the printer reports available firmware choices."
         },
         {
           "title": "Tell the AMS that several spools are one",

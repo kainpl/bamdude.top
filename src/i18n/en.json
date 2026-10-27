@@ -47,14 +47,14 @@
     "series": [
       {
         "title": "X1 Series",
-        "models": "X1 Carbon, X1E",
+        "models": "X1, X1 Carbon, X1E",
         "primary": "x1c",
         "secondary": "x1e"
       },
       {
         "title": "H2 Series",
         "models": "H2D, H2D Pro, H2C, H2S",
-        "note": "Dual nozzle + nozzle rack",
+        "note": "H2D / Pro: dual nozzle · H2C: nozzle rack · H2S: single nozzle",
         "primary": "h2d",
         "secondary": "h2c"
       },
@@ -72,6 +72,7 @@
       {
         "title": "A1 Series",
         "models": "A1, A1 Mini",
+        "note": "AMS Lite on both models · external spool also supported",
         "primary": "a1",
         "secondary": "a1mini"
       },
