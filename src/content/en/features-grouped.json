@@ -871,6 +871,10 @@
           "body": "Full REST API with API keys, plus WebSocket for live status integrations."
         },
         {
+          "title": "BamDude AI — development preview",
+          "body": "Connect your own assistant through opt-in, read-only MCP. Inspect printer and queue state, retained print and energy evidence, and recovery explanations; actions stay in the normal UI. Client packages and a shared skill simplify setup. In development after v0.7.2, not included in the published v0.7.2; see AI assistants in the documentation for client support and data-sharing limits."
+        },
+        {
           "title": "Prometheus metrics",
           "body": "Dedicated /metrics endpoint with farm-level and per-printer counters."
         },
