@@ -796,7 +796,7 @@
         },
         {
           "title": "Virtual printer modes",
-          "body": "File Manager (review queue), Print Queue (slicer → fixed printer), Auto-Queue (slicer → router chooses by complete filament and feed requirements), Proxy (TLS relay). A fixed-target queue VP can retain the slicer's physical AMS choices, with validation before start; automatic routing resolves sources for the selected printer."
+          "body": "File Manager (review queue), Print Queue (slicer → fixed printer), Auto-Queue (slicer → router chooses by complete filament and feed requirements), Proxy (TLS relay). A fixed-target queue VP can retain the slicer's physical AMS choices, with validation before start; automatic routing resolves sources for the selected printer. Without a target, choose the VP's main-nozzle diameter and flow; with a target, nozzle data comes from that printer. Final dispatch still checks physical compatibility."
         },
         {
           "title": "Slicer-as-remote in non-proxy modes",
