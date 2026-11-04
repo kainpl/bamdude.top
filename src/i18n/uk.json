@@ -47,14 +47,14 @@
     "series": [
       {
         "title": "Серія X1",
-        "models": "X1 Carbon, X1E",
+        "models": "X1, X1 Carbon, X1E",
         "primary": "x1c",
         "secondary": "x1e"
       },
       {
         "title": "Серія H2",
         "models": "H2D, H2D Pro, H2C, H2S",
-        "note": "Dual nozzle + nozzle rack",
+        "note": "H2D / Pro: два сопла · H2C: стійка сопел · H2S: одне сопло",
         "primary": "h2d",
         "secondary": "h2c"
       },
@@ -72,6 +72,7 @@
       {
         "title": "Серія A1",
         "models": "A1, A1 Mini",
+        "note": "AMS Lite на обох моделях · зовнішня котушка теж підтримується",
         "primary": "a1",
         "secondary": "a1mini"
       },

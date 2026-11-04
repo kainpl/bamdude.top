@@ -108,7 +108,7 @@
         },
         {
           "title": "AMS management",
-          "body": "Slot config, RFID re-read, load / unload from the printer card, AMS Settings dialog (Bambu Studio parity — RFID auto-read on insert/power-on, remaining-capacity estimate, filament backup, air-print detection, AMS calibrate, A1 firmware FULL↔LITE switch, H2D AMS reorder), drying schedules, humidity tracking."
+          "body": "AMS Lite works on both A1 and A1 mini: configure slots, load / unload, assign inventory spools and use the printer's filament backup. External feeding is also supported. Other AMS features — RFID re-read, remaining-capacity estimation, humidity and drying — appear according to the connected unit and firmware. Lite supports RFID identification of Bambu spools, but has no humidity readings or active drying. Firmware switching is offered only when the printer reports available firmware choices."
         },
         {
           "title": "Tell the AMS that several spools are one",
@@ -796,7 +796,7 @@
         },
         {
           "title": "Virtual printer modes",
-          "body": "File Manager (review queue), Print Queue (slicer → fixed printer), Auto-Queue (slicer → router chooses by complete filament and feed requirements), Proxy (TLS relay). A fixed-target queue VP can retain the slicer's physical AMS choices, with validation before start; automatic routing resolves sources for the selected printer."
+          "body": "File Manager (review queue), Print Queue (slicer → fixed printer), Auto-Queue (slicer → router chooses by complete filament and feed requirements), Proxy (TLS relay). A fixed-target queue VP can retain the slicer's physical AMS choices, with validation before start; automatic routing resolves sources for the selected printer. Without a target, choose the VP's main-nozzle diameter and flow; with a target, nozzle data comes from that printer. Final dispatch still checks physical compatibility."
         },
         {
           "title": "Slicer-as-remote in non-proxy modes",
@@ -869,6 +869,10 @@
         {
           "title": "REST + WebSocket API",
           "body": "Full REST API with API keys, plus WebSocket for live status integrations."
+        },
+        {
+          "title": "BamDude AI — development preview",
+          "body": "Connect your own assistant through opt-in, read-only MCP. Inspect printer and queue state, retained print and energy evidence, and recovery explanations; actions stay in the normal UI. Client packages and a shared skill simplify setup. In development after v0.7.2, not included in the published v0.7.2; see AI assistants in the documentation for client support and data-sharing limits."
         },
         {
           "title": "Prometheus metrics",

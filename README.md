@@ -2,6 +2,10 @@
 
 Marketing landing for [BamDude](https://github.com/kainpl/bamdude) — self-hosted print management for Bambu Lab 3D printers.
 
+The EN/UK feature catalog includes BamDude AI as development work after v0.7.2,
+separate from released features. Keep its read-only scope, client support and
+data-sharing claims aligned with the [AI assistant guide](https://docs.bamdude.top/addons/ai-assistants/).
+
 ## Stack
 
 - Astro 7 (SSG) + React islands
