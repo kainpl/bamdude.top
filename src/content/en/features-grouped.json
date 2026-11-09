@@ -211,12 +211,16 @@
           "body": "The Print dialog's number used to mean «on each printer you picked» — three printers at 4 made twelve prints while the field said four. Now a line under the field states the outcome, and a toggle offers Per printer or Total: a total is dealt round-robin across the picked printers in the order they are listed, 13 on three becoming 5 / 4 / 4, with the line naming who gets what. Your choice is remembered in the browser; the auto-queue's field was always a total."
         },
         {
+          "title": "Print-state recovery (development)",
+          "body": "In development after 0.7.3: a print already paused when BamDude restarts rejoins its existing run. Info explains conflicting queue claims and offers group cancellation, with separate confirmation for a plate swap already performed by hand. Repair preserves print history, sends no printer commands and leaves the queue paused. Inspect the plate before resuming; cancelled stale claims cannot be retried, cloned or repeated from a plate-clear prompt."
+        },
+        {
           "title": "Auto-pause on failure",
           "body": "When a print fails, the queue stops on that printer so you can decide what's next."
         },
         {
           "title": "Cancel-during-dispatch pauses (not errors)",
-          "body": "Cancelling during the upload/start window moves the queue to paused (not error) and the item to cancelled (not failed) — nothing failed, you just changed your mind. A Restart button on the cancelled item puts it back at the end of the queue with one click."
+          "body": "Cancelling during the upload/start window moves the queue to paused (not error) and the item to cancelled (not failed) — nothing failed, you just changed your mind. For a normal cancelled item, Restart puts it back at the end of the queue with one click."
         },
         {
           "title": "Staggered start",
