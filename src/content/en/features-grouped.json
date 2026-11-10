@@ -839,6 +839,10 @@
       "description": "Always-on auth with MFA, OIDC, LDAP, plus REST/MQTT/Prometheus for everything else.",
       "items": [
         {
+          "title": "Access and diagnostic safeguards (development)",
+          "body": "In development after 0.7.3: sensitive authentication and backup controls require an administrator, temporary authentication outages preserve browser and kiosk sign-ins, and shared log views and exports redact credential fields before searching or truncating."
+        },
+        {
           "title": "Granular permissions",
           "body": "80+ resource:action permissions, three default groups (Admin / Operator / Viewer)."
         },
