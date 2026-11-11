@@ -856,7 +856,7 @@
         },
         {
           "title": "OIDC SSO + Azure Entra ID",
-          "body": "PKCE + state + nonce + JWKS з SSRF-захистом на issuer URL, конфігурований email_claim (preferred_username / upn) для Microsoft 365 / Entra ID."
+          "body": "PKCE + state + nonce + JWKS з SSRF-захистом на issuer URL, конфігурований email_claim (preferred_username / upn) для Microsoft 365 / Entra ID. У розробці після 0.7.3: Remember Me працює з SSO-only входом і можливою 2FA в межах адмінської стелі сесії; автоматичний вхід лишається без позначки."
         },
         {
           "title": "SSO, оголошений у змінних середовища",
@@ -864,7 +864,7 @@
         },
         {
           "title": "LDAP / Active Directory",
-          "body": "LDAP-логін з мапінгом груп - для команд з готовою ідентичністю."
+          "body": "LDAP-логін з мапінгом груп - для команд з готовою ідентичністю. У розробці після 0.7.3: пошук груп з урахуванням схеми, безпечні помилки тесту з'єднання й відсутність plaintext fallback після TLS-помилки. Неповний пошук груп блокує вхід; ручні групи поза керуванням LDAP зберігаються."
         },
         {
           "title": "Sliding-session refresh",

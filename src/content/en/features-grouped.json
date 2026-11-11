@@ -856,7 +856,7 @@
         },
         {
           "title": "OIDC SSO incl. Azure Entra ID",
-          "body": "PKCE + state + nonce + JWKS, SSRF guards on issuer URL, configurable email_claim (preferred_username / upn) for Microsoft 365 / Entra ID."
+          "body": "PKCE + state + nonce + JWKS, SSRF guards on issuer URL, configurable email_claim (preferred_username / upn) for Microsoft 365 / Entra ID. In development after 0.7.3: Remember Me works with SSO-only login and optional 2FA, within the administrator's session ceiling; unattended autologin stays unchecked."
         },
         {
           "title": "SSO declared in environment variables",
@@ -864,7 +864,7 @@
         },
         {
           "title": "LDAP / Active Directory",
-          "body": "Group-mapped LDAP login for shops with existing identity."
+          "body": "Group-mapped LDAP login for shops with existing identity. In development after 0.7.3: schema-aware group lookup, safe connection-test errors and no plaintext fallback after TLS failure. Incomplete group lookup blocks sign-in; manual groups outside LDAP management stay intact."
         },
         {
           "title": "Sliding-session refresh",
