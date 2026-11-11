@@ -840,7 +840,7 @@
       "items": [
         {
           "title": "Access and diagnostic safeguards (development)",
-          "body": "In development after 0.7.3: sensitive authentication and backup controls require an administrator, temporary authentication outages preserve browser and kiosk sign-ins, and shared log views and exports redact credential fields before searching or truncating."
+          "body": "In development after 0.7.3: sensitive authentication and backup controls require an administrator, temporary authentication outages preserve browser and kiosk sign-ins, and shared log views and exports redact credential fields before searching or truncating. Saved integration credentials and camera source URLs remain private even to administrators. Keeping a credential requires the same destination; explicit connection saves and draft tests avoid accidental changes."
         },
         {
           "title": "Granular permissions",
