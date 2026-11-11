@@ -68,7 +68,7 @@
         },
         {
           "title": "Camera streaming",
-          "body": "Live MJPEG and snapshots, plus optional RTSP/USB external cameras."
+          "body": "Live MJPEG and snapshots, plus optional RTSP/USB external cameras. In development after 0.7.3: checked HTTP redirects keep credentials on the original origin, and slow snapshot transfers share a budget of received image bytes. Many large snapshots can exhaust that budget."
         },
         {
           "title": "A plate-detection area that follows the bed",
