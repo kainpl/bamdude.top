@@ -84,7 +84,7 @@
         },
         {
           "title": "Long-lived camera tokens",
-          "body": "Mint multi-year tokens for Home Assistant / Frigate / kiosk dashboards instead of renewing per-session 60-min ones. Three separate scopes — camera stream, Cam Wall, streaming overlay — that never widen one another, so a token handed out for video can't enumerate your fleet or read what's on the bed."
+          "body": "Mint long-lived tokens for Home Assistant / Frigate / kiosk dashboards instead of renewing per-session 60-min ones. Three separate scopes — camera stream, Cam Wall, streaming overlay — that never widen one another, so a token handed out for video can't enumerate your fleet or read what's on the bed."
         },
         {
           "title": "OBS overlay",
@@ -841,6 +841,10 @@
         {
           "title": "Access and diagnostic safeguards (development)",
           "body": "In development after 0.7.3: sensitive authentication and backup controls require an administrator, temporary authentication outages preserve browser and kiosk sign-ins, and shared log views and exports redact credential fields before searching or truncating. Saved integration credentials and camera source URLs remain private even to administrators. Keeping a credential requires the same destination; explicit connection saves and draft tests avoid accidental changes."
+        },
+        {
+          "title": "Credential upgrade (development)",
+          "body": "In development after 0.7.3: upgrading requires signing in again and replacing every legacy API key and camera/monitor token, including ownerless keys. Settings shows affected counts. Update integrations and saved camera-wall, overlay and TV links using the authentication upgrade checklist in the documentation. Newly issued credentials survive ordinary restarts."
         },
         {
           "title": "Granular permissions",
