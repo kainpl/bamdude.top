@@ -879,6 +879,10 @@
           "body": "Full REST API with API keys, plus WebSocket for live status integrations."
         },
         {
+          "title": "OrcaBamDude server API — in development",
+          "body": "Upload sliced files and submit to a printer queue or Auto-Queue with API keys; named operations prevent duplicate queue entries after a lost response. Printer camera access respects the key's scope and stops within five seconds after revocation. In development after 0.7.3; client packaging and platform support are separate."
+        },
+        {
           "title": "BamDude AI — development preview",
           "body": "Connect your own assistant through opt-in, read-only MCP. Inspect printer and queue state, retained print and energy evidence, and recovery explanations; actions stay in the normal UI. Client packages and a shared skill simplify setup. In development after v0.7.2, not included in the published v0.7.2; see AI assistants in the documentation for client support and data-sharing limits."
         },
