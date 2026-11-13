@@ -880,7 +880,7 @@
         },
         {
           "title": "REST + WebSocket API",
-          "body": "Full REST API with API keys, plus WebSocket for live status integrations."
+          "body": "Full REST API with API keys, plus WebSocket for live status integrations. In development after 0.7.3: open views recheck current access; revocation stops the affected session or credential's live delivery within five seconds while other viewers keep running. Explicit API keys cannot fall back to a browser session or URL token."
         },
         {
           "title": "OrcaBamDude server API — in development",
