@@ -908,7 +908,7 @@
         },
         {
           "title": "Git backup",
-          "body": "Schedule automatic config backups to GitHub, GitLab, Gitea, or Forgejo — restore from any commit. Per-backend `git_providers/` package handles the API shape divergences (Forgejo plays Gitea-shape; GitHub uses Issues vs GitLab Issues, etc.)."
+          "body": "Schedule config backups to GitHub, GitLab, Gitea or Forgejo and restore selected categories from a commit. In development after 0.7.3: exports require current administrator approval and a private repository. Paused schedules show the reason and last successful copy, with one in-app administrator notice per blocked period."
         },
         {
           "title": "OrcaSlicer preset import",
