@@ -356,7 +356,7 @@
         },
         {
           "title": "Assemble a project from models",
-          "body": "Select STL, OBJ or STEP models and BamDude lays them out densely — small parts go into the holes and hollows of larger ones, which a slicer's auto-arrange does not do. Give copies per part or fill a plate, add several printers at once, and each gets its own project 3MF with your printer, process and filament presets inside, ready to open and slice. Re-layout reopens an assembled project with the same values. No slicer sidecar is needed."
+          "body": "Select STL, OBJ or STEP models and BamDude lays them out densely — small parts go into the holes and hollows of larger ones, which a slicer's auto-arrange does not do. Give copies per part or fill a plate, add several printers at once, and each gets its own project 3MF with your printer, process and filament presets inside, ready to open and slice. Re-layout reopens an assembled project with the same values. No slicer sidecar is needed. Optional five-minute dense search keeps the best validated layout, with arbitrary in-plane rotations and an action to use the best result early. No mirroring or scaling."
         },
         {
           "title": "External folder mounting",
