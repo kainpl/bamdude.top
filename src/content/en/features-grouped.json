@@ -600,7 +600,7 @@
         },
         {
           "title": "A catalog of configurations",
-          "body": "Products have SKUs, versions, categories and variant groups. Each order line keeps its selected configuration; finished stock and dispatch notes identify that configuration too."
+          "body": "Products have SKUs, versions, categories and variant groups. Each order line keeps its parts and quantities when the catalog changes. Use Add part to line… in an active order to preview the quantity and any change to reservations. Finished stock keeps separate balances for different kits of the same variant."
         },
         {
           "title": "Five order views, one workflow",
