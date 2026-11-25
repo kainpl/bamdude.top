@@ -136,7 +136,7 @@
         },
         {
           "title": "LAN firmware updates",
-          "body": "Fetch Bambu firmware from the CDN, push to the printer's SD card over LAN-mode FTP, apply from the printer screen — no cloud account. Update one printer or the whole farm at once: the Firmware page groups printers by model, downloads each firmware once, pushes in parallel, skips mid-print printers, and keeps a per-run update log. A durable local store keeps every version (so you can roll back even after Bambu pulls it). curl_cffi Chrome impersonation handles Cloudflare's JA3 gate; stale buildId self-heals."
+          "body": "Fetch Bambu firmware from the CDN, push to the printer's SD card over LAN-mode FTP, apply from the printer screen — no cloud account. Update one printer or the whole farm at once: the Firmware page groups printers by model, downloads each firmware once, pushes in parallel, skips mid-print printers, and keeps a per-run update log. See the transfer progress and result for each printer, even after reopening the page. A durable local store keeps every version (so you can roll back even after Bambu pulls it). curl_cffi Chrome impersonation handles Cloudflare's JA3 gate; stale buildId self-heals."
         },
         {
           "title": "Mobile / PWA install",
@@ -360,7 +360,7 @@
         },
         {
           "title": "Assemble a project from models",
-          "body": "Select STL, OBJ or STEP models and BamDude lays them out densely — small parts go into the holes and hollows of larger ones, which a slicer's auto-arrange does not do. Give copies per part or fill a plate, add several printers at once, and each gets its own project 3MF with your printer, process and filament presets inside, ready to open and slice. The rows pick presets from the same lists, source segment and farm filters as the Slice dialog, and each row can take a saved set. Re-layout reopens an assembled project with the same values. No slicer sidecar is needed."
+          "body": "Select STL, OBJ or STEP models and BamDude lays them out densely, fitting small parts into the holes and hollows of larger ones. Set copies per part or fill a plate. Each printer row gets its own 3MF with its printer, process and filament presets and bed plate. Choose a slicer to see its cloud alongside imported and standard presets. Save or apply a row's setup from the same list as the Slice dialog. Re-layout restores the settings from the 3MF. Assembly runs without a slicer sidecar."
         },
         {
           "title": "External folder mounting",
