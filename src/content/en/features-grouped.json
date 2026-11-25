@@ -904,7 +904,7 @@
         },
         {
           "title": "Prometheus metrics",
-          "body": "Dedicated /metrics endpoint with farm-level and per-printer counters."
+          "body": "Authenticated native metrics for telemetry, active order and QC progress, stock estimates, booked filament windows and both queue tiers. Existing Workshop and spool accounting remain the source."
         },
         {
           "title": "Per-request trace IDs",
