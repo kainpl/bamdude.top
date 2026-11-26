@@ -872,7 +872,7 @@
         },
         {
           "title": "OIDC SSO + Azure Entra ID",
-          "body": "PKCE + state + nonce + JWKS з SSRF-захистом на issuer URL, конфігурований email_claim (preferred_username / upn) для Microsoft 365 / Entra ID. Remember Me працює з SSO-only входом і можливою 2FA в межах адмінської стелі сесії; автоматичний вхід лишається без позначки."
+          "body": "PKCE + state + nonce + JWKS з SSRF-захистом на issuer URL, конфігурований email_claim (preferred_username / upn) для Microsoft 365 / Entra ID. Remember Me працює з SSO-only входом і можливою 2FA в межах адмінської стелі сесії; автоматичний вхід лишається без позначки. Мапа груп тримає групи BamDude в ногу з IdP на кожному завершеному вході — разом з Administrators, і ніколи не забирає права в останнього активного адміністратора."
         },
         {
           "title": "SSO, оголошений у змінних середовища",

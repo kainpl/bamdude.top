@@ -140,7 +140,7 @@
           { "label": "Always-on authentication", "values": ["yes", "yes", "partial:Optional"] },
           { "label": "MFA (TOTP + Email + Backup)", "values": ["yes", "no", "partial:Via plugins"] },
           { "label": "MFA + OIDC secrets encrypted at rest", "values": ["yes:Default-on, auto-bootstrapped Fernet key", "no", "no"] },
-          { "label": "OIDC SSO incl. Azure Entra ID", "values": ["yes:PKCE + JWKS, custom email_claim, declarable in env vars", "no", "no"] },
+          { "label": "OIDC SSO incl. Azure Entra ID", "values": ["yes:PKCE + JWKS, custom email_claim, group sync from the IdP, declarable in env vars", "no", "no"] },
           { "label": "LDAP / Active Directory", "values": ["yes", "no", "partial:Via plugins"] },
           { "label": "Granular permissions (80+)", "values": ["yes", "no", "no"] },
           { "label": "API keys + webhooks", "values": ["yes", "no", "yes"] },

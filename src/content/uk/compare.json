@@ -140,7 +140,7 @@
           { "label": "Always-on авторизація", "values": ["yes", "yes", "partial:Опціонально"] },
           { "label": "MFA (TOTP + Email + Backup)", "values": ["yes", "no", "partial:Через плагіни"] },
           { "label": "MFA + OIDC секрети шифровані at-rest", "values": ["yes:Default-on, авто-bootstrap Fernet-ключа", "no", "no"] },
-          { "label": "OIDC SSO + Azure Entra ID", "values": ["yes:PKCE + JWKS, кастомний email_claim, оголошується у env", "no", "no"] },
+          { "label": "OIDC SSO + Azure Entra ID", "values": ["yes:PKCE + JWKS, кастомний email_claim, синхронізація груп з IdP, оголошується у env", "no", "no"] },
           { "label": "LDAP / Active Directory", "values": ["yes", "no", "partial:Через плагіни"] },
           { "label": "Гранулярні дозволи (80+)", "values": ["yes", "no", "no"] },
           { "label": "API-ключі + webhooks", "values": ["yes", "no", "yes"] },
