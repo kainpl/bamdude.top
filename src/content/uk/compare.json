@@ -68,6 +68,7 @@
         "title": "Моніторинг і керування",
         "rows": [
           { "label": "Live-статус друку", "values": ["yes:WebSocket", "yes", "yes"] },
+          { "label": "AI-виявлення збоїв", "values": ["yes:Obico (власний сервер) або OctoEverywhere (хмара)", "partial:Власний ШІ принтера на моделях, що його мають", "yes:Через плагіни Obico чи OctoEverywhere"] },
           { "label": "Розшифровка HMS-помилок", "values": ["yes", "partial:Базові коди", "no"] },
           { "label": "Стрімінг камери + OBS-оверлей", "values": ["yes", "no", "partial:Через плагіни"] },
           { "label": "Зовнішня камера (RTSP/USB)", "values": ["yes", "no", "yes"] },

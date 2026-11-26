@@ -835,8 +835,8 @@
           "body": "Choose whether VP-routed archives take their print_name from 3MF metadata or the upload filename — per-install setting."
         },
         {
-          "title": "Obico AI failure detection",
-          "body": "Optional ML-based failure detection with notify / pause / pause-and-power-off responses. Every printer card carries an AI badge — grey while nothing is watched, then green, amber or red as a monitored print is classified — so you can follow it without leaving the Printers page."
+          "title": "AI failure detection: Obico or OctoEverywhere",
+          "body": "Optional failure detection with notify / pause / pause-and-power-off responses, from one detector the farm chooses: Obico on your own server, or OctoEverywhere's cloud AI when there is no hardware for it. A pause or a power cut happens once per print. Every printer card carries an AI badge — grey while nothing is watched, then green, amber or red as a monitored print is classified, with the print quality for OctoEverywhere — so you can follow it without leaving the Printers page."
         },
         {
           "title": "Home Assistant and shared sensor bindings",

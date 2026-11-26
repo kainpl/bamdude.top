@@ -18,7 +18,7 @@
     },
     {
       "q": "Cloud or local?",
-      "a": "Strictly local. BamDude talks to your printers over your LAN using Developer Mode. No cloud calls except optional Obico AI failure detection (opt-in)."
+      "a": "Local by default. BamDude talks to your printers over your LAN in Developer Mode. Out of the box it makes three outbound calls, each with its own switch: the BamDude update check (GitHub), the printer firmware check (Bambu Lab) and anonymous telemetry. Any other cloud service is used only if you set it up: Bambu Cloud and MakerWorld, OrcaSlicer Cloud, OrcaSlicer profiles from GitHub when you import presets, OctoEverywhere AI failure detection, Git backup to GitHub or GitLab, notifications through Telegram, Discord, Pushover, ntfy.sh, Bark or CallMeBot, a cloud identity provider for SSO, BamDude Cloud, and a bug report you send. Obico failure detection runs on your own server."
     },
     {
       "q": "Does it support PostgreSQL?",

@@ -68,6 +68,7 @@
         "title": "Monitoring & Control",
         "rows": [
           { "label": "Real-time print status", "values": ["yes:WebSocket", "yes", "yes"] },
+          { "label": "AI failure detection", "values": ["yes:Obico (self-hosted) or OctoEverywhere (cloud)", "partial:The printer's own AI on supported models", "yes:Via Obico or OctoEverywhere plugins"] },
           { "label": "HMS error decoding", "values": ["yes", "partial:Basic codes", "no"] },
           { "label": "Camera streaming + OBS overlay", "values": ["yes", "no", "partial:Via plugins"] },
           { "label": "External camera (RTSP/USB)", "values": ["yes", "no", "yes"] },
