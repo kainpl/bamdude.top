@@ -496,7 +496,7 @@
       "id": "notifications",
       "icon": "bell",
       "title": "Нотифікації",
-      "description": "Одинадцять каналів, один редактор, одна конфігурація маршрутизації.",
+      "description": "Дванадцять каналів, один редактор, одна конфігурація маршрутизації.",
       "items": [
         {
           "title": "Вхідні в застосунку — ще до будь-якого каналу",
@@ -507,8 +507,8 @@
           "body": "Зайняті принтери лишаються зі статусом очікування без потоку алертів. Перешкоди матеріалу, mapping і доступності зводяться в одне повідомлення про нові факти; перейменування, зміна порядку чи додавання копій його не повторюють. Чинні підписки вхідних, провайдерів і Telegram-чатів збережено."
         },
         {
-          "title": "11 каналів доставки",
-          "body": "Telegram, Discord, Email (SMTP), Pushover, ntfy, Bark, Gotify, CallMeBot, Signal CLI API, Home Assistant, кастомні webhooks."
+          "title": "12 каналів доставки",
+          "body": "Telegram, Discord, Email (SMTP), Pushover, ntfy, Bark, Gotify, Notify! (з Live Activities і віджетами замкненого екрана на iOS), CallMeBot, Signal CLI API, Home Assistant, кастомні webhooks."
         },
         {
           "title": "Скоуп принтерів на кожному каналі",
