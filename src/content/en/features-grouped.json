@@ -867,6 +867,10 @@
           "body": "80+ resource:action permissions, three default groups (Admin / Operator / Viewer)."
         },
         {
+          "title": "Groups limited to printers and locations",
+          "body": "Limit a team to its printers — picked one by one or by whole locations, nested ones included. Its members see and control only those printers: queues, history, statistics, cameras and notifications follow, and so do their API keys, Telegram chats, kiosk links and Auto Queue jobs."
+        },
+        {
           "title": "TOTP + Email OTP + Backup codes",
           "body": "Multi-factor auth with backup codes; per-user enrollment, admin-resettable."
         },
