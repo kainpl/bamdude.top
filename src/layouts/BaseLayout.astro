@@ -70,10 +70,14 @@ const breadcrumbId = `${canonical}#breadcrumb`;
 const hasBreadcrumbs = !!breadcrumbs && breadcrumbs.length > 1;
 // The feature groups of the features page, in the page's language.
 const featureList = (locale === 'uk' ? featuresUk : featuresEn).groups.map((g) => g.title);
+// How people write the name in Cyrillic, so a search for it finds the site.
+// docs.bamdude.top's Organization (hooks/seo_head.py) carries the same list.
+const alternateNames = ['БамДуд', 'Бамдудь'];
 const organization = {
   '@type': 'Organization',
   '@id': orgId,
   name: 'BamDude',
+  alternateName: alternateNames,
   url: `${siteUrl}/`,
   logo: { '@type': 'ImageObject', url: `${siteUrl}/brand/png/icon-tile-512.png`, width: 512, height: 512 },
   sameAs: [repo, dockerHub],
@@ -86,6 +90,7 @@ const jsonLd = {
       '@type': 'WebSite',
       '@id': websiteId,
       name: 'BamDude',
+      alternateName: alternateNames,
       url: `${siteUrl}/`,
       inLanguage: ['en', 'uk'],
       publisher: { '@id': orgId },
@@ -94,6 +99,7 @@ const jsonLd = {
       '@type': 'SoftwareApplication',
       '@id': softwareId,
       name: 'BamDude',
+      alternateName: alternateNames,
       description: i.pages.home.description,
       url: `${siteUrl}/`,
       applicationCategory: 'BusinessApplication',

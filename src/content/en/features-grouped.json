@@ -492,7 +492,7 @@
       "id": "notifications",
       "icon": "bell",
       "title": "Notifications",
-      "description": "Eight channels, one editor, one routing config.",
+      "description": "Ten channels, one editor, one routing config.",
       "items": [
         {
           "title": "An inbox in the app, before any channel is set up",
