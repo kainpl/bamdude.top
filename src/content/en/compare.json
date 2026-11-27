@@ -10,7 +10,7 @@
         "Multi-printer queue with parallel dispatch",
         "Auto-queue routing by model + filament + color",
         "Full Telegram bot with multi-chat auth",
-        "10 notification channels in one editor",
+        "11 notification channels in one editor",
         "Proxy mode for remote prints (no VPN)"
       ]
     },
@@ -113,10 +113,10 @@
       {
         "title": "Notifications & Bot",
         "rows": [
-          { "label": "Push notifications", "values": ["yes:10 channels", "yes:Mobile push", "partial:Via plugins"] },
+          { "label": "Push notifications", "values": ["yes:11 channels", "yes:Mobile push", "partial:Via plugins"] },
           { "label": "Full Telegram bot", "values": ["yes:Control + queue + maintenance", "no", "partial:Via plugins"] },
           { "label": "Multi-chat with roles", "values": ["yes", "no", "no"] },
-          { "label": "Discord / Pushover / ntfy / Bark", "values": ["yes:Per-event priority; Bark Critical bypasses Silent + Focus", "no", "partial:Via plugins"] },
+          { "label": "Discord / Pushover / ntfy / Bark / Gotify", "values": ["yes:Per-event priority; Bark Critical bypasses Silent + Focus", "no", "partial:Via plugins"] },
           { "label": "Email (SMTP) + webhooks", "values": ["yes", "no", "partial:Via plugins"] },
           { "label": "MarkdownV2 editor with templates", "values": ["yes", "no", "no"] }
         ]

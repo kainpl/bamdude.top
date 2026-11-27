@@ -492,7 +492,7 @@
       "id": "notifications",
       "icon": "bell",
       "title": "Notifications",
-      "description": "Ten channels, one editor, one routing config.",
+      "description": "Eleven channels, one editor, one routing config.",
       "items": [
         {
           "title": "An inbox in the app, before any channel is set up",
@@ -503,8 +503,8 @@
           "body": "Busy printers keep their waiting status without repeated alerts. Material, mapping and availability obstacles are grouped into one message of new facts; renaming printers, changing order or adding copies does not repeat it. Existing inbox, provider and Telegram-chat subscriptions still apply."
         },
         {
-          "title": "10 delivery channels",
-          "body": "Telegram, Discord, Email (SMTP), Pushover, ntfy, Bark, CallMeBot, Signal CLI API, Home Assistant, custom webhooks."
+          "title": "11 delivery channels",
+          "body": "Telegram, Discord, Email (SMTP), Pushover, ntfy, Bark, Gotify, CallMeBot, Signal CLI API, Home Assistant, custom webhooks."
         },
         {
           "title": "Printer scope on every channel",
