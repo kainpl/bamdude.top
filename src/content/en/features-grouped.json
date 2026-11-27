@@ -836,7 +836,7 @@
         },
         {
           "title": "AI failure detection: Obico or OctoEverywhere",
-          "body": "Optional failure detection with notify / pause / pause-and-power-off responses, from one detector the farm chooses: Obico on your own server, or OctoEverywhere's cloud AI when there is no hardware for it. A pause or a power cut happens once per print. Every printer card carries an AI badge — grey while nothing is watched, then green, amber or red as a monitored print is classified, with the print quality for OctoEverywhere — so you can follow it without leaving the Printers page."
+          "body": "Optional failure detection with notify / pause / pause-and-power-off responses, from one detector the farm chooses: Obico on your own server, or OctoEverywhere's cloud AI when there is no hardware for it. A pause or a power cut happens once per print. Every printer card carries an AI badge — grey while nothing is watched, then green, amber or red as a monitored print is classified, its tooltip carrying OctoEverywhere's print quality — so you can follow it without leaving the Printers page."
         },
         {
           "title": "Home Assistant and shared sensor bindings",
