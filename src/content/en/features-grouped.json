@@ -400,7 +400,7 @@
         },
         {
           "title": "Server-side slicing",
-          "body": "Send STL/3MF to a containerised OrcaSlicer or BambuStudio sidecar and get a printable .gcode.3mf back without leaving the app."
+          "body": "Send STL/3MF to a containerised OrcaSlicer or BambuStudio sidecar and get a printable .gcode.3mf back without leaving the app. Process parameters follow the English or Ukrainian interface language; search works with translated names and original setting keys."
         },
         {
           "title": "Re-slice for any printer",
