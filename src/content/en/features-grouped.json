@@ -900,7 +900,7 @@
         },
         {
           "title": "BamDude AI — development preview",
-          "body": "Connect your own assistant through opt-in, read-only MCP. Inspect printer and queue state, retained print and energy evidence, and recovery explanations; actions stay in the normal UI. Client packages and a shared skill simplify setup. See AI assistants in the documentation for client support and data-sharing limits."
+          "body": "Connect your own assistant through opt-in, read-only MCP. Inspect printer and queue state, retained print and energy evidence, and recovery explanations; actions stay in the normal UI. Client packages and a shared skill simplify setup. See AI assistants in the documentation for client support and data-sharing limits. Find orders by name or code, inspect their linked work, and distinguish checked output, unchecked output, recounts and stock receipts without changing production."
         },
         {
           "title": "Prometheus metrics",
