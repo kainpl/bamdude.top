@@ -347,6 +347,10 @@
           "body": "Drag-and-drop folder structure with duplicate detection on hash."
         },
         {
+          "title": "Own and shared folders",
+          "body": "A folder belongs to whoever made it and can be shared with everyone. A user limited to their own files sees only their own folders, shared ones and the way to their files, and adds only where they may; the owner renames, moves, shares and deletes their own."
+        },
+        {
           "title": "Per-plate gallery",
           "body": "Multi-plate sliced 3MFs show every plate with its own stats, filament, and object list."
         },
