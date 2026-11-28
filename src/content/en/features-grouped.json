@@ -927,6 +927,10 @@
           "body": "Forward printer state to your home MQTT broker for Home Assistant / Node-RED."
         },
         {
+          "title": "WLED status lights",
+          "body": "A WLED controller beside each printer shows its state — printing, paused, finished, failed, waiting for its plate, short of filament, an HMS fault, offline — by switching the presets you saved in WLED. No Home Assistant needed."
+        },
+        {
           "title": "Git backup",
           "body": "Schedule config backups to GitHub, GitLab, Gitea or Forgejo and restore selected categories from a commit. Exports require current administrator approval and a private repository. Paused schedules show the reason and last successful copy, with one in-app administrator notice per blocked period."
         },
